@@ -1,0 +1,104 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Main",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/buhera",
+            "args": [],
+            "env": {
+                "RUST_LOG": "debug",
+                "RUST_BACKTRACE": "1"
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "cargo build",
+            "sourceLanguages": ["rust"]
+        },
+        {
+            "name": "Debug Tests",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/deps/buhera-${hash}",
+            "args": ["--test"],
+            "env": {
+                "RUST_LOG": "debug",
+                "RUST_BACKTRACE": "1",
+                "TEST_MODE": "true"
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "cargo test build"
+        },
+        {
+            "name": "Debug Module",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/buhera",
+            "args": ["--module", "${input:moduleChoice}", "--verbose"],
+            "env": {
+                "RUST_LOG": "trace",
+                "RUST_BACKTRACE": "full",
+                "MODULE_DEBUG": "true"
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "cargo build",
+            "sourceLanguages": ["rust"]
+        },
+        {
+            "name": "Debug Integration Tests",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/buhera",
+            "args": ["--integration-test", "--all-modules"],
+            "env": {
+                "RUST_LOG": "debug",
+                "RUST_BACKTRACE": "1",
+                "INTEGRATION_TEST_DEBUG": "true"
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "cargo build"
+        },
+        {
+            "name": "Release Benchmarks",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/release/buhera",
+            "args": ["--benchmark", "--all-modules"],
+            "env": {
+                "RUST_LOG": "info",
+                "BENCHMARK_DEBUG": "true"
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "cargo build --release"
+        },
+        {
+            "name": "Attach",
+            "type": "lldb",
+            "request": "attach",
+            "pid": "${command:pickProcess}",
+            "sourceLanguages": ["rust"]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "moduleChoice",
+            "type": "pickString",
+            "description": "Select module to debug",
+            "options": [
+                "foundry",
+                "quantum",
+                "neural",
+                "semantic",
+                "fuzzy",
+                "bmd",
+                "vpos",
+                "temporal"
+            ]
+        }
+    ]
+}

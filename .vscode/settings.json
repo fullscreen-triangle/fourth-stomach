@@ -1,0 +1,73 @@
+{
+    // Essential Rust settings (keeping only the most important ones)
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.cargo.features": ["all"],
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.lens.enable": true,
+    "rust-analyzer.inlayHints.enable": false,
+    
+    // Core editor settings
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120,
+    "editor.tabSize": 4,
+    "editor.minimap.enabled": false,
+    
+    // Minimal file associations
+    "files.associations": {
+        "*.rs": "rust",
+        "*.toml": "toml",
+        "Cargo.lock": "toml"
+    },
+    
+    // Essential file exclusions for better performance
+    "files.watcherExclude": {
+        "**/target/**": true,
+        "**/.git/**": true,
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/build/**": true
+    },
+    
+    // Simplified search exclusions
+    "search.exclude": {
+        "**/target": true,
+        "**/.git": true,
+        "**/node_modules": true
+    },
+    
+    // Minimal Git settings
+    "git.enableSmartCommit": true,
+    "git.autofetch": false,
+    
+    // Disable heavy features
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoClean.run": false,
+    "latex-workshop.intellisense.package.enabled": false,
+    
+    // Markdown settings (minimal)
+    "markdown.preview.breaks": true,
+    "markdown.extension.toc.updateOnSave": false,
+    
+    // Performance settings
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "manual",
+    
+    // Workbench settings (minimal)
+    "workbench.editor.enablePreview": false,
+    "workbench.startupEditor": "none",
+    
+    // Disable experimental features
+    "experimentalFeatures.quantumComputing": false,
+    "experimentalFeatures.molecularSimulation": false,
+    "experimentalFeatures.semanticProcessing": false,
+    "experimentalFeatures.fuzzyLogic": false,
+    "experimentalFeatures.neuralNetworks": false,
+    "experimentalFeatures.biologicalModeling": false
+}

@@ -1,0 +1,73 @@
+{
+    "recommendations": [
+        // Core Rust Development
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+
+        // Code Quality and Formatting
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "aaron-bond.better-comments",
+        "gruntfuggly.todo-tree",
+
+        // Git and Version Control
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        "github.copilot",
+        "github.copilot-chat",
+
+        // Documentation
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "james-yu.latex-workshop",
+
+        // Scientific Computing
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "goessner.mdmath",
+
+        // Testing and Debug
+        "hbenl.vscode-test-explorer",
+        "ryanluker.vscode-coverage-gutters",
+        "formulahendry.code-runner",
+
+        // Container and DevOps
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+
+        // Terminal and Shell
+        "timonwong.shellcheck",
+        "foxundermoon.shell-format",
+
+        // Data and Visualization
+        "mechatroner.rainbow-csv",
+        "hediet.vscode-drawio",
+        "jebbs.plantuml",
+
+        // Theme and UI
+        "pkief.material-icon-theme",
+        "zhuangtongfa.material-theme",
+        "naumovs.color-highlight",
+
+        // Productivity
+        "christian-kohler.path-intellisense",
+        "alefragnani.bookmarks",
+        "mushan.vscode-paste-image"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.csharp",
+        "ms-dotnettools.csharp",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.node-debug2",
+        "hookyqr.beautify",
+        "bradlc.vscode-tailwindcss",
+        "formulahendry.auto-close-tag"
+    ]
+}
