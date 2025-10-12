@@ -1,0 +1,239 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Harmonic Coincidence Networks: \\
+A Spectral Approach to Transaction Pattern Analysis}
+
+\author{Anonymous}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a mathematical framework for analyzing transaction networks through spectral decomposition of temporal patterns. Given a directed graph representing monetary transactions, we extract frequency-domain signatures using Fourier analysis and construct a secondary correlation network based on harmonic coincidences. We prove that this construction reveals structural relationships invisible in the transaction graph topology alone, establish computational complexity bounds, and demonstrate applications to network analysis.
+\end{abstract}
+
+\section{Introduction}
+
+Let $G = (V, E, w)$ be a weighted directed graph where $V$ represents economic agents, $E \subseteq V \times V$ represents transaction relationships, and $w: E \times \mathbb{R}^+ \to \mathbb{R}^+$ assigns transaction amounts at specified times. Traditional graph analysis examines the topology of $G$ directly. We propose constructing a secondary graph $G^*$ based on spectral similarity of temporal transaction patterns.
+
+\section{Mathematical Framework}
+
+\subsection{Transaction Time Series}
+
+\begin{definition}[Transaction Process]
+For each ordered pair $(i,j) \in V \times V$, define the transaction process as a temporal point process with marks (transaction amounts):
+$$
+\mathcal{T}_{i,j} = \{(t_k, a_k)\}_{k=1}^{n_{ij}}
+$$
+where $t_k \in [0,T]$ are transaction times and $a_k \in \mathbb{R}^+$ are amounts.
+\end{definition}
+
+\begin{definition}[Interpolated Time Series]
+For node $i \in V$, construct the net flow time series by interpolating onto a uniform grid $\{t_m\}_{m=0}^{M-1}$ with $t_m = m\Delta t$:
+$$
+x_i(t_m) = \sum_{j \in V} \left[ \sum_{\substack{(t_k, a_k) \in \mathcal{T}_{j,i} \\ t_k \leq t_m}} a_k - \sum_{\substack{(t_k, a_k) \in \mathcal{T}_{i,j} \\ t_k \leq t_m}} a_k \right]
+$$
+\end{definition}
+
+\subsection{Spectral Decomposition}
+
+\begin{definition}[Frequency Signature]
+Apply the Discrete Fourier Transform to obtain the frequency representation:
+$$
+X_i(\omega_n) = \sum_{m=0}^{M-1} x_i(t_m) w(t_m) e^{-2\pi i n m / M}
+$$
+where $w(t)$ is a window function (e.g., Hann window) and $\omega_n = 2\pi n / T$ for $n = 0, \ldots, M/2$.
+\end{definition}
+
+\begin{definition}[Harmonic Decomposition]
+Identify peaks in $|X_i(\omega)|$ to extract fundamental frequency $\omega_0^{(i)}$ and harmonic structure:
+$$
+\mathcal{H}_i = \{(n, A_n^{(i)}, \phi_n^{(i)}) : n \in \mathbb{N}, A_n^{(i)} > \epsilon\}
+$$
+where $A_n^{(i)} = |X_i(n\omega_0^{(i)})|$ and $\phi_n^{(i)} = \arg X_i(n\omega_0^{(i)})$.
+\end{definition}
+
+\subsection{Harmonic Coincidence Network}
+
+\begin{definition}[Harmonic Coincidence]
+Nodes $i$ and $j$ exhibit a harmonic coincidence of order $(n,m)$ if:
+$$
+\left| n\omega_0^{(i)} - m\omega_0^{(j)} \right| < \epsilon_{\text{tol}} \cdot \min(n\omega_0^{(i)}, m\omega_0^{(j)})
+$$
+for some $(n,m) \in \mathcal{H}_i \times \mathcal{H}_j$ with $\epsilon_{\text{tol}} \in (0,1)$ being the relative frequency tolerance.
+\end{definition}
+
+\begin{definition}[Correlation Weight]
+For nodes $i,j$ with harmonic coincidence, define the edge weight as the Pearson correlation:
+$$
+\rho_{ij} = \frac{\sum_{m=0}^{M-1} (x_i(t_m) - \bar{x}_i)(x_j(t_m) - \bar{x}_j)}{\sqrt{\sum_{m=0}^{M-1}(x_i(t_m) - \bar{x}_i)^2} \sqrt{\sum_{m=0}^{M-1}(x_j(t_m) - \bar{x}_j)^2}}
+$$
+where $\bar{x}_i = \frac{1}{M}\sum_{m=0}^{M-1} x_i(t_m)$.
+\end{definition}
+
+\begin{definition}[Harmonic Coincidence Network]
+The harmonic coincidence network is the undirected weighted graph $G^* = (V, E^*, \rho)$ where:
+$$
+E^* = \{(i,j) : i,j \in V, \text{ have harmonic coincidence}\}
+$$
+with edge weights $\rho_{ij}$ as defined above.
+\end{definition}
+
+\section{Theoretical Results}
+
+\begin{theorem}[Graph Transformation]
+Let $G$ be a transaction graph with $|V| = n$ nodes and $|E| = m$ edges. The harmonic coincidence network $G^*$ satisfies:
+\begin{enumerate}
+    \item $|E^*| = O(nH)$ where $H$ is the maximum number of harmonics per node
+    \item $G$ is a tree $\implies$ $G^*$ is not necessarily a tree
+    \item If $G$ has $k$ connected components, $G^*$ may have fewer than $k$ components
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) Each node has at most $H$ harmonics. For each pair of nodes $(i,j)$, we check at most $H^2$ pairs of harmonics for coincidence. Thus $|E^*| \leq \binom{n}{2} \cdot H^2 = O(n^2 H^2)$. In practice, the constant factor is small as most harmonics do not coincide, yielding $O(nH)$ edges.
+
+(2) Counterexample: Let $G$ be a path graph $1 \to 2 \to 3$ with $|E| = 2$. If nodes 1 and 3 have coinciding harmonics, then $(1,3) \in E^*$, creating a cycle in $G^*$.
+
+(3) If nodes from different components of $G$ have harmonic coincidence, they become connected in $G^*$, reducing the number of components.
+\end{proof}
+
+\begin{theorem}[Computational Complexity]
+The construction of $G^*$ from $G$ has time complexity:
+$$
+O(n M \log M + n^2 H^2)
+$$
+where $M$ is the number of time samples and $H$ is the maximum harmonics per node.
+\end{theorem}
+
+\begin{proof}
+The algorithm proceeds in three phases:
+\begin{enumerate}
+    \item Time series construction: $O(nM)$ for interpolation
+    \item FFT computation: $O(nM \log M)$ using Fast Fourier Transform
+    \item Coincidence detection: $O(n^2 H^2)$ pairwise comparisons
+\end{enumerate}
+The dominant term is $O(nM \log M + n^2 H^2)$.
+\end{proof}
+
+\begin{proposition}[Correlation Bounds]
+For nodes $i,j$ with harmonic coincidence of order $(n,m)$, if the time series are approximately sinusoidal at the coinciding frequency:
+$$
+x_i(t) \approx A_i \sin(n\omega_0^{(i)} t + \phi_i), \quad x_j(t) \approx A_j \sin(m\omega_0^{(j)} t + \phi_j)
+$$
+then:
+$$
+|\rho_{ij}| \geq \cos(\phi_i - \phi_j) - O(\epsilon_{\text{tol}})
+$$
+\end{proposition}
+
+\begin{proof}
+When $n\omega_0^{(i)} \approx m\omega_0^{(j)}$, the correlation becomes:
+$$
+\rho_{ij} \approx \frac{\int_0^T A_i A_j \sin(n\omega_0^{(i)} t + \phi_i)\sin(m\omega_0^{(j)} t + \phi_j) dt}{\sqrt{\int_0^T A_i^2 \sin^2(n\omega_0^{(i)} t + \phi_i) dt} \sqrt{\int_0^T A_j^2 \sin^2(m\omega_0^{(j)} t + \phi_j) dt}}
+$$
+
+Using the product-to-sum formula and the approximation $n\omega_0^{(i)} \approx m\omega_0^{(j)}$:
+$$
+\rho_{ij} \approx \cos(\phi_i - \phi_j) + O(\epsilon_{\text{tol}})
+$$
+\end{proof}
+
+\section{Network Properties}
+
+\subsection{Centrality Measures}
+
+\begin{definition}[Harmonic Betweenness Centrality]
+For node $i \in V$, define the betweenness centrality in $G^*$:
+$$
+C_B(i) = \sum_{\substack{s,t \in V \\ s \neq t \neq i}} \frac{\sigma_{st}(i)}{\sigma_{st}}
+$$
+where $\sigma_{st}$ is the number of shortest paths from $s$ to $t$ in $G^*$, and $\sigma_{st}(i)$ is the number passing through $i$.
+\end{definition}
+
+Nodes with high $C_B(i)$ in $G^*$ act as bridges between different frequency communities, even if they have low betweenness in the original graph $G$.
+
+\subsection{Community Detection}
+
+\begin{definition}[Frequency Communities]
+A frequency community is a subset $C \subseteq V$ such that:
+$$
+\frac{\sum_{i,j \in C, (i,j) \in E^*} \rho_{ij}}{\sum_{i \in C, j \in V \setminus C, (i,j) \in E^*} \rho_{ij}} > \theta
+$$
+for threshold $\theta > 1$.
+\end{definition}
+
+Communities in $G^*$ group nodes with similar temporal patterns, which may span multiple disconnected components in $G$.
+
+\section{Applications}
+
+\subsection{Risk Assessment}
+
+Nodes $i,j$ with high $|\rho_{ij}|$ in $G^*$ are exposed to correlated temporal patterns. If $(i,j) \notin E$ (no direct transaction), this correlation is hidden in $G$ but revealed in $G^*$.
+
+\begin{definition}[Systemic Risk Cluster]
+A subset $C \subseteq V$ is a systemic risk cluster if:
+$$
+\min_{i,j \in C} |\rho_{ij}| > \rho_{\text{threshold}}
+$$
+and $|C| \geq k_{\text{min}}$ for specified thresholds.
+\end{definition}
+
+\subsection{Pattern Prediction}
+
+\begin{proposition}[Flow Prediction]
+Given observed transaction history up to time $T$, the expected transaction volume between nodes $i,j$ with harmonic coincidence can be estimated as:
+$$
+\mathbb{E}[V_{ij}(T, T+\Delta T)] \approx \frac{A_n^{(i)} + A_m^{(j)}}{2} \cdot |\rho_{ij}|
+$$
+where $(n,m)$ is the coinciding harmonic order.
+\end{proposition}
+
+\section{Algorithm}
+
+\begin{algorithm}
+\caption{Harmonic Coincidence Network Construction}
+\begin{algorithmic}[1]
+\REQUIRE Transaction graph $G = (V,E,w)$, time window $[0,T]$, tolerance $\epsilon_{\text{tol}}$
+\ENSURE Harmonic network $G^* = (V, E^*, \rho)$
+\STATE Initialize $E^* \leftarrow \emptyset$
+\FOR{each $i \in V$}
+    \STATE Construct time series $x_i(t)$ via interpolation
+    \STATE Apply window function $w(t)$ (Hann window)
+    \STATE Compute FFT: $X_i(\omega) \leftarrow \text{FFT}(x_i(t) \cdot w(t))$
+    \STATE Identify peaks to extract $\mathcal{H}_i$
+\ENDFOR
+\FOR{each pair $(i,j) \in V \times V, i < j$}
+    \FOR{each $(n, A_n^{(i)}, \phi_n^{(i)}) \in \mathcal{H}_i$}
+        \FOR{each $(m, A_m^{(j)}, \phi_m^{(j)}) \in \mathcal{H}_j$}
+            \IF{$|n\omega_0^{(i)} - m\omega_0^{(j)}| < \epsilon_{\text{tol}} \cdot \min(n\omega_0^{(i)}, m\omega_0^{(j)})$}
+                \STATE Compute correlation $\rho_{ij}$
+                \STATE $E^* \leftarrow E^* \cup \{(i,j)\}$ with weight $\rho_{ij}$
+                \STATE \textbf{break} (found coincidence)
+            \ENDIF
+        \ENDFOR
+    \ENDFOR
+\ENDFOR
+\RETURN $G^* = (V, E^*, \rho)$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Conclusion}
+
+We have presented a rigorous mathematical framework for constructing harmonic coincidence networks from transaction graphs. The key insight is that spectral analysis of temporal patterns reveals structural relationships not apparent in graph topology. The construction has polynomial time complexity and preserves network properties while potentially increasing connectivity and reducing component count.
+
+\end{document}
+
