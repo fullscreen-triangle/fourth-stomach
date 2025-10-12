@@ -360,66 +360,6 @@ Therefore information content preserved across modalities.
 $\square$
 \end{proof}
 
-\section{Chess with Miracles Navigation}
-
-\subsection{Stochastic Graph Navigation}
-
-\begin{definition}[Financial Position as Chess Position]
-Network state $\mathbf{s}(t) = (\mathcal{C}(t), \mathcal{S}(t), \mathcal{G}(t))$ represents "board position" with:
-\begin{itemize}
-    \item \textbf{Pieces}: Active nodes and edges
-    \item \textbf{Material}: Total capital in system
-    \item \textbf{Position}: Semantic coordinates in S-space
-\end{itemize}
-\end{definition}
-
-\begin{definition}[Miraculous Move]
-A move (intervention) $M$ exhibits miracle when:
-$$
-S(M) = (S_t, S_i, S_e) \text{ with any } S_x > 1.0
-$$
-indicating performance exceeding normal bounds in dimension $x$.
-\end{definition}
-
-\subsection{Meta-Information from Unplayed Moves}
-
-\begin{algorithm}
-\caption{Chess with Miracles Financial Navigation}
-\begin{algorithmic}[1]
-\REQUIRE Current state $\mathbf{s}_{\text{current}}$, potential interventions $\{M_1, \ldots, M_k\}$
-\ENSURE Optimal intervention $M^*$ and extracted meta-information $\mathcal{M}$
-\STATE $\mathcal{S}_{\text{values}} \leftarrow \emptyset$
-\FOR{$M_i$ in $\{M_1, \ldots, M_k\}$}
-    \STATE $s_{i,t} \leftarrow$ EstimateTimeCost$(M_i)$
-    \STATE $s_{i,i} \leftarrow$ EstimateInformationGain$(M_i)$
-    \STATE $s_{i,e} \leftarrow$ EstimateEntropyImpact$(M_i)$
-    \STATE $\mathcal{S}_{\text{values}} \leftarrow \mathcal{S}_{\text{values}} \cup \{(M_i, (s_{i,t}, s_{i,i}, s_{i,e}))\}$
-\ENDFOR
-\STATE $\mathcal{M} \leftarrow$ ExtractComparativeMetaInfo$(\mathcal{S}_{\text{values}})$
-\STATE $M^* \leftarrow \arg\max_{M_i} \text{ViabilityScore}(M_i, \mathcal{M})$
-\STATE \textbf{return} $(M^*, \mathcal{M})$
-\end{algorithmic}
-\end{algorithm}
-
-\subsection{Viability Over Optimality}
-
-\begin{theorem}[Financial Viability Principle]
-Financial interventions require viability, not optimality:
-$$
-\text{Success} \iff \text{ViabilityScore}(M) > V_{\text{threshold}}
-$$
-not:
-$$
-\text{Success} \iff M = \arg\max_{M'} \text{OptimalityScore}(M')
-$$
-\end{theorem}
-
-This enables:
-\begin{itemize}
-    \item Accepting suboptimal moves that maintain viability
-    \item Pursuing miraculous performance in critical subsystems ($S > 1.0$)
-    \item Bouncing between promising regions without exhaustive optimization
-\end{itemize}
 
 \section{Financial Laboratory Architecture}
 

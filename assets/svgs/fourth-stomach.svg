@@ -1,0 +1,30 @@
+<svg width="260" height="220" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+    <rect width="260" height="220" rx="28" fill="#0B1020" />
+    <g transform="translate(130,110)" fill="none"> <!-- Circuit edges -->
+        <g stroke="#22D3EE" stroke-width="5" stroke-linecap="round">
+            <path d="M0,-70 L70,0" />
+            <path d="M70,0 L0,70" />
+            <path d="M0,70 L-70,0" />
+            <path d="M-70,0 L0,-70" />
+        </g> <!-- Gas edges -->
+        <g stroke="#A78BFA" stroke-width="4" stroke-dasharray="1 10">
+            <path d="M0,-70 C35,-60 60,-35 70,0" />
+            <path d="M70,0 C60,35 35,60 0,70" />
+            <path d="M0,70 C-35,60 -60,35 -70,0" />
+            <path d="M-70,0 C-60,-35 -35,-60 0,-70" />
+        </g> <!-- Sequence edges -->
+        <g stroke="#34D399" stroke-width="4" stroke-dasharray="8 6">
+            <path d="M-70,0 L0,-70 L70,0 L0,70 Z" />
+        </g> <!-- Backward rumination -->
+        <path d="M35,-5 A40,40 0 0,0 -8,32" stroke="#94A3B8" stroke-width="6" stroke-linecap="round" />
+        <polygon points="-8,32 0,22 12,28" fill="#94A3B8" /> <!-- Nodes -->
+        <g fill="#F8FAFC" stroke="#0B1020" stroke-width="2">
+            <circle cx="0" cy="-70" r="10" />
+            <circle cx="70" cy="0" r="10" />
+            <circle cx="0" cy="70" r="10" />
+            <circle cx="-70" cy="0" r="10" />
+        </g>
+    </g>
+    <text x="130" y="205" fill="#94A3B8" font-size="14" text-anchor="middle"
+        font-family="Inter, system-ui, Arial"> Fourth Stomach – Flux Simulation </text>
+</svg>

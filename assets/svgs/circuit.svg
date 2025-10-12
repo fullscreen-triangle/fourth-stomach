@@ -1,0 +1,24 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+    <rect width="220" height="220" rx="28" fill="#0B1020" />
+    <g transform="translate(110,110)">
+        <path
+            d="M0,-78 C43,-78 78,-43 78,0 C78,43 43,78 0,78 C-43,78 -78,43 -78,0 C-78,-43 -43,-78 0,-78Z"
+            fill="none" stroke="#10B981" stroke-width="8" />
+        <path
+            d="M0,-58 C32,-58 58,-32 58,0 C58,32 32,58 0,58 C-32,58 -58,32 -58,0 C-58,-32 -32,-58 0,-58Z"
+            fill="none" stroke="#38BDF8" stroke-width="8" />
+        <g fill="#10B981">
+            <polygon points="0,-86 6,-72 -6,-72" />
+            <polygon points="86,0 72,6 72,-6" />
+            <polygon points="0,86 -6,72 6,72" />
+            <polygon points="-86,0 -72,-6 -72,6" />
+        </g>
+        <g fill="#38BDF8" transform="rotate(180)">
+            <polygon points="0,-66 6,-52 -6,-52" />
+            <polygon points="66,0 52,6 52,-6" />
+            <polygon points="0,66 -6,52 6,52" />
+            <polygon points="-66,0 -52,-6 -52,6" />
+        </g>
+        <circle r="5" fill="#E2E8F0" />
+    </g>
+</svg>
