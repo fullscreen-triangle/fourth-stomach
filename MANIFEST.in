@@ -1,0 +1,24 @@
+# Include documentation
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+
+# Include makefiles and configs
+include Makefile
+include setup.py
+
+# Include documentation directory
+recursive-include docs *.md *.tex *.png *.jpg *.svg
+
+# Include tests
+recursive-include tests *.py
+
+# Exclude compiled and cache files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude *.egg-info
+

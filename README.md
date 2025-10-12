@@ -1,300 +1,345 @@
-# Fourth Stomach: Revolutionary Economic Infrastructure
+<p align="center">
+  <img src="assets/images/SR-71-crews.png" alt="Logo" width="300"/>
+</p>
 
-> _"A system that uses reality as the root currency"_
+A computational framework implementing circulation-based transaction networks, harmonic pattern analysis, and multi-modal financial representation. The system integrates graph-theoretic optimization, spectral analysis, and S-entropy navigation to provide efficient economic coordination mechanisms.
 
-## 🌟 Vision
+## Overview
 
-Fourth Stomach is a revolutionary economic and financial system that fundamentally reimagines:
+This framework implements several interconnected systems:
 
-- **Payment processing** (replacing Visa/Mastercard with circulation-based transactions)
-- **Market intelligence** (revealing hidden structure through harmonic pattern analysis)
-- **Currency design** (reality-state currency immune to inflation)
-- **Economic coordination** (S-entropy navigation at trans-Planckian precision)
+1. **Circulation Transaction Networks (CTN)**: Batch settlement systems that reduce transaction verification complexity through deferred processing and graph reduction algorithms.
 
-## 🎯 What Makes This Revolutionary
+2. **Shadow Transaction Networks (STN)**: Harmonic coincidence detection for identifying latent correlations in transaction patterns through spectral decomposition and frequency analysis.
 
-### 1. **Circulation Transaction Network (CTN)**
+3. **Graph Completion Finance (GCF)**: Topology-based lending mechanisms that leverage network flow patterns to optimize capital allocation.
 
-A payment system where transactions flow like blood circulation:
+4. **Multi-Modal Representation**: Transformation system enabling circuit, sequence, and gas molecular representations of financial networks with proven information preservation properties.
 
-- **80%+ cost reduction** vs. Visa/Mastercard
-- **Instant processing** (no bank latency)
-- **End-of-day settlement only** (graph reduction)
-- **Built-in fraud detection** (trans-Planckian timing)
+5. **Temporal Arbitrage Framework**: Intraday capital optimization leveraging circulation certainty and shadow network intelligence.
 
-**Example:**
+## Theoretical Foundation
 
-```
-Traditional: A → BANK → B → BANK → C → BANK → D
-            (4 bank verifications, 4 fees, delays)
+The framework is grounded in formal mathematical economics and network theory, with publications documenting:
 
-CTN:        A → B → C → D (money circulates freely)
-            End of day: 1-2 net settlements
-```
+- Complexity reduction from $O(N)$ to $O(n \log n)$ for settlement operations
+- Harmonic coincidence detection with computational complexity $O(NH)$
+- Information preservation across representational transformations (>95%)
+- Graph completion lending with provable repayment bounds
 
-### 2. **Shadow Transaction Network (STN)**
+Detailed theoretical foundations are available in `docs/publication/`.
 
-Market intelligence through harmonic pattern analysis:
+## Installation
 
-- **Reveals hidden market structure** (tree → graph transformation)
-- **Detects fraud/cartels** (abnormal correlation >0.9)
-- **Finds arbitrage opportunities** (correlated markets, price discrepancies)
-- **Identifies systemic risk** (correlation clusters)
-- **Calculates influence scores** (who affects whom?)
+### Prerequisites
 
-**Key Insight:**
+- Python 3.9 or higher
+- pip package manager
 
-Like molecules observing each other through harmonic coincidences, businesses with matching transaction patterns (frequencies) are **connected in economic space**, revealing the TRUE market structure invisible to traditional analysis.
-
-### 3. **Trans-Planckian Precision**
-
-Timing accuracy of **47 zeptoseconds** (4.7 × 10⁻²⁰ seconds):
-
-- 21 trillion× better than hardware clocks
-- Detects fraud through impossible timing coincidences
-- Enables perfect transaction ordering
-- Based on molecular gas harmonic timekeeping
-
-### 4. **S-Entropy Navigation**
-
-Efficient problem-solving through coordinate navigation:
-
-- **Traditional**: O(N²) complexity
-- **S-Entropy**: O(log S₀) complexity
-- **Magic**: Miraculous intermediate states, viable final results
-- Applies to transaction matching, pattern detection, optimization
-
-## 🚀 Quick Start
-
-### Installation
+### Basic Installation
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/yourusername/fourth-stomach.git
 cd fourth-stomach
 
-# Install dependencies
-pip install -r requirements.txt
+# Install the package
+pip install -e .
 ```
 
-### Run Basic Demo
+### Development Installation
+
+For development with testing and linting tools:
 
 ```bash
-cd src/ctn
-python demo_circulation.py
+pip install -e ".[dev]"
 ```
 
-This demonstrates:
-
-- Transaction circulation (no bank involvement during day)
-- End-of-day settlement (graph reduction)
-- Cost savings vs. traditional banking
-
-### Run Shadow Network Demo
+### Using Make (Unix/Linux/macOS)
 
 ```bash
-python demo_shadow_network.py
+# Install core dependencies
+make install
+
+# Install with development tools
+make install-dev
 ```
 
-This demonstrates:
+## Quick Start
 
-- Pattern extraction (FFT analysis)
-- Harmonic coincidence detection
-- Shadow graph construction
-- Market intelligence (hubs, clusters, fraud)
+### Example 1: Circulation Transaction Network
 
-## 📁 Project Structure
+```python
+from ctn import CirculationTransactionNetwork, Transaction
+
+# Initialize network
+ctn = CirculationTransactionNetwork()
+
+# Add entities
+ctn.add_node("Alice")
+ctn.add_node("Bob")
+ctn.add_node("Charlie")
+
+# Process transactions
+ctn.process_transaction(Transaction("Alice", "Bob", 1500.0, timestamp=1.0))
+ctn.process_transaction(Transaction("Bob", "Charlie", 800.0, timestamp=2.0))
+ctn.process_transaction(Transaction("Charlie", "Alice", 2000.0, timestamp=3.0))
+
+# End-of-day settlement
+settlement = ctn.settle_end_of_day()
+print(f"Settlements required: {len(settlement)}")
+```
+
+### Example 2: Shadow Network Analysis
+
+```python
+from ctn import ShadowTransactionNetwork
+
+# Initialize shadow network
+shadow = ShadowTransactionNetwork()
+
+# Extract transaction patterns (requires historical data)
+patterns = shadow.extract_patterns(transactions, window_size=30)
+
+# Detect harmonic coincidences
+coincidences = shadow.detect_harmonics(patterns, epsilon_tol=0.05)
+
+# Build correlation network
+correlation_graph = shadow.build_shadow_graph(coincidences)
+```
+
+### Example 3: Multi-Modal Representation
+
+```python
+from representation import FinancialCircuit, RepresentationTransformer
+
+# Create circuit representation
+circuit = FinancialCircuit()
+circuit.add_node("Alice", net_worth=10000, credit_capacity=5000)
+circuit.add_resistor("Alice", "Bob", resistance=0.05)
+
+# Transform to other representations
+transformer = RepresentationTransformer()
+results = transformer.full_cycle_transform(transactions)
+
+print(f"Information preservation: {results['information_preservation']:.1%}")
+```
+
+## Running Demonstrations
+
+The framework includes several demonstration scripts:
+
+```bash
+# Circulation network demonstration
+python src/ctn/demo_circulation.py
+
+# Shadow network analysis
+python src/ctn/demo_shadow_network.py
+
+# Graph completion finance
+python src/ctn/demo_graph_completion_finance.py
+
+# Multi-modal representations
+python src/representation/demo_representations.py
+```
+
+Or using Make:
+
+```bash
+make demo-ctn      # Circulation network
+make demo-shadow   # Shadow network
+make demo-gcf      # Graph completion
+make demo-rep      # Representations
+```
+
+## Project Structure
 
 ```
 fourth-stomach/
-├── src/ctn/                  # Core implementation
-│   ├── transaction_graph.py  # Circulation transaction network
-│   ├── shadow_network.py     # Pattern analysis & intelligence
-│   ├── visualization.py      # Plotting & dashboards
-│   └── THEORY.md             # Complete theoretical foundation
-│
-├── tests/                    # Comprehensive test suite
-├── docs/                     # Research documents
-│   ├── philosophy/           # Mathematical/physical foundations
-│   ├── economics/            # Economic theory
-│   ├── algorithms/           # Algorithm implementations
-│   └── time/                 # S-entropy & timing
-│
-├── requirements.txt          # Dependencies
-├── PROJECT_OVERVIEW.md       # Detailed implementation guide
-└── README.md                 # This file
+├── src/
+│   ├── ctn/                    # Circulation transaction networks
+│   │   ├── transaction_graph.py
+│   │   ├── shadow_network.py
+│   │   ├── graph_completion_finance.py
+│   │   └── visualization.py
+│   ├── representation/         # Multi-modal representations
+│   │   ├── circuit.py
+│   │   ├── sequence.py
+│   │   ├── gas_molecules.py
+│   │   ├── semantic.py
+│   │   ├── shadow.py
+│   │   └── moon_landing.py
+│   ├── harmonic/              # Harmonic analysis (planned)
+│   ├── jangara/               # Remittance optimization (planned)
+│   ├── laboratory/            # Financial simulation (planned)
+│   └── reality/               # Reality-state currency (planned)
+├── tests/                     # Test suite
+├── docs/
+│   ├── publication/           # Academic papers (LaTeX)
+│   ├── philosophy/            # Theoretical foundations
+│   ├── economics/             # Economic theory
+│   └── algorithms/            # Algorithm specifications
+├── pyproject.toml             # Package configuration
+├── requirements.txt           # Dependencies
+└── Makefile                   # Development commands
 ```
 
-## 🎓 Key Concepts
+## Testing
 
-### Transaction Patterns as Oscillations
-
-Every entity has a transaction rhythm:
-
-```
-ψ(t) = Σ A_n sin(ω_n t + φ_n)
-```
-
-- Coffee shop: Daily rhythm
-- Restaurant: Weekly rhythm
-- Manufacturer: Monthly rhythm
-
-### Harmonic Coincidence → Virtual Connections
-
-When two entities' harmonics match:
-
-```
-|n·ω_A - m·ω_B| < ε
-```
-
-They're **connected in frequency space** → reveals hidden market structure
-
-### The Molecular Analogy
-
-This is **mathematically identical** to molecular gas harmonic timekeeping:
-
-| Molecular System          | Economic System        |
-| ------------------------- | ---------------------- |
-| Vibrational frequency     | Transaction rhythm     |
-| Harmonic coincidence      | Pattern correlation    |
-| Phase locking             | Market synchronization |
-| Observer graph            | Shadow network         |
-| Trans-Planckian precision | 47 zeptosecond timing  |
-
-## 💎 Applications
-
-### 1. **Payment Processing** ($500B market)
-
-- Visa/Mastercard replacement
-- 80%+ cost reduction
-- Instant settlement
-- Built-in fraud detection
-
-### 2. **Risk Management** ($10B market)
-
-- Systemic risk detection
-- Early warning systems
-- Exposure analysis
-- Stress testing
-
-### 3. **Fraud Detection** ($30B market)
-
-- Cartel detection
-- Price manipulation
-- Money laundering
-- Real-time alerts
-
-### 4. **Trading & Arbitrage**
-
-- Arbitrage discovery
-- Predictive forecasting
-- Market microstructure
-- Alpha generation
-
-### 5. **Supply Chain Optimization** ($15B market)
-
-- Hub detection
-- Bottleneck identification
-- Risk diversification
-- Efficiency optimization
-
-## 🧪 Testing
-
-Run comprehensive test suite:
+Run the test suite:
 
 ```bash
-pytest tests/test_ctn.py -v
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage
+pytest tests/ --cov=src --cov-report=html
+
+# Or using Make
+make test
+make test-cov
 ```
 
-Tests include:
+## Documentation
 
-- Transaction processing
-- Flow conservation (Kirchhoff's laws)
-- Settlement algorithms
-- Pattern extraction (FFT)
-- Fraud detection
-- Performance benchmarks
+### Core Documentation
 
-## 📊 Performance
+- **Installation & Setup**: This README
+- **Theoretical Foundation**: `docs/publication/` (LaTeX sources)
+- **API Documentation**: Inline docstrings (PEP 257 compliant)
+- **Implementation Details**: `docs/PROJECT_OVERVIEW.md`
 
-**Current:**
+### Key Publications
 
-- 10,000+ transactions/second
-- <1ms latency per transaction
-- O(n log n) settlement complexity
-- O(NH log S₀) pattern matching
+The framework is based on peer-review-ready research:
 
-**Targets:**
+1. **Harmonic Coincidence Networks** (`docs/publication/harmonic-network-graph.tex`)
 
-- Phase 1: 1,000 nodes, 10K tx/day
-- Phase 2: 100K nodes, 10M tx/day
-- Phase 3: 10M+ nodes, 1B+ tx/day
+   - Spectral decomposition of transaction time series
+   - Correlation network construction via harmonic coincidence
+   - Computational complexity: $O(NH)$
 
-## 📚 Documentation
+2. **Graph Completion Lending** (`docs/publication/credit-graph-network.tex`)
 
-- **Quick Start:** `src/ctn/README.md`
-- **Theory:** `src/ctn/THEORY.md` (complete mathematical foundation)
-- **Overview:** `PROJECT_OVERVIEW.md` (implementation details)
-- **Research:** `docs/` (original theoretical documents)
+   - Topology-based credit allocation
+   - Flow gap identification and completion
+   - Provable repayment bounds
 
-## 🎯 Roadmap
+3. **Circulation Transaction Networks** (`docs/publication/circulation-transactions-network.tex`)
 
-### ✅ Phase 1: Foundation (Complete)
+   - Batch verification and deferred settlement
+   - Complexity reduction to $O(n \log n)$
+   - Kirchhoff's law interpretation
 
-- [x] Circulation transaction network
-- [x] Shadow network analysis
-- [x] Visualization suite
-- [x] Test framework
+4. **Temporal Arbitrage** (`docs/publication/temporal-arbitrage-in-circulation-networks.tex`)
 
-### 🚧 Phase 2: Production (Next)
+   - Intraday liquidity optimization
+   - Settlement certainty quantification
+   - Risk-adjusted return analysis
 
-- [ ] REST API
-- [ ] Real-time streaming
-- [ ] Database persistence
-- [ ] Docker deployment
+5. **Multi-Modal Representation** (`docs/publication/financial-representation.tex`)
 
-### 🔮 Phase 3: Advanced
+   - Circuit, sequence, and gas molecular models
+   - Information-preserving transformations
+   - Semantic distance amplification
 
-- [ ] MDTEC integration (reality-state currency)
-- [ ] Machine learning
-- [ ] Quantum shadow networks
-- [ ] Global deployment
+6. **Fourth Stomach Framework** (`docs/publication/fourth-stomach.tex`)
 
-## 🤝 Contributing
+   - Unified circulatory processing system
+   - Flux-based equilibrium convergence
+   - Four-chamber architecture
 
-This system is based on deep theoretical work. To contribute:
+7. **Validation Framework** (`docs/publication/validation-framework.tex`)
+   - Experimental protocols for all publications
+   - Statistical validation methods
+   - Progressive deployment roadmap
 
-1. Read `THEORY.md` - understand the foundations
-2. Read `PROJECT_OVERVIEW.md` - see the implementation
-3. Run the demos - see it in action
-4. Review the code - it's well-documented
-5. Write tests - for new features
+## Performance Characteristics
 
-## 📜 License
+Current implementation performance (on standard hardware):
 
-TBD
+- **Transaction processing**: 10,000+ transactions/second
+- **Settlement complexity**: $O(n \log n)$ where $n \ll N$
+- **Pattern extraction**: $O(NH)$ via FFT
+- **Memory footprint**: $O(n + m)$ for $n$ nodes, $m$ edges
 
-## 🎉 Summary
+Scalability targets:
 
-**Fourth Stomach** is a complete reimagining of economic infrastructure, built on solid mathematical foundations:
+| Phase | Nodes       | Daily Transactions | Throughput    |
+| ----- | ----------- | ------------------ | ------------- |
+| 1     | 1,000       | 10,000             | 100 TPS       |
+| 2     | 100,000     | 10,000,000         | 10,000 TPS    |
+| 3     | 10,000,000+ | 1,000,000,000+     | 1,000,000 TPS |
 
-✅ **Revolutionary payment system** (80%+ cost reduction)  
-✅ **Market intelligence platform** (reveals hidden structure)  
-✅ **Trans-Planckian precision** (47 zeptoseconds)  
-✅ **Fraud detection** (automatic cartel identification)  
-✅ **Reality-based currency** (inflation-immune)  
-✅ **Fully implemented** (working code + tests)
+## Development
 
-**The theory is complete. The code is functional. The applications are vast.**
+### Code Quality
 
----
+```bash
+# Format code
+make format
 
-_"The shadow reveals what the surface conceals."_
+# Run linters
+make lint
 
----
+# Type checking with mypy
+mypy src/
+```
 
-**For detailed information:**
+### Contributing
 
-- Implementation: `PROJECT_OVERVIEW.md`
-- Theory: `src/ctn/THEORY.md`
-- Demos: `src/ctn/demo_*.py`
+Contributions should:
+
+1. Include tests for new functionality
+2. Maintain >90% code coverage
+3. Follow PEP 8 style guidelines (enforced by Black)
+4. Include type hints (PEP 484)
+5. Update documentation as needed
+
+## Validation Framework
+
+Comprehensive experimental validation protocols are documented in `docs/publication/validation-framework.tex`, including:
+
+- Synthetic data generation
+- Historical backtesting
+- Statistical validation (p < 0.001, Cohen's d > 2.0)
+- Progressive deployment roadmap
+
+## License
+
+MIT License - See LICENSE file for details.
+
+## Citation
+
+If you use this framework in academic work, please cite:
+
+```bibtex
+@software{fourth_stomach,
+  title = {Fourth Stomach: Unified Economic Coordination Framework},
+  author = {Sachikonye, Kundai Farai},
+  year = {2024},
+  url = {https://github.com/yourusername/fourth-stomach}
+}
+```
+
+Individual papers in `docs/publication/` have their own citation formats documented within.
+
+## Contact
+
+For questions, issues, or collaboration inquiries:
+
+- GitHub Issues: [github.com/yourusername/fourth-stomach/issues](https://github.com/yourusername/fourth-stomach/issues)
+- Email: [your.email@example.com](mailto:your.email@example.com)
+
+## Acknowledgments
+
+This work builds on theoretical foundations documented in `docs/philosophy/`, `docs/economics/`, and `docs/time/`, integrating concepts from:
+
+- Network theory and graph algorithms
+- Spectral analysis and harmonic decomposition
+- Thermodynamic optimization principles
+- S-entropy navigation frameworks
+
+## References
+
+See individual publications in `docs/publication/` for detailed bibliographies and mathematical derivations.
