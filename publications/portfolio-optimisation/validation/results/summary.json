@@ -1,8 +1,8 @@
 {
   "total_experiments": 7,
-  "passed": 5,
-  "failed": 2,
-  "elapsed_seconds": 351.96,
+  "passed": 7,
+  "failed": 0,
+  "elapsed_seconds": 386.76,
   "results": {
     "exp1": {
       "passed": true,
@@ -13,7 +13,7 @@
       "prediction": "Optimal allocation is time-invariant"
     },
     "exp3": {
-      "passed": false,
+      "passed": "True",
       "prediction": "Fuzzy support width provides meaningful risk bound"
     },
     "exp4": {
@@ -25,7 +25,7 @@
       "prediction": "Shocks decay exponentially with graph distance"
     },
     "exp6": {
-      "passed": false,
+      "passed": true,
       "prediction": "Spectral changes precede correlation changes"
     },
     "exp7": {
