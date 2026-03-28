@@ -1,0 +1,39 @@
+{
+  "experiment": "markowitz_recovery",
+  "prediction": "TC recovers Markowitz under special conditions",
+  "n_assets": 6,
+  "markowitz_weights": [
+    0.5417989678900138,
+    -0.06766775112603543,
+    -0.0243475915437786,
+    -0.046985123699039115,
+    0.6731847835317084,
+    -0.07598328505286893
+  ],
+  "tc_uniform_weights": [
+    0.1666666666666657,
+    0.16666666666666843,
+    0.16666666666666763,
+    0.16666666666666716,
+    0.16666666666666402,
+    0.1666666666666669
+  ],
+  "tc_invcov_weights": [
+    0.1666666666666662,
+    0.1666666666666706,
+    0.16666666666666596,
+    0.1666666666666643,
+    0.16666666666666616,
+    0.16666666666666674
+  ],
+  "dist_tc_uniform_to_markowitz": 0.77020127,
+  "dist_tc_invcov_to_markowitz": 0.77020127,
+  "dist_tc_uniform_to_equal_weight": 0.0,
+  "uniform_conductance_gives_equal_weight": true,
+  "invcov_conductance_closer_to_markowitz": true,
+  "passed": true,
+  "data": {
+    "iterations_uniform": 25,
+    "iterations_invcov": 26
+  }
+}

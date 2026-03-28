@@ -1,0 +1,132 @@
+{
+  "experiment": "shock_propagation",
+  "prediction": "Shocks decay exponentially with graph distance",
+  "n_assets": 20,
+  "fiedler_value": 0.049247,
+  "shock_magnitude": 50.0,
+  "decay_rate": 0.949307,
+  "r_squared_exponential_fit": 0.999302,
+  "passed": "True",
+  "data": [
+    {
+      "node": "asset_0",
+      "graph_distance": 0,
+      "shock_amplitude": 50.0,
+      "log_amplitude": 3.91202301
+    },
+    {
+      "node": "asset_1",
+      "graph_distance": 1,
+      "shock_amplitude": 19.09830056,
+      "log_amplitude": 2.94959936
+    },
+    {
+      "node": "asset_2",
+      "graph_distance": 2,
+      "shock_amplitude": 7.29490169,
+      "log_amplitude": 1.98717571
+    },
+    {
+      "node": "asset_3",
+      "graph_distance": 3,
+      "shock_amplitude": 2.7864045,
+      "log_amplitude": 1.02475206
+    },
+    {
+      "node": "asset_4",
+      "graph_distance": 4,
+      "shock_amplitude": 1.06431181,
+      "log_amplitude": 0.0623284
+    },
+    {
+      "node": "asset_5",
+      "graph_distance": 5,
+      "shock_amplitude": 0.40653094,
+      "log_amplitude": -0.90009525
+    },
+    {
+      "node": "asset_6",
+      "graph_distance": 6,
+      "shock_amplitude": 0.155281,
+      "log_amplitude": -1.8625189
+    },
+    {
+      "node": "asset_7",
+      "graph_distance": 7,
+      "shock_amplitude": 0.05931206,
+      "log_amplitude": -2.82494255
+    },
+    {
+      "node": "asset_8",
+      "graph_distance": 8,
+      "shock_amplitude": 0.02265519,
+      "log_amplitude": -3.78736621
+    },
+    {
+      "node": "asset_9",
+      "graph_distance": 9,
+      "shock_amplitude": 0.00865351,
+      "log_amplitude": -4.74978987
+    },
+    {
+      "node": "asset_10",
+      "graph_distance": 10,
+      "shock_amplitude": 0.00330535,
+      "log_amplitude": -5.71221354
+    },
+    {
+      "node": "asset_11",
+      "graph_distance": 11,
+      "shock_amplitude": 0.00126253,
+      "log_amplitude": -6.67463712
+    },
+    {
+      "node": "asset_12",
+      "graph_distance": 12,
+      "shock_amplitude": 0.00048224,
+      "log_amplitude": -7.63705981
+    },
+    {
+      "node": "asset_13",
+      "graph_distance": 13,
+      "shock_amplitude": 0.0001842,
+      "log_amplitude": -8.59947573
+    },
+    {
+      "node": "asset_14",
+      "graph_distance": 14,
+      "shock_amplitude": 7.036e-05,
+      "log_amplitude": -9.56184403
+    },
+    {
+      "node": "asset_15",
+      "graph_distance": 15,
+      "shock_amplitude": 2.689e-05,
+      "log_amplitude": -10.52388316
+    },
+    {
+      "node": "asset_16",
+      "graph_distance": 16,
+      "shock_amplitude": 1.03e-05,
+      "log_amplitude": -11.48366417
+    },
+    {
+      "node": "asset_17",
+      "graph_distance": 17,
+      "shock_amplitude": 4e-06,
+      "log_amplitude": -12.42813711
+    },
+    {
+      "node": "asset_18",
+      "graph_distance": 18,
+      "shock_amplitude": 1.72e-06,
+      "log_amplitude": -13.27545758
+    },
+    {
+      "node": "asset_19",
+      "graph_distance": 19,
+      "shock_amplitude": 1.14e-06,
+      "log_amplitude": -13.68094181
+    }
+  ]
+}

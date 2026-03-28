@@ -1,0 +1,69 @@
+{
+  "experiment": "spectral_risk_scaling",
+  "prediction": "Risk ~ 1/lambda_2",
+  "n_assets": 12,
+  "correlation_risk_vs_inv_fiedler": 0.948732,
+  "passed": true,
+  "data": [
+    {
+      "target_connectivity": 0.2,
+      "fiedler_value": 0.016175,
+      "total_fuzzy_risk": 1000.0,
+      "inverse_fiedler": 61.823566
+    },
+    {
+      "target_connectivity": 0.5,
+      "fiedler_value": 0.184679,
+      "total_fuzzy_risk": 400.0,
+      "inverse_fiedler": 5.414809
+    },
+    {
+      "target_connectivity": 1.0,
+      "fiedler_value": 0.940725,
+      "total_fuzzy_risk": 200.0,
+      "inverse_fiedler": 1.06301
+    },
+    {
+      "target_connectivity": 2.0,
+      "fiedler_value": 5.07886,
+      "total_fuzzy_risk": 100.0,
+      "inverse_fiedler": 0.196895
+    },
+    {
+      "target_connectivity": 3.0,
+      "fiedler_value": 15.780644,
+      "total_fuzzy_risk": 66.666667,
+      "inverse_fiedler": 0.063369
+    },
+    {
+      "target_connectivity": 5.0,
+      "fiedler_value": 45.783533,
+      "total_fuzzy_risk": 40.0,
+      "inverse_fiedler": 0.021842
+    },
+    {
+      "target_connectivity": 8.0,
+      "fiedler_value": 73.253652,
+      "total_fuzzy_risk": 25.0,
+      "inverse_fiedler": 0.013651
+    },
+    {
+      "target_connectivity": 12.0,
+      "fiedler_value": 109.880478,
+      "total_fuzzy_risk": 16.666667,
+      "inverse_fiedler": 0.009101
+    },
+    {
+      "target_connectivity": 18.0,
+      "fiedler_value": 164.820718,
+      "total_fuzzy_risk": 11.111111,
+      "inverse_fiedler": 0.006067
+    },
+    {
+      "target_connectivity": 25.0,
+      "fiedler_value": 228.917664,
+      "total_fuzzy_risk": 8.0,
+      "inverse_fiedler": 0.004368
+    }
+  ]
+}

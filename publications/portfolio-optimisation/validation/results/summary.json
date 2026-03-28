@@ -1,0 +1,36 @@
+{
+  "total_experiments": 7,
+  "passed": 5,
+  "failed": 2,
+  "elapsed_seconds": 351.96,
+  "results": {
+    "exp1": {
+      "passed": true,
+      "prediction": "Convergence rate scales inversely with lambda_2"
+    },
+    "exp2": {
+      "passed": "True",
+      "prediction": "Optimal allocation is time-invariant"
+    },
+    "exp3": {
+      "passed": false,
+      "prediction": "Fuzzy support width provides meaningful risk bound"
+    },
+    "exp4": {
+      "passed": true,
+      "prediction": "Risk ~ 1/lambda_2"
+    },
+    "exp5": {
+      "passed": "True",
+      "prediction": "Shocks decay exponentially with graph distance"
+    },
+    "exp6": {
+      "passed": false,
+      "prediction": "Spectral changes precede correlation changes"
+    },
+    "exp7": {
+      "passed": true,
+      "prediction": "TC recovers Markowitz under special conditions"
+    }
+  }
+}

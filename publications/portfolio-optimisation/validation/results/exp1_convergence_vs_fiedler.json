@@ -1,0 +1,80 @@
+{
+  "experiment": "convergence_rate_vs_fiedler",
+  "prediction": "Convergence rate scales inversely with lambda_2",
+  "n_assets": 15,
+  "n_trials": 10,
+  "correlation_lambda2_vs_iterations": -0.614416,
+  "passed": true,
+  "data": [
+    {
+      "target_connectivity": 0.1,
+      "fiedler_value": 0.016251,
+      "iterations_to_converge": 69,
+      "contraction_rate": 0.794249,
+      "final_distance": 8.4e-11
+    },
+    {
+      "target_connectivity": 0.3,
+      "fiedler_value": 0.087742,
+      "iterations_to_converge": 63,
+      "contraction_rate": 0.778018,
+      "final_distance": 8.1e-11
+    },
+    {
+      "target_connectivity": 0.5,
+      "fiedler_value": 0.518913,
+      "iterations_to_converge": 52,
+      "contraction_rate": 0.730136,
+      "final_distance": 8e-11
+    },
+    {
+      "target_connectivity": 1.0,
+      "fiedler_value": 1.478082,
+      "iterations_to_converge": 55,
+      "contraction_rate": 0.745813,
+      "final_distance": 7.6e-11
+    },
+    {
+      "target_connectivity": 1.5,
+      "fiedler_value": 3.053152,
+      "iterations_to_converge": 51,
+      "contraction_rate": 0.725957,
+      "final_distance": 9.1e-11
+    },
+    {
+      "target_connectivity": 2.0,
+      "fiedler_value": 7.545346,
+      "iterations_to_converge": 51,
+      "contraction_rate": 0.72862,
+      "final_distance": 7.4e-11
+    },
+    {
+      "target_connectivity": 3.0,
+      "fiedler_value": 12.831528,
+      "iterations_to_converge": 50,
+      "contraction_rate": 0.721086,
+      "final_distance": 9.8e-11
+    },
+    {
+      "target_connectivity": 5.0,
+      "fiedler_value": 50.590384,
+      "iterations_to_converge": 46,
+      "contraction_rate": 0.699088,
+      "final_distance": 7e-11
+    },
+    {
+      "target_connectivity": 8.0,
+      "fiedler_value": 80.944614,
+      "iterations_to_converge": 46,
+      "contraction_rate": 0.69909,
+      "final_distance": 7e-11
+    },
+    {
+      "target_connectivity": 12.0,
+      "fiedler_value": 121.416922,
+      "iterations_to_converge": 46,
+      "contraction_rate": 0.699058,
+      "final_distance": 7e-11
+    }
+  ]
+}

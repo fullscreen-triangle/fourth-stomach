@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(wc -l /c/Users/kunda/Documents/systems/fourth-stomach/src/representation/*.py)"
+      "Bash(wc -l /c/Users/kunda/Documents/systems/fourth-stomach/src/representation/*.py)",
+      "Bash(pip list:*)",
+      "Bash(python -u -c \":*)"
     ]
   }
 }

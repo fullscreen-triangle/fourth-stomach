@@ -1,0 +1,174 @@
+{
+  "experiment": "fuzzy_risk_vs_variance",
+  "prediction": "Fuzzy support width provides meaningful risk bound",
+  "n_trials": 20,
+  "n_fuzzy_tighter": 5,
+  "n_fuzzy_better_oos": 0,
+  "fraction_better_oos": 0.0,
+  "mean_fuzzy_risk": 0.008193,
+  "corr_fuzzy_risk_vs_realised_loss": -0.0431,
+  "risk_is_meaningful": "True",
+  "passed": "True",
+  "data": [
+    {
+      "trial": 0,
+      "mv_variance": 0.00028198,
+      "mv_realised_loss": 0.00163953,
+      "fuzzy_risk": 0.00405868,
+      "fuzzy_realised_loss": 0.02268684,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 1,
+      "mv_variance": 0.00561591,
+      "mv_realised_loss": 0.01130827,
+      "fuzzy_risk": 0.00909909,
+      "fuzzy_realised_loss": 0.02307924,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 2,
+      "mv_variance": 0.00445188,
+      "mv_realised_loss": 0.00701559,
+      "fuzzy_risk": 0.0116814,
+      "fuzzy_realised_loss": 0.01532473,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 3,
+      "mv_variance": 0.00673606,
+      "mv_realised_loss": 0.00876953,
+      "fuzzy_risk": 0.00880913,
+      "fuzzy_realised_loss": 0.01542221,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 4,
+      "mv_variance": 0.00953728,
+      "mv_realised_loss": 0.0124391,
+      "fuzzy_risk": 0.00865555,
+      "fuzzy_realised_loss": 0.026033,
+      "fuzzy_tighter": true
+    },
+    {
+      "trial": 5,
+      "mv_variance": 0.00328898,
+      "mv_realised_loss": 0.00827658,
+      "fuzzy_risk": 0.00604501,
+      "fuzzy_realised_loss": 0.01707015,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 6,
+      "mv_variance": 0.02150648,
+      "mv_realised_loss": 0.02393031,
+      "fuzzy_risk": 0.01256829,
+      "fuzzy_realised_loss": 0.02527589,
+      "fuzzy_tighter": true
+    },
+    {
+      "trial": 7,
+      "mv_variance": 0.00621566,
+      "mv_realised_loss": 0.01494937,
+      "fuzzy_risk": 0.0110151,
+      "fuzzy_realised_loss": 0.02201746,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 8,
+      "mv_variance": 0.00302976,
+      "mv_realised_loss": 0.01213668,
+      "fuzzy_risk": 0.00739864,
+      "fuzzy_realised_loss": 0.02992864,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 9,
+      "mv_variance": 0.00802195,
+      "mv_realised_loss": 0.01299767,
+      "fuzzy_risk": 0.0083648,
+      "fuzzy_realised_loss": 0.02035326,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 10,
+      "mv_variance": 0.00422106,
+      "mv_realised_loss": 0.00809243,
+      "fuzzy_risk": 0.00857208,
+      "fuzzy_realised_loss": 0.01838628,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 11,
+      "mv_variance": 0.0116871,
+      "mv_realised_loss": 0.02099881,
+      "fuzzy_risk": 0.0099778,
+      "fuzzy_realised_loss": 0.0238528,
+      "fuzzy_tighter": true
+    },
+    {
+      "trial": 12,
+      "mv_variance": 0.00669423,
+      "mv_realised_loss": 0.01210379,
+      "fuzzy_risk": 0.0081779,
+      "fuzzy_realised_loss": 0.02037536,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 13,
+      "mv_variance": 0.00070818,
+      "mv_realised_loss": 0.00376135,
+      "fuzzy_risk": 0.0097972,
+      "fuzzy_realised_loss": 0.018705,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 14,
+      "mv_variance": 0.00089103,
+      "mv_realised_loss": 0.00443704,
+      "fuzzy_risk": 0.00511349,
+      "fuzzy_realised_loss": 0.02377467,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 15,
+      "mv_variance": 0.00516011,
+      "mv_realised_loss": 0.01005562,
+      "fuzzy_risk": 0.00496874,
+      "fuzzy_realised_loss": 0.01902036,
+      "fuzzy_tighter": true
+    },
+    {
+      "trial": 16,
+      "mv_variance": 0.0058587,
+      "mv_realised_loss": 0.01191645,
+      "fuzzy_risk": 0.0058422,
+      "fuzzy_realised_loss": 0.02129816,
+      "fuzzy_tighter": true
+    },
+    {
+      "trial": 17,
+      "mv_variance": 0.00400438,
+      "mv_realised_loss": 0.00780956,
+      "fuzzy_risk": 0.00957536,
+      "fuzzy_realised_loss": 0.01365318,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 18,
+      "mv_variance": 0.00532008,
+      "mv_realised_loss": 0.01019286,
+      "fuzzy_risk": 0.00628088,
+      "fuzzy_realised_loss": 0.01744083,
+      "fuzzy_tighter": false
+    },
+    {
+      "trial": 19,
+      "mv_variance": 0.00056368,
+      "mv_realised_loss": 0.00314013,
+      "fuzzy_risk": 0.00785513,
+      "fuzzy_realised_loss": 0.01726373,
+      "fuzzy_tighter": false
+    }
+  ]
+}
