@@ -1,0 +1,491 @@
+{
+  "experiment": "ideal_gas_law",
+  "prediction": "PV/(NkT) = 1.00 across configurations",
+  "n_configs": 60,
+  "mean_ratio": 1.019823,
+  "std_ratio": 0.105559,
+  "max_deviation": 0.353129,
+  "passed": "True",
+  "data": [
+    {
+      "N": 50,
+      "V": 500,
+      "T": 0.5,
+      "P_theory": 0.05,
+      "P_measured": 0.049244,
+      "PV_over_NkT": 0.984874
+    },
+    {
+      "N": 50,
+      "V": 500,
+      "T": 1.0,
+      "P_theory": 0.1,
+      "P_measured": 0.124248,
+      "PV_over_NkT": 1.24248
+    },
+    {
+      "N": 50,
+      "V": 500,
+      "T": 2.0,
+      "P_theory": 0.2,
+      "P_measured": 0.193577,
+      "PV_over_NkT": 0.967883
+    },
+    {
+      "N": 50,
+      "V": 500,
+      "T": 5.0,
+      "P_theory": 0.5,
+      "P_measured": 0.554669,
+      "PV_over_NkT": 1.109338
+    },
+    {
+      "N": 50,
+      "V": 1000,
+      "T": 0.5,
+      "P_theory": 0.025,
+      "P_measured": 0.024967,
+      "PV_over_NkT": 0.998694
+    },
+    {
+      "N": 50,
+      "V": 1000,
+      "T": 1.0,
+      "P_theory": 0.05,
+      "P_measured": 0.032344,
+      "PV_over_NkT": 0.646871
+    },
+    {
+      "N": 50,
+      "V": 1000,
+      "T": 2.0,
+      "P_theory": 0.1,
+      "P_measured": 0.102241,
+      "PV_over_NkT": 1.022414
+    },
+    {
+      "N": 50,
+      "V": 1000,
+      "T": 5.0,
+      "P_theory": 0.25,
+      "P_measured": 0.227437,
+      "PV_over_NkT": 0.909748
+    },
+    {
+      "N": 50,
+      "V": 2000,
+      "T": 0.5,
+      "P_theory": 0.0125,
+      "P_measured": 0.015844,
+      "PV_over_NkT": 1.267516
+    },
+    {
+      "N": 50,
+      "V": 2000,
+      "T": 1.0,
+      "P_theory": 0.025,
+      "P_measured": 0.023781,
+      "PV_over_NkT": 0.951242
+    },
+    {
+      "N": 50,
+      "V": 2000,
+      "T": 2.0,
+      "P_theory": 0.05,
+      "P_measured": 0.052494,
+      "PV_over_NkT": 1.049877
+    },
+    {
+      "N": 50,
+      "V": 2000,
+      "T": 5.0,
+      "P_theory": 0.125,
+      "P_measured": 0.122267,
+      "PV_over_NkT": 0.978135
+    },
+    {
+      "N": 100,
+      "V": 500,
+      "T": 0.5,
+      "P_theory": 0.1,
+      "P_measured": 0.101792,
+      "PV_over_NkT": 1.017923
+    },
+    {
+      "N": 100,
+      "V": 500,
+      "T": 1.0,
+      "P_theory": 0.2,
+      "P_measured": 0.267902,
+      "PV_over_NkT": 1.339508
+    },
+    {
+      "N": 100,
+      "V": 500,
+      "T": 2.0,
+      "P_theory": 0.4,
+      "P_measured": 0.448136,
+      "PV_over_NkT": 1.12034
+    },
+    {
+      "N": 100,
+      "V": 500,
+      "T": 5.0,
+      "P_theory": 1.0,
+      "P_measured": 0.886889,
+      "PV_over_NkT": 0.886889
+    },
+    {
+      "N": 100,
+      "V": 1000,
+      "T": 0.5,
+      "P_theory": 0.05,
+      "P_measured": 0.047682,
+      "PV_over_NkT": 0.953648
+    },
+    {
+      "N": 100,
+      "V": 1000,
+      "T": 1.0,
+      "P_theory": 0.1,
+      "P_measured": 0.110567,
+      "PV_over_NkT": 1.105672
+    },
+    {
+      "N": 100,
+      "V": 1000,
+      "T": 2.0,
+      "P_theory": 0.2,
+      "P_measured": 0.209581,
+      "PV_over_NkT": 1.047907
+    },
+    {
+      "N": 100,
+      "V": 1000,
+      "T": 5.0,
+      "P_theory": 0.5,
+      "P_measured": 0.530424,
+      "PV_over_NkT": 1.060848
+    },
+    {
+      "N": 100,
+      "V": 2000,
+      "T": 0.5,
+      "P_theory": 0.025,
+      "P_measured": 0.028024,
+      "PV_over_NkT": 1.120952
+    },
+    {
+      "N": 100,
+      "V": 2000,
+      "T": 1.0,
+      "P_theory": 0.05,
+      "P_measured": 0.049312,
+      "PV_over_NkT": 0.986247
+    },
+    {
+      "N": 100,
+      "V": 2000,
+      "T": 2.0,
+      "P_theory": 0.1,
+      "P_measured": 0.112612,
+      "PV_over_NkT": 1.126117
+    },
+    {
+      "N": 100,
+      "V": 2000,
+      "T": 5.0,
+      "P_theory": 0.25,
+      "P_measured": 0.307975,
+      "PV_over_NkT": 1.2319
+    },
+    {
+      "N": 200,
+      "V": 500,
+      "T": 0.5,
+      "P_theory": 0.2,
+      "P_measured": 0.203871,
+      "PV_over_NkT": 1.019354
+    },
+    {
+      "N": 200,
+      "V": 500,
+      "T": 1.0,
+      "P_theory": 0.4,
+      "P_measured": 0.406947,
+      "PV_over_NkT": 1.017368
+    },
+    {
+      "N": 200,
+      "V": 500,
+      "T": 2.0,
+      "P_theory": 0.8,
+      "P_measured": 0.817307,
+      "PV_over_NkT": 1.021634
+    },
+    {
+      "N": 200,
+      "V": 500,
+      "T": 5.0,
+      "P_theory": 2.0,
+      "P_measured": 1.959519,
+      "PV_over_NkT": 0.979759
+    },
+    {
+      "N": 200,
+      "V": 1000,
+      "T": 0.5,
+      "P_theory": 0.1,
+      "P_measured": 0.099595,
+      "PV_over_NkT": 0.995946
+    },
+    {
+      "N": 200,
+      "V": 1000,
+      "T": 1.0,
+      "P_theory": 0.2,
+      "P_measured": 0.169913,
+      "PV_over_NkT": 0.849566
+    },
+    {
+      "N": 200,
+      "V": 1000,
+      "T": 2.0,
+      "P_theory": 0.4,
+      "P_measured": 0.379302,
+      "PV_over_NkT": 0.948254
+    },
+    {
+      "N": 200,
+      "V": 1000,
+      "T": 5.0,
+      "P_theory": 1.0,
+      "P_measured": 1.106958,
+      "PV_over_NkT": 1.106958
+    },
+    {
+      "N": 200,
+      "V": 2000,
+      "T": 0.5,
+      "P_theory": 0.05,
+      "P_measured": 0.052628,
+      "PV_over_NkT": 1.052553
+    },
+    {
+      "N": 200,
+      "V": 2000,
+      "T": 1.0,
+      "P_theory": 0.1,
+      "P_measured": 0.119429,
+      "PV_over_NkT": 1.194289
+    },
+    {
+      "N": 200,
+      "V": 2000,
+      "T": 2.0,
+      "P_theory": 0.2,
+      "P_measured": 0.176564,
+      "PV_over_NkT": 0.882819
+    },
+    {
+      "N": 200,
+      "V": 2000,
+      "T": 5.0,
+      "P_theory": 0.5,
+      "P_measured": 0.53615,
+      "PV_over_NkT": 1.072299
+    },
+    {
+      "N": 500,
+      "V": 500,
+      "T": 0.5,
+      "P_theory": 0.5,
+      "P_measured": 0.494734,
+      "PV_over_NkT": 0.989468
+    },
+    {
+      "N": 500,
+      "V": 500,
+      "T": 1.0,
+      "P_theory": 1.0,
+      "P_measured": 0.934733,
+      "PV_over_NkT": 0.934733
+    },
+    {
+      "N": 500,
+      "V": 500,
+      "T": 2.0,
+      "P_theory": 2.0,
+      "P_measured": 2.113522,
+      "PV_over_NkT": 1.056761
+    },
+    {
+      "N": 500,
+      "V": 500,
+      "T": 5.0,
+      "P_theory": 5.0,
+      "P_measured": 5.15581,
+      "PV_over_NkT": 1.031162
+    },
+    {
+      "N": 500,
+      "V": 1000,
+      "T": 0.5,
+      "P_theory": 0.25,
+      "P_measured": 0.245891,
+      "PV_over_NkT": 0.983563
+    },
+    {
+      "N": 500,
+      "V": 1000,
+      "T": 1.0,
+      "P_theory": 0.5,
+      "P_measured": 0.47316,
+      "PV_over_NkT": 0.94632
+    },
+    {
+      "N": 500,
+      "V": 1000,
+      "T": 2.0,
+      "P_theory": 1.0,
+      "P_measured": 1.132572,
+      "PV_over_NkT": 1.132572
+    },
+    {
+      "N": 500,
+      "V": 1000,
+      "T": 5.0,
+      "P_theory": 2.5,
+      "P_measured": 2.592936,
+      "PV_over_NkT": 1.037175
+    },
+    {
+      "N": 500,
+      "V": 2000,
+      "T": 0.5,
+      "P_theory": 0.125,
+      "P_measured": 0.126406,
+      "PV_over_NkT": 1.011247
+    },
+    {
+      "N": 500,
+      "V": 2000,
+      "T": 1.0,
+      "P_theory": 0.25,
+      "P_measured": 0.249424,
+      "PV_over_NkT": 0.997696
+    },
+    {
+      "N": 500,
+      "V": 2000,
+      "T": 2.0,
+      "P_theory": 0.5,
+      "P_measured": 0.491208,
+      "PV_over_NkT": 0.982415
+    },
+    {
+      "N": 500,
+      "V": 2000,
+      "T": 5.0,
+      "P_theory": 1.25,
+      "P_measured": 1.111948,
+      "PV_over_NkT": 0.889559
+    },
+    {
+      "N": 1000,
+      "V": 500,
+      "T": 0.5,
+      "P_theory": 1.0,
+      "P_measured": 1.097889,
+      "PV_over_NkT": 1.097889
+    },
+    {
+      "N": 1000,
+      "V": 500,
+      "T": 1.0,
+      "P_theory": 2.0,
+      "P_measured": 1.969314,
+      "PV_over_NkT": 0.984657
+    },
+    {
+      "N": 1000,
+      "V": 500,
+      "T": 2.0,
+      "P_theory": 4.0,
+      "P_measured": 3.738286,
+      "PV_over_NkT": 0.934571
+    },
+    {
+      "N": 1000,
+      "V": 500,
+      "T": 5.0,
+      "P_theory": 10.0,
+      "P_measured": 10.046433,
+      "PV_over_NkT": 1.004643
+    },
+    {
+      "N": 1000,
+      "V": 1000,
+      "T": 0.5,
+      "P_theory": 0.5,
+      "P_measured": 0.490262,
+      "PV_over_NkT": 0.980524
+    },
+    {
+      "N": 1000,
+      "V": 1000,
+      "T": 1.0,
+      "P_theory": 1.0,
+      "P_measured": 0.948141,
+      "PV_over_NkT": 0.948141
+    },
+    {
+      "N": 1000,
+      "V": 1000,
+      "T": 2.0,
+      "P_theory": 2.0,
+      "P_measured": 1.901352,
+      "PV_over_NkT": 0.950676
+    },
+    {
+      "N": 1000,
+      "V": 1000,
+      "T": 5.0,
+      "P_theory": 5.0,
+      "P_measured": 4.982367,
+      "PV_over_NkT": 0.996473
+    },
+    {
+      "N": 1000,
+      "V": 2000,
+      "T": 0.5,
+      "P_theory": 0.25,
+      "P_measured": 0.255269,
+      "PV_over_NkT": 1.021077
+    },
+    {
+      "N": 1000,
+      "V": 2000,
+      "T": 1.0,
+      "P_theory": 0.5,
+      "P_measured": 0.493149,
+      "PV_over_NkT": 0.986298
+    },
+    {
+      "N": 1000,
+      "V": 2000,
+      "T": 2.0,
+      "P_theory": 1.0,
+      "P_measured": 0.984188,
+      "PV_over_NkT": 0.984188
+    },
+    {
+      "N": 1000,
+      "V": 2000,
+      "T": 5.0,
+      "P_theory": 2.5,
+      "P_measured": 2.599426,
+      "PV_over_NkT": 1.039771
+    }
+  ]
+}

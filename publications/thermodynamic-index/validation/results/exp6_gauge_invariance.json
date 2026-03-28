@@ -1,0 +1,68 @@
+{
+  "experiment": "gauge_invariance",
+  "prediction": "All observables invariant under frequency scaling",
+  "n_lambdas": 7,
+  "max_T_drift": 0.0,
+  "max_gear_ratio_drift": 0.0,
+  "passed": "True",
+  "data": [
+    {
+      "lambda": 0.01,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 0.1,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 0.5,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 1.0,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 2.0,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 10.0,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    },
+    {
+      "lambda": 100.0,
+      "T_drift": 0.0,
+      "P_drift": 0.0,
+      "S_drift": 0.0,
+      "all_invariant": "True"
+    }
+  ],
+  "gear_ratio_drifts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

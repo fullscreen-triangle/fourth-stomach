@@ -1,0 +1,39 @@
+{
+  "total": 8,
+  "passed": 8,
+  "elapsed_s": 0.44,
+  "results": {
+    "exp1": {
+      "passed": true,
+      "prediction": "Transaction speeds follow MB distribution"
+    },
+    "exp2": {
+      "passed": "True",
+      "prediction": "PV/(NkT) = 1.00 across configurations"
+    },
+    "exp3": {
+      "passed": true,
+      "prediction": "Market exhibits gas/liquid/crystal phases with VdW equation"
+    },
+    "exp4": {
+      "passed": true,
+      "prediction": "No strategy exceeds Carnot efficiency"
+    },
+    "exp5": {
+      "passed": true,
+      "prediction": "FDT ratio = 2T/m (linear in T)"
+    },
+    "exp6": {
+      "passed": "True",
+      "prediction": "All observables invariant under frequency scaling"
+    },
+    "exp7": {
+      "passed": true,
+      "prediction": "T_var = 0 is unreachable; residual variance always > 0"
+    },
+    "exp8": {
+      "passed": true,
+      "prediction": "Thermodynamic quantities diverge with universal exponents near Tc"
+    }
+  }
+}

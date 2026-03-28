@@ -1,0 +1,711 @@
+{
+  "experiment": "third_law",
+  "prediction": "T_var = 0 is unreachable; residual variance always > 0",
+  "T_initial": 10.0,
+  "T_final": 0.062107819411291,
+  "n_steps": 100,
+  "T_always_positive": true,
+  "passed": true,
+  "data": [
+    {
+      "step": 0,
+      "temperature": 9.860707976425058,
+      "entropy": -140.810815,
+      "heat_capacity": 150.0,
+      "log_T": 0.993908
+    },
+    {
+      "step": 1,
+      "temperature": 9.721559737205574,
+      "entropy": -138.706746,
+      "heat_capacity": 150.0,
+      "log_T": 0.987736
+    },
+    {
+      "step": 2,
+      "temperature": 9.582559039140262,
+      "entropy": -136.574962,
+      "heat_capacity": 150.0,
+      "log_T": 0.981482
+    },
+    {
+      "step": 3,
+      "temperature": 9.443709783701799,
+      "entropy": -134.414753,
+      "heat_capacity": 150.0,
+      "log_T": 0.975143
+    },
+    {
+      "step": 4,
+      "temperature": 9.30501602436538,
+      "entropy": -132.225384,
+      "heat_capacity": 150.0,
+      "log_T": 0.968717
+    },
+    {
+      "step": 5,
+      "temperature": 9.166481974395753,
+      "entropy": -130.006092,
+      "heat_capacity": 150.0,
+      "log_T": 0.962203
+    },
+    {
+      "step": 6,
+      "temperature": 9.02811201512669,
+      "entropy": -127.756086,
+      "heat_capacity": 150.0,
+      "log_T": 0.955597
+    },
+    {
+      "step": 7,
+      "temperature": 8.889910704769857,
+      "entropy": -125.474541,
+      "heat_capacity": 150.0,
+      "log_T": 0.948897
+    },
+    {
+      "step": 8,
+      "temperature": 8.751882787793104,
+      "entropy": -123.160601,
+      "heat_capacity": 150.0,
+      "log_T": 0.942101
+    },
+    {
+      "step": 9,
+      "temperature": 8.614033204911768,
+      "entropy": -120.813379,
+      "heat_capacity": 150.0,
+      "log_T": 0.935207
+    },
+    {
+      "step": 10,
+      "temperature": 8.476367103740394,
+      "entropy": -118.431947,
+      "heat_capacity": 150.0,
+      "log_T": 0.92821
+    },
+    {
+      "step": 11,
+      "temperature": 8.338889850156441,
+      "entropy": -116.015343,
+      "heat_capacity": 150.0,
+      "log_T": 0.921108
+    },
+    {
+      "step": 12,
+      "temperature": 8.20160704043223,
+      "entropy": -113.562565,
+      "heat_capacity": 150.0,
+      "log_T": 0.913899
+    },
+    {
+      "step": 13,
+      "temperature": 8.064524514196393,
+      "entropy": -111.072568,
+      "heat_capacity": 150.0,
+      "log_T": 0.906579
+    },
+    {
+      "step": 14,
+      "temperature": 7.927648368291777,
+      "entropy": -108.544264,
+      "heat_capacity": 150.0,
+      "log_T": 0.899144
+    },
+    {
+      "step": 15,
+      "temperature": 7.79098497160282,
+      "entropy": -105.976517,
+      "heat_capacity": 150.0,
+      "log_T": 0.891592
+    },
+    {
+      "step": 16,
+      "temperature": 7.654540980932295,
+      "entropy": -103.368145,
+      "heat_capacity": 150.0,
+      "log_T": 0.883919
+    },
+    {
+      "step": 17,
+      "temperature": 7.518323358014775,
+      "entropy": -100.71791,
+      "heat_capacity": 150.0,
+      "log_T": 0.876121
+    },
+    {
+      "step": 18,
+      "temperature": 7.382339387762478,
+      "entropy": -98.024524,
+      "heat_capacity": 150.0,
+      "log_T": 0.868194
+    },
+    {
+      "step": 19,
+      "temperature": 7.246596697848285,
+      "entropy": -95.286637,
+      "heat_capacity": 150.0,
+      "log_T": 0.860134
+    },
+    {
+      "step": 20,
+      "temperature": 7.111103279740847,
+      "entropy": -92.502841,
+      "heat_capacity": 150.0,
+      "log_T": 0.851937
+    },
+    {
+      "step": 21,
+      "temperature": 6.975867511317891,
+      "entropy": -89.671661,
+      "heat_capacity": 150.0,
+      "log_T": 0.843598
+    },
+    {
+      "step": 22,
+      "temperature": 6.840898181196222,
+      "entropy": -86.791555,
+      "heat_capacity": 150.0,
+      "log_T": 0.835113
+    },
+    {
+      "step": 23,
+      "temperature": 6.706204514930632,
+      "entropy": -83.860906,
+      "heat_capacity": 150.0,
+      "log_T": 0.826477
+    },
+    {
+      "step": 24,
+      "temperature": 6.571796203249133,
+      "entropy": -80.878022,
+      "heat_capacity": 150.0,
+      "log_T": 0.817684
+    },
+    {
+      "step": 25,
+      "temperature": 6.437683432508774,
+      "entropy": -77.841129,
+      "heat_capacity": 150.0,
+      "log_T": 0.80873
+    },
+    {
+      "step": 26,
+      "temperature": 6.303876917574987,
+      "entropy": -74.748365,
+      "heat_capacity": 150.0,
+      "log_T": 0.799608
+    },
+    {
+      "step": 27,
+      "temperature": 6.170387937348141,
+      "entropy": -71.597775,
+      "heat_capacity": 150.0,
+      "log_T": 0.790312
+    },
+    {
+      "step": 28,
+      "temperature": 6.037228373183922,
+      "entropy": -68.387307,
+      "heat_capacity": 150.0,
+      "log_T": 0.780838
+    },
+    {
+      "step": 29,
+      "temperature": 5.904410750479707,
+      "entropy": -65.114805,
+      "heat_capacity": 150.0,
+      "log_T": 0.771177
+    },
+    {
+      "step": 30,
+      "temperature": 5.77194828372733,
+      "entropy": -61.777999,
+      "heat_capacity": 150.0,
+      "log_T": 0.761322
+    },
+    {
+      "step": 31,
+      "temperature": 5.639854925363987,
+      "entropy": -58.374503,
+      "heat_capacity": 150.0,
+      "log_T": 0.751268
+    },
+    {
+      "step": 32,
+      "temperature": 5.508145418787781,
+      "entropy": -54.901802,
+      "heat_capacity": 150.0,
+      "log_T": 0.741005
+    },
+    {
+      "step": 33,
+      "temperature": 5.376835355942826,
+      "entropy": -51.357248,
+      "heat_capacity": 150.0,
+      "log_T": 0.730527
+    },
+    {
+      "step": 34,
+      "temperature": 5.245941239921369,
+      "entropy": -47.738047,
+      "heat_capacity": 150.0,
+      "log_T": 0.719823
+    },
+    {
+      "step": 35,
+      "temperature": 5.115480553077342,
+      "entropy": -44.041253,
+      "heat_capacity": 150.0,
+      "log_T": 0.708886
+    },
+    {
+      "step": 36,
+      "temperature": 4.985471831197477,
+      "entropy": -40.263752,
+      "heat_capacity": 150.0,
+      "log_T": 0.697706
+    },
+    {
+      "step": 37,
+      "temperature": 4.855934744333004,
+      "entropy": -36.402258,
+      "heat_capacity": 150.0,
+      "log_T": 0.686273
+    },
+    {
+      "step": 38,
+      "temperature": 4.726890184957242,
+      "entropy": -32.453293,
+      "heat_capacity": 150.0,
+      "log_T": 0.674576
+    },
+    {
+      "step": 39,
+      "temperature": 4.598360364182343,
+      "entropy": -28.413179,
+      "heat_capacity": 150.0,
+      "log_T": 0.662603
+    },
+    {
+      "step": 40,
+      "temperature": 4.470368916842183,
+      "entropy": -24.27802,
+      "heat_capacity": 150.0,
+      "log_T": 0.650343
+    },
+    {
+      "step": 41,
+      "temperature": 4.342941016327825,
+      "entropy": -20.043691,
+      "heat_capacity": 150.0,
+      "log_T": 0.637784
+    },
+    {
+      "step": 42,
+      "temperature": 4.216103500146738,
+      "entropy": -15.705816,
+      "heat_capacity": 150.0,
+      "log_T": 0.624911
+    },
+    {
+      "step": 43,
+      "temperature": 4.089885007266388,
+      "entropy": -11.259755,
+      "heat_capacity": 150.0,
+      "log_T": 0.611711
+    },
+    {
+      "step": 44,
+      "temperature": 3.964316128395516,
+      "entropy": -6.700579,
+      "heat_capacity": 150.0,
+      "log_T": 0.598168
+    },
+    {
+      "step": 45,
+      "temperature": 3.839429570450482,
+      "entropy": -2.023055,
+      "heat_capacity": 150.0,
+      "log_T": 0.584267
+    },
+    {
+      "step": 46,
+      "temperature": 3.715260336546118,
+      "entropy": 2.778378,
+      "heat_capacity": 150.0,
+      "log_T": 0.569989
+    },
+    {
+      "step": 47,
+      "temperature": 3.591845922936229,
+      "entropy": 7.709636,
+      "heat_capacity": 150.0,
+      "log_T": 0.555318
+    },
+    {
+      "step": 48,
+      "temperature": 3.469226534401308,
+      "entropy": 12.777011,
+      "heat_capacity": 150.0,
+      "log_T": 0.540233
+    },
+    {
+      "step": 49,
+      "temperature": 3.347445319631037,
+      "entropy": 17.987199,
+      "heat_capacity": 150.0,
+      "log_T": 0.524713
+    },
+    {
+      "step": 50,
+      "temperature": 3.226548628163504,
+      "entropy": 23.34733,
+      "heat_capacity": 150.0,
+      "log_T": 0.508738
+    },
+    {
+      "step": 51,
+      "temperature": 3.106586290403892,
+      "entropy": 28.864995,
+      "heat_capacity": 150.0,
+      "log_T": 0.492283
+    },
+    {
+      "step": 52,
+      "temperature": 2.987611922128161,
+      "entropy": 34.548279,
+      "heat_capacity": 150.0,
+      "log_T": 0.475324
+    },
+    {
+      "step": 53,
+      "temperature": 2.869683254648787,
+      "entropy": 40.405792,
+      "heat_capacity": 150.0,
+      "log_T": 0.457834
+    },
+    {
+      "step": 54,
+      "temperature": 2.752862491435528,
+      "entropy": 46.4467,
+      "heat_capacity": 150.0,
+      "log_T": 0.439785
+    },
+    {
+      "step": 55,
+      "temperature": 2.63721669138546,
+      "entropy": 52.680758,
+      "heat_capacity": 150.0,
+      "log_T": 0.421146
+    },
+    {
+      "step": 56,
+      "temperature": 2.522818178045308,
+      "entropy": 59.118338,
+      "heat_capacity": 150.0,
+      "log_T": 0.401886
+    },
+    {
+      "step": 57,
+      "temperature": 2.409744972804166,
+      "entropy": 65.770459,
+      "heat_capacity": 150.0,
+      "log_T": 0.381971
+    },
+    {
+      "step": 58,
+      "temperature": 2.298081248265552,
+      "entropy": 72.648811,
+      "heat_capacity": 150.0,
+      "log_T": 0.361365
+    },
+    {
+      "step": 59,
+      "temperature": 2.187917795509108,
+      "entropy": 79.765769,
+      "heat_capacity": 150.0,
+      "log_T": 0.340031
+    },
+    {
+      "step": 60,
+      "temperature": 2.079352495558996,
+      "entropy": 87.134402,
+      "heat_capacity": 150.0,
+      "log_T": 0.317928
+    },
+    {
+      "step": 61,
+      "temperature": 1.972490780839838,
+      "entropy": 94.768468,
+      "heat_capacity": 150.0,
+      "log_T": 0.295015
+    },
+    {
+      "step": 62,
+      "temperature": 1.867446066433508,
+      "entropy": 102.682384,
+      "heat_capacity": 150.0,
+      "log_T": 0.271248
+    },
+    {
+      "step": 63,
+      "temperature": 1.764340123234638,
+      "entropy": 110.891186,
+      "heat_capacity": 150.0,
+      "log_T": 0.246582
+    },
+    {
+      "step": 64,
+      "temperature": 1.663303355325298,
+      "entropy": 119.410436,
+      "heat_capacity": 150.0,
+      "log_T": 0.220971
+    },
+    {
+      "step": 65,
+      "temperature": 1.564474931798726,
+      "entropy": 128.25611,
+      "heat_capacity": 150.0,
+      "log_T": 0.194369
+    },
+    {
+      "step": 66,
+      "temperature": 1.468002708775202,
+      "entropy": 137.44441,
+      "heat_capacity": 150.0,
+      "log_T": 0.166727
+    },
+    {
+      "step": 67,
+      "temperature": 1.374042860727726,
+      "entropy": 146.991533,
+      "heat_capacity": 150.0,
+      "log_T": 0.138
+    },
+    {
+      "step": 68,
+      "temperature": 1.28275912232936,
+      "entropy": 156.913341,
+      "heat_capacity": 150.0,
+      "log_T": 0.108145
+    },
+    {
+      "step": 69,
+      "temperature": 1.194321524669372,
+      "entropy": 167.224951,
+      "heat_capacity": 150.0,
+      "log_T": 0.077121
+    },
+    {
+      "step": 70,
+      "temperature": 1.108904496101588,
+      "entropy": 177.94021,
+      "heat_capacity": 150.0,
+      "log_T": 0.044894
+    },
+    {
+      "step": 71,
+      "temperature": 1.026684193321617,
+      "entropy": 189.071061,
+      "heat_capacity": 150.0,
+      "log_T": 0.011437
+    },
+    {
+      "step": 72,
+      "temperature": 0.94783493987984,
+      "entropy": 200.626792,
+      "heat_capacity": 150.0,
+      "log_T": -0.023267
+    },
+    {
+      "step": 73,
+      "temperature": 0.872524686646346,
+      "entropy": 212.613185,
+      "heat_capacity": 150.0,
+      "log_T": -0.059222
+    },
+    {
+      "step": 74,
+      "temperature": 0.800909482063122,
+      "entropy": 225.031599,
+      "heat_capacity": 150.0,
+      "log_T": -0.096417
+    },
+    {
+      "step": 75,
+      "temperature": 0.733127057722154,
+      "entropy": 237.878051,
+      "heat_capacity": 150.0,
+      "log_T": -0.134821
+    },
+    {
+      "step": 76,
+      "temperature": 0.669289798416369,
+      "entropy": 251.142387,
+      "heat_capacity": 150.0,
+      "log_T": -0.174386
+    },
+    {
+      "step": 77,
+      "temperature": 0.609477563353285,
+      "entropy": 264.807669,
+      "heat_capacity": 150.0,
+      "log_T": -0.215042
+    },
+    {
+      "step": 78,
+      "temperature": 0.553731024928532,
+      "entropy": 278.849921,
+      "heat_capacity": 150.0,
+      "log_T": -0.256701
+    },
+    {
+      "step": 79,
+      "temperature": 0.502046340012706,
+      "entropy": 293.238383,
+      "heat_capacity": 150.0,
+      "log_T": -0.299256
+    },
+    {
+      "step": 80,
+      "temperature": 0.45437199957244,
+      "entropy": 307.936377,
+      "heat_capacity": 150.0,
+      "log_T": -0.342588
+    },
+    {
+      "step": 81,
+      "temperature": 0.410608557599003,
+      "entropy": 322.902804,
+      "heat_capacity": 150.0,
+      "log_T": -0.386572
+    },
+    {
+      "step": 82,
+      "temperature": 0.370611601345045,
+      "entropy": 338.094189,
+      "heat_capacity": 150.0,
+      "log_T": -0.431081
+    },
+    {
+      "step": 83,
+      "temperature": 0.334197839013143,
+      "entropy": 353.467049,
+      "heat_capacity": 150.0,
+      "log_T": -0.475996
+    },
+    {
+      "step": 84,
+      "temperature": 0.301153662332858,
+      "entropy": 368.980269,
+      "heat_capacity": 150.0,
+      "log_T": -0.521212
+    },
+    {
+      "step": 85,
+      "temperature": 0.271245135960349,
+      "entropy": 384.597145,
+      "heat_capacity": 150.0,
+      "log_T": -0.566638
+    },
+    {
+      "step": 86,
+      "temperature": 0.244228192179148,
+      "entropy": 400.286795,
+      "heat_capacity": 150.0,
+      "log_T": -0.612204
+    },
+    {
+      "step": 87,
+      "temperature": 0.219857907776523,
+      "entropy": 416.024791,
+      "heat_capacity": 150.0,
+      "log_T": -0.657858
+    },
+    {
+      "step": 88,
+      "temperature": 0.197896057300539,
+      "entropy": 431.793022,
+      "heat_capacity": 150.0,
+      "log_T": -0.703563
+    },
+    {
+      "step": 89,
+      "temperature": 0.178116558036896,
+      "entropy": 447.578952,
+      "heat_capacity": 150.0,
+      "log_T": -0.749296
+    },
+    {
+      "step": 90,
+      "temperature": 0.160308822487761,
+      "entropy": 463.374518,
+      "heat_capacity": 150.0,
+      "log_T": -0.795043
+    },
+    {
+      "step": 91,
+      "temperature": 0.144279324729884,
+      "entropy": 479.174927,
+      "heat_capacity": 150.0,
+      "log_T": -0.840796
+    },
+    {
+      "step": 92,
+      "temperature": 0.129851832874169,
+      "entropy": 494.977565,
+      "heat_capacity": 150.0,
+      "log_T": -0.886552
+    },
+    {
+      "step": 93,
+      "temperature": 0.116866774509065,
+      "entropy": 510.781133,
+      "heat_capacity": 150.0,
+      "log_T": -0.932309
+    },
+    {
+      "step": 94,
+      "temperature": 0.105180128208716,
+      "entropy": 526.58505,
+      "heat_capacity": 150.0,
+      "log_T": -0.978066
+    },
+    {
+      "step": 95,
+      "temperature": 0.094662122123067,
+      "entropy": 542.389083,
+      "heat_capacity": 150.0,
+      "log_T": -1.023824
+    },
+    {
+      "step": 96,
+      "temperature": 0.085195911153612,
+      "entropy": 558.19315,
+      "heat_capacity": 150.0,
+      "log_T": -1.069581
+    },
+    {
+      "step": 97,
+      "temperature": 0.076676320230569,
+      "entropy": 573.997225,
+      "heat_capacity": 150.0,
+      "log_T": -1.115339
+    },
+    {
+      "step": 98,
+      "temperature": 0.069008688231984,
+      "entropy": 589.801302,
+      "heat_capacity": 150.0,
+      "log_T": -1.161096
+    },
+    {
+      "step": 99,
+      "temperature": 0.062107819411291,
+      "entropy": 605.605379,
+      "heat_capacity": 150.0,
+      "log_T": -1.206854
+    }
+  ]
+}

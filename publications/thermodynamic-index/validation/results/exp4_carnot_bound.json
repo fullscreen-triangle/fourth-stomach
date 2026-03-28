@@ -1,0 +1,1610 @@
+{
+  "experiment": "carnot_bound",
+  "prediction": "No strategy exceeds Carnot efficiency",
+  "n_strategies": 200,
+  "n_below_carnot": 200,
+  "fraction_below": 1.0,
+  "passed": true,
+  "data": [
+    {
+      "strategy": 0,
+      "T_hot": 8.7417,
+      "T_cold": 7.4847,
+      "carnot_efficiency": 0.143793,
+      "actual_efficiency": 0.055735,
+      "below_carnot": true
+    },
+    {
+      "strategy": 1,
+      "T_hot": 12.7759,
+      "T_cold": 1.8783,
+      "carnot_efficiency": 0.852977,
+      "actual_efficiency": 0.674538,
+      "below_carnot": true
+    },
+    {
+      "strategy": 2,
+      "T_hot": 3.0455,
+      "T_cold": 2.3875,
+      "carnot_efficiency": 0.216047,
+      "actual_efficiency": 0.103534,
+      "below_carnot": true
+    },
+    {
+      "strategy": 3,
+      "T_hot": 14.7453,
+      "T_cold": 0.3711,
+      "carnot_efficiency": 0.974832,
+      "actual_efficiency": 0.215499,
+      "below_carnot": true
+    },
+    {
+      "strategy": 4,
+      "T_hot": 16.984,
+      "T_cold": 3.3245,
+      "carnot_efficiency": 0.804257,
+      "actual_efficiency": 0.621468,
+      "below_carnot": true
+    },
+    {
+      "strategy": 5,
+      "T_hot": 5.3013,
+      "T_cold": 1.5212,
+      "carnot_efficiency": 0.713058,
+      "actual_efficiency": 0.379825,
+      "below_carnot": true
+    },
+    {
+      "strategy": 6,
+      "T_hot": 9.775,
+      "T_cold": 2.633,
+      "carnot_efficiency": 0.730643,
+      "actual_efficiency": 0.344646,
+      "below_carnot": true
+    },
+    {
+      "strategy": 7,
+      "T_hot": 4.5109,
+      "T_cold": 1.2568,
+      "carnot_efficiency": 0.721378,
+      "actual_efficiency": 0.46424,
+      "below_carnot": true
+    },
+    {
+      "strategy": 8,
+      "T_hot": 10.2093,
+      "T_cold": 7.2359,
+      "carnot_efficiency": 0.291237,
+      "actual_efficiency": 0.221407,
+      "below_carnot": true
+    },
+    {
+      "strategy": 9,
+      "T_hot": 11.2562,
+      "T_cold": 6.0423,
+      "carnot_efficiency": 0.463206,
+      "actual_efficiency": 0.401824,
+      "below_carnot": true
+    },
+    {
+      "strategy": 10,
+      "T_hot": 12.9358,
+      "T_cold": 2.0682,
+      "carnot_efficiency": 0.840116,
+      "actual_efficiency": 0.717849,
+      "below_carnot": true
+    },
+    {
+      "strategy": 11,
+      "T_hot": 19.0799,
+      "T_cold": 16.5852,
+      "carnot_efficiency": 0.130751,
+      "actual_efficiency": 0.043687,
+      "below_carnot": true
+    },
+    {
+      "strategy": 12,
+      "T_hot": 7.483,
+      "T_cold": 0.748,
+      "carnot_efficiency": 0.900037,
+      "actual_efficiency": 0.378949,
+      "below_carnot": true
+    },
+    {
+      "strategy": 13,
+      "T_hot": 9.9227,
+      "T_cold": 1.1777,
+      "carnot_efficiency": 0.881318,
+      "actual_efficiency": 0.4877,
+      "below_carnot": true
+    },
+    {
+      "strategy": 14,
+      "T_hot": 2.619,
+      "T_cold": 2.1524,
+      "carnot_efficiency": 0.178149,
+      "actual_efficiency": 0.128063,
+      "below_carnot": true
+    },
+    {
+      "strategy": 15,
+      "T_hot": 13.9254,
+      "T_cold": 3.9755,
+      "carnot_efficiency": 0.714517,
+      "actual_efficiency": 0.382947,
+      "below_carnot": true
+    },
+    {
+      "strategy": 16,
+      "T_hot": 11.8408,
+      "T_cold": 2.0515,
+      "carnot_efficiency": 0.826747,
+      "actual_efficiency": 0.182951,
+      "below_carnot": true
+    },
+    {
+      "strategy": 17,
+      "T_hot": 15.9524,
+      "T_cold": 13.4946,
+      "carnot_efficiency": 0.154072,
+      "actual_efficiency": 0.042157,
+      "below_carnot": true
+    },
+    {
+      "strategy": 18,
+      "T_hot": 12.7622,
+      "T_cold": 10.5964,
+      "carnot_efficiency": 0.169701,
+      "actual_efficiency": 0.142219,
+      "below_carnot": true
+    },
+    {
+      "strategy": 19,
+      "T_hot": 5.5277,
+      "T_cold": 0.3205,
+      "carnot_efficiency": 0.942023,
+      "actual_efficiency": 0.633293,
+      "below_carnot": true
+    },
+    {
+      "strategy": 20,
+      "T_hot": 8.9962,
+      "T_cold": 2.2699,
+      "carnot_efficiency": 0.747686,
+      "actual_efficiency": 0.239173,
+      "below_carnot": true
+    },
+    {
+      "strategy": 21,
+      "T_hot": 8.4216,
+      "T_cold": 2.2012,
+      "carnot_efficiency": 0.738621,
+      "actual_efficiency": 0.384166,
+      "below_carnot": true
+    },
+    {
+      "strategy": 22,
+      "T_hot": 4.5366,
+      "T_cold": 3.2951,
+      "carnot_efficiency": 0.273663,
+      "actual_efficiency": 0.232015,
+      "below_carnot": true
+    },
+    {
+      "strategy": 23,
+      "T_hot": 19.764,
+      "T_cold": 13.7591,
+      "carnot_efficiency": 0.303827,
+      "actual_efficiency": 0.231182,
+      "below_carnot": true
+    },
+    {
+      "strategy": 24,
+      "T_hot": 2.0994,
+      "T_cold": 1.5592,
+      "carnot_efficiency": 0.257295,
+      "actual_efficiency": 0.104256,
+      "below_carnot": true
+    },
+    {
+      "strategy": 25,
+      "T_hot": 15.1221,
+      "T_cold": 10.5198,
+      "carnot_efficiency": 0.304344,
+      "actual_efficiency": 0.258135,
+      "below_carnot": true
+    },
+    {
+      "strategy": 26,
+      "T_hot": 8.4524,
+      "T_cold": 0.9698,
+      "carnot_efficiency": 0.885258,
+      "actual_efficiency": 0.261884,
+      "below_carnot": true
+    },
+    {
+      "strategy": 27,
+      "T_hot": 13.2194,
+      "T_cold": 4.0037,
+      "carnot_efficiency": 0.69713,
+      "actual_efficiency": 0.596401,
+      "below_carnot": true
+    },
+    {
+      "strategy": 28,
+      "T_hot": 7.5977,
+      "T_cold": 2.2911,
+      "carnot_efficiency": 0.698453,
+      "actual_efficiency": 0.271891,
+      "below_carnot": true
+    },
+    {
+      "strategy": 29,
+      "T_hot": 13.476,
+      "T_cold": 10.7718,
+      "carnot_efficiency": 0.200672,
+      "actual_efficiency": 0.114272,
+      "below_carnot": true
+    },
+    {
+      "strategy": 30,
+      "T_hot": 4.1527,
+      "T_cold": 2.6944,
+      "carnot_efficiency": 0.351174,
+      "actual_efficiency": 0.129039,
+      "below_carnot": true
+    },
+    {
+      "strategy": 31,
+      "T_hot": 12.103,
+      "T_cold": 8.4208,
+      "carnot_efficiency": 0.304237,
+      "actual_efficiency": 0.168652,
+      "below_carnot": true
+    },
+    {
+      "strategy": 32,
+      "T_hot": 11.4092,
+      "T_cold": 4.4474,
+      "carnot_efficiency": 0.610196,
+      "actual_efficiency": 0.538319,
+      "below_carnot": true
+    },
+    {
+      "strategy": 33,
+      "T_hot": 3.942,
+      "T_cold": 0.2084,
+      "carnot_efficiency": 0.947143,
+      "actual_efficiency": 0.430489,
+      "below_carnot": true
+    },
+    {
+      "strategy": 34,
+      "T_hot": 7.6584,
+      "T_cold": 3.5545,
+      "carnot_efficiency": 0.53587,
+      "actual_efficiency": 0.141847,
+      "below_carnot": true
+    },
+    {
+      "strategy": 35,
+      "T_hot": 6.4873,
+      "T_cold": 2.455,
+      "carnot_efficiency": 0.621567,
+      "actual_efficiency": 0.230672,
+      "below_carnot": true
+    },
+    {
+      "strategy": 36,
+      "T_hot": 6.1184,
+      "T_cold": 0.5162,
+      "carnot_efficiency": 0.915632,
+      "actual_efficiency": 0.638355,
+      "below_carnot": true
+    },
+    {
+      "strategy": 37,
+      "T_hot": 4.902,
+      "T_cold": 4.1087,
+      "carnot_efficiency": 0.161838,
+      "actual_efficiency": 0.054105,
+      "below_carnot": true
+    },
+    {
+      "strategy": 38,
+      "T_hot": 13.4013,
+      "T_cold": 10.5237,
+      "carnot_efficiency": 0.214726,
+      "actual_efficiency": 0.072455,
+      "below_carnot": true
+    },
+    {
+      "strategy": 39,
+      "T_hot": 5.3583,
+      "T_cold": 4.3151,
+      "carnot_efficiency": 0.194692,
+      "actual_efficiency": 0.101719,
+      "below_carnot": true
+    },
+    {
+      "strategy": 40,
+      "T_hot": 16.5339,
+      "T_cold": 13.3447,
+      "carnot_efficiency": 0.192889,
+      "actual_efficiency": 0.130663,
+      "below_carnot": true
+    },
+    {
+      "strategy": 41,
+      "T_hot": 3.9809,
+      "T_cold": 0.8939,
+      "carnot_efficiency": 0.775464,
+      "actual_efficiency": 0.466073,
+      "below_carnot": true
+    },
+    {
+      "strategy": 42,
+      "T_hot": 16.7243,
+      "T_cold": 12.9695,
+      "carnot_efficiency": 0.22451,
+      "actual_efficiency": 0.200966,
+      "below_carnot": true
+    },
+    {
+      "strategy": 43,
+      "T_hot": 11.1935,
+      "T_cold": 4.2633,
+      "carnot_efficiency": 0.619125,
+      "actual_efficiency": 0.460954,
+      "below_carnot": true
+    },
+    {
+      "strategy": 44,
+      "T_hot": 4.1576,
+      "T_cold": 1.3295,
+      "carnot_efficiency": 0.680214,
+      "actual_efficiency": 0.163226,
+      "below_carnot": true
+    },
+    {
+      "strategy": 45,
+      "T_hot": 7.8177,
+      "T_cold": 3.6983,
+      "carnot_efficiency": 0.526933,
+      "actual_efficiency": 0.214929,
+      "below_carnot": true
+    },
+    {
+      "strategy": 46,
+      "T_hot": 8.5453,
+      "T_cold": 7.4766,
+      "carnot_efficiency": 0.125066,
+      "actual_efficiency": 0.028301,
+      "below_carnot": true
+    },
+    {
+      "strategy": 47,
+      "T_hot": 6.5321,
+      "T_cold": 2.9735,
+      "carnot_efficiency": 0.54478,
+      "actual_efficiency": 0.375563,
+      "below_carnot": true
+    },
+    {
+      "strategy": 48,
+      "T_hot": 7.1271,
+      "T_cold": 0.3329,
+      "carnot_efficiency": 0.953288,
+      "actual_efficiency": 0.451196,
+      "below_carnot": true
+    },
+    {
+      "strategy": 49,
+      "T_hot": 11.0482,
+      "T_cold": 0.6067,
+      "carnot_efficiency": 0.945084,
+      "actual_efficiency": 0.666234,
+      "below_carnot": true
+    },
+    {
+      "strategy": 50,
+      "T_hot": 18.3488,
+      "T_cold": 4.0321,
+      "carnot_efficiency": 0.78025,
+      "actual_efficiency": 0.623087,
+      "below_carnot": true
+    },
+    {
+      "strategy": 51,
+      "T_hot": 10.8101,
+      "T_cold": 9.591,
+      "carnot_efficiency": 0.112782,
+      "actual_efficiency": 0.082394,
+      "below_carnot": true
+    },
+    {
+      "strategy": 52,
+      "T_hot": 14.0984,
+      "T_cold": 9.6877,
+      "carnot_efficiency": 0.312852,
+      "actual_efficiency": 0.229525,
+      "below_carnot": true
+    },
+    {
+      "strategy": 53,
+      "T_hot": 15.1079,
+      "T_cold": 5.064,
+      "carnot_efficiency": 0.664811,
+      "actual_efficiency": 0.304075,
+      "below_carnot": true
+    },
+    {
+      "strategy": 54,
+      "T_hot": 13.4035,
+      "T_cold": 6.5096,
+      "carnot_efficiency": 0.514339,
+      "actual_efficiency": 0.430398,
+      "below_carnot": true
+    },
+    {
+      "strategy": 55,
+      "T_hot": 17.0354,
+      "T_cold": 4.9861,
+      "carnot_efficiency": 0.707311,
+      "actual_efficiency": 0.544231,
+      "below_carnot": true
+    },
+    {
+      "strategy": 56,
+      "T_hot": 2.734,
+      "T_cold": 1.4948,
+      "carnot_efficiency": 0.453232,
+      "actual_efficiency": 0.192943,
+      "below_carnot": true
+    },
+    {
+      "strategy": 57,
+      "T_hot": 2.2986,
+      "T_cold": 1.1082,
+      "carnot_efficiency": 0.51789,
+      "actual_efficiency": 0.383991,
+      "below_carnot": true
+    },
+    {
+      "strategy": 58,
+      "T_hot": 13.6131,
+      "T_cold": 2.2189,
+      "carnot_efficiency": 0.837005,
+      "actual_efficiency": 0.348482,
+      "below_carnot": true
+    },
+    {
+      "strategy": 59,
+      "T_hot": 8.9612,
+      "T_cold": 7.5612,
+      "carnot_efficiency": 0.156237,
+      "actual_efficiency": 0.125573,
+      "below_carnot": true
+    },
+    {
+      "strategy": 60,
+      "T_hot": 8.1392,
+      "T_cold": 0.9199,
+      "carnot_efficiency": 0.886982,
+      "actual_efficiency": 0.224153,
+      "below_carnot": true
+    },
+    {
+      "strategy": 61,
+      "T_hot": 17.7921,
+      "T_cold": 4.2046,
+      "carnot_efficiency": 0.763682,
+      "actual_efficiency": 0.334501,
+      "below_carnot": true
+    },
+    {
+      "strategy": 62,
+      "T_hot": 16.71,
+      "T_cold": 8.3941,
+      "carnot_efficiency": 0.497657,
+      "actual_efficiency": 0.263382,
+      "below_carnot": true
+    },
+    {
+      "strategy": 63,
+      "T_hot": 6.3533,
+      "T_cold": 0.6231,
+      "carnot_efficiency": 0.901933,
+      "actual_efficiency": 0.24528,
+      "below_carnot": true
+    },
+    {
+      "strategy": 64,
+      "T_hot": 18.2075,
+      "T_cold": 10.4112,
+      "carnot_efficiency": 0.428194,
+      "actual_efficiency": 0.283755,
+      "below_carnot": true
+    },
+    {
+      "strategy": 65,
+      "T_hot": 8.2858,
+      "T_cold": 5.441,
+      "carnot_efficiency": 0.343332,
+      "actual_efficiency": 0.093394,
+      "below_carnot": true
+    },
+    {
+      "strategy": 66,
+      "T_hot": 17.9676,
+      "T_cold": 12.6332,
+      "carnot_efficiency": 0.296887,
+      "actual_efficiency": 0.133771,
+      "below_carnot": true
+    },
+    {
+      "strategy": 67,
+      "T_hot": 3.5145,
+      "T_cold": 0.5951,
+      "carnot_efficiency": 0.83068,
+      "actual_efficiency": 0.225124,
+      "below_carnot": true
+    },
+    {
+      "strategy": 68,
+      "T_hot": 12.9157,
+      "T_cold": 0.206,
+      "carnot_efficiency": 0.984051,
+      "actual_efficiency": 0.815749,
+      "below_carnot": true
+    },
+    {
+      "strategy": 69,
+      "T_hot": 13.943,
+      "T_cold": 0.163,
+      "carnot_efficiency": 0.988309,
+      "actual_efficiency": 0.778228,
+      "below_carnot": true
+    },
+    {
+      "strategy": 70,
+      "T_hot": 11.8772,
+      "T_cold": 7.4268,
+      "carnot_efficiency": 0.3747,
+      "actual_efficiency": 0.166227,
+      "below_carnot": true
+    },
+    {
+      "strategy": 71,
+      "T_hot": 6.0368,
+      "T_cold": 3.8982,
+      "carnot_efficiency": 0.354271,
+      "actual_efficiency": 0.260009,
+      "below_carnot": true
+    },
+    {
+      "strategy": 72,
+      "T_hot": 7.8572,
+      "T_cold": 5.3041,
+      "carnot_efficiency": 0.324931,
+      "actual_efficiency": 0.144678,
+      "below_carnot": true
+    },
+    {
+      "strategy": 73,
+      "T_hot": 17.286,
+      "T_cold": 10.265,
+      "carnot_efficiency": 0.406168,
+      "actual_efficiency": 0.203971,
+      "below_carnot": true
+    },
+    {
+      "strategy": 74,
+      "T_hot": 3.6861,
+      "T_cold": 1.2831,
+      "carnot_efficiency": 0.651903,
+      "actual_efficiency": 0.465692,
+      "below_carnot": true
+    },
+    {
+      "strategy": 75,
+      "T_hot": 6.3918,
+      "T_cold": 5.6001,
+      "carnot_efficiency": 0.123868,
+      "actual_efficiency": 0.077397,
+      "below_carnot": true
+    },
+    {
+      "strategy": 76,
+      "T_hot": 18.0568,
+      "T_cold": 10.2936,
+      "carnot_efficiency": 0.429932,
+      "actual_efficiency": 0.147739,
+      "below_carnot": true
+    },
+    {
+      "strategy": 77,
+      "T_hot": 11.0475,
+      "T_cold": 5.7783,
+      "carnot_efficiency": 0.476957,
+      "actual_efficiency": 0.264824,
+      "below_carnot": true
+    },
+    {
+      "strategy": 78,
+      "T_hot": 5.5144,
+      "T_cold": 3.6132,
+      "carnot_efficiency": 0.34476,
+      "actual_efficiency": 0.242525,
+      "below_carnot": true
+    },
+    {
+      "strategy": 79,
+      "T_hot": 2.4377,
+      "T_cold": 1.4516,
+      "carnot_efficiency": 0.404531,
+      "actual_efficiency": 0.313925,
+      "below_carnot": true
+    },
+    {
+      "strategy": 80,
+      "T_hot": 18.9283,
+      "T_cold": 16.2552,
+      "carnot_efficiency": 0.141221,
+      "actual_efficiency": 0.03666,
+      "below_carnot": true
+    },
+    {
+      "strategy": 81,
+      "T_hot": 8.6629,
+      "T_cold": 0.219,
+      "carnot_efficiency": 0.974724,
+      "actual_efficiency": 0.243854,
+      "below_carnot": true
+    },
+    {
+      "strategy": 82,
+      "T_hot": 9.7073,
+      "T_cold": 8.4486,
+      "carnot_efficiency": 0.129667,
+      "actual_efficiency": 0.029236,
+      "below_carnot": true
+    },
+    {
+      "strategy": 83,
+      "T_hot": 17.3542,
+      "T_cold": 4.6695,
+      "carnot_efficiency": 0.73093,
+      "actual_efficiency": 0.460802,
+      "below_carnot": true
+    },
+    {
+      "strategy": 84,
+      "T_hot": 17.3205,
+      "T_cold": 5.0086,
+      "carnot_efficiency": 0.710826,
+      "actual_efficiency": 0.555408,
+      "below_carnot": true
+    },
+    {
+      "strategy": 85,
+      "T_hot": 12.0224,
+      "T_cold": 10.1357,
+      "carnot_efficiency": 0.15693,
+      "actual_efficiency": 0.064777,
+      "below_carnot": true
+    },
+    {
+      "strategy": 86,
+      "T_hot": 12.2611,
+      "T_cold": 1.1626,
+      "carnot_efficiency": 0.905178,
+      "actual_efficiency": 0.424976,
+      "below_carnot": true
+    },
+    {
+      "strategy": 87,
+      "T_hot": 19.821,
+      "T_cold": 2.5849,
+      "carnot_efficiency": 0.869586,
+      "actual_efficiency": 0.467115,
+      "below_carnot": true
+    },
+    {
+      "strategy": 88,
+      "T_hot": 17.7927,
+      "T_cold": 11.8882,
+      "carnot_efficiency": 0.331851,
+      "actual_efficiency": 0.136752,
+      "below_carnot": true
+    },
+    {
+      "strategy": 89,
+      "T_hot": 14.6447,
+      "T_cold": 4.8022,
+      "carnot_efficiency": 0.672084,
+      "actual_efficiency": 0.466753,
+      "below_carnot": true
+    },
+    {
+      "strategy": 90,
+      "T_hot": 16.5685,
+      "T_cold": 12.0991,
+      "carnot_efficiency": 0.269752,
+      "actual_efficiency": 0.079051,
+      "below_carnot": true
+    },
+    {
+      "strategy": 91,
+      "T_hot": 18.4383,
+      "T_cold": 8.5343,
+      "carnot_efficiency": 0.537142,
+      "actual_efficiency": 0.294858,
+      "below_carnot": true
+    },
+    {
+      "strategy": 92,
+      "T_hot": 16.3693,
+      "T_cold": 9.6105,
+      "carnot_efficiency": 0.412894,
+      "actual_efficiency": 0.168718,
+      "below_carnot": true
+    },
+    {
+      "strategy": 93,
+      "T_hot": 16.3243,
+      "T_cold": 13.0868,
+      "carnot_efficiency": 0.198321,
+      "actual_efficiency": 0.131567,
+      "below_carnot": true
+    },
+    {
+      "strategy": 94,
+      "T_hot": 8.7605,
+      "T_cold": 0.8316,
+      "carnot_efficiency": 0.905074,
+      "actual_efficiency": 0.448196,
+      "below_carnot": true
+    },
+    {
+      "strategy": 95,
+      "T_hot": 2.647,
+      "T_cold": 1.1626,
+      "carnot_efficiency": 0.560773,
+      "actual_efficiency": 0.291685,
+      "below_carnot": true
+    },
+    {
+      "strategy": 96,
+      "T_hot": 7.1577,
+      "T_cold": 3.847,
+      "carnot_efficiency": 0.462534,
+      "actual_efficiency": 0.406405,
+      "below_carnot": true
+    },
+    {
+      "strategy": 97,
+      "T_hot": 2.6723,
+      "T_cold": 1.9961,
+      "carnot_efficiency": 0.253021,
+      "actual_efficiency": 0.163924,
+      "below_carnot": true
+    },
+    {
+      "strategy": 98,
+      "T_hot": 4.2871,
+      "T_cold": 2.0628,
+      "carnot_efficiency": 0.518837,
+      "actual_efficiency": 0.187302,
+      "below_carnot": true
+    },
+    {
+      "strategy": 99,
+      "T_hot": 5.8848,
+      "T_cold": 3.3367,
+      "carnot_efficiency": 0.43299,
+      "actual_efficiency": 0.363823,
+      "below_carnot": true
+    },
+    {
+      "strategy": 100,
+      "T_hot": 2.9303,
+      "T_cold": 1.4482,
+      "carnot_efficiency": 0.505788,
+      "actual_efficiency": 0.263796,
+      "below_carnot": true
+    },
+    {
+      "strategy": 101,
+      "T_hot": 13.4737,
+      "T_cold": 8.8322,
+      "carnot_efficiency": 0.344485,
+      "actual_efficiency": 0.07472,
+      "below_carnot": true
+    },
+    {
+      "strategy": 102,
+      "T_hot": 11.2934,
+      "T_cold": 3.3503,
+      "carnot_efficiency": 0.703344,
+      "actual_efficiency": 0.241507,
+      "below_carnot": true
+    },
+    {
+      "strategy": 103,
+      "T_hot": 6.875,
+      "T_cold": 2.7722,
+      "carnot_efficiency": 0.596765,
+      "actual_efficiency": 0.504315,
+      "below_carnot": true
+    },
+    {
+      "strategy": 104,
+      "T_hot": 2.4563,
+      "T_cold": 2.1318,
+      "carnot_efficiency": 0.132096,
+      "actual_efficiency": 0.041586,
+      "below_carnot": true
+    },
+    {
+      "strategy": 105,
+      "T_hot": 14.5275,
+      "T_cold": 5.4061,
+      "carnot_efficiency": 0.627874,
+      "actual_efficiency": 0.488922,
+      "below_carnot": true
+    },
+    {
+      "strategy": 106,
+      "T_hot": 4.8159,
+      "T_cold": 1.1596,
+      "carnot_efficiency": 0.759213,
+      "actual_efficiency": 0.391406,
+      "below_carnot": true
+    },
+    {
+      "strategy": 107,
+      "T_hot": 14.8627,
+      "T_cold": 8.8651,
+      "carnot_efficiency": 0.403536,
+      "actual_efficiency": 0.284108,
+      "below_carnot": true
+    },
+    {
+      "strategy": 108,
+      "T_hot": 19.1876,
+      "T_cold": 12.7688,
+      "carnot_efficiency": 0.334527,
+      "actual_efficiency": 0.171262,
+      "below_carnot": true
+    },
+    {
+      "strategy": 109,
+      "T_hot": 13.011,
+      "T_cold": 4.9715,
+      "carnot_efficiency": 0.617899,
+      "actual_efficiency": 0.448958,
+      "below_carnot": true
+    },
+    {
+      "strategy": 110,
+      "T_hot": 8.4075,
+      "T_cold": 5.7587,
+      "carnot_efficiency": 0.315058,
+      "actual_efficiency": 0.280378,
+      "below_carnot": true
+    },
+    {
+      "strategy": 111,
+      "T_hot": 4.0893,
+      "T_cold": 0.2647,
+      "carnot_efficiency": 0.935269,
+      "actual_efficiency": 0.815077,
+      "below_carnot": true
+    },
+    {
+      "strategy": 112,
+      "T_hot": 17.3983,
+      "T_cold": 11.0478,
+      "carnot_efficiency": 0.365005,
+      "actual_efficiency": 0.207351,
+      "below_carnot": true
+    },
+    {
+      "strategy": 113,
+      "T_hot": 3.761,
+      "T_cold": 1.7149,
+      "carnot_efficiency": 0.544029,
+      "actual_efficiency": 0.309318,
+      "below_carnot": true
+    },
+    {
+      "strategy": 114,
+      "T_hot": 5.1176,
+      "T_cold": 2.0549,
+      "carnot_efficiency": 0.598471,
+      "actual_efficiency": 0.371678,
+      "below_carnot": true
+    },
+    {
+      "strategy": 115,
+      "T_hot": 13.0853,
+      "T_cold": 7.5158,
+      "carnot_efficiency": 0.425627,
+      "actual_efficiency": 0.369567,
+      "below_carnot": true
+    },
+    {
+      "strategy": 116,
+      "T_hot": 8.743,
+      "T_cold": 4.9621,
+      "carnot_efficiency": 0.432447,
+      "actual_efficiency": 0.236896,
+      "below_carnot": true
+    },
+    {
+      "strategy": 117,
+      "T_hot": 17.4168,
+      "T_cold": 10.3592,
+      "carnot_efficiency": 0.405216,
+      "actual_efficiency": 0.318478,
+      "below_carnot": true
+    },
+    {
+      "strategy": 118,
+      "T_hot": 3.2702,
+      "T_cold": 1.9265,
+      "carnot_efficiency": 0.410888,
+      "actual_efficiency": 0.362174,
+      "below_carnot": true
+    },
+    {
+      "strategy": 119,
+      "T_hot": 12.544,
+      "T_cold": 10.6208,
+      "carnot_efficiency": 0.153316,
+      "actual_efficiency": 0.076224,
+      "below_carnot": true
+    },
+    {
+      "strategy": 120,
+      "T_hot": 8.9871,
+      "T_cold": 5.2388,
+      "carnot_efficiency": 0.417071,
+      "actual_efficiency": 0.241577,
+      "below_carnot": true
+    },
+    {
+      "strategy": 121,
+      "T_hot": 11.8211,
+      "T_cold": 10.0221,
+      "carnot_efficiency": 0.152186,
+      "actual_efficiency": 0.095836,
+      "below_carnot": true
+    },
+    {
+      "strategy": 122,
+      "T_hot": 19.3014,
+      "T_cold": 15.7366,
+      "carnot_efficiency": 0.184694,
+      "actual_efficiency": 0.140912,
+      "below_carnot": true
+    },
+    {
+      "strategy": 123,
+      "T_hot": 3.2485,
+      "T_cold": 0.3846,
+      "carnot_efficiency": 0.881619,
+      "actual_efficiency": 0.782212,
+      "below_carnot": true
+    },
+    {
+      "strategy": 124,
+      "T_hot": 3.7,
+      "T_cold": 2.3061,
+      "carnot_efficiency": 0.376726,
+      "actual_efficiency": 0.320281,
+      "below_carnot": true
+    },
+    {
+      "strategy": 125,
+      "T_hot": 7.7416,
+      "T_cold": 5.9021,
+      "carnot_efficiency": 0.237608,
+      "actual_efficiency": 0.209977,
+      "below_carnot": true
+    },
+    {
+      "strategy": 126,
+      "T_hot": 16.6604,
+      "T_cold": 4.2981,
+      "carnot_efficiency": 0.74202,
+      "actual_efficiency": 0.606442,
+      "below_carnot": true
+    },
+    {
+      "strategy": 127,
+      "T_hot": 14.5413,
+      "T_cold": 8.2682,
+      "carnot_efficiency": 0.4314,
+      "actual_efficiency": 0.123281,
+      "below_carnot": true
+    },
+    {
+      "strategy": 128,
+      "T_hot": 15.2313,
+      "T_cold": 11.0339,
+      "carnot_efficiency": 0.275577,
+      "actual_efficiency": 0.193614,
+      "below_carnot": true
+    },
+    {
+      "strategy": 129,
+      "T_hot": 5.1939,
+      "T_cold": 3.5337,
+      "carnot_efficiency": 0.319645,
+      "actual_efficiency": 0.10715,
+      "below_carnot": true
+    },
+    {
+      "strategy": 130,
+      "T_hot": 19.8291,
+      "T_cold": 7.4224,
+      "carnot_efficiency": 0.625682,
+      "actual_efficiency": 0.400178,
+      "below_carnot": true
+    },
+    {
+      "strategy": 131,
+      "T_hot": 15.9754,
+      "T_cold": 4.966,
+      "carnot_efficiency": 0.689151,
+      "actual_efficiency": 0.171233,
+      "below_carnot": true
+    },
+    {
+      "strategy": 132,
+      "T_hot": 17.4514,
+      "T_cold": 6.795,
+      "carnot_efficiency": 0.610633,
+      "actual_efficiency": 0.228615,
+      "below_carnot": true
+    },
+    {
+      "strategy": 133,
+      "T_hot": 15.5818,
+      "T_cold": 1.5359,
+      "carnot_efficiency": 0.901433,
+      "actual_efficiency": 0.241776,
+      "below_carnot": true
+    },
+    {
+      "strategy": 134,
+      "T_hot": 11.0945,
+      "T_cold": 8.2696,
+      "carnot_efficiency": 0.254624,
+      "actual_efficiency": 0.172117,
+      "below_carnot": true
+    },
+    {
+      "strategy": 135,
+      "T_hot": 18.1194,
+      "T_cold": 6.408,
+      "carnot_efficiency": 0.646348,
+      "actual_efficiency": 0.576809,
+      "below_carnot": true
+    },
+    {
+      "strategy": 136,
+      "T_hot": 18.2969,
+      "T_cold": 1.5941,
+      "carnot_efficiency": 0.912875,
+      "actual_efficiency": 0.617542,
+      "below_carnot": true
+    },
+    {
+      "strategy": 137,
+      "T_hot": 19.1011,
+      "T_cold": 16.3468,
+      "carnot_efficiency": 0.144195,
+      "actual_efficiency": 0.071895,
+      "below_carnot": true
+    },
+    {
+      "strategy": 138,
+      "T_hot": 13.3731,
+      "T_cold": 5.4525,
+      "carnot_efficiency": 0.592275,
+      "actual_efficiency": 0.411484,
+      "below_carnot": true
+    },
+    {
+      "strategy": 139,
+      "T_hot": 7.916,
+      "T_cold": 4.824,
+      "carnot_efficiency": 0.390596,
+      "actual_efficiency": 0.145824,
+      "below_carnot": true
+    },
+    {
+      "strategy": 140,
+      "T_hot": 16.2484,
+      "T_cold": 11.5681,
+      "carnot_efficiency": 0.288049,
+      "actual_efficiency": 0.240854,
+      "below_carnot": true
+    },
+    {
+      "strategy": 141,
+      "T_hot": 10.8996,
+      "T_cold": 0.6589,
+      "carnot_efficiency": 0.939551,
+      "actual_efficiency": 0.484178,
+      "below_carnot": true
+    },
+    {
+      "strategy": 142,
+      "T_hot": 9.9475,
+      "T_cold": 7.9587,
+      "carnot_efficiency": 0.199937,
+      "actual_efficiency": 0.130831,
+      "below_carnot": true
+    },
+    {
+      "strategy": 143,
+      "T_hot": 4.1072,
+      "T_cold": 0.6143,
+      "carnot_efficiency": 0.850442,
+      "actual_efficiency": 0.312063,
+      "below_carnot": true
+    },
+    {
+      "strategy": 144,
+      "T_hot": 13.1279,
+      "T_cold": 1.2847,
+      "carnot_efficiency": 0.902143,
+      "actual_efficiency": 0.758815,
+      "below_carnot": true
+    },
+    {
+      "strategy": 145,
+      "T_hot": 14.6174,
+      "T_cold": 1.05,
+      "carnot_efficiency": 0.92817,
+      "actual_efficiency": 0.301375,
+      "below_carnot": true
+    },
+    {
+      "strategy": 146,
+      "T_hot": 14.7124,
+      "T_cold": 1.169,
+      "carnot_efficiency": 0.920542,
+      "actual_efficiency": 0.77382,
+      "below_carnot": true
+    },
+    {
+      "strategy": 147,
+      "T_hot": 19.7595,
+      "T_cold": 6.7184,
+      "carnot_efficiency": 0.65999,
+      "actual_efficiency": 0.422757,
+      "below_carnot": true
+    },
+    {
+      "strategy": 148,
+      "T_hot": 16.6304,
+      "T_cold": 14.1831,
+      "carnot_efficiency": 0.147159,
+      "actual_efficiency": 0.030874,
+      "below_carnot": true
+    },
+    {
+      "strategy": 149,
+      "T_hot": 15.5608,
+      "T_cold": 5.3318,
+      "carnot_efficiency": 0.657358,
+      "actual_efficiency": 0.553199,
+      "below_carnot": true
+    },
+    {
+      "strategy": 150,
+      "T_hot": 15.9886,
+      "T_cold": 8.0795,
+      "carnot_efficiency": 0.494674,
+      "actual_efficiency": 0.298311,
+      "below_carnot": true
+    },
+    {
+      "strategy": 151,
+      "T_hot": 18.3144,
+      "T_cold": 1.9217,
+      "carnot_efficiency": 0.895069,
+      "actual_efficiency": 0.496909,
+      "below_carnot": true
+    },
+    {
+      "strategy": 152,
+      "T_hot": 2.2044,
+      "T_cold": 0.9829,
+      "carnot_efficiency": 0.554101,
+      "actual_efficiency": 0.476853,
+      "below_carnot": true
+    },
+    {
+      "strategy": 153,
+      "T_hot": 4.1387,
+      "T_cold": 0.526,
+      "carnot_efficiency": 0.872904,
+      "actual_efficiency": 0.388925,
+      "below_carnot": true
+    },
+    {
+      "strategy": 154,
+      "T_hot": 15.4288,
+      "T_cold": 8.1423,
+      "carnot_efficiency": 0.472268,
+      "actual_efficiency": 0.106959,
+      "below_carnot": true
+    },
+    {
+      "strategy": 155,
+      "T_hot": 8.7477,
+      "T_cold": 2.3208,
+      "carnot_efficiency": 0.734694,
+      "actual_efficiency": 0.214516,
+      "below_carnot": true
+    },
+    {
+      "strategy": 156,
+      "T_hot": 6.0247,
+      "T_cold": 5.2265,
+      "carnot_efficiency": 0.132489,
+      "actual_efficiency": 0.118113,
+      "below_carnot": true
+    },
+    {
+      "strategy": 157,
+      "T_hot": 19.4578,
+      "T_cold": 0.8515,
+      "carnot_efficiency": 0.956239,
+      "actual_efficiency": 0.264113,
+      "below_carnot": true
+    },
+    {
+      "strategy": 158,
+      "T_hot": 11.4986,
+      "T_cold": 10.2767,
+      "carnot_efficiency": 0.106271,
+      "actual_efficiency": 0.090154,
+      "below_carnot": true
+    },
+    {
+      "strategy": 159,
+      "T_hot": 11.9694,
+      "T_cold": 10.4448,
+      "carnot_efficiency": 0.127371,
+      "actual_efficiency": 0.067995,
+      "below_carnot": true
+    },
+    {
+      "strategy": 160,
+      "T_hot": 13.3292,
+      "T_cold": 8.3768,
+      "carnot_efficiency": 0.371544,
+      "actual_efficiency": 0.216172,
+      "below_carnot": true
+    },
+    {
+      "strategy": 161,
+      "T_hot": 13.296,
+      "T_cold": 7.0337,
+      "carnot_efficiency": 0.470991,
+      "actual_efficiency": 0.126786,
+      "below_carnot": true
+    },
+    {
+      "strategy": 162,
+      "T_hot": 2.818,
+      "T_cold": 0.7845,
+      "carnot_efficiency": 0.721618,
+      "actual_efficiency": 0.169372,
+      "below_carnot": true
+    },
+    {
+      "strategy": 163,
+      "T_hot": 18.0247,
+      "T_cold": 7.4462,
+      "carnot_efficiency": 0.586889,
+      "actual_efficiency": 0.273436,
+      "below_carnot": true
+    },
+    {
+      "strategy": 164,
+      "T_hot": 6.9929,
+      "T_cold": 1.2651,
+      "carnot_efficiency": 0.819081,
+      "actual_efficiency": 0.471308,
+      "below_carnot": true
+    },
+    {
+      "strategy": 165,
+      "T_hot": 8.3603,
+      "T_cold": 4.4332,
+      "carnot_efficiency": 0.46973,
+      "actual_efficiency": 0.397197,
+      "below_carnot": true
+    },
+    {
+      "strategy": 166,
+      "T_hot": 19.5391,
+      "T_cold": 17.3441,
+      "carnot_efficiency": 0.11234,
+      "actual_efficiency": 0.046204,
+      "below_carnot": true
+    },
+    {
+      "strategy": 167,
+      "T_hot": 11.6497,
+      "T_cold": 3.3144,
+      "carnot_efficiency": 0.715498,
+      "actual_efficiency": 0.23636,
+      "below_carnot": true
+    },
+    {
+      "strategy": 168,
+      "T_hot": 14.3252,
+      "T_cold": 2.1803,
+      "carnot_efficiency": 0.847799,
+      "actual_efficiency": 0.222421,
+      "below_carnot": true
+    },
+    {
+      "strategy": 169,
+      "T_hot": 16.8057,
+      "T_cold": 14.3708,
+      "carnot_efficiency": 0.144881,
+      "actual_efficiency": 0.056793,
+      "below_carnot": true
+    },
+    {
+      "strategy": 170,
+      "T_hot": 13.0415,
+      "T_cold": 4.9672,
+      "carnot_efficiency": 0.61912,
+      "actual_efficiency": 0.152979,
+      "below_carnot": true
+    },
+    {
+      "strategy": 171,
+      "T_hot": 17.5892,
+      "T_cold": 0.8113,
+      "carnot_efficiency": 0.953875,
+      "actual_efficiency": 0.840882,
+      "below_carnot": true
+    },
+    {
+      "strategy": 172,
+      "T_hot": 8.7763,
+      "T_cold": 6.4213,
+      "carnot_efficiency": 0.268343,
+      "actual_efficiency": 0.056059,
+      "below_carnot": true
+    },
+    {
+      "strategy": 173,
+      "T_hot": 4.7075,
+      "T_cold": 2.5578,
+      "carnot_efficiency": 0.456661,
+      "actual_efficiency": 0.289238,
+      "below_carnot": true
+    },
+    {
+      "strategy": 174,
+      "T_hot": 19.4585,
+      "T_cold": 14.7635,
+      "carnot_efficiency": 0.241282,
+      "actual_efficiency": 0.075562,
+      "below_carnot": true
+    },
+    {
+      "strategy": 175,
+      "T_hot": 10.4365,
+      "T_cold": 3.9548,
+      "carnot_efficiency": 0.621055,
+      "actual_efficiency": 0.440089,
+      "below_carnot": true
+    },
+    {
+      "strategy": 176,
+      "T_hot": 3.0148,
+      "T_cold": 2.3598,
+      "carnot_efficiency": 0.217263,
+      "actual_efficiency": 0.071907,
+      "below_carnot": true
+    },
+    {
+      "strategy": 177,
+      "T_hot": 19.9949,
+      "T_cold": 17.9352,
+      "carnot_efficiency": 0.10301,
+      "actual_efficiency": 0.052658,
+      "below_carnot": true
+    },
+    {
+      "strategy": 178,
+      "T_hot": 15.8418,
+      "T_cold": 13.4756,
+      "carnot_efficiency": 0.149362,
+      "actual_efficiency": 0.045592,
+      "below_carnot": true
+    },
+    {
+      "strategy": 179,
+      "T_hot": 6.4523,
+      "T_cold": 2.6713,
+      "carnot_efficiency": 0.585995,
+      "actual_efficiency": 0.474414,
+      "below_carnot": true
+    },
+    {
+      "strategy": 180,
+      "T_hot": 19.1729,
+      "T_cold": 10.4993,
+      "carnot_efficiency": 0.452389,
+      "actual_efficiency": 0.334745,
+      "below_carnot": true
+    },
+    {
+      "strategy": 181,
+      "T_hot": 14.0906,
+      "T_cold": 7.877,
+      "carnot_efficiency": 0.440974,
+      "actual_efficiency": 0.286319,
+      "below_carnot": true
+    },
+    {
+      "strategy": 182,
+      "T_hot": 4.044,
+      "T_cold": 2.4771,
+      "carnot_efficiency": 0.387463,
+      "actual_efficiency": 0.207597,
+      "below_carnot": true
+    },
+    {
+      "strategy": 183,
+      "T_hot": 15.9017,
+      "T_cold": 7.4923,
+      "carnot_efficiency": 0.528835,
+      "actual_efficiency": 0.160487,
+      "below_carnot": true
+    },
+    {
+      "strategy": 184,
+      "T_hot": 11.9343,
+      "T_cold": 6.0689,
+      "carnot_efficiency": 0.491477,
+      "actual_efficiency": 0.140731,
+      "below_carnot": true
+    },
+    {
+      "strategy": 185,
+      "T_hot": 9.2627,
+      "T_cold": 1.2038,
+      "carnot_efficiency": 0.870037,
+      "actual_efficiency": 0.765504,
+      "below_carnot": true
+    },
+    {
+      "strategy": 186,
+      "T_hot": 15.5925,
+      "T_cold": 8.7429,
+      "carnot_efficiency": 0.439286,
+      "actual_efficiency": 0.178853,
+      "below_carnot": true
+    },
+    {
+      "strategy": 187,
+      "T_hot": 5.8334,
+      "T_cold": 0.8023,
+      "carnot_efficiency": 0.862461,
+      "actual_efficiency": 0.767434,
+      "below_carnot": true
+    },
+    {
+      "strategy": 188,
+      "T_hot": 8.3106,
+      "T_cold": 4.4533,
+      "carnot_efficiency": 0.46414,
+      "actual_efficiency": 0.290286,
+      "below_carnot": true
+    },
+    {
+      "strategy": 189,
+      "T_hot": 9.8745,
+      "T_cold": 8.0449,
+      "carnot_efficiency": 0.185287,
+      "actual_efficiency": 0.121589,
+      "below_carnot": true
+    },
+    {
+      "strategy": 190,
+      "T_hot": 11.2518,
+      "T_cold": 7.9574,
+      "carnot_efficiency": 0.29279,
+      "actual_efficiency": 0.182238,
+      "below_carnot": true
+    },
+    {
+      "strategy": 191,
+      "T_hot": 13.1976,
+      "T_cold": 10.2568,
+      "carnot_efficiency": 0.22283,
+      "actual_efficiency": 0.05244,
+      "below_carnot": true
+    },
+    {
+      "strategy": 192,
+      "T_hot": 4.6473,
+      "T_cold": 3.8829,
+      "carnot_efficiency": 0.164491,
+      "actual_efficiency": 0.091378,
+      "below_carnot": true
+    },
+    {
+      "strategy": 193,
+      "T_hot": 6.6484,
+      "T_cold": 2.8014,
+      "carnot_efficiency": 0.578643,
+      "actual_efficiency": 0.123816,
+      "below_carnot": true
+    },
+    {
+      "strategy": 194,
+      "T_hot": 10.8671,
+      "T_cold": 3.2825,
+      "carnot_efficiency": 0.697947,
+      "actual_efficiency": 0.318696,
+      "below_carnot": true
+    },
+    {
+      "strategy": 195,
+      "T_hot": 6.3226,
+      "T_cold": 0.5241,
+      "carnot_efficiency": 0.917107,
+      "actual_efficiency": 0.742658,
+      "below_carnot": true
+    },
+    {
+      "strategy": 196,
+      "T_hot": 4.3048,
+      "T_cold": 0.6733,
+      "carnot_efficiency": 0.843586,
+      "actual_efficiency": 0.677249,
+      "below_carnot": true
+    },
+    {
+      "strategy": 197,
+      "T_hot": 13.5357,
+      "T_cold": 2.2975,
+      "carnot_efficiency": 0.830264,
+      "actual_efficiency": 0.546341,
+      "below_carnot": true
+    },
+    {
+      "strategy": 198,
+      "T_hot": 18.1422,
+      "T_cold": 7.7914,
+      "carnot_efficiency": 0.570535,
+      "actual_efficiency": 0.246876,
+      "below_carnot": true
+    },
+    {
+      "strategy": 199,
+      "T_hot": 5.1018,
+      "T_cold": 0.9637,
+      "carnot_efficiency": 0.811108,
+      "actual_efficiency": 0.706793,
+      "below_carnot": true
+    }
+  ]
+}

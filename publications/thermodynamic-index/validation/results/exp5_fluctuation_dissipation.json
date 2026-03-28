@@ -1,0 +1,50 @@
+{
+  "experiment": "fluctuation_dissipation",
+  "prediction": "FDT ratio = 2T/m (linear in T)",
+  "correlation_T_vs_ratio": 1.0,
+  "passed": true,
+  "data": [
+    {
+      "temperature": 0.5,
+      "sigma_realised": 0.475576,
+      "fdt_ratio_theory": 1.0,
+      "fdt_ratio_measured": 2.350505,
+      "sigma_implied_theory": 0.475576
+    },
+    {
+      "temperature": 1.0,
+      "sigma_realised": 0.671971,
+      "fdt_ratio_theory": 2.0,
+      "fdt_ratio_measured": 2.354222,
+      "sigma_implied_theory": 0.950311
+    },
+    {
+      "temperature": 2.0,
+      "sigma_realised": 0.954801,
+      "fdt_ratio_theory": 4.0,
+      "fdt_ratio_measured": 2.357753,
+      "sigma_implied_theory": 1.909602
+    },
+    {
+      "temperature": 5.0,
+      "sigma_realised": 1.507359,
+      "fdt_ratio_theory": 10.0,
+      "fdt_ratio_measured": 2.355968,
+      "sigma_implied_theory": 4.766687
+    },
+    {
+      "temperature": 10.0,
+      "sigma_realised": 2.126976,
+      "fdt_ratio_theory": 20.0,
+      "fdt_ratio_measured": 2.354779,
+      "sigma_implied_theory": 9.512127
+    },
+    {
+      "temperature": 20.0,
+      "sigma_realised": 3.008856,
+      "fdt_ratio_theory": 40.0,
+      "fdt_ratio_measured": 2.35562,
+      "sigma_implied_theory": 19.029675
+    }
+  ]
+}
