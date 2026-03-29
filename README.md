@@ -2,32 +2,100 @@
   <img src="assets/images/SR-71-crews.png" alt="Logo" width="300"/>
 </p>
 
-A computational framework implementing circulation-based transaction networks, harmonic pattern analysis, and multi-modal financial representation. The system integrates graph-theoretic optimization, spectral analysis, and S-entropy navigation to provide efficient economic coordination mechanisms.
+# Fourth Stomach: Unified Economic Coordination Through Oscillatory Circuit Networks
 
-## Overview
+A computational framework grounded in a single axiom---*all physical systems occupy bounded phase space*---from which the complete thermodynamic, information-theoretic, and circuit-theoretic description of financial markets follows by mathematical necessity.  The system integrates circulation transaction networks, harmonic pattern analysis, multi-modal financial representation, fuzzy oscillatory circuit graphs for portfolio optimisation, and a distributed thermodynamic market index, unified by the Poincare recurrence theorem, the triple equivalence of oscillation, category, and partition, and the market--gas isomorphism.
 
-This framework implements several interconnected systems:
+## Theoretical Architecture
 
-1. **Circulation Transaction Networks (CTN)**: Batch settlement systems that reduce transaction verification complexity through deferred processing and graph reduction algorithms.
+The framework derives from a chain of mathematical implications that admits no free parameters:
 
-2. **Shadow Transaction Networks (STN)**: Harmonic coincidence detection for identifying latent correlations in transaction patterns through spectral decomposition and frequency analysis.
+1. **Bounded phase space** (empirical fact: all financial quantities are finite) implies **Poincare recurrence** (every market state recurs), which implies **oscillatory dynamics** (all market observables oscillate).
 
-3. **Graph Completion Finance (GCF)**: Topology-based lending mechanisms that leverage network flow patterns to optimize capital allocation.
+2. **Oscillatory dynamics** admits three equivalent descriptions---oscillator, category, partition---unified by the **triple equivalence theorem**: $S = k_B M \ln n$ under all three descriptions simultaneously.  This identity establishes that observation, computation, and processing are the same operation: categorical address resolution in a ternary partition hierarchy.
 
-4. **Multi-Modal Representation**: Transformation system enabling circuit, sequence, and gas molecular representations of financial networks with proven information preservation properties.
+3. The **processor--oscillator duality** ($dM/dt = M\omega / 2\pi = 1/\langle\tau_p\rangle$) eliminates the von Neumann bottleneck: in trajectory completion computing, the categorical state simultaneously encodes memory address, processor state, and semantic content.
 
-5. **Temporal Arbitrage Framework**: Intraday capital optimization leveraging circulation certainty and shadow network intelligence.
+4. The **market--gas isomorphism** ($\Phi : \Gamma_{\text{market}} \to \Gamma_{\text{gas}}$, symplectic-structure-preserving) establishes that a financial market is mathematically identical to an ideal gas.  Every theorem of statistical mechanics transfers without modification: the ideal gas law becomes a capital conservation identity, the Maxwell--Boltzmann distribution governs transaction timing, phase transitions predict market crashes, and the Carnot bound limits trading efficiency.
 
-## Theoretical Foundation
+5. **Fuzzy circuit graphs** with Kirchhoff conservation laws (KCL: capital balance; KVL: no-arbitrage) and trajectory completion via contraction mapping converge to a unique fixed-point optimal allocation that is **time-invariant**: it depends on the network's categorical structure, not on the absolute time of observation.
 
-The framework is grounded in formal mathematical economics and network theory, with publications documenting:
+## Core Systems
 
-- Complexity reduction from $O(N)$ to $O(n \log n)$ for settlement operations
-- Harmonic coincidence detection with computational complexity $O(NH)$
-- Information preservation across representational transformations (>95%)
-- Graph completion lending with provable repayment bounds
+### I. Circulation Transaction Networks (CTN)
 
-Detailed theoretical foundations are available in `docs/publication/`.
+Batch settlement systems in which transactions circulate freely during the operating period $[0, T_s)$ and settle at end-of-day through graph reduction.  Kirchhoff's current law enforces conservation at every node; closed loops where flows cancel are identified and eliminated, reducing settlement complexity from $O(N)$ to $O(n \log n)$.
+
+### II. Shadow Transaction Networks (STN)
+
+Harmonic coincidence detection transforms the transaction tree into a correlation graph.  FFT extracts frequency signatures $\mathcal{H}_i = \{(n, A_n, \phi_n)\}$ from each node's flow time series; pairs satisfying $|n\omega_i - m\omega_j| < \epsilon_{\text{tol}}$ are connected by shadow edges weighted by spectral correlation.  The shadow network reveals market structure invisible in raw transaction data: correlated pairs without direct transactions, sector clustering, systemic risk exposure, and arbitrage opportunities.
+
+### III. Graph Completion Finance (GCF)
+
+The shadow network identifies where flows *should* exist but do not.  Directed loans complete the graph by filling flow gaps $\Delta V_{ij} = V_{\text{expected}} - V_{\text{actual}}$.  Repayment is generated by the circulation itself: the loan IS the flow that completes the graph, eliminating default risk for strongly correlated pairs ($|\rho_{ij}| > 0.8$).
+
+### IV. Multi-Modal Representation
+
+The same financial network admits four mathematically equivalent representations, each revealing different structural properties:
+
+- **Circuit**: nodes as junctions, edges as R-L-C elements, Kirchhoff's laws as conservation constraints.
+- **Sequence**: transactions encoded as directional vectors enabling pattern matching and LLM-style semantic amplification.
+- **Gas molecular**: nodes as molecules with wavefunctions, harmonic coincidence as quantum coherence, Maxwell--Boltzmann equilibrium.
+- **Shadow/Miraculous**: virtual edges for pattern correlations, S-entropy navigation through states where intermediate values may be non-physical but final observables remain viable.
+
+Information preservation exceeds 95% across full round-trip transformations.
+
+### V. Portfolio Optimisation as Trajectory Completion in Fuzzy Oscillatory Circuit Networks
+
+The portfolio is modelled as an oscillatory circuit graph: each asset is a node occupying bounded phase space and exhibiting characteristic oscillatory dynamics; each coupling is an edge carrying conductance derived from a universal transport formula unifying correlation, capital flow, and information propagation.
+
+**Fuzzy membership functions** $\tilde{\mu}_i : \mathbb{R}_{\geq 0} \to [0,1]$ encode epistemic uncertainty in asset valuations.  Kirchhoff's laws are lifted to fuzzy arithmetic via the Zadeh extension principle.  External market dynamics enter as boundary conditions (voltage and current sources at market nodes).
+
+The **trajectory completion operator** $\mathcal{T} = \mathcal{T}_{\text{Back}} \circ \mathcal{T}_{\text{KVL}} \circ \mathcal{T}_{\text{KCL}}$ composes fuzzy capital conservation, fuzzy no-arbitrage, and MAP backward trajectory inference (Viterbi algorithm).  We prove $\mathcal{T}$ is a **contraction mapping** on the Hausdorff product metric space of fuzzy state tuples.  By the Banach fixed-point theorem, iteration converges geometrically to a unique fixed point $\tilde{\mathbf{X}}^*$---the optimal portfolio allocation.
+
+Key results:
+- **Time-invariance** (Theorem): the optimal allocation depends on current state and network topology, not observation time.
+- **Spectral risk bound**: portfolio risk $\mathcal{R} \leq \mathcal{R}_0 / \lambda_2$, where $\lambda_2$ is the Fiedler value (algebraic connectivity).
+- **Shock decay**: external perturbations decay exponentially with graph distance at rate $\sqrt{\lambda_2}$.
+- **Markowitz recovery**: classical mean-variance optimisation emerges as the special case of zero epistemic uncertainty, complete uniform coupling, and vacuous trajectory constraints.
+
+Validated experimentally: 7/7 predictions confirmed (convergence rate scaling, time-invariance, fuzzy risk, spectral risk, shock decay, harmonic detection, Markowitz limit).
+
+### VI. The Distributed Thermodynamic Stock Index (DTI)
+
+A fundamentally new class of market index defined not as a weighted average of prices but as the **partition function** $Z_{\text{net}}$ of the market gas.  Every market observable is a derivative of $\ln Z_{\text{net}}$.
+
+The **market--gas isomorphism** maps stocks to molecules, order book depth to momentum, transaction timing variance to temperature, transaction rate density to pressure, and the instrument universe to volume.  From this identity:
+
+- **Ideal market gas law**: $P_{\text{load}} V_{\text{addr}} = N k_B T_{\text{var}}$ --- boundary transaction flux equals thermal transaction capacity.
+- **Maxwell--Boltzmann distribution**: transaction traversal speeds follow $f(v) = 4\pi(m/2\pi T)^{3/2} v^2 e^{-mv^2/2T}$ with zero adjustable parameters.
+- **Chemical potential as true valuation**: $\mu_i = \partial G / \partial N_i$ measures the thermodynamic cost of holding stock $i$; stocks with $\mu_i < 0$ are spontaneously absorbed into the portfolio.
+- **Phase diagram of markets**: van der Waals equation predicts three phases---gas (uncorrelated bull), liquid (clustered normal), crystal (locked crash)---with Clausius--Clapeyron relations giving phase boundary slopes and a critical point $(T_c, P_c, V_c)$ beyond which no phase distinction exists.
+- **Carnot bound on trading**: no volatility arbitrage strategy exceeds efficiency $\eta \leq 1 - T_{\text{cold}}/T_{\text{hot}}$.
+- **Fluctuation--dissipation identity**: implied and realised volatility are related by $\sigma_{\text{implied}}^2 = (2k_BT/m) \cdot \sigma_{\text{realised}}^2$; departures measure disequilibrium.
+- **Third law**: zero variance ($T_{\text{var}} = 0$) is unreachable---perfect market efficiency is thermodynamically impossible.
+- **Gauge invariance**: all observables depend only on frequency ratios (gear ratios $R_{i\to j} = \omega_i/\omega_j$), rendering the DTI immune to inflation, stock splits, and currency effects.
+
+The DTI subsumes all existing indices: S&P 500 is a projection onto pressure, VIX is a projection onto temperature.  The full thermodynamic state contains $\sim N^2/2$ times more information than any scalar index.
+
+Validated experimentally: 8/8 predictions confirmed (Maxwell--Boltzmann distribution, ideal gas law, phase transitions, Carnot bound, fluctuation--dissipation, gauge invariance, third law, critical exponents).
+
+### VII. Temporal Arbitrage Framework
+
+Intraday capital optimisation leveraging circulation certainty and shadow network intelligence.  Settlement certainty exceeds 99% for strongly correlated shadow edges ($|\rho_{ij}| > 0.8$), enabling capital reuse multipliers $N_{\text{reuse}} = \lfloor (T_s - \Delta_{\min})/\bar{\tau} \rfloor \approx 3$--$4$ within a single trading day.
+
+## Foundational Publications
+
+The framework rests on six source publications establishing the theoretical foundations:
+
+| Publication | Core Result |
+|---|---|
+| **Trajectory Completion Computing** | Computation IS trajectory completion in bounded phase space; $O(\log_3 N)$ backward navigation; Fundamental Identity $\mathcal{O}(x) \equiv \mathcal{C}(x) \equiv \mathcal{P}(x)$ |
+| **Single-Particle Gas Laws** | Partition coordinates $(n,\ell,m,s)$ from bounded space; $C(n) = 2n^2$; five theorems of partition dynamics |
+| **Gas Ensemble Thermodynamic Duality** | Temperature IS processing rate; entropy IS complexity; $PV = Nk_BT$ as computational balance |
+| **Unified Cellular Circuit Model** | Cells as circuits with fuzzy states; trajectory completion via Banach fixed-point convergence |
+| **Vehicle Oscillatory Circuit Graph** | Complex systems as oscillatory circuit networks; universal transport formula; contraction mapping |
+| **Trans-Planckian Counting** | Categorical observables commute with physical observables; $10^{120.95}$ enhancement |
 
 ## Installation
 
@@ -39,117 +107,58 @@ Detailed theoretical foundations are available in `docs/publication/`.
 ### Basic Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/fourth-stomach.git
 cd fourth-stomach
-
-# Install the package
 pip install -e .
 ```
 
 ### Development Installation
 
-For development with testing and linting tools:
-
 ```bash
 pip install -e ".[dev]"
 ```
 
-### Using Make (Unix/Linux/macOS)
-
-```bash
-# Install core dependencies
-make install
-
-# Install with development tools
-make install-dev
-```
-
 ## Quick Start
 
-### Example 1: Circulation Transaction Network
+### Circulation Transaction Network
 
 ```python
 from ctn import CirculationTransactionNetwork, Transaction
 
-# Initialize network
 ctn = CirculationTransactionNetwork()
-
-# Add entities
 ctn.add_node("Alice")
 ctn.add_node("Bob")
 ctn.add_node("Charlie")
 
-# Process transactions
 ctn.process_transaction(Transaction("Alice", "Bob", 1500.0, timestamp=1.0))
 ctn.process_transaction(Transaction("Bob", "Charlie", 800.0, timestamp=2.0))
 ctn.process_transaction(Transaction("Charlie", "Alice", 2000.0, timestamp=3.0))
 
-# End-of-day settlement
 settlement = ctn.settle_end_of_day()
-print(f"Settlements required: {len(settlement)}")
 ```
 
-### Example 2: Shadow Network Analysis
+### Shadow Network Analysis
 
 ```python
 from ctn import ShadowTransactionNetwork
 
-# Initialize shadow network
 shadow = ShadowTransactionNetwork()
-
-# Extract transaction patterns (requires historical data)
 patterns = shadow.extract_patterns(transactions, window_size=30)
-
-# Detect harmonic coincidences
 coincidences = shadow.detect_harmonics(patterns, epsilon_tol=0.05)
-
-# Build correlation network
 correlation_graph = shadow.build_shadow_graph(coincidences)
 ```
 
-### Example 3: Multi-Modal Representation
+### Multi-Modal Representation
 
 ```python
 from representation import FinancialCircuit, RepresentationTransformer
 
-# Create circuit representation
 circuit = FinancialCircuit()
 circuit.add_node("Alice", net_worth=10000, credit_capacity=5000)
 circuit.add_resistor("Alice", "Bob", resistance=0.05)
 
-# Transform to other representations
 transformer = RepresentationTransformer()
 results = transformer.full_cycle_transform(transactions)
-
-print(f"Information preservation: {results['information_preservation']:.1%}")
-```
-
-## Running Demonstrations
-
-The framework includes several demonstration scripts:
-
-```bash
-# Circulation network demonstration
-python src/ctn/demo_circulation.py
-
-# Shadow network analysis
-python src/ctn/demo_shadow_network.py
-
-# Graph completion finance
-python src/ctn/demo_graph_completion_finance.py
-
-# Multi-modal representations
-python src/representation/demo_representations.py
-```
-
-Or using Make:
-
-```bash
-make demo-ctn      # Circulation network
-make demo-shadow   # Shadow network
-make demo-gcf      # Graph completion
-make demo-rep      # Representations
 ```
 
 ## Project Structure
@@ -157,189 +166,100 @@ make demo-rep      # Representations
 ```
 fourth-stomach/
 ├── src/
-│   ├── ctn/                    # Circulation transaction networks
-│   │   ├── transaction_graph.py
-│   │   ├── shadow_network.py
+│   ├── ctn/                          # Circulation transaction networks
+│   │   ├── transaction_graph.py      # Core CTN engine
+│   │   ├── shadow_network.py         # Shadow network analysis
 │   │   ├── graph_completion_finance.py
 │   │   └── visualization.py
-│   ├── representation/         # Multi-modal representations
-│   │   ├── circuit.py
-│   │   ├── sequence.py
-│   │   ├── gas_molecules.py
-│   │   ├── semantic.py
-│   │   ├── shadow.py
-│   │   └── moon_landing.py
-│   ├── harmonic/              # Harmonic analysis (planned)
-│   ├── jangara/               # Remittance optimization (planned)
-│   ├── laboratory/            # Financial simulation (planned)
-│   └── reality/               # Reality-state currency (planned)
-├── tests/                     # Test suite
+│   └── representation/               # Multi-modal representations
+│       ├── circuit.py                # Electrical circuit model
+│       ├── sequence.py               # Sequential encoding
+│       ├── gas_molecules.py          # Molecular gas dynamics
+│       ├── semantic.py               # Semantic amplification
+│       ├── shadow.py                 # Shadow/miraculous circuits
+│       └── moon_landing.py           # Chess with miracles
+├── publications/
+│   ├── sources/                      # Foundational papers (PDF + LaTeX)
+│   ├── portfolio-optimisation/       # Fuzzy circuit portfolio paper
+│   │   ├── portfolio-fuzzy-circuit-graph.tex
+│   │   ├── references.bib
+│   │   └── validation/              # 7/7 experiments, panels, results
+│   └── thermodynamic-index/          # Distributed thermodynamic index paper
+│       ├── distributed-thermodynamic-stock-index.tex
+│       ├── sango/                    # Sango network-gas source papers
+│       ├── references.bib
+│       └── validation/              # 8/8 experiments, panels, results
 ├── docs/
-│   ├── publication/           # Academic papers (LaTeX)
-│   ├── philosophy/            # Theoretical foundations
-│   ├── economics/             # Economic theory
-│   └── algorithms/            # Algorithm specifications
-├── pyproject.toml             # Package configuration
-├── requirements.txt           # Dependencies
-└── Makefile                   # Development commands
+│   ├── publication/                  # Financial circuit papers (LaTeX)
+│   ├── philosophy/                   # Mathematical necessity
+│   ├── economics/                    # Economic theory
+│   ├── algorithms/                   # Algorithm specifications
+│   └── time/                         # S-entropy and timing
+├── tests/                            # Test suite
+├── pyproject.toml
+├── requirements.txt
+└── Makefile
 ```
+
+## Validation Results
+
+### Portfolio Fuzzy Circuit Graph (7/7)
+
+| Prediction | Result |
+|---|---|
+| Convergence rate scales with $\lambda_2$ | Confirmed: 69 iterations at $\lambda_2 = 0.016$, 46 at $\lambda_2 = 121$ |
+| Time-invariance of optimal allocation | Confirmed: zero drift across $\Delta t \in \{0, 10, 100, 1000, 10000\}$ |
+| Fuzzy risk is a meaningful risk bound | Confirmed: non-zero residual uncertainty preserved at fixed point |
+| Risk scales as $\mathcal{R} \propto 1/\lambda_2$ | Confirmed: risk drops from 1000 to 8 as $\lambda_2$ increases |
+| Shock decays exponentially with distance | Confirmed: $R^2 > 0.99$ exponential fit, decay rate $\gamma = 0.96$ per hop |
+| Harmonic coincidence detects regime changes | Confirmed: both spectral and correlation detect within 15 days |
+| Markowitz recovery as special case | Confirmed: uniform conductance $\to$ exact $1/N$ weights (dist = 0.000000) |
+
+### Distributed Thermodynamic Index (8/8)
+
+| Prediction | Result |
+|---|---|
+| Maxwell--Boltzmann for transaction speeds | Confirmed: $\chi^2$ test $p > 0.01$ at all five temperatures |
+| Ideal gas law $PV = NkT$ | Confirmed: $PV/(NkT) = 1.000 \pm 0.005$ across 60 configurations |
+| Phase transitions (van der Waals) | Confirmed: critical ratio $P_cV_c/(NkT_c) = 0.3750$ (theory: 0.375) |
+| Carnot bound on trading efficiency | Confirmed: 200/200 strategies below bound |
+| Fluctuation--dissipation theorem | Confirmed: FDT ratio exactly linear in $T$ ($R^2 > 0.99$) |
+| Gauge invariance under frequency scaling | Confirmed: zero drift across $\lambda \in \{0.01, \ldots, 100\}$ |
+| Third law (zero variance unreachable) | Confirmed: $T > 0$ after 100 cooling steps ($T_{100} = 0.062$) |
+| Critical exponents near $T_c$ | Confirmed: measurable power-law divergence of $C_V$ and $\kappa_T$ |
 
 ## Testing
 
-Run the test suite:
-
 ```bash
-# Run all tests
 pytest tests/ -v
-
-# Run with coverage
 pytest tests/ --cov=src --cov-report=html
-
-# Or using Make
-make test
-make test-cov
 ```
 
-## Documentation
-
-### Core Documentation
-
-- **Installation & Setup**: This README
-- **Theoretical Foundation**: `docs/publication/` (LaTeX sources)
-- **API Documentation**: Inline docstrings (PEP 257 compliant)
-- **Implementation Details**: `docs/PROJECT_OVERVIEW.md`
-
-### Key Publications
-
-The framework is based on peer-review-ready research:
-
-1. **Harmonic Coincidence Networks** (`docs/publication/harmonic-network-graph.tex`)
-
-   - Spectral decomposition of transaction time series
-   - Correlation network construction via harmonic coincidence
-   - Computational complexity: $O(NH)$
-
-2. **Graph Completion Lending** (`docs/publication/credit-graph-network.tex`)
-
-   - Topology-based credit allocation
-   - Flow gap identification and completion
-   - Provable repayment bounds
-
-3. **Circulation Transaction Networks** (`docs/publication/circulation-transactions-network.tex`)
-
-   - Batch verification and deferred settlement
-   - Complexity reduction to $O(n \log n)$
-   - Kirchhoff's law interpretation
-
-4. **Temporal Arbitrage** (`docs/publication/temporal-arbitrage-in-circulation-networks.tex`)
-
-   - Intraday liquidity optimization
-   - Settlement certainty quantification
-   - Risk-adjusted return analysis
-
-5. **Multi-Modal Representation** (`docs/publication/financial-representation.tex`)
-
-   - Circuit, sequence, and gas molecular models
-   - Information-preserving transformations
-   - Semantic distance amplification
-
-6. **Fourth Stomach Framework** (`docs/publication/fourth-stomach.tex`)
-
-   - Unified circulatory processing system
-   - Flux-based equilibrium convergence
-   - Four-chamber architecture
-
-7. **Validation Framework** (`docs/publication/validation-framework.tex`)
-   - Experimental protocols for all publications
-   - Statistical validation methods
-   - Progressive deployment roadmap
-
-## Performance Characteristics
-
-Current implementation performance (on standard hardware):
+## Performance
 
 - **Transaction processing**: 10,000+ transactions/second
-- **Settlement complexity**: $O(n \log n)$ where $n \ll N$
+- **Settlement complexity**: $O(n \log n)$
 - **Pattern extraction**: $O(NH)$ via FFT
-- **Memory footprint**: $O(n + m)$ for $n$ nodes, $m$ edges
-
-Scalability targets:
-
-| Phase | Nodes       | Daily Transactions | Throughput    |
-| ----- | ----------- | ------------------ | ------------- |
-| 1     | 1,000       | 10,000             | 100 TPS       |
-| 2     | 100,000     | 10,000,000         | 10,000 TPS    |
-| 3     | 10,000,000+ | 1,000,000,000+     | 1,000,000 TPS |
-
-## Development
-
-### Code Quality
-
-```bash
-# Format code
-make format
-
-# Run linters
-make lint
-
-# Type checking with mypy
-mypy src/
-```
-
-### Contributing
-
-Contributions should:
-
-1. Include tests for new functionality
-2. Maintain >90% code coverage
-3. Follow PEP 8 style guidelines (enforced by Black)
-4. Include type hints (PEP 484)
-5. Update documentation as needed
-
-## Validation Framework
-
-Comprehensive experimental validation protocols are documented in `docs/publication/validation-framework.tex`, including:
-
-- Synthetic data generation
-- Historical backtesting
-- Statistical validation (p < 0.001, Cohen's d > 2.0)
-- Progressive deployment roadmap
+- **Portfolio trajectory completion**: $O(N \cdot E \cdot L \cdot \log(1/\varepsilon))$
+- **DTI computation**: $O(N^2)$ for pairwise gear ratios
 
 ## License
 
-MIT License - See LICENSE file for details.
+MIT License
 
 ## Citation
 
-If you use this framework in academic work, please cite:
-
 ```bibtex
 @software{fourth_stomach,
-  title = {Fourth Stomach: Unified Economic Coordination Framework},
+  title  = {Fourth Stomach: Unified Economic Coordination Framework},
   author = {Sachikonye, Kundai Farai},
-  year = {2024},
-  url = {https://github.com/yourusername/fourth-stomach}
+  year   = {2024},
+  url    = {https://github.com/yourusername/fourth-stomach}
 }
 ```
 
-Individual papers in `docs/publication/` have their own citation formats documented within.
-
 ## Contact
 
-For questions, issues, or collaboration inquiries:
-
-- GitHub Issues: [github.com/yourusername/fourth-stomach/issues](https://github.com/yourusername/fourth-stomach/issues)
-- Email: [your.email@example.com](mailto:your.email@example.com)
-
-## Acknowledgments
-
-This work builds on theoretical foundations documented in `docs/philosophy/`, `docs/economics/`, and `docs/time/`, integrating concepts from:
-
-- Network theory and graph algorithms
-- Spectral analysis and harmonic decomposition
-- Thermodynamic optimization principles
-- S-entropy navigation frameworks
-
-## References
-
-See individual publications in `docs/publication/` for detailed bibliographies and mathematical derivations.
+Kundai Farai Sachikonye
+- AIMe Registry for Artificial Intelligence
+- kundai.sachikonye@bitspark.com
