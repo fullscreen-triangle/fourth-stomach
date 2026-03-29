@@ -4,7 +4,8 @@
       "Bash(wc -l /c/Users/kunda/Documents/systems/fourth-stomach/src/representation/*.py)",
       "Bash(pip list:*)",
       "Bash(python -u -c \":*)",
-      "WebFetch(domain:codesandbox.io)"
+      "WebFetch(domain:codesandbox.io)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
