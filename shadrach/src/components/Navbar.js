@@ -69,8 +69,9 @@ const Navbar = () => {
       <div className="w-full flex justify-between items-center lg:hidden">
         <nav className="flex items-center justify-center">
           <CustomLink className="mr-4" href="/" title="Home" />
-          <CustomLink className="mx-4" href="/portfolio" title="Portfolio Paper" />
-          <CustomLink className="mx-4" href="/thermodynamics" title="DTI Paper" />
+          <CustomLink className="mx-4" href="/portfolio" title="Portfolio" />
+          <CustomLink className="mx-4" href="/thermodynamics" title="DTI" />
+          <CustomLink className="mx-4" href="/representation" title="Representation" />
           <CustomLink className="mx-4" href="/api-docs" title="API" />
           <CustomLink className="ml-4" href="/licensing" title="Licensing" />
         </nav>
@@ -97,8 +98,9 @@ const Navbar = () => {
         >
           <nav className="flex items-center justify-center flex-col">
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/" title="Home" />
-            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/portfolio" title="Portfolio Paper" />
-            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/thermodynamics" title="DTI Paper" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/portfolio" title="Portfolio" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/thermodynamics" title="DTI" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/representation" title="Representation" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/api-docs" title="API" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/licensing" title="Licensing" />
           </nav>
