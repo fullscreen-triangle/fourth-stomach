@@ -1,0 +1,310 @@
+{
+  "experiment": "spectral_superiority",
+  "prediction": "Spectral attention detects hidden harmonic correlations",
+  "n_trials": 50,
+  "n_spectral_wins": 50,
+  "win_rate": 1.0,
+  "passed": true,
+  "data": [
+    {
+      "trial": 0,
+      "std_attention_score": 0.001124,
+      "spectral_score": 0.042572,
+      "spectral_wins": true
+    },
+    {
+      "trial": 1,
+      "std_attention_score": 0.000248,
+      "spectral_score": 0.095163,
+      "spectral_wins": true
+    },
+    {
+      "trial": 2,
+      "std_attention_score": -0.000934,
+      "spectral_score": 0.08564,
+      "spectral_wins": true
+    },
+    {
+      "trial": 3,
+      "std_attention_score": 0.001656,
+      "spectral_score": 0.226877,
+      "spectral_wins": true
+    },
+    {
+      "trial": 4,
+      "std_attention_score": -0.003759,
+      "spectral_score": 0.136793,
+      "spectral_wins": true
+    },
+    {
+      "trial": 5,
+      "std_attention_score": 0.006161,
+      "spectral_score": 0.085128,
+      "spectral_wins": true
+    },
+    {
+      "trial": 6,
+      "std_attention_score": -0.002449,
+      "spectral_score": 0.133626,
+      "spectral_wins": true
+    },
+    {
+      "trial": 7,
+      "std_attention_score": 0.006856,
+      "spectral_score": 0.152112,
+      "spectral_wins": true
+    },
+    {
+      "trial": 8,
+      "std_attention_score": -0.001748,
+      "spectral_score": 0.16784,
+      "spectral_wins": true
+    },
+    {
+      "trial": 9,
+      "std_attention_score": 0.000769,
+      "spectral_score": 0.050441,
+      "spectral_wins": true
+    },
+    {
+      "trial": 10,
+      "std_attention_score": -0.003506,
+      "spectral_score": 0.165563,
+      "spectral_wins": true
+    },
+    {
+      "trial": 11,
+      "std_attention_score": 0.000366,
+      "spectral_score": 0.035665,
+      "spectral_wins": true
+    },
+    {
+      "trial": 12,
+      "std_attention_score": -0.003222,
+      "spectral_score": 0.179888,
+      "spectral_wins": true
+    },
+    {
+      "trial": 13,
+      "std_attention_score": -9e-06,
+      "spectral_score": 0.130674,
+      "spectral_wins": true
+    },
+    {
+      "trial": 14,
+      "std_attention_score": 0.007723,
+      "spectral_score": 0.227332,
+      "spectral_wins": true
+    },
+    {
+      "trial": 15,
+      "std_attention_score": 0.004444,
+      "spectral_score": 0.152586,
+      "spectral_wins": true
+    },
+    {
+      "trial": 16,
+      "std_attention_score": -0.005623,
+      "spectral_score": 0.040635,
+      "spectral_wins": true
+    },
+    {
+      "trial": 17,
+      "std_attention_score": 0.004061,
+      "spectral_score": 0.122101,
+      "spectral_wins": true
+    },
+    {
+      "trial": 18,
+      "std_attention_score": -0.008676,
+      "spectral_score": 0.064917,
+      "spectral_wins": true
+    },
+    {
+      "trial": 19,
+      "std_attention_score": 0.000712,
+      "spectral_score": 0.164941,
+      "spectral_wins": true
+    },
+    {
+      "trial": 20,
+      "std_attention_score": -0.005987,
+      "spectral_score": 0.121575,
+      "spectral_wins": true
+    },
+    {
+      "trial": 21,
+      "std_attention_score": -0.002773,
+      "spectral_score": 0.093125,
+      "spectral_wins": true
+    },
+    {
+      "trial": 22,
+      "std_attention_score": 6e-06,
+      "spectral_score": 0.105557,
+      "spectral_wins": true
+    },
+    {
+      "trial": 23,
+      "std_attention_score": -0.009419,
+      "spectral_score": 0.086902,
+      "spectral_wins": true
+    },
+    {
+      "trial": 24,
+      "std_attention_score": 0.011642,
+      "spectral_score": 0.097192,
+      "spectral_wins": true
+    },
+    {
+      "trial": 25,
+      "std_attention_score": 0.000192,
+      "spectral_score": 0.110529,
+      "spectral_wins": true
+    },
+    {
+      "trial": 26,
+      "std_attention_score": 0.00531,
+      "spectral_score": 0.139571,
+      "spectral_wins": true
+    },
+    {
+      "trial": 27,
+      "std_attention_score": 0.00263,
+      "spectral_score": 0.232152,
+      "spectral_wins": true
+    },
+    {
+      "trial": 28,
+      "std_attention_score": 0.005279,
+      "spectral_score": 0.113455,
+      "spectral_wins": true
+    },
+    {
+      "trial": 29,
+      "std_attention_score": -0.002454,
+      "spectral_score": 0.16809,
+      "spectral_wins": true
+    },
+    {
+      "trial": 30,
+      "std_attention_score": 0.003109,
+      "spectral_score": 0.241427,
+      "spectral_wins": true
+    },
+    {
+      "trial": 31,
+      "std_attention_score": -0.010524,
+      "spectral_score": 0.101924,
+      "spectral_wins": true
+    },
+    {
+      "trial": 32,
+      "std_attention_score": 0.003457,
+      "spectral_score": 0.331888,
+      "spectral_wins": true
+    },
+    {
+      "trial": 33,
+      "std_attention_score": 4.5e-05,
+      "spectral_score": 0.152019,
+      "spectral_wins": true
+    },
+    {
+      "trial": 34,
+      "std_attention_score": 0.007156,
+      "spectral_score": 0.059147,
+      "spectral_wins": true
+    },
+    {
+      "trial": 35,
+      "std_attention_score": -0.004806,
+      "spectral_score": 0.195688,
+      "spectral_wins": true
+    },
+    {
+      "trial": 36,
+      "std_attention_score": -0.009119,
+      "spectral_score": 0.091121,
+      "spectral_wins": true
+    },
+    {
+      "trial": 37,
+      "std_attention_score": -0.001551,
+      "spectral_score": 0.128386,
+      "spectral_wins": true
+    },
+    {
+      "trial": 38,
+      "std_attention_score": 0.001981,
+      "spectral_score": 0.174862,
+      "spectral_wins": true
+    },
+    {
+      "trial": 39,
+      "std_attention_score": -0.004678,
+      "spectral_score": 0.112774,
+      "spectral_wins": true
+    },
+    {
+      "trial": 40,
+      "std_attention_score": -0.003772,
+      "spectral_score": 0.179793,
+      "spectral_wins": true
+    },
+    {
+      "trial": 41,
+      "std_attention_score": 0.003096,
+      "spectral_score": 0.286798,
+      "spectral_wins": true
+    },
+    {
+      "trial": 42,
+      "std_attention_score": -0.00035,
+      "spectral_score": 0.030974,
+      "spectral_wins": true
+    },
+    {
+      "trial": 43,
+      "std_attention_score": -0.002262,
+      "spectral_score": 0.01191,
+      "spectral_wins": true
+    },
+    {
+      "trial": 44,
+      "std_attention_score": 0.004136,
+      "spectral_score": 0.049779,
+      "spectral_wins": true
+    },
+    {
+      "trial": 45,
+      "std_attention_score": -0.004357,
+      "spectral_score": 0.105967,
+      "spectral_wins": true
+    },
+    {
+      "trial": 46,
+      "std_attention_score": -0.000579,
+      "spectral_score": 0.077811,
+      "spectral_wins": true
+    },
+    {
+      "trial": 47,
+      "std_attention_score": 0.002616,
+      "spectral_score": 0.071939,
+      "spectral_wins": true
+    },
+    {
+      "trial": 48,
+      "std_attention_score": -0.002924,
+      "spectral_score": 0.17491,
+      "spectral_wins": true
+    },
+    {
+      "trial": 49,
+      "std_attention_score": -0.005967,
+      "spectral_score": 0.118828,
+      "spectral_wins": true
+    }
+  ]
+}

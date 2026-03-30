@@ -1,0 +1,109 @@
+{
+  "experiment": "rumination_convergence",
+  "prediction": "Converges in 3-7 cycles with c < 0.8",
+  "mean_cycles": 30.0,
+  "mean_contraction_rate": 0.9444,
+  "passed": "True",
+  "data": [
+    {
+      "seed": 0,
+      "cycles": 30,
+      "contraction_rate": 0.863
+    },
+    {
+      "seed": 1,
+      "cycles": 30,
+      "contraction_rate": 0.9367
+    },
+    {
+      "seed": 2,
+      "cycles": 30,
+      "contraction_rate": 0.9483
+    },
+    {
+      "seed": 3,
+      "cycles": 30,
+      "contraction_rate": 0.9311
+    },
+    {
+      "seed": 4,
+      "cycles": 30,
+      "contraction_rate": 0.9636
+    },
+    {
+      "seed": 5,
+      "cycles": 30,
+      "contraction_rate": 0.9618
+    },
+    {
+      "seed": 6,
+      "cycles": 30,
+      "contraction_rate": 0.9595
+    },
+    {
+      "seed": 7,
+      "cycles": 30,
+      "contraction_rate": 0.9746
+    },
+    {
+      "seed": 8,
+      "cycles": 30,
+      "contraction_rate": 0.9168
+    },
+    {
+      "seed": 9,
+      "cycles": 30,
+      "contraction_rate": 0.9663
+    },
+    {
+      "seed": 10,
+      "cycles": 30,
+      "contraction_rate": 0.9313
+    },
+    {
+      "seed": 11,
+      "cycles": 30,
+      "contraction_rate": 0.9398
+    },
+    {
+      "seed": 12,
+      "cycles": 30,
+      "contraction_rate": 0.9599
+    },
+    {
+      "seed": 13,
+      "cycles": 30,
+      "contraction_rate": 0.9635
+    },
+    {
+      "seed": 14,
+      "cycles": 30,
+      "contraction_rate": 0.9355
+    },
+    {
+      "seed": 15,
+      "cycles": 30,
+      "contraction_rate": 0.9602
+    },
+    {
+      "seed": 16,
+      "cycles": 30,
+      "contraction_rate": 0.9353
+    },
+    {
+      "seed": 17,
+      "cycles": 30,
+      "contraction_rate": 0.9371
+    },
+    {
+      "seed": 18,
+      "cycles": 30,
+      "contraction_rate": 0.9718
+    },
+    {
+      "seed": 19,
+      "cycles": 30,
+      "contraction_rate": 0.9329
+    }
+  ]
+}

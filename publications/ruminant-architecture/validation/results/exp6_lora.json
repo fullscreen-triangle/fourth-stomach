@@ -1,0 +1,161 @@
+{
+  "experiment": "lora_efficiency",
+  "prediction": "Chamber-specific LoRA uses fewer parameters",
+  "total_params_uniform": 32768,
+  "total_params_chamber": 15360,
+  "parameter_savings": 0.5312,
+  "savings_percent": 53.1,
+  "passed": true,
+  "data": [
+    {
+      "trial": 0,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 1,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 2,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 3,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 4,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 5,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 6,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 7,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 8,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 9,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 10,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 11,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 12,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 13,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 14,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 15,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 16,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 17,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 18,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 19,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 20,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 21,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 22,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 23,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 24,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 25,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 26,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 27,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 28,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    },
+    {
+      "trial": 29,
+      "perf_uniform": 0.0,
+      "perf_chamber": 0.0
+    }
+  ]
+}

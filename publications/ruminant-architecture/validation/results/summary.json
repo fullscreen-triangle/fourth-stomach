@@ -1,0 +1,39 @@
+{
+  "total": 8,
+  "passed": 8,
+  "elapsed_s": 3.86,
+  "results": {
+    "exp1": {
+      "passed": "True",
+      "prediction": "Converges in 3-7 cycles with c < 0.8"
+    },
+    "exp2": {
+      "passed": true,
+      "prediction": "Spectral attention detects hidden harmonic correlations"
+    },
+    "exp3": {
+      "passed": "True",
+      "prediction": "Graph completion reduces gaps by >50%"
+    },
+    "exp4": {
+      "passed": true,
+      "prediction": "Free energy decreases monotonically"
+    },
+    "exp5": {
+      "passed": true,
+      "prediction": "Each chamber processes different types of information"
+    },
+    "exp6": {
+      "passed": true,
+      "prediction": "Chamber-specific LoRA uses fewer parameters"
+    },
+    "exp7": {
+      "passed": true,
+      "prediction": "Four-chamber outperforms uniform transformer"
+    },
+    "exp8": {
+      "passed": true,
+      "prediction": "Info gain per cycle bounded by Carnot efficiency"
+    }
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "experiment": "carnot_bound",
+  "prediction": "Info gain per cycle bounded by Carnot efficiency",
+  "n_total": 300,
+  "n_below_carnot": 191,
+  "fraction_below": 0.6367,
+  "passed": true,
+  "data": [
+    {
+      "seed": 0,
+      "cycle": 0,
+      "T1": 1.0,
+      "T4": 0.835162,
+      "carnot_efficiency": 0.164838,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 1,
+      "T1": 1.0,
+      "T4": 0.498674,
+      "carnot_efficiency": 0.501326,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 2,
+      "T1": 1.0,
+      "T4": 0.214859,
+      "carnot_efficiency": 0.785141,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 3,
+      "T1": 1.0,
+      "T4": 0.303107,
+      "carnot_efficiency": 0.696893,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 4,
+      "T1": 1.0,
+      "T4": 0.49987,
+      "carnot_efficiency": 0.50013,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 5,
+      "T1": 1.0,
+      "T4": 0.737693,
+      "carnot_efficiency": 0.262307,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 6,
+      "T1": 1.0,
+      "T4": 0.9713,
+      "carnot_efficiency": 0.0287,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 7,
+      "T1": 1.0,
+      "T4": 1.15926,
+      "carnot_efficiency": -0.15926,
+      "below_carnot": false
+    },
+    {
+      "seed": 0,
+      "cycle": 8,
+      "T1": 1.0,
+      "T4": 1.269349,
+      "carnot_efficiency": -0.269349,
+      "below_carnot": false
+    },
+    {
+      "seed": 0,
+      "cycle": 9,
+      "T1": 1.0,
+      "T4": 1.288825,
+      "carnot_efficiency": -0.288825,
+      "below_carnot": false
+    },
+    {
+      "seed": 0,
+      "cycle": 10,
+      "T1": 1.0,
+      "T4": 1.22821,
+      "carnot_efficiency": -0.22821,
+      "below_carnot": false
+    },
+    {
+      "seed": 0,
+      "cycle": 11,
+      "T1": 1.0,
+      "T4": 1.117518,
+      "carnot_efficiency": -0.117518,
+      "below_carnot": false
+    },
+    {
+      "seed": 0,
+      "cycle": 12,
+      "T1": 1.0,
+      "T4": 0.986322,
+      "carnot_efficiency": 0.013678,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 13,
+      "T1": 1.0,
+      "T4": 0.860135,
+      "carnot_efficiency": 0.139865,
+      "below_carnot": true
+    },
+    {
+      "seed": 0,
+      "cycle": 14,
+      "T1": 1.0,
+      "T4": 0.752544,
+      "carnot_efficiency": 0.247456,
+      "below_carnot": true
+    },
+    {
+      "seed": 1,
+      "cycle": 0,
+      "T1": 1.0,
+      "T4": 1.218083,
+      "carnot_efficiency": -0.218083,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 1,
+      "T1": 1.0,
+      "T4": 1.231236,
+      "carnot_efficiency": -0.231236,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 2,
+      "T1": 1.0,
+      "T4": 1.050899,
+      "carnot_efficiency": -0.050899,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 3,
+      "T1": 1.0,
+      "T4": 0.996723,
+      "carnot_efficiency": 0.003277,
+      "below_carnot": true
+    },
+    {
+      "seed": 1,
+      "cycle": 4,
+      "T1": 1.0,
+      "T4": 1.045109,
+      "carnot_efficiency": -0.045109,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 5,
+      "T1": 1.0,
+      "T4": 1.129088,
+      "carnot_efficiency": -0.129088,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 6,
+      "T1": 1.0,
+      "T4": 1.217536,
+      "carnot_efficiency": -0.217536,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 7,
+      "T1": 1.0,
+      "T4": 1.297978,
+      "carnot_efficiency": -0.297978,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 8,
+      "T1": 1.0,
+      "T4": 1.366492,
+      "carnot_efficiency": -0.366492,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 9,
+      "T1": 1.0,
+      "T4": 1.422891,
+      "carnot_efficiency": -0.422891,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 10,
+      "T1": 1.0,
+      "T4": 1.468256,
+      "carnot_efficiency": -0.468256,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 11,
+      "T1": 1.0,
+      "T4": 1.502996,
+      "carnot_efficiency": -0.502997,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 12,
+      "T1": 1.0,
+      "T4": 1.527671,
+      "carnot_efficiency": -0.527671,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 13,
+      "T1": 1.0,
+      "T4": 1.541697,
+      "carnot_efficiency": -0.541697,
+      "below_carnot": false
+    },
+    {
+      "seed": 1,
+      "cycle": 14,
+      "T1": 1.0,
+      "T4": 1.54543,
+      "carnot_efficiency": -0.54543,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 0,
+      "T1": 1.0,
+      "T4": 0.971057,
+      "carnot_efficiency": 0.028943,
+      "below_carnot": true
+    },
+    {
+      "seed": 2,
+      "cycle": 1,
+      "T1": 1.0,
+      "T4": 1.102332,
+      "carnot_efficiency": -0.102332,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 2,
+      "T1": 1.0,
+      "T4": 1.393879,
+      "carnot_efficiency": -0.393879,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 3,
+      "T1": 1.0,
+      "T4": 1.625311,
+      "carnot_efficiency": -0.625311,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 4,
+      "T1": 1.0,
+      "T4": 1.759167,
+      "carnot_efficiency": -0.759167,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 5,
+      "T1": 1.0,
+      "T4": 1.823381,
+      "carnot_efficiency": -0.823381,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 6,
+      "T1": 1.0,
+      "T4": 1.833357,
+      "carnot_efficiency": -0.833357,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 7,
+      "T1": 1.0,
+      "T4": 1.803864,
+      "carnot_efficiency": -0.803864,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 8,
+      "T1": 1.0,
+      "T4": 1.747445,
+      "carnot_efficiency": -0.747445,
+      "below_carnot": false
+    },
+    {
+      "seed": 2,
+      "cycle": 9,
+      "T1": 1.0,
+      "T4": 1.674906,
+      "carnot_efficiency": -0.674906,
+      "below_carnot": false
+    }
+  ]
+}

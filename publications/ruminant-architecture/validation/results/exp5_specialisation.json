@@ -1,0 +1,26 @@
+{
+  "experiment": "chamber_specialisation",
+  "prediction": "Each chamber processes different types of information",
+  "change_magnitudes": {
+    "C1": 22.9664,
+    "C2": 5.4034,
+    "C3": 29.6818,
+    "C4": 2.7319
+  },
+  "variances": {
+    "X0": 0.255498,
+    "C1": 1.0,
+    "C2": 1.0,
+    "C3": 1.0,
+    "C4": 1.0
+  },
+  "spectral_energies": {
+    "X0": 8855.63,
+    "C1": 34709.33,
+    "C2": 36265.36,
+    "C3": 38379.04,
+    "C4": 38672.67
+  },
+  "coefficient_of_variation": 0.7514,
+  "passed": true
+}
