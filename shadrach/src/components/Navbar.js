@@ -72,6 +72,7 @@ const Navbar = () => {
           <CustomLink className="mx-4" href="/portfolio" title="Portfolio" />
           <CustomLink className="mx-4" href="/thermodynamics" title="DTI" />
           <CustomLink className="mx-4" href="/representation" title="Representation" />
+          <CustomLink className="mx-4" href="/ruminant" title="Ruminant" />
           <CustomLink className="mx-4" href="/api-docs" title="API" />
           <CustomLink className="ml-4" href="/licensing" title="Licensing" />
         </nav>
@@ -101,6 +102,7 @@ const Navbar = () => {
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/portfolio" title="Portfolio" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/thermodynamics" title="DTI" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/representation" title="Representation" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/ruminant" title="Ruminant" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/api-docs" title="API" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/licensing" title="Licensing" />
           </nav>
