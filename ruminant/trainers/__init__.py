@@ -1,0 +1,1 @@
+from ruminant.trainers.chamber_lora import ChamberLoRATrainer

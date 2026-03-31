@@ -1,0 +1,40 @@
+{
+  "base_model": "meta-llama/Llama-3-8B",
+  "config": {
+    "d_model": 512,
+    "ranks": {
+      "rumen": 64,
+      "reticulum": 32,
+      "omasum": 16,
+      "abomasum": 8
+    },
+    "total_params": 122880,
+    "savings_vs_uniform": "53.1%"
+  },
+  "chambers": {
+    "rumen": {
+      "rank": 64,
+      "n_examples": 66,
+      "params": 65536,
+      "status": "ready"
+    },
+    "reticulum": {
+      "rank": 32,
+      "n_examples": 135,
+      "params": 32768,
+      "status": "ready"
+    },
+    "omasum": {
+      "rank": 16,
+      "n_examples": 0,
+      "params": 16384,
+      "status": "no_data"
+    },
+    "abomasum": {
+      "rank": 8,
+      "n_examples": 72,
+      "params": 8192,
+      "status": "ready"
+    }
+  }
+}
