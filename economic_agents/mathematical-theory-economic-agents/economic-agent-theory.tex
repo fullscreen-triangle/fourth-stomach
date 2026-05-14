@@ -356,6 +356,17 @@ $R=(K,D,\Pi,\beta)$ where:
 \end{enumerate}
 \end{definition}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper1_panel_1.png}
+    \caption{\textbf{S-Functional Geometry: Floor Surface, Spatial Field, Family of Floors, and Cell-Truth Attainment.}
+    (\textbf{A})~Three-dimensional surface of the S-functional $S(\beta, d) = \max(\beta,\, d(x, C))$ over a grid of receiver floors $\beta \in [0.1, 4.0]$ and distances $d(x,C) \in [0, 6]$.  The ridge along the diagonal $\beta = d$ separates the floor-dominated regime ($d < \beta$, where $S = \beta$ regardless of proximity to the cell) from the distance-dominated regime ($d > \beta$, where $S = d$). 
+    (\textbf{B})~Spatial heatmap of $S(\mathcal{R}, x; C)$ for a ball cell $C = B(\mathbf{0}, r)$ with $r = 1.2$ and floor $\beta = 0.6$ in $\mathbb{R}^2$.  The white circle marks the cell boundary $\partial C$.  Inside $C$ the field is constant at $\beta$ (the Cell-Truth property: $x \in C \Rightarrow S = \beta$), while outside it grows monotonically with $\|x\|$, saturating to $\|x\| - r + \beta$ for large $\|x\|$. 
+    (\textbf{C})~S-functional versus distance $d(x, C)$ for five floors $\beta \in \{0.3, 0.8, 1.5, 2.5, 3.8\}$.  Each curve is piecewise linear with a kink at $d = \beta$: when $d < \beta$ the curve is horizontal at height $\beta$ so the floor dominates, and when $d > \beta$ the curve rises with unit slope so distance dominates. 
+    (\textbf{D})~Cell-Truth attainment: S-functional values at $N = 60$ randomly drawn in-cell states for 60 receivers with floors $\beta \in [0.2, 4.0]$, plotted against $\beta$.  Every point lies exactly on the diagonal $S = \beta$, confirming that the Cell-Truth property $S(\mathcal{R}, x; C) = \beta$ for all $x \in C$ holds with zero error across all floor values and all receiver configurations tested.  }
+    \label{fig:agent_panel_1}
+\end{figure*}
+
 \begin{definition}[$S$-functional]
 \label{def:sfunctional}
 For receiver $R=(K,D,\Pi,\beta)$, outcome state $x\in X$, and generic
@@ -601,6 +612,19 @@ isometric.  The standard economics practice of re-parameterising models
 is justified by this theorem, not by convention.
 \end{econinterp}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper1_panel_2.png}
+    \caption{\textbf{Representational Invariance: Distance Field, Rotation Isometry, Floor Family at the Cell Boundary, and Translation Isometry.}
+    (\textbf{A})~Three-dimensional surface of the cell-distance function $d(x_1, x_2; C) = \max(0, \|x\| - r)$ for $C = B(\mathbf{0}, 1)$ in $\mathbb{R}^2$.  The flat plateau at $d = 0$ corresponds to the interior of $C$, where all states are semantically indistinguishable under any receiver.  The surrounding cone rises with unit slope in the Euclidean norm.  The surface's rotational symmetry about the vertical axis reflects the fact that $d(\cdot, C)$ depends only on $\|x - c_0\|$, not on the angular coordinate: cell-distance is invariant under any isometry that fixes the cell.
+    (\textbf{B})~Representational Invariance (rotation): scatter of $S(\mathcal{R}, x; C)$ against $S(\mathcal{R}, \phi(x); \phi(C))$ for $N = 400$ query points and a 45-degree rotation $\phi$.  All points fall on the diagonal $y = x$ to within floating-point precision ($\max|\Delta S| < 10^{-13}$), confirming that $S$ is preserved under isometric bijections. 
+    (\textbf{C})~S-functional versus $\|x\|$ (Euclidean norm of $x$) for four floors $\beta \in \{0.3, 0.8, 1.5, 2.5\}$.  The vertical dotted line at $\|x\| = r = 1$ marks the cell boundary.  Inside the cell ($\|x\| < r$), $S = \beta$ is constant.  Outside ($\|x\| > r$), $S$ increases linearly with slope 1.  
+    (\textbf{D})~Representational Invariance (translation): scatter of $S(\mathcal{R}, x; C)$ against $S(\mathcal{R}, x + c; C + c)$ for $N = 400$ query points and shift $c = (2.3, -1.7)$.  }
+    \label{fig:agent_panel_2}
+\end{figure*}
+
+
+
 %==================================================================
 \section{Layered Receivers and Selective Rationality}
 \label{sec:layered}
@@ -690,6 +714,17 @@ $S(R_{i^*},x;C)\leq\beta_{i^*}$ already sets the minimum.  Hence the
 cheapest-layer strategy achieves the same $S$-value at strictly lower
 cost; it is uniquely optimal.
 \end{proof}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper1_panel_3.png}
+    \caption{\textbf{Layered Receivers and Selective Rationality: Aggregate S Surface, Layer Floor Hierarchy, Pre-Decoder Activation, and Dual-Process Transition.}
+    (\textbf{A})~Three-dimensional surface of the aggregate S-functional $S(\mathcal{R}_\bullet, x; C) = \min_i S(\mathcal{R}_i, x; C) = \min(\max(\beta_1, d),\, \max(\beta_2, d))$ over floors $(\beta_1, \beta_2) \in [0.2, 3.0]^2$ for a fixed outer-state distance $d = 1.8$.  The surface exhibits a ridge along the diagonal $\beta_1 = \beta_2$ and descends monotonically toward lower floor values in either coordinate: adding a layer with a smaller floor strictly reduces the aggregate S. 
+    (\textbf{B})~Bar chart of individual layer floors versus aggregate floor across $N = 12$ random configurations, each with four layers (colours) and floors drawn uniformly from $[0.2, 4.0]$.  The black bars show the aggregate floor $\min_i \beta_i$.  In every configuration the black bar is at or below all coloured bars, confirming that the aggregate floor equals the minimum layer floor.  
+    (\textbf{C})~Pre-decoder activation fraction (System~1 firing rate) versus cell tolerance $\tau(C)$ for a receiver with $\beta_{\mathrm{pre}} = 0.5$ and $N = 800$ query points drawn uniformly from $[-5, 5]^2$. 
+    (\textbf{D})~Decoder activation fraction (System~2 firing rate) versus $\tau(C)$, the complementary series $1 - \Pr[S_{\mathrm{pre}} \leq \tau]$.  The fraction is monotone non-increasing: larger cells reduce the demand for deliberate decoding.}
+    \label{fig:agent_panel_3}
+\end{figure*}
 
 \begin{remark}[Kahneman's dual-process taxonomy]
 \label{rem:kahneman}
@@ -865,6 +900,17 @@ procedures (\Cref{thm:methodcomposition}) reduces the floor
 multiplicatively in the dimensionless sense.
 \end{econinterp}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper1_panel_4.png}
+    \caption{\textbf{Methodology and Banach Floor: Fixed-Point Surface, Convergence Trajectories, Numerical Verification, and Geometric Decay Rate.}
+    (\textbf{A})~Three-dimensional surface of the methodology floor $\bar{S}(\mathcal{M}) = \sigma\kappa/(1-\kappa)$ over $(\kappa, \sigma) \in [0.05, 0.92] \times [0.1, 8.0]$.  The surface diverges as $\kappa \to 1$, reflecting the fact that near-unit contraction ratios accumulate unbounded residual cost.  For fixed $\sigma$, the floor is convex and increasing in $\kappa$; for fixed $\kappa$, it is linear in $\sigma$.  The colour gradient encodes floor magnitude.  
+    (\textbf{B})~Convergence trajectories $s_t = \bar{S} + \kappa^t(s_0 - \bar{S})$ for six starting values $s_0 \in \{1, 5, 10, 20, 35, 45\}$, with $\kappa = 0.72$ and $\sigma = 3.0$ giving $\bar{S} \approx 7.71$.   
+    (\textbf{C})~Scatter of numerically computed fixed points (3{,}000 iterations from $s_0 = 25$) against the analytical formula $\bar{S} = \sigma\kappa/(1-\kappa)$ for $N = 500$ random $(\kappa, \sigma)$ pairs.  All points lie on the diagonal $y = x$ with maximum relative error below $3 \times 10^{-15}$, confirming machine-precision agreement.  
+    (\textbf{D})~Heatmap of the geometric convergence rate $\kappa^t$ (log$_{10}$ scale) over $\kappa \in [0.05, 0.95]$ and $t \in [1, 60]$.  Each row is a trajectory, and the colour at position $(\kappa, t)$ encodes $\log_{10}(\kappa^t)$.  For small $\kappa$ (left), the trajectory reaches machine precision within $t \approx 10$ steps.  For $\kappa \to 1$ (right), convergence is extremely slow: $\kappa^{60} \approx 0.05$ for $\kappa = 0.95$.  The diagonal contours of constant $\kappa^t$ are hyperbolas $t \log(\kappa) = \mathrm{const}$, illustrating the trade-off between contraction strength and convergence speed.}
+    \label{fig:agent_panel_4}
+\end{figure*}
+
 %==================================================================
 \section{The Agent Triple}
 \label{sec:agent}
@@ -981,6 +1027,16 @@ $\beta\cdot\tau(C)=0$, which is forbidden by the Floor Theorem for any
 bounded receiver targeting a non-trivial cell ($\tau(C)>0$).
 \end{remark}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper1_panel_5.png}
+    \caption{\textbf{Agent Triple and Receiver Uncertainty: Agent Floor Surface, Floor--Contraction Family, Uncertainty Product, and Formula Verification.}
+    (\textbf{A})~Three-dimensional surface of the agent floor $\bar{S}(\mathcal{A}) = \beta \cdot \sigma\kappa / ((1-\kappa)\Sigma)$ over receiver floor $\beta \in [0.1, 5.0]$ and contraction ratio $\kappa \in [0.05, 0.92]$, with fixed $\sigma = 2$ and $\Sigma = 100$.  The surface is bilinear in the flat $(\beta, \kappa)$ directions when $\kappa$ is small, but curves sharply upward as $\kappa \to 1$: the divergence of $\kappa/(1-\kappa)$ amplifies even small receiver floors into large agent floors for high-contraction methodologies. 
+    (\textbf{B})~Agent floor $\bar{S}(\mathcal{A})$ versus contraction ratio $\kappa$ for five receiver floors $\beta \in \{0.5, 1.0, 2.0, 3.5, 5.0\}$, with $\sigma = 3.0$ and $\Sigma = 100$.  Each curve is monotone increasing and convex in $\kappa$, diverging as $\kappa \to 1$.  The vertical gap between adjacent curves is $\Delta\bar{S} = \Delta\beta \cdot \sigma\kappa/((1-\kappa)\Sigma)$, growing with $\kappa$: heterogeneity in receiver floors is amplified by the methodology's contraction ratio.  
+    (\textbf{C})~Receiver Uncertainty Principle: scatter of $\sigma_K \cdot \sigma_Y = (\alpha\beta) \cdot ((1-\alpha)\tau)$ against the bound $\beta\tau$ for $N = 600$ triples $(\beta, \tau, \alpha)$ with $\alpha$ drawn uniformly from $[0.05, 0.95]$.  The colour encodes $\alpha$.  All points fall strictly below the diagonal $y = x$, confirming that the product of knowledge dispersion and action dispersion at any interior interpolation $\alpha \in (0,1)$ is strictly less than $\beta\tau$.
+    (\textbf{D})~Formula verification: computed agent floor $\bar{S}(\mathcal{A}) = \beta \cdot (\sigma\kappa/(1-\kappa)) / \Sigma$ versus the same quantity computed by separating the receiver and methodology components, for $N = 300$ random $(\beta, \kappa, \sigma)$ triples. }
+    \label{fig:agent_panel_5}
+\end{figure*}
 %==================================================================
 \section{Cell-Value Theory}
 \label{sec:cellvalue}

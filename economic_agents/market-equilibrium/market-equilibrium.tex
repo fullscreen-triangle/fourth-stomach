@@ -333,6 +333,17 @@ incompatible at every state.
 Belief identity at $x$ requires an isomorphism $\varphi: D_i(x) \xrightarrow{\;\sim\;} D_j(x)$ at the level of the decoded representations.  Since $D_i(x) \in K_i$ and $D_j(x) \in K_j$, and since $K_i \cap K_j = \emptyset$, the elements $D_i(x)$ and $D_j(x)$ belong to disjoint sets and share no underlying-set elements.  Any candidate isomorphism $\varphi$ would require a common ambient embedding space $K_i \hookrightarrow \Ksp$ and $K_j \hookrightarrow \Ksp$ for some $\Ksp$.  By hypothesis no such common space is assumed; the disjointness $K_i \cap K_j = \emptyset$ is the statement that no element of $K_i$ is identified with any element of $K_j$.  Therefore no isomorphism exists at the underlying-set level, and belief identity fails.  Since $x \in X$ was arbitrary, the incompatibility holds at every state.
 \end{proof}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper2_panel_2.png}
+    \caption{\textbf{Belief Incompatibility and Common-Cell Convergence: Disjoint-$K$ Projections, S-Value Scatter, CCC Cumulative Distributions, and Five-Agent Ensemble Field.}
+    (\textbf{A})~Three-dimensional scatter of query points coloured by agent index, illustrating three agents with disjoint knowledge spaces $K_1, K_2, K_3 \subset \mathbb{R}^3$.  Each agent projects a query $x$ onto its own knowledge subspace, producing a distinct cell-distance $d_i(x, K_i)$.  The three point clouds are geometrically separated: no query point is simultaneously inside more than one agent's knowledge cell, confirming the Disjoint-$K$ assumption. 
+    (\textbf{B})~Scatter of $S_1(\mathcal{R}_1, x; C_1)$ against $S_2(\mathcal{R}_2, x; C_2)$ for $N = 400$ query points, with agents having floors $\beta_1 = 0.6$ and $\beta_2 = 1.1$ and disjoint ball cells of equal radius.  Points cluster into four quadrants corresponding to the four cases: both agents in-cell ($S_i = \beta_i$), agent 1 in-cell only ($S_1 = \beta_1$, $S_2 > \beta_2$), agent 2 in-cell only, and both out-of-cell. 
+    (\textbf{C})~Cumulative distribution of $S(E_n, x; C)$ for ensembles of size $n \in \{2, 5, 10, 20\}$, with $N = 1{,}000$ query points drawn uniformly from $[-5, 5]^2$ and all agents having floors $\beta_i = 1.0$.  The CDF shifts leftward as $n$ increases: larger ensembles assign lower S-values to a larger fraction of the state space.  
+    (\textbf{D})~Spatial heatmap of $S(E_5, x; C)$ for a five-agent ensemble with heterogeneous floors $\beta \in \{0.3, 0.7, 1.1, 1.6, 2.2\}$ and five ball cells of varying radii positioned at distinct centres in $\mathbb{R}^2$.  }
+    \label{fig:market_panel_2}
+\end{figure*}
+
 \begin{theorem}[Identical Input, Incompatible Belief]
 \label{thm:ident-input}
 Let $x \in X$ be fixed and let $A_i, A_j$ be representation-disjoint.
@@ -546,6 +557,17 @@ where $q_n = \Sflat(A_n)/\Sigma \in (0,1]$.  Since $q_n \le 1$, the product
 does not exceed $\Sflat(\Ens_{n-1})$.
 \end{proof}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper2_panel_1.png}
+    \caption{\textbf{Catalytic Composition: The $\boxtimes$ Operation, Composite Floor Decay, Ensemble S-Field, and Commutativity Verification.}
+    (\textbf{A})~Three-dimensional surface of the catalytic composition $f_1 \boxtimes f_2 = f_1 f_2 / \Sigma$ over agent floors $(f_1, f_2) \in [0.1, 5.0]^2$ with $\Sigma = 100$.  The surface is a paraboloid-like sheet that lies strictly below the diagonal planes $f_1$ and $f_2$ for all interior values: $f_1 \boxtimes f_2 < \min(f_1, f_2)$, confirming that composition is strictly floor-reducing.  
+    (\textbf{B})~Composite floor $\bar{S}(E_n) = \prod_{i=1}^{n} \beta_i / \Sigma^{n-1}$ versus ensemble size $n \in \{1, \ldots, 10\}$ on a logarithmic scale, for four agent floor configurations: uniform $\beta_i = 2.0$, uniform $\beta_i = 0.8$, geometrically decreasing $\beta_i = 2.0 \cdot 0.8^{i-1}$, and heterogeneous floors drawn uniformly from $[0.5, 3.0]$. 
+    (\textbf{C})~Spatial heatmap of the ensemble S-functional $S(E, x; C) = \min_i S(\mathcal{R}_i, x; C)$ for a three-agent ensemble with floors $\beta \in \{0.4, 0.9, 1.6\}$ and a ball cell $C = B(\mathbf{0}, 1)$ in $\mathbb{R}^2$.  The white circle marks $\partial C$.  Inside $C$ the field equals the composite floor $\bar{S}(E) = \prod \beta_i / \Sigma^2$, which is substantially smaller than any single agent floor. 
+    (\textbf{D})~Commutativity verification: scatter of $f_1 \boxtimes f_2$ against $f_2 \boxtimes f_1$ for $N = 500$ random pairs $(f_1, f_2) \in [0.1, 4.0]^2$.  }
+    \label{fig:market_panel_1}
+\end{figure*}
+
 \begin{corollary}[Asymptotic Floor — Borel--Cantelli Analogue]
 \label{cor:bc-floor}
 For an infinite independent ensemble with dimensionless floors
@@ -659,6 +681,17 @@ $S(\Ens, x; C) < \tol(C)$ (the floor is achieved in the interior), we have
 $x \in \Reach(\Ens, C)$ for all $x$ in the enlarged ball.  The volume of
 $B(c_0, r + \tol(C) - \Sflat(\Ens))$ is $v_d (r + \tol(C) - \Sflat(\Ens))^d$.
 \end{proof}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper2_panel_3.png}
+    \caption{\textbf{Reachability and Ensemble Coverage: Lower-Bound Surface, Size Scaling, Composite-Floor Decay, and Contour Map.}
+    (\textbf{A})~Three-dimensional surface of the reachability lower bound $\lambda_n(\tau) = \bigl((r + \tau - \bar{S}(E_n)) / r_{\mathrm{samp}}\bigr)^2$ over cell tolerance $\tau \in [0.5, 4.0]$ and ensemble size $n \in \{1, \ldots, 12\}$, for agents with floors $\beta_i = 1.0$, cell radius $r = 1.0$, and sample radius $r_{\mathrm{samp}} = 5.0$.  
+    (\textbf{B})~Reachability lower bound $\lambda_n(\tau)$ versus ensemble size $n$ for four cell tolerances $\tau \in \{0.8, 1.5, 2.5, 3.5\}$.  Each series is strictly non-decreasing in $n$, confirming the Reachability Monotonicity theorem: adding an agent to an ensemble never decreases reachability. 
+    (\textbf{C})~Composite floor $\bar{S}(E_n)$ versus $n$ on a logarithmic scale for three floor regimes: homogeneous small floors ($\beta_i = 0.5$), homogeneous medium floors ($\beta_i = 1.5$), and heterogeneous floors drawn from $[0.3, 2.5]$. 
+    (\textbf{D})~Contour map of $\lambda_n(\tau)$ in the $(\bar{\beta}, n)$ plane for fixed $\tau = 2.0$ and $r = 1.0$, where $\bar{\beta}$ is the geometric mean agent floor.  Contours of constant lower bound (0.1, 0.3, 0.5, 0.7, 0.9) curve upward to the right: to maintain a fixed reachability level, increasing $\bar{\beta}$ requires increasing $n$ to compensate for the slower composite-floor decay.  }
+    \label{fig:market_panel_3}
+\end{figure*}
 
 \begin{econinterp}[Market Depth]
 \label{ei:depth}
@@ -878,6 +911,18 @@ precision (no floor) and cells collapse to points.  The floor theorem of
 \cite{sachikonye2025agents} proves $\beta_i > 0$ for every bounded
 receiver, so the Nash limit is unattainable for any bounded agent.
 \end{comparison}
+
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper2_panel_4.png}
+    \caption{\textbf{Purpose Existence and Market Equilibrium: Purpose-Margin Surface, $\omega$-Limit Trajectories, Bid--Ask Spread, and Equilibrium Scatter.}
+    (\textbf{A})~Three-dimensional surface of the purpose margin $\Psi(\tau, \bar{S}) = \max(0,\, \tau - \bar{S})$ over cell tolerance $\tau \in [0, 3.5]$ and composite floor $\bar{S} \in [0, 3.5]$.  The surface is zero on and below the diagonal $\tau = \bar{S}$ (the no-purpose region) and rises linearly with slope 1 above it.  
+    (\textbf{B})~Purpose functional trajectories $\Phi_E(C_t)$ versus iteration $t$ for six starting cells with varying initial tolerances, converging to the equilibrium cell $C^*$ (black dashed line) under gradient-flow dynamics on cell space.  
+    (\textbf{C})~Bid--ask spread proxy $\Delta_n = \bar{S}(E_n) - \bar{S}(E_{n+1})$ versus ensemble size $n$ for three floor configurations: uniform $\beta_i = 1.5$, uniform $\beta_i = 0.8$, and heterogeneous floors decreasing from 2.0 at geometric rate 0.8.  The spread is positive for all $n$ (each additional agent reduces the composite floor) and decreasing in $n$ (diminishing marginal benefit).  
+    (\textbf{D})~Purpose-existence scatter: for each of $N = 600$ random ensembles with composite floor $\bar{S}$ and cell tolerance $\tau$ drawn uniformly from $[0.1, 4.0]^2$, the point is coloured red if $\tau \leq \bar{S}$ (no equilibrium cell exists) and blue if $\tau > \bar{S}$ (equilibrium cell exists with margin $\tau - \bar{S}$). }
+    \label{fig:market_panel_4}
+\end{figure*}
 
 %% ======================================================================
 \section{Dynamical Convergence}
@@ -1190,6 +1235,17 @@ $\beta_i > 0$ for every bounded receiver, we have $q_i = \Sflat(A_i)/\Sigma
 \ge \beta_i/\Sigma > 0$ for all $i$.  Therefore $\prod_{i=1}^n q_i \ge
 (\min_i q_i)^n > 0$, and $\Sflat(\Ens_n) > 0$ strictly for every finite $n$.
 \end{proof}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper2_panel_5.png}
+    \caption{\textbf{Market Efficiency and Borel--Cantelli: Composite-Floor Surface, Heterogeneity Advantage, Homo-vs-Het Scatter, and Spread Scaling.}
+    (\textbf{A})~Three-dimensional surface of the composite floor $\bar{S}(E_n) = \bar{\beta}^n / \Sigma^{n-1}$ over geometric mean floor $\bar{\beta} \in [0.1, 3.0]$ and ensemble size $n \in \{1, \ldots, 12\}$.  The surface decays to zero along the $n$-axis for any $\bar{\beta} < \Sigma$, and diverges along the $\bar{\beta}$-axis as $\bar{\beta}$ approaches $\Sigma$.  
+    (\textbf{B})~Borel--Cantelli efficiency: composite floor $\bar{S}(E_n)$ versus $n$ for a homogeneous ensemble (all $\beta_i = 1.5$, blue) and a heterogeneous ensemble (floors $\beta_i = 1.5 \cdot 0.9^{i-1}$, orange) on a logarithmic scale, both starting with $\beta_1 = 1.5$.  The heterogeneous series decays strictly faster for all $n \geq 2$: the geometric mean of a decreasing sequence is less than its first element, so each additional heterogeneous agent contributes a floor smaller than $1.5/\Sigma$ to the composite product.  
+    (\textbf{C})~Heterogeneous versus homogeneous composite floor: scatter of $\bar{S}_{\mathrm{het}}(E_n)$ against $\bar{S}_{\mathrm{hom}}(E_n)$ for $N = 500$ random $(n, \bar{\beta})$ pairs, where the homogeneous ensemble uses constant floor $\bar{\beta}$ and the heterogeneous ensemble uses floors with the same arithmetic mean but drawn uniformly from $[\bar{\beta}/2, 3\bar{\beta}/2]$.  
+    (\textbf{D})~Bid--ask spread $\Delta_n$ versus ensemble size $n$ on a log--log scale for four cell tolerances $\tau \in \{0.5, 1.0, 2.0, 3.0\}$, with heterogeneous floors decreasing geometrically. }
+    \label{fig:market_panel_5}
+\end{figure*}
 
 \begin{corollary}[Homogeneous Agents Contribute Nothing Asymptotically]
 \label{cor:homogeneous}
