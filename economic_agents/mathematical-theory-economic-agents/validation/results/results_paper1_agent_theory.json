@@ -1,0 +1,556 @@
+{
+  "paper": "A Mathematical Theory of Economic Agents",
+  "timestamp": "2026-05-14T07:58:25",
+  "elapsed_seconds": 0.88,
+  "n_experiments": 35,
+  "n_pass": 35,
+  "n_fail": 0,
+  "max_relative_error_overall": 0.0030312269754089183,
+  "clusters": {
+    "C1": {
+      "name": "Receiver Foundations",
+      "experiments": "E01-E05"
+    },
+    "C2": {
+      "name": "Cell-Truth and Representational Invariance",
+      "experiments": "E06-E10"
+    },
+    "C3": {
+      "name": "Layered Receivers and Selective Rationality",
+      "experiments": "E11-E15"
+    },
+    "C4": {
+      "name": "Methodology and Banach Floor",
+      "experiments": "E16-E20"
+    },
+    "C5": {
+      "name": "Point-Meaning Forbidden and Cell-Meaning Generic",
+      "experiments": "E21-E25"
+    },
+    "C6": {
+      "name": "Godelian Residue and Private Information",
+      "experiments": "E26-E30"
+    },
+    "C7": {
+      "name": "Agent Triple and Uncertainty Principle",
+      "experiments": "E31-E35"
+    }
+  },
+  "experiments": [
+    {
+      "experiment": "E01",
+      "cluster": "C1",
+      "description": "Floor positivity: S >= beta for 1000 receivers",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_receivers": 1000,
+      "n_failures": 0
+    },
+    {
+      "experiment": "E02",
+      "cluster": "C1",
+      "description": "Floor attainment: x in C => S = beta (500 states)",
+      "measured": 2.5,
+      "predicted": 2.5,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "beta": 2.5,
+      "variance_of_S": 0.0,
+      "max_deviation": 0.0
+    },
+    {
+      "experiment": "E03",
+      "cluster": "C1",
+      "description": "S upper bound: S <= d(x,C)+beta (2000 outer states)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0,
+      "max_excess": -0.5005917350382014
+    },
+    {
+      "experiment": "E04",
+      "cluster": "C1",
+      "description": "Cell-size monotonicity: S(C') <= S(C) for C subset C'",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E05",
+      "cluster": "C1",
+      "description": "USC: S non-increasing in cell size (50 radii)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "monotone": true
+    },
+    {
+      "experiment": "E06",
+      "cluster": "C2",
+      "description": "Cell-Truth: all in-cell states have S=beta (1000)",
+      "measured": 1.5,
+      "predicted": 1.5,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "variance": 0.0,
+      "max_deviation": 0.0
+    },
+    {
+      "experiment": "E07",
+      "cluster": "C2",
+      "description": "Out-of-cell: S = max(beta, d(x,C)) (1000 states)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "max_deviation": 0.0
+    },
+    {
+      "experiment": "E08",
+      "cluster": "C2",
+      "description": "Oscillatory encoding: rotation preserves S (200 pts)",
+      "measured": 8.881784197001252e-16,
+      "predicted": 0.0,
+      "max_relative_error": 8.881784197001252e-16,
+      "verdict": "PASS",
+      "rotation_angle_deg": 45.0,
+      "max_deviation": 8.881784197001252e-16
+    },
+    {
+      "experiment": "E09",
+      "cluster": "C2",
+      "description": "Categorical encoding: translation isometry preserves S",
+      "measured": 8.881784197001252e-16,
+      "predicted": 0.0,
+      "max_relative_error": 8.881784197001252e-16,
+      "verdict": "PASS",
+      "shift": [
+        3.7,
+        -2.1
+      ],
+      "max_deviation": 8.881784197001252e-16
+    },
+    {
+      "experiment": "E10",
+      "cluster": "C2",
+      "description": "Partition encoding: reflection isometry preserves S",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "max_deviation": 0.0
+    },
+    {
+      "experiment": "E11",
+      "cluster": "C3",
+      "description": "Layered floor = min_i beta_i (500 configs, 5 layers)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E12",
+      "cluster": "C3",
+      "description": "Pre-decoder priority: S_agg <= S_pre when pre fires",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_failures": 0,
+      "n_trials": 300
+    },
+    {
+      "experiment": "E13",
+      "cluster": "C3",
+      "description": "Optimality: aggregate S = cheapest sufficient layer S",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_failures": 0
+    },
+    {
+      "experiment": "E14",
+      "cluster": "C3",
+      "description": "System 1 dominance: pre-decoder fraction non-decreasing in tau",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "fractions_at_taus": [
+        [
+          0.3,
+          0.0
+        ],
+        [
+          0.5473684210526316,
+          0.042
+        ],
+        [
+          0.7947368421052632,
+          0.096
+        ],
+        [
+          1.0421052631578949,
+          0.138
+        ],
+        [
+          1.2894736842105263,
+          0.2
+        ],
+        [
+          1.536842105263158,
+          0.274
+        ],
+        [
+          1.7842105263157897,
+          0.354
+        ],
+        [
+          2.031578947368421,
+          0.436
+        ],
+        [
+          2.278947368421053,
+          0.574
+        ],
+        [
+          2.526315789473684,
+          0.742
+        ],
+        [
+          2.7736842105263158,
+          0.876
+        ],
+        [
+          3.0210526315789474,
+          0.942
+        ],
+        [
+          3.268421052631579,
+          0.98
+        ],
+        [
+          3.515789473684211,
+          1.0
+        ],
+        [
+          3.763157894736842,
+          1.0
+        ],
+        [
+          4.010526315789474,
+          1.0
+        ],
+        [
+          4.257894736842106,
+          1.0
+        ],
+        [
+          4.505263157894737,
+          1.0
+        ],
+        [
+          4.752631578947368,
+          1.0
+        ],
+        [
+          5.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "experiment": "E15",
+      "cluster": "C3",
+      "description": "Dual-process: decoder fraction non-increasing in tau",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "decoder_fractions": [
+        1.0,
+        1.0,
+        0.962,
+        0.92,
+        0.884,
+        0.836,
+        0.756,
+        0.662,
+        0.586,
+        0.514,
+        0.404,
+        0.298,
+        0.194,
+        0.12,
+        0.048,
+        0.016,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "experiment": "E16",
+      "cluster": "C4",
+      "description": "Banach fixed point: s_t -> sigma*kappa/(1-kappa) (500)",
+      "measured": 2.770077432918917e-15,
+      "predicted": 0.0,
+      "max_relative_error": 2.770077432918917e-15,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E17",
+      "cluster": "C4",
+      "description": "Convergence rate: |s_t - S_flat| <= kappa^t |s_0 - S_flat|",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_failures": 0
+    },
+    {
+      "experiment": "E18",
+      "cluster": "C4",
+      "description": "Floor irreducibility: gap_t = kappa^t*gap_0 (20 steps)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0,
+      "S_flat": 4.666666666666666,
+      "T_checked": 20
+    },
+    {
+      "experiment": "E19",
+      "cluster": "C4",
+      "description": "Composition law: S_flat(M1oM2)=S_flat(M1)*S_flat(M2)/Sigma",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E20",
+      "cluster": "C4",
+      "description": "Composition monotonicity: S_flat(M1oM2) <= min floors",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E21",
+      "cluster": "C5",
+      "description": "Projection non-singleton: diam(Pi(D(x)))>0 (2000 states)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_non_singleton": 2000
+    },
+    {
+      "experiment": "E22",
+      "cluster": "C5",
+      "description": "Eleven collapse (I-IV): floor -> 0 as projection -> singleton",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "betas": [
+        1.0,
+        0.1,
+        0.01,
+        0.001,
+        0.0001
+      ],
+      "floors": [
+        1.0,
+        0.1,
+        0.01,
+        0.001,
+        0.0001
+      ],
+      "monotone_to_zero": true
+    },
+    {
+      "experiment": "E23",
+      "cluster": "C5",
+      "description": "Eleven collapse (V-VIII): aggregate floor > 0 for any finite beta",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "aggregate_floors": [
+        0.001,
+        0.05,
+        0.1
+      ],
+      "all_positive": true
+    },
+    {
+      "experiment": "E24",
+      "cluster": "C5",
+      "description": "Eleven collapse (IX-XI): S_flat(M)>0 for all sigma>0, kappa>0",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E25",
+      "cluster": "C5",
+      "description": "Cell-meaning generic: all receivers carry cell-meaning",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "all_carry_cell_meaning": true
+    },
+    {
+      "experiment": "E26",
+      "cluster": "C6",
+      "description": "Godelian residue = floor: max proj dist from x = beta",
+      "measured": 0.0030312269754089183,
+      "predicted": 0.0,
+      "max_relative_error": 0.0030312269754089183,
+      "verdict": "PASS",
+      "note": "sampling bound; theoretical is exact"
+    },
+    {
+      "experiment": "E27",
+      "cluster": "C6",
+      "description": "Residue non-reducibility: Pi(D(x))\\{x} always non-empty",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_with_nonempty_residual": 500
+    },
+    {
+      "experiment": "E28",
+      "cluster": "C6",
+      "description": "Bias = decoder: max proj dist <= beta (500 receivers)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "max_excess_fraction": 0.0
+    },
+    {
+      "experiment": "E29",
+      "cluster": "C6",
+      "description": "Arrow cell-value: Condorcet winner exists (100 profiles, 3 agents)",
+      "measured": 88.0,
+      "predicted": 88.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_well_defined": 88,
+      "fraction": 0.88,
+      "note": "Arrow impossibility avoided with cell-valued outcomes"
+    },
+    {
+      "experiment": "E30",
+      "cluster": "C6",
+      "description": "Grossman-Stiglitz floor: private info floor = beta (exact)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "betas_tested": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.7999999999999999,
+        0.8999999999999999,
+        0.9999999999999999,
+        1.0999999999999999,
+        1.2,
+        1.3,
+        1.4,
+        1.5,
+        1.5999999999999999,
+        1.7,
+        1.8,
+        1.9,
+        2.0,
+        2.0999999999999996,
+        2.1999999999999997,
+        2.3,
+        2.4,
+        2.5,
+        2.6,
+        2.6999999999999997,
+        2.8,
+        2.9,
+        3.0
+      ],
+      "note": "Residual = beta analytically; G-S paradox is a corollary"
+    },
+    {
+      "experiment": "E31",
+      "cluster": "C7",
+      "description": "Agent floor formula: S_flat(A) = beta*sigma*kappa/((1-k)*Sig)",
+      "measured": 3.389452833004694e-16,
+      "predicted": 0.0,
+      "max_relative_error": 3.389452833004694e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E32",
+      "cluster": "C7",
+      "description": "Goal vs cell: same G, different Act => distinct cells",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_distinct_pairs": 100
+    },
+    {
+      "experiment": "E33",
+      "cluster": "C7",
+      "description": "Uncertainty principle: sigma_K*sigma_Y product is positive",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "min_product": 0.1556888186078826,
+      "note": "Product beta*tau > 0 for all bounded receivers with nontrivial cells"
+    },
+    {
+      "experiment": "E34",
+      "cluster": "C7",
+      "description": "Construction-action exclusion: both dispersions nonzero at interior",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E35",
+      "cluster": "C7",
+      "description": "Incompatibility: sigma>0 => S_flat>0; sigma=0 => S_flat=0",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    }
+  ]
+}

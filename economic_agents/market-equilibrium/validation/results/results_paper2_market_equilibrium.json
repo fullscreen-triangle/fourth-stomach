@@ -1,0 +1,628 @@
+{
+  "paper": "Market Equilibrium as Purpose Fixed-Point",
+  "timestamp": "2026-05-14T08:22:45",
+  "elapsed_seconds": 1.16,
+  "n_experiments": 45,
+  "n_pass": 45,
+  "n_fail": 0,
+  "max_relative_error_overall": 0.7101612451577826,
+  "clusters": {
+    "C1": {
+      "name": "Ensemble Algebra",
+      "experiments": "E01-E05"
+    },
+    "C2": {
+      "name": "Belief Incompatibility",
+      "experiments": "E06-E10"
+    },
+    "C3": {
+      "name": "Common-Cell Convergence",
+      "experiments": "E11-E15"
+    },
+    "C4": {
+      "name": "Catalytic Composition Law",
+      "experiments": "E16-E20"
+    },
+    "C5": {
+      "name": "Reachability and Market Depth",
+      "experiments": "E21-E25"
+    },
+    "C6": {
+      "name": "Purpose Existence and Stability",
+      "experiments": "E26-E30"
+    },
+    "C7": {
+      "name": "omega-Limit Convergence",
+      "experiments": "E31-E35"
+    },
+    "C8": {
+      "name": "Motivation Heterogeneity and boxtimes Algebra",
+      "experiments": "E36-E40"
+    },
+    "C9": {
+      "name": "Market Information Efficiency",
+      "experiments": "E41-E45"
+    }
+  },
+  "experiments": [
+    {
+      "experiment": "E01",
+      "cluster": "C1",
+      "description": "Aggregate floor = min_i S_flat(A_i) (500 ensembles, 5 agents)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E02",
+      "cluster": "C1",
+      "description": "S(E,x;C) = min_i S(A_i,x;C) (200 points)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "max_deviation": 0.0
+    },
+    {
+      "experiment": "E03",
+      "cluster": "C1",
+      "description": "Aggregate floor not greater than minimum agent floor",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E04",
+      "cluster": "C1",
+      "description": "Composite floor = prod_i f_i / Sigma^{n-1} (200 configs)",
+      "measured": 6.758924421338529e-16,
+      "predicted": 0.0,
+      "max_relative_error": 6.758924421338529e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E05",
+      "cluster": "C1",
+      "description": "S(E,x;C) >= S_flat(E) for all x (500 states)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E06",
+      "cluster": "C2",
+      "description": "Disjoint K: all agent pairs have distinct K_ids (1000 pairs)",
+      "measured": 1000.0,
+      "predicted": 1000.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_incompatible": 1000
+    },
+    {
+      "experiment": "E07",
+      "cluster": "C2",
+      "description": "Different S values confirm distinct decoding (1000 states)",
+      "measured": 921.0,
+      "predicted": 921.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_different_S_values": 921,
+      "fraction": 0.921,
+      "note": "Disjoint K => incompatible beliefs confirmed by distinct S"
+    },
+    {
+      "experiment": "E08",
+      "cluster": "C2",
+      "description": "Projection overlap in X despite disjoint K (2 agents)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_overlapping_candidates": 180
+    },
+    {
+      "experiment": "E09",
+      "cluster": "C2",
+      "description": "Same input x -> distinct S values for disjoint-K agents",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "S_values": [
+        0.3,
+        0.7,
+        1.5,
+        2.5,
+        4.0
+      ],
+      "all_distinct": true
+    },
+    {
+      "experiment": "E10",
+      "cluster": "C2",
+      "description": "All K_ids unique => belief identity impossible (100 agents)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "all_K_ids_unique": true
+    },
+    {
+      "experiment": "E11",
+      "cluster": "C3",
+      "description": "CCC: 2-agent disjoint ensemble attains cell",
+      "measured": 50.0,
+      "predicted": 50.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_agents": 2,
+      "n_attaining": 50,
+      "betas": [
+        0.14741230987894166,
+        0.27955620937629677
+      ]
+    },
+    {
+      "experiment": "E12",
+      "cluster": "C3",
+      "description": "CCC: 3-agent disjoint ensemble attains cell",
+      "measured": 50.0,
+      "predicted": 50.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_agents": 3,
+      "n_attaining": 50,
+      "betas": [
+        0.13340218392723147,
+        1.196187242420021,
+        0.7971228869980864
+      ]
+    },
+    {
+      "experiment": "E13",
+      "cluster": "C3",
+      "description": "CCC: 5-agent disjoint ensemble attains cell",
+      "measured": 50.0,
+      "predicted": 50.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_agents": 5,
+      "n_attaining": 50,
+      "betas": [
+        1.0623227023552468,
+        0.5871110374224779,
+        0.39634324198354676,
+        0.5205117672884875,
+        1.3762790945205432
+      ]
+    },
+    {
+      "experiment": "E14",
+      "cluster": "C3",
+      "description": "CCC: 10-agent disjoint ensemble attains cell",
+      "measured": 50.0,
+      "predicted": 50.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_agents": 10,
+      "n_attaining": 50,
+      "betas": [
+        0.3717697170658304,
+        0.6387659799689607,
+        0.38857709788546013,
+        0.3199512895151577,
+        0.6988848107106432,
+        0.13764775764396958,
+        0.3930839467988607,
+        0.9034143238688355,
+        0.30271870246197663,
+        0.734739541396885
+      ]
+    },
+    {
+      "experiment": "E15",
+      "cluster": "C3",
+      "description": "CCC: 20-agent disjoint ensemble attains cell",
+      "measured": 50.0,
+      "predicted": 50.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_agents": 20,
+      "n_attaining": 50,
+      "betas": [
+        0.2574152386924573,
+        0.38324451730165754,
+        0.6827940034372441,
+        0.9640353316843673,
+        0.14456515168661546,
+        0.1985652396936375,
+        0.23795624898930137,
+        1.137845402733097,
+        0.739251259921222,
+        1.141469689018166,
+        1.35277723836484,
+        0.3689243048328146,
+        1.2192247183691363,
+        1.0081094742780654,
+        1.0381173093532772,
+        0.9778429617322307,
+        1.3822747115682616,
+        0.15465922094105505,
+        0.9007660762444514,
+        0.2890999586579452
+      ]
+    },
+    {
+      "experiment": "E16",
+      "cluster": "C4",
+      "description": "2-agent: S_flat = f1*f2/Sigma (200 pairs)",
+      "measured": 4.1867628390964184e-16,
+      "predicted": 0.0,
+      "max_relative_error": 4.1867628390964184e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E17",
+      "cluster": "C4",
+      "description": "3-agent: S_flat = f1*f2*f3/Sigma^2 (200 triples)",
+      "measured": 4.1154916756657193e-16,
+      "predicted": 0.0,
+      "max_relative_error": 4.1154916756657193e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E18",
+      "cluster": "C4",
+      "description": "5-agent: S_flat = prod/Sigma^4 (100 quintuples)",
+      "measured": 4.973457716140704e-16,
+      "predicted": 0.0,
+      "max_relative_error": 4.973457716140704e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E19",
+      "cluster": "C4",
+      "description": "Reachability monotonicity: composite floor non-increasing in n",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E20",
+      "cluster": "C4",
+      "description": "Dimensionless: q_comp = q1*q2 (floor multiplies) (200)",
+      "measured": 3.867196052179841e-16,
+      "predicted": 0.0,
+      "max_relative_error": 3.867196052179841e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E21",
+      "cluster": "C5",
+      "description": "Reachability lower bound non-decreasing in n (5 sizes)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "lower_bounds": [
+        0.06059171597633137,
+        0.2106386328994083,
+        0.21299627983104003,
+        0.21301762264617333,
+        0.21301775109279056
+      ],
+      "n_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "experiment": "E22",
+      "cluster": "C5",
+      "description": "Reachability lower bound: volume >= v_d*(r+tau-S_flat)^d",
+      "measured": 0.33,
+      "predicted": 0.08027777777777777,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "measured_fraction": 0.33,
+      "lower_bound_fraction": 0.08027777777777777,
+      "S_flat": 0.3,
+      "reach_radius": 1.7
+    },
+    {
+      "experiment": "E23",
+      "cluster": "C5",
+      "description": "Reachability ratio: reach area / cell area >= (1+(tau-f)/r)^2",
+      "measured": 3.24,
+      "predicted": 3.24,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "ratio_lower_bound": 3.24,
+      "S_flat": 0.2,
+      "measured_reach_fraction": 0.346
+    },
+    {
+      "experiment": "E24",
+      "cluster": "C5",
+      "description": "Pareto-reachability: 2-agent reach lb >= 1-agent reach lb",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "lb_1agent": 0.1145562130177515,
+      "lb_2agents": 0.21256355597633134,
+      "composite_1": 0.8,
+      "composite_2": 0.0032000000000000006
+    },
+    {
+      "experiment": "E25",
+      "cluster": "C5",
+      "description": "Cell exteriority: d(x,C) is agent-independent (5 agents)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "d_from_cell": 1.3713203435596424,
+      "S_values": [
+        1.3713203435596424,
+        1.3713203435596424,
+        1.3713203435596424,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "experiment": "E26",
+      "cluster": "C6",
+      "description": "Purpose exists: tau=0.5 > S_flat=0.096",
+      "measured": 0.09602130745360471,
+      "predicted": 0.09602130745360471,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "tau": 0.5,
+      "S_flat": 0.09602130745360471,
+      "Phi_E": 0.09602130745360471,
+      "purpose_condition": true
+    },
+    {
+      "experiment": "E27",
+      "cluster": "C6",
+      "description": "Purpose exists: tau=1.0 > S_flat=0.177",
+      "measured": 0.17667554851901812,
+      "predicted": 0.17667554851901812,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "tau": 1.0,
+      "S_flat": 0.17667554851901812,
+      "Phi_E": 0.17667554851901812,
+      "purpose_condition": true
+    },
+    {
+      "experiment": "E28",
+      "cluster": "C6",
+      "description": "Purpose exists: tau=1.5 > S_flat=0.066",
+      "measured": 0.06644393283629693,
+      "predicted": 0.06644393283629693,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "tau": 1.5,
+      "S_flat": 0.06644393283629693,
+      "Phi_E": 0.06644393283629693,
+      "purpose_condition": true
+    },
+    {
+      "experiment": "E29",
+      "cluster": "C6",
+      "description": "Purpose exists: tau=2.0 > S_flat=0.120",
+      "measured": 0.11954019421712699,
+      "predicted": 0.11954019421712699,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "tau": 2.0,
+      "S_flat": 0.11954019421712699,
+      "Phi_E": 0.11954019421712699,
+      "purpose_condition": true
+    },
+    {
+      "experiment": "E30",
+      "cluster": "C6",
+      "description": "Purpose exists: tau=3.0 > S_flat=0.325",
+      "measured": 0.32510673686260144,
+      "predicted": 0.3251067368626014,
+      "max_relative_error": 1.7074746517700828e-16,
+      "verdict": "PASS",
+      "tau": 3.0,
+      "S_flat": 0.3251067368626014,
+      "Phi_E": 0.32510673686260144,
+      "purpose_condition": true
+    },
+    {
+      "experiment": "E31",
+      "cluster": "C7",
+      "description": "omega-limit convergence: flow 1 to cell (100 starts)",
+      "measured": 100.0,
+      "predicted": 100.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_converged": 100,
+      "flow_index": 1
+    },
+    {
+      "experiment": "E32",
+      "cluster": "C7",
+      "description": "omega-limit convergence: flow 2 to cell (100 starts)",
+      "measured": 100.0,
+      "predicted": 100.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_converged": 100,
+      "flow_index": 2
+    },
+    {
+      "experiment": "E33",
+      "cluster": "C7",
+      "description": "omega-limit convergence: flow 3 to cell (100 starts)",
+      "measured": 100.0,
+      "predicted": 100.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_converged": 100,
+      "flow_index": 3
+    },
+    {
+      "experiment": "E34",
+      "cluster": "C7",
+      "description": "omega-limit convergence: flow 4 to cell (100 starts)",
+      "measured": 100.0,
+      "predicted": 100.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_converged": 100,
+      "flow_index": 4
+    },
+    {
+      "experiment": "E35",
+      "cluster": "C7",
+      "description": "omega-limit convergence: flow 5 to cell (100 starts)",
+      "measured": 100.0,
+      "predicted": 100.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_converged": 100,
+      "flow_index": 5
+    },
+    {
+      "experiment": "E36",
+      "cluster": "C8",
+      "description": "Motivation heterogeneity: composite floor goal-independent",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E37",
+      "cluster": "C8",
+      "description": "Goal-substitution: same floor, different goal => same comp floor",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E38",
+      "cluster": "C8",
+      "description": "boxtimes commutativity: f1 boxtimes f2 = f2 boxtimes f1",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E39",
+      "cluster": "C8",
+      "description": "boxtimes associativity: (f1 bt f2) bt f3 = f1*f2*f3/Sigma^2",
+      "measured": 4.1259777934762184e-16,
+      "predicted": 0.0,
+      "max_relative_error": 4.1259777934762184e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E40",
+      "cluster": "C8",
+      "description": "boxtimes identity: f boxtimes Sigma = f",
+      "measured": 1.728645211199793e-16,
+      "predicted": 0.0,
+      "max_relative_error": 1.728645211199793e-16,
+      "verdict": "PASS"
+    },
+    {
+      "experiment": "E41",
+      "cluster": "C9",
+      "description": "Borel-Cantelli: composite floor -> 0 as n grows (50 agents)",
+      "measured": 2.1210365755828747e-81,
+      "predicted": 0.0,
+      "max_relative_error": 2.1210365755828747e-81,
+      "verdict": "PASS",
+      "composite_floor_at_n50": 2.1210365755828747e-81,
+      "is_decreasing": true
+    },
+    {
+      "experiment": "E42",
+      "cluster": "C9",
+      "description": "Heterogeneous agents lower composite floor than homogeneous",
+      "measured": 3.5237626184412973,
+      "predicted": 12.157665459056934,
+      "max_relative_error": 0.7101612451577826,
+      "verdict": "PASS",
+      "homo_floor_n20": 12.157665459056934,
+      "het_floor_n20": 3.5237626184412973,
+      "het_lower": true
+    },
+    {
+      "experiment": "E43",
+      "cluster": "C9",
+      "description": "Bid-ask spread formula: min_spread = tau(C*) - S_flat(E)",
+      "measured": 1.7,
+      "predicted": 1.7,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "tau": 2.0,
+      "S_flat": 0.3,
+      "min_spread": 1.7
+    },
+    {
+      "experiment": "E44",
+      "cluster": "C9",
+      "description": "EMH: finite ensemble always has S_flat(E) > 0 (500 tests)",
+      "measured": 0.0,
+      "predicted": 0.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_violations": 0
+    },
+    {
+      "experiment": "E45",
+      "cluster": "C9",
+      "description": "Purpose vs Nash: purpose exists for all tested beta values",
+      "measured": 20.0,
+      "predicted": 20.0,
+      "max_relative_error": 0.0,
+      "verdict": "PASS",
+      "n_purpose_exists": 20,
+      "beta_range": [
+        0.05,
+        0.15263157894736842,
+        0.25526315789473686,
+        0.35789473684210527,
+        0.4605263157894737,
+        0.5631578947368422,
+        0.6657894736842106,
+        0.768421052631579,
+        0.8710526315789474,
+        0.9736842105263158,
+        1.0763157894736843,
+        1.1789473684210527,
+        1.2815789473684212,
+        1.3842105263157896,
+        1.486842105263158,
+        1.5894736842105264,
+        1.6921052631578948,
+        1.7947368421052632,
+        1.8973684210526316,
+        2.0
+      ],
+      "note": "Nash requires beta->0; purpose works for any beta>0 when tau>S_flat"
+    }
+  ]
+}

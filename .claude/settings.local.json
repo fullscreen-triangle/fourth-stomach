@@ -5,7 +5,11 @@
       "Bash(pip list:*)",
       "Bash(python -u -c \":*)",
       "WebFetch(domain:codesandbox.io)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(python \"economic_agents/mathematical-theory-economic-agents/validation/run_experiments.py\")",
+      "Bash(python \"economic_agents/market-equilibrium/validation/run_experiments.py\")",
+      "Bash(dir \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\mathematical-theory-economic-agents\\\\validation\\\\results\")",
+      "Bash(dir \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\market-equilibrium\\\\validation\\\\results\")"
     ]
   }
 }
