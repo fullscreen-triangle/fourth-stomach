@@ -1,0 +1,797 @@
+{
+  "paper": "Paper 4: A Mathematical Foundation for Price: Cell-Value Theory and Dual Spreads",
+  "SIGMA": 100.0,
+  "timestamp": "2026-05-15T03:10:32.860641",
+  "summary": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0
+  },
+  "clusters": {
+    "Cluster 1: Price Cell": [
+      {
+        "theorem": "Price Cell",
+        "center": 50.0,
+        "tau": 10.0,
+        "tau_positive": true,
+        "floor_positive": true,
+        "cell_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Price Cell",
+        "center": 75.0,
+        "tau": 25.0,
+        "tau_positive": true,
+        "floor_positive": true,
+        "cell_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Price Cell",
+        "center": 100.0,
+        "tau": 5.0,
+        "tau_positive": true,
+        "floor_positive": true,
+        "cell_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Price Cell",
+        "center": 200.0,
+        "tau": 50.0,
+        "tau_positive": true,
+        "floor_positive": true,
+        "cell_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Price Cell",
+        "center": 30.0,
+        "tau": 15.0,
+        "tau_positive": true,
+        "floor_positive": true,
+        "cell_valid": true,
+        "passed": true
+      }
+    ],
+    "Cluster 2: Cell-Value Decomposition": [
+      {
+        "theorem": "Cell-Value Decomposition",
+        "tau": 20.0,
+        "agg_floor": 5.0,
+        "comp_floor": 0.075,
+        "V_T": 15.0,
+        "V_I": 19.925,
+        "V_I_minus_V_T": 4.925000000000001,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          15.0
+        ]
+      },
+      {
+        "theorem": "Cell-Value Decomposition",
+        "tau": 30.0,
+        "agg_floor": 10.0,
+        "comp_floor": 0.24,
+        "V_T": 20.0,
+        "V_I": 29.76,
+        "V_I_minus_V_T": 9.760000000000002,
+        "passed": true,
+        "betas": [
+          10.0,
+          20.0,
+          30.0,
+          40.0
+        ]
+      },
+      {
+        "theorem": "Cell-Value Decomposition",
+        "tau": 40.0,
+        "agg_floor": 2.0000000000000004,
+        "comp_floor": 0.032000000000000015,
+        "V_T": 38.0,
+        "V_I": 39.968,
+        "V_I_minus_V_T": 1.9680000000000035,
+        "passed": true,
+        "betas": [
+          2.0,
+          8.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Cell-Value Decomposition",
+        "tau": 25.0,
+        "agg_floor": 5.0,
+        "comp_floor": 0.02953125,
+        "V_T": 20.0,
+        "V_I": 24.97046875,
+        "V_I_minus_V_T": 4.970468749999998,
+        "passed": true,
+        "betas": [
+          5.0,
+          15.0,
+          25.0,
+          35.0,
+          45.0
+        ]
+      },
+      {
+        "theorem": "Cell-Value Decomposition",
+        "tau": 35.0,
+        "agg_floor": 10.0,
+        "comp_floor": 1.5,
+        "V_T": 25.0,
+        "V_I": 33.5,
+        "V_I_minus_V_T": 8.5,
+        "passed": true,
+        "betas": [
+          10.0,
+          30.0,
+          50.0
+        ]
+      }
+    ],
+    "Cluster 3: Dual-Spread Theorem": [
+      {
+        "theorem": "Dual-Spread Theorem",
+        "n": 3,
+        "trading_spread": 10.0,
+        "informational_spread": 0.45,
+        "information_premium": 4.775,
+        "spread_ordering": true,
+        "strict_for_n_ge_2": true,
+        "passed": true,
+        "betas": [
+          5.0,
+          15.0,
+          30.0
+        ]
+      },
+      {
+        "theorem": "Dual-Spread Theorem",
+        "n": 4,
+        "trading_spread": 20.0,
+        "informational_spread": 0.48,
+        "information_premium": 9.76,
+        "spread_ordering": true,
+        "strict_for_n_ge_2": true,
+        "passed": true,
+        "betas": [
+          10.0,
+          20.0,
+          30.0,
+          40.0
+        ]
+      },
+      {
+        "theorem": "Dual-Spread Theorem",
+        "n": 3,
+        "trading_spread": 4.000000000000001,
+        "informational_spread": 1.6000000000000003,
+        "information_premium": 1.2000000000000002,
+        "spread_ordering": true,
+        "strict_for_n_ge_2": true,
+        "passed": true,
+        "betas": [
+          2.0,
+          50.0,
+          80.0
+        ]
+      },
+      {
+        "theorem": "Dual-Spread Theorem",
+        "n": 5,
+        "trading_spread": 40.00000000000001,
+        "informational_spread": 0.06400000000000006,
+        "information_premium": 19.968000000000004,
+        "spread_ordering": true,
+        "strict_for_n_ge_2": true,
+        "passed": true,
+        "betas": [
+          20.0,
+          20.0,
+          20.0,
+          20.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Dual-Spread Theorem",
+        "n": 3,
+        "trading_spread": 2.0,
+        "informational_spread": 0.1,
+        "information_premium": 0.95,
+        "spread_ordering": true,
+        "strict_for_n_ge_2": true,
+        "passed": true,
+        "betas": [
+          1.0,
+          10.0,
+          50.0
+        ]
+      }
+    ],
+    "Cluster 4: Two-Value Theorem (Main)": [
+      {
+        "theorem": "Two-Value Theorem (Main)",
+        "n": 3,
+        "product_floors": 1000.0000000000002,
+        "rhs_product_ineq": 50000.0,
+        "comp_floor": 0.10000000000000002,
+        "agg_floor": 5.0,
+        "V_T": 15.0,
+        "V_I": 19.9,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Two-Value Theorem (Main)",
+        "n": 4,
+        "product_floors": 549999.9999999999,
+        "rhs_product_ineq": 10000000.0,
+        "comp_floor": 0.5499999999999999,
+        "agg_floor": 10.0,
+        "V_T": 25.0,
+        "V_I": 34.45,
+        "passed": true,
+        "betas": [
+          10.0,
+          25.0,
+          40.0,
+          55.0
+        ]
+      },
+      {
+        "theorem": "Two-Value Theorem (Main)",
+        "n": 3,
+        "product_floors": 2400.000000000001,
+        "rhs_product_ineq": 20000.000000000004,
+        "comp_floor": 0.2400000000000001,
+        "agg_floor": 2.0000000000000004,
+        "V_T": 23.0,
+        "V_I": 24.76,
+        "passed": true,
+        "betas": [
+          2.0,
+          20.0,
+          60.0
+        ]
+      },
+      {
+        "theorem": "Two-Value Theorem (Main)",
+        "n": 5,
+        "product_floors": 7875000.0,
+        "rhs_product_ineq": 500000000.0,
+        "comp_floor": 0.07875,
+        "agg_floor": 5.0,
+        "V_T": 40.0,
+        "V_I": 44.92125,
+        "passed": true,
+        "betas": [
+          5.0,
+          15.0,
+          30.0,
+          50.0,
+          70.0
+        ]
+      },
+      {
+        "theorem": "Two-Value Theorem (Main)",
+        "n": 3,
+        "product_floors": 4096.0,
+        "rhs_product_ineq": 80000.0,
+        "comp_floor": 0.4096,
+        "agg_floor": 8.0,
+        "V_T": 7.0,
+        "V_I": 14.5904,
+        "passed": true,
+        "betas": [
+          8.0,
+          16.0,
+          32.0
+        ]
+      }
+    ],
+    "Cluster 5: Equilibrium Price": [
+      {
+        "theorem": "Equilibrium Price",
+        "center_p_star": 50.0,
+        "bid": 45.0,
+        "ask": 55.0,
+        "agg_floor": 5.0,
+        "spread": 10.0,
+        "midpoint": 50.0,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          15.0
+        ]
+      },
+      {
+        "theorem": "Equilibrium Price",
+        "center_p_star": 75.0,
+        "bid": 55.0,
+        "ask": 95.0,
+        "agg_floor": 20.000000000000004,
+        "spread": 40.0,
+        "midpoint": 75.0,
+        "passed": true,
+        "betas": [
+          20.0,
+          30.0,
+          40.0
+        ]
+      },
+      {
+        "theorem": "Equilibrium Price",
+        "center_p_star": 100.0,
+        "bid": 98.0,
+        "ask": 102.0,
+        "agg_floor": 2.0000000000000004,
+        "spread": 4.0,
+        "midpoint": 100.0,
+        "passed": true,
+        "betas": [
+          2.0,
+          8.0,
+          20.0,
+          50.0
+        ]
+      },
+      {
+        "theorem": "Equilibrium Price",
+        "center_p_star": 30.0,
+        "bid": 20.0,
+        "ask": 40.0,
+        "agg_floor": 10.0,
+        "spread": 20.0,
+        "midpoint": 30.0,
+        "passed": true,
+        "betas": [
+          10.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Equilibrium Price",
+        "center_p_star": 200.0,
+        "bid": 185.0,
+        "ask": 215.0,
+        "agg_floor": 15.0,
+        "spread": 30.0,
+        "midpoint": 200.0,
+        "passed": true,
+        "betas": [
+          15.0,
+          25.0,
+          35.0
+        ]
+      }
+    ],
+    "Cluster 6: Price Discovery Rate": [
+      {
+        "theorem": "Price Discovery Rate",
+        "n": 5,
+        "initial_spread": 100.0,
+        "final_spread": 6.0,
+        "min_floor": 3.0,
+        "spreads_nonincreasing": true,
+        "passed": true,
+        "betas": [
+          50.0,
+          30.0,
+          15.0,
+          8.0,
+          3.0
+        ],
+        "center": 100.0
+      },
+      {
+        "theorem": "Price Discovery Rate",
+        "n": 6,
+        "initial_spread": 79.99999999999999,
+        "final_spread": 4.000000000000001,
+        "min_floor": 2.0000000000000004,
+        "spreads_nonincreasing": true,
+        "passed": true,
+        "betas": [
+          40.0,
+          25.0,
+          15.0,
+          8.0,
+          4.0,
+          2.0
+        ],
+        "center": 150.0
+      },
+      {
+        "theorem": "Price Discovery Rate",
+        "n": 5,
+        "initial_spread": 120.0,
+        "final_spread": 20.0,
+        "min_floor": 10.0,
+        "spreads_nonincreasing": true,
+        "passed": true,
+        "betas": [
+          60.0,
+          45.0,
+          30.0,
+          20.0,
+          10.0
+        ],
+        "center": 200.0
+      },
+      {
+        "theorem": "Price Discovery Rate",
+        "n": 5,
+        "initial_spread": 160.0,
+        "final_spread": 10.0,
+        "min_floor": 5.0,
+        "spreads_nonincreasing": true,
+        "passed": true,
+        "betas": [
+          80.0,
+          60.0,
+          40.0,
+          20.0,
+          5.0
+        ],
+        "center": 100.0
+      },
+      {
+        "theorem": "Price Discovery Rate",
+        "n": 7,
+        "initial_spread": 100.0,
+        "final_spread": 4.000000000000001,
+        "min_floor": 2.0000000000000004,
+        "spreads_nonincreasing": true,
+        "passed": true,
+        "betas": [
+          50.0,
+          40.0,
+          30.0,
+          20.0,
+          10.0,
+          5.0,
+          2.0
+        ],
+        "center": 120.0
+      }
+    ],
+    "Cluster 7: Fundamental Value": [
+      {
+        "theorem": "Fundamental Value",
+        "n": 6,
+        "initial_comp_floor": 30.0,
+        "final_comp_floor": 6.000000000000002e-06,
+        "decay_ratio": 2.0000000000000007e-07,
+        "fv_lower": 99.999994,
+        "fv_upper": 100.000006,
+        "fv_interval_width": 1.2000000000000004e-05,
+        "passed": true,
+        "betas": [
+          30.0,
+          20.0,
+          10.0,
+          5.0,
+          2.0,
+          1.0
+        ],
+        "true_center": 100.0
+      },
+      {
+        "theorem": "Fundamental Value",
+        "n": 5,
+        "initial_comp_floor": 39.99999999999999,
+        "final_comp_floor": 0.004799999999999999,
+        "decay_ratio": 0.00011999999999999999,
+        "fv_lower": 149.9952,
+        "fv_upper": 150.0048,
+        "fv_interval_width": 0.009599999999999997,
+        "passed": true,
+        "betas": [
+          40.0,
+          25.0,
+          15.0,
+          8.0,
+          4.0
+        ],
+        "true_center": 150.0
+      },
+      {
+        "theorem": "Fundamental Value",
+        "n": 7,
+        "initial_comp_floor": 50.0,
+        "final_comp_floor": 3.5000000000000012e-06,
+        "decay_ratio": 7.000000000000002e-08,
+        "fv_lower": 199.9999965,
+        "fv_upper": 200.0000035,
+        "fv_interval_width": 7.0000000000000024e-06,
+        "passed": true,
+        "betas": [
+          50.0,
+          35.0,
+          20.0,
+          10.0,
+          5.0,
+          2.0,
+          1.0
+        ],
+        "true_center": 200.0
+      },
+      {
+        "theorem": "Fundamental Value",
+        "n": 5,
+        "initial_comp_floor": 60.0,
+        "final_comp_floor": 0.04319999999999998,
+        "decay_ratio": 0.0007199999999999997,
+        "fv_lower": 99.9568,
+        "fv_upper": 100.0432,
+        "fv_interval_width": 0.08639999999999996,
+        "passed": true,
+        "betas": [
+          60.0,
+          40.0,
+          25.0,
+          12.0,
+          6.0
+        ],
+        "true_center": 100.0
+      },
+      {
+        "theorem": "Fundamental Value",
+        "n": 6,
+        "initial_comp_floor": 45.0,
+        "final_comp_floor": 0.00017496000000000005,
+        "decay_ratio": 3.888000000000001e-06,
+        "fv_lower": 119.99982504,
+        "fv_upper": 120.00017496,
+        "fv_interval_width": 0.0003499200000000001,
+        "passed": true,
+        "betas": [
+          45.0,
+          30.0,
+          18.0,
+          9.0,
+          4.0,
+          2.0
+        ],
+        "true_center": 120.0
+      }
+    ],
+    "Cluster 8: No-Arbitrage": [
+      {
+        "theorem": "No-Arbitrage",
+        "p1_star": 100.0,
+        "p2_star": 100.0,
+        "price_difference": 0.0,
+        "spread_sum": 13.0,
+        "agg_floor_1": 5.0,
+        "agg_floor_2": 8.0,
+        "no_arbitrage": true,
+        "passed": true,
+        "betas1": [
+          5.0,
+          10.0,
+          15.0
+        ],
+        "betas2": [
+          8.0,
+          12.0,
+          18.0
+        ]
+      },
+      {
+        "theorem": "No-Arbitrage",
+        "p1_star": 100.0,
+        "p2_star": 100.0,
+        "price_difference": 0.0,
+        "spread_sum": 35.0,
+        "agg_floor_1": 20.000000000000004,
+        "agg_floor_2": 15.0,
+        "no_arbitrage": true,
+        "passed": true,
+        "betas1": [
+          20.0,
+          30.0
+        ],
+        "betas2": [
+          15.0,
+          25.0,
+          35.0
+        ]
+      },
+      {
+        "theorem": "No-Arbitrage",
+        "p1_star": 100.0,
+        "p2_star": 100.0,
+        "price_difference": 0.0,
+        "spread_sum": 7.0,
+        "agg_floor_1": 2.0000000000000004,
+        "agg_floor_2": 5.0,
+        "no_arbitrage": true,
+        "passed": true,
+        "betas1": [
+          2.0,
+          8.0,
+          20.0
+        ],
+        "betas2": [
+          5.0,
+          15.0,
+          30.0
+        ]
+      },
+      {
+        "theorem": "No-Arbitrage",
+        "p1_star": 100.0,
+        "p2_star": 100.0,
+        "price_difference": 0.0,
+        "spread_sum": 25.0,
+        "agg_floor_1": 10.0,
+        "agg_floor_2": 15.0,
+        "no_arbitrage": true,
+        "passed": true,
+        "betas1": [
+          10.0,
+          20.0,
+          30.0,
+          40.0
+        ],
+        "betas2": [
+          15.0,
+          25.0,
+          35.0
+        ]
+      },
+      {
+        "theorem": "No-Arbitrage",
+        "p1_star": 100.0,
+        "p2_star": 100.0,
+        "price_difference": 0.0,
+        "spread_sum": 90.0,
+        "agg_floor_1": 50.0,
+        "agg_floor_2": 39.99999999999999,
+        "no_arbitrage": true,
+        "passed": true,
+        "betas1": [
+          50.0,
+          60.0
+        ],
+        "betas2": [
+          40.0,
+          55.0,
+          70.0
+        ]
+      }
+    ],
+    "Cluster 9: Transaction & Law of One Price": [
+      {
+        "theorem": "Transaction Condition",
+        "tau": 30.0,
+        "beta_buyer": 20.0,
+        "beta_seller": 15.0,
+        "floor_buyer": 20.000000000000004,
+        "floor_seller": 15.0,
+        "buyer_bid": 110.0,
+        "seller_ask": 85.0,
+        "transaction_condition": true,
+        "transaction_occurs": true,
+        "consistent": true,
+        "passed": true
+      },
+      {
+        "theorem": "Transaction Condition",
+        "tau": 30.0,
+        "beta_buyer": 40.0,
+        "beta_seller": 25.0,
+        "floor_buyer": 39.99999999999999,
+        "floor_seller": 25.0,
+        "buyer_bid": 90.0,
+        "seller_ask": 95.0,
+        "transaction_condition": false,
+        "transaction_occurs": false,
+        "consistent": true,
+        "passed": true
+      },
+      {
+        "theorem": "Transaction Condition",
+        "tau": 30.0,
+        "beta_buyer": 10.0,
+        "beta_seller": 5.0,
+        "floor_buyer": 10.0,
+        "floor_seller": 5.0,
+        "buyer_bid": 120.0,
+        "seller_ask": 75.0,
+        "transaction_condition": true,
+        "transaction_occurs": true,
+        "consistent": true,
+        "passed": true
+      },
+      {
+        "theorem": "Law of One Price",
+        "equilibrium_center": 100.0,
+        "all_ensembles_agree": true,
+        "agg_floors": [
+          5.0,
+          8.0,
+          3.0
+        ],
+        "bids": [
+          95.0,
+          92.0,
+          97.0
+        ],
+        "asks": [
+          105.0,
+          108.0,
+          103.0
+        ],
+        "passed": true,
+        "betas_list": [
+          [
+            5.0,
+            10.0,
+            15.0
+          ],
+          [
+            8.0,
+            12.0,
+            20.0
+          ],
+          [
+            3.0,
+            7.0,
+            25.0
+          ]
+        ]
+      },
+      {
+        "theorem": "Law of One Price",
+        "equilibrium_center": 75.0,
+        "all_ensembles_agree": true,
+        "agg_floors": [
+          10.0,
+          5.0,
+          8.0
+        ],
+        "bids": [
+          65.0,
+          70.0,
+          67.0
+        ],
+        "asks": [
+          85.0,
+          80.0,
+          83.0
+        ],
+        "passed": true,
+        "betas_list": [
+          [
+            10.0,
+            20.0
+          ],
+          [
+            5.0,
+            15.0,
+            30.0
+          ],
+          [
+            8.0,
+            22.0,
+            40.0
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,697 @@
+{
+  "paper": "Paper 3: The Heterogeneity Theorem for Market Information",
+  "SIGMA": 100.0,
+  "timestamp": "2026-05-15T03:08:46.874965",
+  "summary": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0
+  },
+  "clusters": {
+    "Cluster 1: Heterogeneity Dominance": [
+      {
+        "theorem": "Heterogeneity Dominance",
+        "comp_homo": 0.8000000000000005,
+        "comp_het": 0.35000000000000003,
+        "difference": 0.45000000000000046,
+        "passed": true,
+        "homo_betas": [
+          20.0,
+          20.0,
+          20.0
+        ],
+        "het_betas": [
+          5.0,
+          20.0,
+          35.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Dominance",
+        "comp_homo": 2.7,
+        "comp_het": 1.5,
+        "difference": 1.2000000000000002,
+        "passed": true,
+        "homo_betas": [
+          30.0,
+          30.0,
+          30.0
+        ],
+        "het_betas": [
+          10.0,
+          30.0,
+          50.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Dominance",
+        "comp_homo": 0.050625,
+        "comp_het": 0.02500000000000001,
+        "difference": 0.025624999999999995,
+        "passed": true,
+        "homo_betas": [
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "het_betas": [
+          5.0,
+          10.0,
+          20.0,
+          25.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Dominance",
+        "comp_homo": 0.390625,
+        "comp_het": 0.118125,
+        "difference": 0.2725,
+        "passed": true,
+        "homo_betas": [
+          25.0,
+          25.0,
+          25.0,
+          25.0
+        ],
+        "het_betas": [
+          5.0,
+          15.0,
+          35.0,
+          45.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Dominance",
+        "comp_homo": 0.001,
+        "comp_het": 0.00027,
+        "difference": 0.00073,
+        "passed": true,
+        "homo_betas": [
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0
+        ],
+        "het_betas": [
+          2.0,
+          5.0,
+          10.0,
+          15.0,
+          18.0
+        ]
+      }
+    ],
+    "Cluster 2: Borel-Cantelli Classification": [
+      {
+        "theorem": "Borel-Cantelli Classification",
+        "sum_log_floors_E": 17.502307845873887,
+        "sum_log_floors_Omega": 0.6061358035703155,
+        "comp_floor_E": 2.5052108385441724e-06,
+        "comp_floor_Omega": 54.545454545454554,
+        "class_E_decays": true,
+        "class_Omega_stays": true,
+        "passed": true,
+        "n": 10
+      },
+      {
+        "theorem": "Borel-Cantelli Classification",
+        "sum_log_floors_E": 45.38013889847691,
+        "sum_log_floors_Omega": 0.6466271649250523,
+        "comp_floor_E": 1.957294106339127e-18,
+        "comp_floor_Omega": 52.38095238095241,
+        "class_E_decays": true,
+        "class_Omega_stays": true,
+        "passed": true,
+        "n": 20
+      },
+      {
+        "theorem": "Borel-Cantelli Classification",
+        "sum_log_floors_E": 78.0922235533153,
+        "sum_log_floors_Omega": 0.6613984822453655,
+        "comp_floor_E": 1.2161250415535189e-32,
+        "comp_floor_Omega": 51.61290322580646,
+        "class_E_decays": true,
+        "class_Omega_stays": true,
+        "passed": true,
+        "n": 30
+      },
+      {
+        "theorem": "Borel-Cantelli Classification",
+        "sum_log_floors_E": 114.0342117814617,
+        "sum_log_floors_Omega": 0.6690496289808855,
+        "comp_floor_E": 2.989310827142406e-48,
+        "comp_floor_Omega": 51.21951219512196,
+        "class_E_decays": true,
+        "class_Omega_stays": true,
+        "passed": true,
+        "n": 40
+      },
+      {
+        "theorem": "Borel-Cantelli Classification",
+        "sum_log_floors_E": 152.40959258449735,
+        "sum_log_floors_Omega": 0.6737290947028447,
+        "comp_floor_E": 6.446959640457178e-65,
+        "comp_floor_Omega": 50.980392156862735,
+        "class_E_decays": true,
+        "class_Omega_stays": true,
+        "passed": true,
+        "n": 50
+      }
+    ],
+    "Cluster 3: Spectral Gap": [
+      {
+        "theorem": "Spectral Gap",
+        "spectral_radius": 0.05,
+        "spectral_gap": 0.95,
+        "aggregate_floor": 5.0,
+        "rho_plus_delta": 1.0,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          15.0
+        ]
+      },
+      {
+        "theorem": "Spectral Gap",
+        "spectral_radius": 0.20000000000000004,
+        "spectral_gap": 0.7999999999999999,
+        "aggregate_floor": 20.000000000000004,
+        "rho_plus_delta": 1.0,
+        "passed": true,
+        "betas": [
+          20.0,
+          30.0,
+          40.0,
+          50.0
+        ]
+      },
+      {
+        "theorem": "Spectral Gap",
+        "spectral_radius": 0.01,
+        "spectral_gap": 0.99,
+        "aggregate_floor": 1.0,
+        "rho_plus_delta": 1.0,
+        "passed": true,
+        "betas": [
+          1.0,
+          50.0,
+          99.0
+        ]
+      },
+      {
+        "theorem": "Spectral Gap",
+        "spectral_radius": 0.1,
+        "spectral_gap": 0.9,
+        "aggregate_floor": 10.0,
+        "rho_plus_delta": 1.0,
+        "passed": true,
+        "betas": [
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0
+        ]
+      },
+      {
+        "theorem": "Spectral Gap",
+        "spectral_radius": 0.001,
+        "spectral_gap": 0.999,
+        "aggregate_floor": 0.1,
+        "rho_plus_delta": 1.0,
+        "passed": true,
+        "betas": [
+          0.1,
+          1.0,
+          10.0,
+          50.0,
+          90.0
+        ]
+      }
+    ],
+    "Cluster 4: Heterogeneity Theorem (Main)": [
+      {
+        "theorem": "Heterogeneity Theorem (Main)",
+        "mean_floor_homo": 20.000000000000004,
+        "mean_floor_het": 20.0,
+        "cv_homo": 0.0,
+        "cv_het": 0.7756717518813396,
+        "comp_floor_homo": 0.8000000000000005,
+        "comp_floor_het": 0.07800000000000001,
+        "heterogeneous_wins": true,
+        "passed": true,
+        "homo_betas": [
+          20.0,
+          20.0,
+          20.0
+        ],
+        "het_betas": [
+          1.0,
+          20.0,
+          39.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Theorem (Main)",
+        "mean_floor_homo": 30.0,
+        "mean_floor_het": 30.0,
+        "cv_homo": 0.0,
+        "cv_het": 0.6871842709362768,
+        "comp_floor_homo": 0.81,
+        "comp_floor_het": 0.185625,
+        "heterogeneous_wins": true,
+        "passed": true,
+        "homo_betas": [
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "het_betas": [
+          5.0,
+          15.0,
+          45.0,
+          55.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Theorem (Main)",
+        "mean_floor_homo": 39.99999999999999,
+        "mean_floor_het": 40.0,
+        "cv_homo": 0.0,
+        "cv_het": 0.6123724356957945,
+        "comp_floor_homo": 6.399999999999997,
+        "comp_floor_het": 2.8,
+        "heterogeneous_wins": true,
+        "passed": true,
+        "homo_betas": [
+          40.0,
+          40.0,
+          40.0
+        ],
+        "het_betas": [
+          10.0,
+          40.0,
+          70.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Theorem (Main)",
+        "mean_floor_homo": 15.0,
+        "mean_floor_het": 15.0,
+        "cv_homo": 0.0,
+        "cv_het": 0.7254117604658904,
+        "comp_floor_homo": 0.00759375,
+        "comp_floor_het": 0.0005437500000000001,
+        "heterogeneous_wins": true,
+        "passed": true,
+        "homo_betas": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "het_betas": [
+          1.0,
+          5.0,
+          15.0,
+          25.0,
+          29.0
+        ]
+      },
+      {
+        "theorem": "Heterogeneity Theorem (Main)",
+        "mean_floor_homo": 25.0,
+        "mean_floor_het": 25.0,
+        "cv_homo": 0.0,
+        "cv_het": 0.751176854453508,
+        "comp_floor_homo": 1.5625,
+        "comp_floor_het": 0.2400000000000001,
+        "heterogeneous_wins": true,
+        "passed": true,
+        "homo_betas": [
+          25.0,
+          25.0,
+          25.0
+        ],
+        "het_betas": [
+          2.0,
+          25.0,
+          48.0
+        ]
+      }
+    ],
+    "Cluster 5: Information Aggregation Rate": [
+      {
+        "theorem": "Information Aggregation Rate",
+        "n": 3,
+        "composite_floor": 0.10000000000000002,
+        "expected_product_formula": 0.10000000000000005,
+        "rate_exp_formula": 0.10000000000000002,
+        "sum_log_floors": 6.907755278982137,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Information Aggregation Rate",
+        "n": 4,
+        "composite_floor": 0.590625,
+        "expected_product_formula": 0.590625,
+        "rate_exp_formula": 0.590625,
+        "sum_log_floors": 5.131744166722221,
+        "passed": true,
+        "betas": [
+          15.0,
+          25.0,
+          35.0,
+          45.0
+        ]
+      },
+      {
+        "theorem": "Information Aggregation Rate",
+        "n": 5,
+        "composite_floor": 0.00032768000000000006,
+        "expected_product_formula": 0.00032768000000000006,
+        "rate_exp_formula": 0.00032767999999999974,
+        "sum_log_floors": 12.628643221541278,
+        "passed": true,
+        "betas": [
+          2.0,
+          4.0,
+          8.0,
+          16.0,
+          32.0
+        ]
+      },
+      {
+        "theorem": "Information Aggregation Rate",
+        "n": 3,
+        "composite_floor": 21.0,
+        "expected_product_formula": 21.0,
+        "rate_exp_formula": 21.0,
+        "sum_log_floors": 1.5606477482646683,
+        "passed": true,
+        "betas": [
+          50.0,
+          60.0,
+          70.0
+        ]
+      },
+      {
+        "theorem": "Information Aggregation Rate",
+        "n": 6,
+        "composite_floor": 0.072,
+        "expected_product_formula": 0.072,
+        "rate_exp_formula": 0.07199999999999998,
+        "sum_log_floors": 7.236259345954173,
+        "passed": true,
+        "betas": [
+          10.0,
+          20.0,
+          30.0,
+          40.0,
+          50.0,
+          60.0
+        ]
+      }
+    ],
+    "Cluster 6: Optimal Recruitment": [
+      {
+        "theorem": "Optimal Recruitment",
+        "n": 4,
+        "cumulative_comp_ascending": 6.0874999999999995,
+        "cumulative_comp_descending": 67.3625,
+        "cumulative_comp_random": 36.8625,
+        "ascending_is_optimal": true,
+        "passed": true,
+        "betas": [
+          5.0,
+          15.0,
+          30.0,
+          50.0
+        ]
+      },
+      {
+        "theorem": "Optimal Recruitment",
+        "n": 5,
+        "cumulative_comp_ascending": 2.2820000000000005,
+        "cumulative_comp_descending": 90.612,
+        "cumulative_comp_random": 50.331999999999994,
+        "ascending_is_optimal": true,
+        "passed": true,
+        "betas": [
+          2.0,
+          10.0,
+          25.0,
+          40.0,
+          60.0
+        ]
+      },
+      {
+        "theorem": "Optimal Recruitment",
+        "n": 4,
+        "cumulative_comp_ascending": 1.068,
+        "cumulative_comp_descending": 96.80799999999999,
+        "cumulative_comp_random": 84.80799999999999,
+        "ascending_is_optimal": true,
+        "passed": true,
+        "betas": [
+          1.0,
+          5.0,
+          20.0,
+          80.0
+        ]
+      },
+      {
+        "theorem": "Optimal Recruitment",
+        "n": 6,
+        "cumulative_comp_ascending": 13.031999999999998,
+        "cumulative_comp_descending": 106.392,
+        "cumulative_comp_random": 30.392,
+        "ascending_is_optimal": true,
+        "passed": true,
+        "betas": [
+          10.0,
+          20.0,
+          30.0,
+          40.0,
+          50.0,
+          60.0
+        ]
+      },
+      {
+        "theorem": "Optimal Recruitment",
+        "n": 4,
+        "cumulative_comp_ascending": 3.25095,
+        "cumulative_comp_descending": 34.82445,
+        "cumulative_comp_random": 9.424449999999998,
+        "ascending_is_optimal": true,
+        "passed": true,
+        "betas": [
+          3.0,
+          7.0,
+          15.0,
+          30.0
+        ]
+      }
+    ],
+    "Cluster 7: Phase Transition": [
+      {
+        "theorem": "Phase Transition",
+        "beta_critical": 36.787944117144235,
+        "beta_below": 5.0,
+        "beta_above": 50.0,
+        "log_floor_below": 2.995732273553991,
+        "log_floor_above": 0.6931471805599453,
+        "log_floor_at_critical": 1.0,
+        "passed": true
+      },
+      {
+        "theorem": "Phase Transition",
+        "beta_critical": 36.787944117144235,
+        "beta_below": 10.0,
+        "beta_above": 60.0,
+        "log_floor_below": 2.302585092994046,
+        "log_floor_above": 0.5108256237659907,
+        "log_floor_at_critical": 1.0,
+        "passed": true
+      },
+      {
+        "theorem": "Phase Transition",
+        "beta_critical": 36.787944117144235,
+        "beta_below": 20.0,
+        "beta_above": 80.0,
+        "log_floor_below": 1.6094379124341003,
+        "log_floor_above": 0.22314355131420976,
+        "log_floor_at_critical": 1.0,
+        "passed": true
+      },
+      {
+        "theorem": "Phase Transition",
+        "beta_critical": 36.787944117144235,
+        "beta_below": 1.0,
+        "beta_above": 90.0,
+        "log_floor_below": 4.605170185988092,
+        "log_floor_above": 0.10536051565782635,
+        "log_floor_at_critical": 1.0,
+        "passed": true
+      },
+      {
+        "theorem": "Phase Transition",
+        "beta_critical": 36.787944117144235,
+        "beta_below": 15.0,
+        "beta_above": 70.0,
+        "log_floor_below": 1.8971199848858813,
+        "log_floor_above": 0.3566749439387324,
+        "log_floor_at_critical": 1.0,
+        "passed": true
+      }
+    ],
+    "Cluster 8: Floor-Variance Efficiency Bound": [
+      {
+        "theorem": "Floor-Variance Efficiency Bound",
+        "n": 5,
+        "mean_floor": 15.0,
+        "cv": 0.4714045207910317,
+        "composite_floor": 0.0037500000000000007,
+        "bound": 0.0043569400387248785,
+        "ratio_comp_to_bound": 0.8606958017943007,
+        "passed": true,
+        "betas": [
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0
+        ]
+      },
+      {
+        "theorem": "Floor-Variance Efficiency Bound",
+        "n": 5,
+        "mean_floor": 34.2,
+        "cv": 0.8324659485040582,
+        "composite_floor": 0.012,
+        "bound": 0.08274005839728385,
+        "ratio_comp_to_bound": 0.14503252997938337,
+        "passed": true,
+        "betas": [
+          1.0,
+          10.0,
+          30.0,
+          50.0,
+          80.0
+        ]
+      },
+      {
+        "theorem": "Floor-Variance Efficiency Bound",
+        "n": 5,
+        "mean_floor": 20.000000000000004,
+        "cv": 0.0,
+        "composite_floor": 0.03200000000000003,
+        "bound": 0.03200000000000003,
+        "ratio_comp_to_bound": 1.0,
+        "passed": true,
+        "betas": [
+          20.0,
+          20.0,
+          20.0,
+          20.0,
+          20.0
+        ]
+      },
+      {
+        "theorem": "Floor-Variance Efficiency Bound",
+        "n": 5,
+        "mean_floor": 15.4,
+        "cv": 0.8918589461500984,
+        "composite_floor": 0.0008000000000000001,
+        "bound": 0.001185756695690927,
+        "ratio_comp_to_bound": 0.6746746637882987,
+        "passed": true,
+        "betas": [
+          2.0,
+          5.0,
+          10.0,
+          20.0,
+          40.0
+        ]
+      },
+      {
+        "theorem": "Floor-Variance Efficiency Bound",
+        "n": 5,
+        "mean_floor": 20.0,
+        "cv": 0.3535533905932738,
+        "composite_floor": 0.022500000000000006,
+        "bound": 0.023411700126292543,
+        "ratio_comp_to_bound": 0.9610579273878256,
+        "passed": true,
+        "betas": [
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0
+        ]
+      }
+    ],
+    "Cluster 9: Stability & Critical Floor": [
+      {
+        "theorem": "Stability of Efficiency Class",
+        "n": 20,
+        "sum_log_floors_original": 45.38013889847691,
+        "sum_log_floors_perturbed": 45.38013889847691,
+        "difference": 0.0,
+        "class_preserved": true,
+        "passed": true,
+        "perturbation_beta": 50.0
+      },
+      {
+        "theorem": "Stability of Efficiency Class",
+        "n": 20,
+        "sum_log_floors_original": 45.38013889847691,
+        "sum_log_floors_perturbed": 44.91013526923117,
+        "difference": 0.47000362924573835,
+        "class_preserved": true,
+        "passed": true,
+        "perturbation_beta": 80.0
+      },
+      {
+        "theorem": "Stability of Efficiency Class",
+        "n": 20,
+        "sum_log_floors_original": 45.38013889847691,
+        "sum_log_floors_perturbed": 44.738285012304516,
+        "difference": 0.6418538861723917,
+        "class_preserved": true,
+        "passed": true,
+        "perturbation_beta": 95.0
+      },
+      {
+        "theorem": "Critical Floor",
+        "beta_critical": 36.787944117144235,
+        "n": 10,
+        "composite_floor": 0.004539992976248488,
+        "expected_sigma_e_minus_n": 0.004539992976248485,
+        "passed": true
+      },
+      {
+        "theorem": "Critical Floor",
+        "beta_critical": 36.787944117144235,
+        "n": 20,
+        "composite_floor": 2.0611536224385605e-07,
+        "expected_sigma_e_minus_n": 2.061153622438558e-07,
+        "passed": true
+      }
+    ]
+  }
+}

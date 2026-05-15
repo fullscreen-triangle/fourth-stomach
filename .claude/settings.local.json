@@ -14,7 +14,10 @@
       "Bash(python \"economic_agents/market-equilibrium/panels/generate_panels.py\")",
       "Bash(dir \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\mathematical-theory-economic-agents\\\\panels\\\\*.png\")",
       "Bash(dir \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\market-equilibrium\\\\panels\\\\*.png\")",
-      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\\" -Recurse -Force | Select-Object FullName | Format-Table -AutoSize)"
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\\" -Recurse -Force | Select-Object FullName | Format-Table -AutoSize)",
+      "Bash(python run_experiments.py)",
+      "Bash(python generate_panels.py)",
+      "Bash(python -c ' *)"
     ]
   }
 }
