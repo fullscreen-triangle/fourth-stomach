@@ -3,6 +3,12 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/TransitionEffect";
+import dynamic from "next/dynamic";
+
+const GasOscillatorViz = dynamic(
+  () => import("@/components/tools/GasOscillatorViz"),
+  { ssr: false, loading: () => <div className="h-64 bg-surface/30 rounded-2xl animate-pulse" /> }
+);
 
 const Section = ({ id, title, children }) => (
   <motion.section
@@ -235,6 +241,19 @@ export default function Thermodynamics() {
                 result="CONFIRMED" detail="T > 0 after 100 cooling steps (T₁₀₀ = 0.062)." />
               <ResultRow prediction="Critical exponents near Tc"
                 result="CONFIRMED" detail="Measurable power-law divergence of Cv and κT." />
+            </Section>
+
+            <Section id="interactive-tool" title="Interactive Tool — Gas Oscillator Field">
+              <p>
+                Each particle below is an oscillator living in S-entropy space [0,1]³.
+                Its kinetic entropy Sk encodes temperature (teal → gold → coral), its temporal entropy St
+                sets the vertical position, and its energetic entropy Se controls size.
+                Frequency is proportional to temperature T. Adjust the Kuramoto coupling κ to
+                watch the field synchronise — the collective oscillation IS the thermodynamic index.
+              </p>
+              <div className="mt-6">
+                <GasOscillatorViz />
+              </div>
             </Section>
 
           </div>

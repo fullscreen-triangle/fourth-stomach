@@ -4,6 +4,12 @@ import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/TransitionEffect";
+import dynamic from "next/dynamic";
+
+const MarketTrajectoryViz = dynamic(
+  () => import("@/components/tools/MarketTrajectoryViz"),
+  { ssr: false, loading: () => <div className="h-64 bg-surface/30 rounded-2xl animate-pulse" /> }
+);
 
 const ChamberCard = ({ number, name, organ, operation, analog, rank, color, children }) => (
   <motion.div
@@ -264,6 +270,19 @@ metrics = pipeline.evaluate()
                 result="CONFIRMED" detail="30/30 wins on sector-correlated financial data." />
               <ResultRow prediction="Carnot bound respected"
                 result="CONFIRMED" detail="Majority of data points respect the thermodynamic efficiency bound." />
+            </Section>
+
+            <Section id="interactive-tool" title="Interactive Tool — Market Phase-Space Trajectory">
+              <p>
+                Each asset is an Ornstein-Uhlenbeck oscillator: a damped harmonic oscillator driven by noise.
+                The phase-space portrait (price x vs. velocity v) shows the trajectory winding through a bounded region.
+                By Poincaré recurrence, every bounded trajectory is a closed loop — computation is traversal of this loop.
+                The four-chamber ruminant architecture processes these trajectories through
+                Rumen (circulation), Reticulum (spectral), Omasum (graph completion), and Abomasum (refinement).
+              </p>
+              <div className="mt-6">
+                <MarketTrajectoryViz />
+              </div>
             </Section>
 
           </div>

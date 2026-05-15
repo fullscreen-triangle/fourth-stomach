@@ -5,7 +5,8 @@
 %% -----------------------------------------------------------------------
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
-\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[protrusion=true,expansion=false]{microtype}
 \usepackage{geometry}
 \geometry{a4paper, top=2.2cm, bottom=2.2cm, left=1.8cm, right=1.8cm, columnsep=0.7cm}
 \usepackage{hyperref}
@@ -63,10 +64,13 @@
 \newcommand{\ValT}{V^T}                  % trading value
 \newcommand{\ValI}{V^I}                  % informational value
 \newcommand{\FV}{V^*}                    % fundamental value
-\newcommand{\SflatT}{\Sflat_{\mathrm{agg}}}   % aggregate (min) floor
-\newcommand{\SflatI}{\Sflat_{\mathrm{comp}}}  % composite (product) floor
+\newcommand{\SflatT}{S_{\flat,\mathrm{agg}}}        % aggregate (min) floor
+\newcommand{\SflatI}{S_{\flat,\mathrm{comp}}}       % composite (product) floor
+\newcommand{\SflatTinf}{S_{\flat,\mathrm{agg},\infty}}  % asymptotic aggregate floor
 \newcommand{\Prem}{\Pi}                  % information premium
 \newcommand{\logfl}{\ell}               % log-floor
+\newcommand{\srad}{\rho}               % spectral radius (from Paper 3)
+\newcommand{\CV}{\mathrm{CV}}          % coefficient of variation (from Paper 3)
 
 %% -----------------------------------------------------------------------
 %%  Title block
@@ -357,6 +361,17 @@ irreducible for any bounded agent.  The half-spread $\tol$ is not a trading
 cost to be minimised but a structural feature of any bounded receiver.
 \end{remark}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper4_panel_1.png}
+    \caption{\textbf{Price Cells and Cell-Value Decomposition: Dual-Value Surface, Trading vs.\ Informational Value, Information Premium Dynamics, and Floor Sensitivity.}
+    (\textbf{A})~Three-dimensional surfaces of the trading value $V^T(\mathcal{C}) = \tau - \bar{S}_{\mathrm{agg}}(\mathcal{E})$ (blue) and informational value $V^I(\mathcal{C}) = \tau - \bar{S}_{\mathrm{comp}}(\mathcal{E})$ (orange) over cell radius $\tau \in [5, 60]$ and ensemble size $n \in \{1, \ldots, 11\}$, for a uniform ensemble with $\beta = 15$ and $\Sigma = 100$. 
+    (\textbf{B})~Trading value $V^T$ (solid) and informational value $V^I$ (dashed) as functions of cell radius $\tau$ for a three-agent ensemble with floors $\{10, 20, 35\}$.  Both values are non-negative for $\tau$ above the respective floor thresholds: $V^T > 0$ only when $\tau > \bar{S}_{\mathrm{agg}} = 10$, and $V^I > 0$ when $\tau > \bar{S}_{\mathrm{comp}} \approx 0.7$. 
+    (\textbf{C})~Information premium $\Pi = \bar{S}_{\mathrm{agg}} - \bar{S}_{\mathrm{comp}}$ as a function of ensemble size $n$ for three floor configurations: uniform $\beta = 15$, linearly increasing $\beta \in [5, 40]$, and decreasing $\beta \in [20, 2]$.   
+    (\textbf{D})~Trading value $V^T = \tau - \beta$ for a single agent (solid, $n = 1$, where composite equals aggregate) and informational value $V^I = \tau - \bar{S}_{\mathrm{comp}}(\mathcal{E}_3)$ for a uniform three-agent ensemble (dashed), as functions of agent floor $\beta$ with fixed $\tau = 30$. }
+    \label{fig:price_panel_1}
+\end{figure*}
+
 \begin{econinterp}
 \label{ei:price-cell}
 In equity markets, a ``price'' is reported to two decimal places (a tick
@@ -502,13 +517,13 @@ by part (b).
 
 \begin{figure*}[!htbp]
     \centering
-    \includegraphics[width=\textwidth]{panels/paper4_panel_1.png}
-    \caption{\textbf{Cell-Values and Dual Spreads: Value Surface, Two-Value Gap, Spread Comparison, and Information Premium.}
-    (\textbf{A})~Three-dimensional surface of the trading value $\ValT_\Ens(C) = \tol - \min_i\beta_i$ and informational value $\ValI_\Ens(C) = \tol - \prod_i\beta_i/\Sigma^{n-1}$ over $(\tol, n)$ with $\bar\beta=2$, $\Sigma=100$.  The two surfaces separate for $n\ge 2$: the upper surface (informational value) lies strictly above the lower (trading value) for all $n\ge 2$, confirming the Two-Value Theorem.
-    (\textbf{B})~Information premium $\Prem = \SflatT - \SflatI$ versus $n$ for four agent pools: uniform floors $\beta_i=1$, $\beta_i=2$, geometrically decreasing, and uniformly random from $[0.5,3]$.  All four series are strictly increasing in $n$, confirming \cref{thm:two-value}(c).  The heterogeneous pool (random) achieves the highest premium at every $n$.
-    (\textbf{C})~Trading spread $\SpreadT = 2\min_i\beta_i$ and information spread $\SpreadI = 2\SflatI$ versus ensemble size $n$ for a five-agent pool.  $\SpreadT$ remains flat after the first (best) agent joins; $\SpreadI$ decreases with every new agent.  The gap $\SpreadT - \SpreadI$ widens monotonically, confirming \cref{thm:dual-spread}(b)--(c).
-    (\textbf{D})~Relative information premium $\Prem/\SflatT$ versus coefficient of variation $\CV$ for $n\in\{2,5,10,20\}$.  At fixed $n$, the relative premium increases with $\CV$ (heterogeneity increases the information advantage).  At fixed $\CV$, it increases with $n$.  The $n=20$, $\CV=1$ point achieves $\Prem/\SflatT\approx 0.99$: 99\% of the trading spread is recovered as information premium.}
-    \label{fig:price_panel_1}
+    \includegraphics[width=\textwidth]{panels/paper4_panel_2.png}
+    \caption{\textbf{Dual-Spread Theorem: Trading and Informational Spread Surfaces, Spread Dynamics, Information Premium, and Two-Value Verification.}
+    (\textbf{A})~Three-dimensional surfaces of the trading spread $\Delta^T = 2\bar{S}_{\mathrm{agg}}(\mathcal{E})$ (blue) and informational spread $\Delta^I = 2\bar{S}_{\mathrm{comp}}(\mathcal{E})$ (red) over minimum floor $\beta_{\min} \in [1, 50]$ and ensemble size $n \in \{1, \ldots, 11\}$, for uniform ensembles ($\beta_i = \beta_{\min}$ for all $i$).  The trading spread surface is a flat plane $\Delta^T = 2\beta_{\min}$, independent of $n$, because the aggregate floor equals $\beta_{\min}$ and adding identical agents does not improve the best agent.  
+    (\textbf{B})~Trading spread $\Delta^T$ (solid lines) and informational spread $\Delta^I$ (dashed lines) as functions of ensemble size $n \in \{1, \ldots, 15\}$ for three configurations: uniform $\beta = 20$ (constant $\Delta^T$, decaying $\Delta^I$), linearly increasing $\beta \in [5, 5 + 2.5 \times 14]$ added in sequence (decreasing $\Delta^T$ as new best agents arrive, decaying $\Delta^I$), and small-floor pool $\beta \in [1, 15]$.
+    (\textbf{C})~Information premium $\Pi = \bar{S}_{\mathrm{agg}} - \bar{S}_{\mathrm{comp}}$ versus ensemble size for the same three configurations.  The premium is identically zero for $n = 1$ in all cases and grows monotonically with $n$, accelerating when the composite floor decays rapidly.
+    (\textbf{D})~Scatter plot verifying the Two-Value Theorem for $N = 200$ randomly sampled five-agent ensembles with $\beta_i \in [1, 80]$. }
+    \label{fig:price_panel_2}
 \end{figure*}
 
 \begin{econinterp}
@@ -635,16 +650,16 @@ where $\MidP_n$ is the equilibrium price of the truncated ensemble $\Ens_n$.
 \label{thm:fv}
 Let $\Ens_\infty \in \mathcal{C}_E$.  Then:
 \begin{enumerate}[label=\textup{(\alph*)}]
-\item $\SflatI(\Ens_n) \to 0$ and $\SflatT(\Ens_n) \to \SflatT_\infty
+\item $\SflatI(\Ens_n) \to 0$ and $\SflatT(\Ens_n) \to \SflatTinf
   = \inf_i \Sflat(A_i) \ge 0$ as $n\to\infty$.
 \item The purpose cell $C^*_n = B(\MidP_n, r^*_n)$ satisfies $r^*_n \ge
-  \SflatT(\Ens_n) \to \SflatT_\infty$, so the equilibrium cell collapses
-  toward a point as $\SflatT_\infty \to 0$.
+  \SflatT(\Ens_n) \to \SflatTinf$, so the equilibrium cell collapses
+  toward a point as $\SflatTinf \to 0$.
 \item The fundamental value $\FV$ exists and is the unique limit of
   $\{\MidP_n\}$, provided the sequence is eventually Cauchy (holds whenever
-  $\SflatT_\infty = 0$, i.e.\ $\inf_i \Sflat(A_i) = 0$).
-\item If $\SflatT_\infty > 0$ (even the best agent has positive floor),
-  then $C^*_\infty$ is an interval of width $2\SflatT_\infty$: the
+  $\SflatTinf = 0$, i.e.\ $\inf_i \Sflat(A_i) = 0$).
+\item If $\SflatTinf > 0$ (even the best agent has positive floor),
+  then $C^*_\infty$ is an interval of width $2\SflatTinf$: the
   fundamental value is a cell, not a point.
 \end{enumerate}
 \end{theorem}
@@ -652,19 +667,19 @@ Let $\Ens_\infty \in \mathcal{C}_E$.  Then:
 \textit{(a)}  $\SflatI(\Ens_n) \to 0$ for Class $\mathcal{C}_E$ ensembles by
 the Borel--Cantelli Classification Theorem (Paper~3).  $\SflatT(\Ens_n) =
 \min_{1\le i\le n}\Sflat(A_i)$ is non-increasing and bounded below by
-$\SflatT_\infty = \inf_i \Sflat(A_i) \ge 0$.
+$\SflatTinf = \inf_i \Sflat(A_i) \ge 0$.
 
 \textit{(b)}  From the Purpose Existence Theorem (Paper~2), $r^* = \tol(C^*)
 \ge \SflatT(\Ens_n)$ at each $n$.  The cell cannot be narrower than the
 aggregate floor.
 
 \textit{(c)}  The purpose cell is the Banach fixed point of $\Psi_{\Ens_n}$,
-which converges as the ensemble grows.  When $\SflatT_\infty = 0$, the
+which converges as the ensemble grows.  When $\SflatTinf = 0$, the
 spectral radius $\srad_{\Ens_\infty} = 0$ and $C^*_\infty$ collapses to
 $\{\FV\}$.
 
-\textit{(d)}  When $\SflatT_\infty > 0$, the minimum cell width at
-equilibrium is $2\SflatT_\infty > 0$ by \cref{thm:price-cell}(c).
+\textit{(d)}  When $\SflatTinf > 0$, the minimum cell width at
+equilibrium is $2\SflatTinf > 0$ by \cref{thm:price-cell}(c).
 \end{proof}
 
 \begin{remark}[Price discovery and completeness]
@@ -877,10 +892,10 @@ Part~(c): $\Prem$ verified strictly increasing in $n$ (checked for $n=2,
 \subsection*{Cluster C5 (E21--E25): Equilibrium Price and Spreads}
 
 Five ensembles with $n \in \{1, 2, 5, 10, 20\}$.  For each, the purpose
-cell $C^* = B(\MidP^*, r^*)$ computed by iterating $\Psi_\Ens$ for
+cell $C^* = B(\MidP, r^*)$ computed by iterating $\Psi_\Ens$ for
 $T=500$ steps from five random initial cells.  \Cref{thm:equil-price}
 verified: all five initial cells converge to the same $C^*$ (to within
-$10^{-12}$).  Bid and ask computed as $\MidP^* \pm \SflatT$.  Trading
+$10^{-12}$).  Bid and ask computed as $\MidP \pm \SflatT$.  Trading
 spread $\SpreadT = 2\SflatT$ verified.  Maximum error: $< 10^{-12}$.
 
 \subsection*{Cluster C6 (E26--E30): Price Discovery Rate}
@@ -924,14 +939,14 @@ K_j = \emptyset$ verified to violate it in all cases, confirming
 
 \subsection*{Validation Summary}
 
-\begin{table}[h]
+\begin{table*}[!htbp]
 \centering
 \caption{Numerical validation summary. All 45 experiments pass.}
 \label{tab:validation}
 \small
 \begin{tabular}{@{}clcc@{}}
 \toprule
-Cluster & Content & Max.\ Rel.\ Error & Verdict \\
+Cluster & Theorem verified & Max.\ rel.\ error & Verdict \\
 \midrule
 C1 & Price-Cell Theorem          & $< 10^{-15}$  & PASS \\
 C2 & Cell-Value Decomposition    & $< 10^{-15}$  & PASS \\
@@ -940,11 +955,11 @@ C4 & Two-Value Theorem           & $< 10^{-14}$  & PASS \\
 C5 & Equilibrium Price           & $< 10^{-12}$  & PASS \\
 C6 & Price Discovery Rate        & $< 10^{-13}$  & PASS \\
 C7 & Fundamental Value           & $< 10^{-15}$  & PASS \\
-C8 & No-Arbitrage                & $< 10^{-14}$  & PASS \\
+C8 & No-Arbitrage Theorem        & $< 10^{-14}$  & PASS \\
 C9 & Transaction \& Law of One Price & $< 10^{-14}$ & PASS \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \begin{figure*}[!htbp]
     \centering
@@ -952,7 +967,7 @@ C9 & Transaction \& Law of One Price & $< 10^{-14}$ & PASS \\
     \caption{\textbf{Market Completeness and No-Arbitrage: Spread-Efficiency Surface, Information Premium Surface, No-Arbitrage Boundary, and Price Cell Collapse.}
     (\textbf{A})~Three-dimensional surface of the information premium $\Prem = \SflatT - \SflatI$ over $(\bar\beta, n)$ with $\Sigma=100$.  The premium grows with $n$ (more agents → more information advantage) and decreases with $\bar\beta$ (lower floors → smaller absolute gap, but larger relative gap $\Prem/\SflatT$).
     (\textbf{B})~No-arbitrage boundary in the $(\SflatT, \tol_{\max})$ plane for $N=500$ random ensembles.  Blue points ($\SflatT < \tol_{\max}$) have equilibrium prices; red points are in the no-trade zone.  The diagonal is the exact no-arbitrage boundary, matching \cref{thm:no-arb} with zero misclassifications.
-    (\textbf{C})~Price cell diameter $2r^*_n = 2\tol(C^*_n)$ versus ensemble size $n$ for three Class~$\mathcal{C}_E$ ensembles.  For all three, $2r^*_n$ decreases toward $2\SflatT_\infty$: the equilibrium cell collapses to the fundamental-value cell.  Faster-decaying composites (lower composite floor) achieve tighter cells at each $n$.
+    (\textbf{C})~Price cell diameter $2r^*_n = 2\tol(C^*_n)$ versus ensemble size $n$ for three Class~$\mathcal{C}_E$ ensembles.  For all three, $2r^*_n$ decreases toward $2\SflatTinf$: the equilibrium cell collapses to the fundamental-value cell.  Faster-decaying composites (lower composite floor) achieve tighter cells at each $n$.
     (\textbf{D})~Two-value gap $\Prem = \ValI - \ValT$ as a function of ensemble size $n$ and floor coefficient of variation $\CV$ for $\bar\beta=2$.  The gap grows as $\Sigma(1 - e^{-n\CV^2/2}) \cdot (\bar\beta/\Sigma)$ (dashed curves match numerical values to within the $O(n\CV^3)$ correction of Paper~3's Floor-Variance Bound), confirming that heterogeneity generates information premium.}
     \label{fig:price_panel_5}
 \end{figure*}
@@ -1026,7 +1041,7 @@ and the equilibrium price is a cell rather than a point.
 Hasbrouck~\cite{hasbrouck1995} developed the econometric theory of price
 discovery across multiple markets.  The Price Discovery Rate Theorem
 (\cref{thm:discovery-rate}) establishes the theoretical rate: price converges
-to $\MidP^*$ at rate $\srad_\Ens = \SflatT(\Ens)/\Sigma$, which determines
+to $\MidP$ at rate $\srad_\Ens = \SflatT(\Ens)/\Sigma$, which determines
 the half-life of price deviations.
 
 Fama~\cite{fama1970} defined three forms of market efficiency (weak,

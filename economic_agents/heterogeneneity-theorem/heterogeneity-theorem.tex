@@ -66,6 +66,7 @@
 \newcommand{\Var}{\mathrm{Var}}           % variance operator
 \newcommand{\CV}{\sigma_r}               % coefficient of variation
 \newcommand{\Crit}{\beta_{\mathrm{c}}}   % critical floor threshold
+\newcommand{\Sflathom}{S_{\flat,\mathrm{hom}}}  % homogeneous-ensemble floor
 
 %% -----------------------------------------------------------------------
 %%  Title block
@@ -952,11 +953,11 @@ Equality holds in the leading term iff $\CV = 0$ (all $\beta_i = \bar\beta$).
 
 \begin{corollary}[Heterogeneity efficiency saving]
 \label{cor:saving}
-Relative to the homogeneous ensemble ($\Sflat_{\rm hom} = \bar\beta^n/\Sigma^{n-1}$),
+Relative to the homogeneous ensemble ($\Sflathom = \bar\beta^n/\Sigma^{n-1}$),
 a heterogeneous ensemble with coefficient of variation $\CV$ achieves a
 composite floor at most a factor $e^{-n\CV^2/2}$ smaller:
 \[
-  \frac{\Sflat(\Ens_n)}{\Sflat_{\rm hom}} \;\le\;
+  \frac{\Sflat(\Ens_n)}{\Sflathom} \;\le\;
   e^{-n\CV^2/2+O(n\CV^3)} \;<\; 1.
 \]
 The saving grows exponentially in both $n$ and $\CV^2$.
@@ -1052,7 +1053,7 @@ For the rate: $\Sflat(\Ens_n) = \Sigma e^{-\Logfl_n} \approx
     $\ClassE$.  Contours of equal convergence rate $p\logfl_L = c$ are
     hyperbolas in $(p, \logfl_L)$ space.
     (\textbf{D})~Floor-Variance Efficiency Bound: ratio
-    $\Sflat(\Ens_n)/\Sflat_{\rm hom}$ versus $\CV$ for $n\in\{5,10,20,50\}$.
+    $\Sflat(\Ens_n)/\Sflathom$ versus $\CV$ for $n\in\{5,10,20,50\}$.
     Each curve is $e^{-n\CV^2/2}$ (dashed) versus the numerically computed
     ratio (solid).  The analytical bound is tight for small $\CV$ and
     slightly loose for large $\CV$ (cubic correction), confirming the

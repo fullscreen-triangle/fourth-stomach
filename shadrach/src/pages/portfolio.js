@@ -3,6 +3,12 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/TransitionEffect";
+import dynamic from "next/dynamic";
+
+const SpectralMatchingTool = dynamic(
+  () => import("@/components/tools/SpectralMatchingTool"),
+  { ssr: false, loading: () => <div className="h-64 bg-surface/30 rounded-2xl animate-pulse" /> }
+);
 
 const Section = ({ id, title, children }) => (
   <motion.section
@@ -176,6 +182,19 @@ export default function Portfolio() {
                 result="CONFIRMED" detail="Both spectral and correlation detect within 15 days of regime change." />
               <ResultRow prediction="Markowitz recovery as special case"
                 result="CONFIRMED" detail="Uniform conductance → exact 1/N weights (distance = 0.000000)." />
+            </Section>
+
+            <Section id="interactive-tool" title="Interactive Tool — Universal Spectral Matching">
+              <p>
+                Select two portfolios from the presets (Technology, Energy, Finance, Bonds) or generate random ones.
+                Each time series is converted into oscillators via DFT, producing a spectrum of (frequency, amplitude, phase) triples.
+                The spectrum becomes a 2D image — frequency on the x-axis, phase position on the y-axis, brightness = amplitude.
+                A WebGL2 fragment shader computes pixel-wise interference between the two spectral images in real time.
+                No database is required; comparison IS the interference computation.
+              </p>
+              <div className="mt-6">
+                <SpectralMatchingTool />
+              </div>
             </Section>
 
           </div>
