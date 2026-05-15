@@ -73,6 +73,11 @@ const Navbar = () => {
           <CustomLink className="mx-4" href="/thermodynamics" title="DTI" />
           <CustomLink className="mx-4" href="/representation" title="Representation" />
           <CustomLink className="mx-4" href="/ruminant" title="Ruminant" />
+          <span className="mx-2 text-primary/20 select-none">|</span>
+          <CustomLink className="mx-4" href="/oscillator" title="Gas Field" />
+          <CustomLink className="mx-4" href="/spectra" title="Spectra" />
+          <CustomLink className="mx-4" href="/trajectory" title="Trajectory" />
+          <span className="mx-2 text-primary/20 select-none">|</span>
           <CustomLink className="mx-4" href="/api-docs" title="API" />
           <CustomLink className="ml-4" href="/licensing" title="Licensing" />
         </nav>
@@ -103,6 +108,11 @@ const Navbar = () => {
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/thermodynamics" title="DTI" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/representation" title="Representation" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/ruminant" title="Ruminant" />
+            <span className="my-1 text-primary/20 text-xs tracking-widest">— tools —</span>
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/oscillator" title="Gas Field" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/spectra" title="Spectra" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/trajectory" title="Trajectory" />
+            <span className="my-1 text-primary/20 text-xs tracking-widest">—</span>
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/api-docs" title="API" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/licensing" title="Licensing" />
           </nav>

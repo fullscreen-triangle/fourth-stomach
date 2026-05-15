@@ -129,8 +129,9 @@ export default function MarketTrajectoryViz() {
     const dotProg   = mkProg(gl, DOT_VERT, DOT_FRAG);
     if (!trailProg || !dotProg) return;
 
-    const trailBuf = gl.createBuffer();
-    const dotBuf   = gl.createBuffer();
+    const trailBuf  = gl.createBuffer();
+    const alphaBuf  = gl.createBuffer(); // reused every frame, avoids per-frame alloc
+    const dotBuf    = gl.createBuffer();
 
     liveRef.current.running = true;
     const initialSigma = liveRef.current.sigma;
@@ -195,14 +196,11 @@ export default function MarketTrajectoryViz() {
         gl.enableVertexAttribArray(aTrailPos);
         gl.vertexAttribPointer(aTrailPos, 2, gl.FLOAT, false, 0, 0);
 
-        // Upload alpha as a second buffer (interleaved would be cleaner but this works)
-        const alphaBuf = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, alphaBuf);
         gl.bufferData(gl.ARRAY_BUFFER, alphaArr, gl.DYNAMIC_DRAW);
         gl.enableVertexAttribArray(aTrailAlpha);
         gl.vertexAttribPointer(aTrailAlpha, 1, gl.FLOAT, false, 0, 0);
         gl.drawArrays(gl.LINE_STRIP, 0, trail.length);
-        gl.deleteBuffer(alphaBuf);
       }
 
       // Draw current positions as glowing dots
@@ -238,6 +236,7 @@ export default function MarketTrajectoryViz() {
       gl.deleteProgram(trailProg);
       gl.deleteProgram(dotProg);
       gl.deleteBuffer(trailBuf);
+      gl.deleteBuffer(alphaBuf);
       gl.deleteBuffer(dotBuf);
     };
   }, []);

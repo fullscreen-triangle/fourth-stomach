@@ -39,7 +39,15 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/portfolio)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/ruminant)",
       "Bash(cat /tmp/shadrach-dev.log 2>&1)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:3001/thermodynamics)",
+      "Bash(curl -s http://localhost:3001/portfolio)",
+      "Bash(curl -s http://localhost:3001/ruminant)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/oscillator)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/spectra)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/trajectory)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(curl -s http://localhost:3001/oscillator)"
     ]
   }
 }
