@@ -30,7 +30,16 @@
       "Bash(grep -n \"\\\\\\\\\\\\\\\\usepackage\" foundation-for-price.tex)",
       "Bash(grep -o \"{[^,]*\")",
       "Bash(grep -n \"Sflathom\\\\|\\\\\\\\\\\\\\\\Sflat_\" heterogeneity-theorem.tex)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/thermodynamics)",
+      "Bash(npm install *)",
+      "Bash(PORT=3001 npm run dev)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/thermodynamics)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/portfolio)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/ruminant)",
+      "Bash(cat /tmp/shadrach-dev.log 2>&1)",
+      "Read(//tmp/**)"
     ]
   }
 }
