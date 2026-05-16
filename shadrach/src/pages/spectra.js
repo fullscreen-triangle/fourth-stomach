@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import TransitionEffect from "@/components/TransitionEffect";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import StockDashboard from "@/components/charts/StockDashboard";
 
 const SpectralMatchingTool = dynamic(
   () => import("@/components/tools/SpectralMatchingTool"),
@@ -39,6 +40,12 @@ export default function SpectraPage() {
               database, no lookup. Comparison IS the computation.
             </p>
             <SpectralMatchingTool />
+            <StockDashboard
+              name="SPECTRAL SIMILARITY INDEX"
+              primaryColor="#d4a843"
+              negColor="#e8734a"
+              seed={137}
+            />
           </motion.div>
         </Layout>
       </main>

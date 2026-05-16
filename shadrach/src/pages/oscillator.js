@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import TransitionEffect from "@/components/TransitionEffect";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import StockDashboard from "@/components/charts/StockDashboard";
 
 const GasOscillatorViz = dynamic(
   () => import("@/components/tools/GasOscillatorViz"),
@@ -38,6 +39,12 @@ export default function OscillatorPage() {
               markets move together.
             </p>
             <GasOscillatorViz />
+            <StockDashboard
+              name="GAS FIELD INDEX"
+              primaryColor="#2ca89a"
+              negColor="#e8734a"
+              seed={42}
+            />
           </motion.div>
         </Layout>
       </main>

@@ -50,8 +50,8 @@ const Navbar = () => {
   const handleClick = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full flex items-center justify-between px-32 py-8 font-medium z-10 text-light
-      lg:px-16 relative md:px-12 sm:px-8">
+    <header className="w-full flex items-center justify-between px-10 py-6 font-medium z-10 text-light
+      xl:px-6 lg:px-4 relative md:px-4 sm:px-4">
 
       <button
         type="button"
@@ -67,19 +67,19 @@ const Navbar = () => {
       </button>
 
       <div className="w-full flex justify-between items-center lg:hidden">
-        <nav className="flex items-center justify-center">
-          <CustomLink className="mr-4" href="/" title="Home" />
-          <CustomLink className="mx-4" href="/portfolio" title="Portfolio" />
-          <CustomLink className="mx-4" href="/thermodynamics" title="DTI" />
-          <CustomLink className="mx-4" href="/representation" title="Representation" />
-          <CustomLink className="mx-4" href="/ruminant" title="Ruminant" />
-          <span className="mx-2 text-primary/20 select-none">|</span>
-          <CustomLink className="mx-4" href="/oscillator" title="Gas Field" />
-          <CustomLink className="mx-4" href="/spectra" title="Spectra" />
-          <CustomLink className="mx-4" href="/trajectory" title="Trajectory" />
-          <span className="mx-2 text-primary/20 select-none">|</span>
-          <CustomLink className="mx-4" href="/api-docs" title="API" />
-          <CustomLink className="ml-4" href="/licensing" title="Licensing" />
+        <nav className="flex items-center justify-center text-xs gap-x-3 xl:gap-x-2">
+          <CustomLink href="/" title="Home" />
+          <CustomLink href="/portfolio" title="Portfolio" />
+          <CustomLink href="/thermodynamics" title="DTI" />
+          <CustomLink href="/representation" title="Repr." />
+          <CustomLink href="/ruminant" title="Ruminant" />
+          <span className="text-primary/20 select-none text-xs">·</span>
+          <CustomLink href="/oscillator" title="Gas Field" />
+          <CustomLink href="/spectra" title="Spectra" />
+          <CustomLink href="/trajectory" title="Trajectory" />
+          <span className="text-primary/20 select-none text-xs">·</span>
+          <CustomLink href="/api-docs" title="API" />
+          <CustomLink href="/licensing" title="License" />
         </nav>
         <nav className="flex items-center justify-center flex-wrap lg:mt-2">
           <motion.a

@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import TransitionEffect from "@/components/TransitionEffect";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import StockDashboard from "@/components/charts/StockDashboard";
 
 const MarketTrajectoryViz = dynamic(
   () => import("@/components/tools/MarketTrajectoryViz"),
@@ -38,6 +39,12 @@ export default function TrajectoryPage() {
               winding through a stationary Gaussian distribution. Computation = traversal of this loop.
             </p>
             <MarketTrajectoryViz />
+            <StockDashboard
+              name="TRAJECTORY MARKET DATA"
+              primaryColor="#2ca89a"
+              negColor="#e8734a"
+              seed={256}
+            />
           </motion.div>
         </Layout>
       </main>
