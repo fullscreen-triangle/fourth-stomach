@@ -1,0 +1,345 @@
+{
+  "paper": "Paper 7: Transactional Magnitude Calculus",
+  "timestamp": "2026-05-17T18:11:11.705209",
+  "summary": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0,
+    "failed_experiments": []
+  },
+  "clusters": {
+    "cluster_1_transaction_clock": {
+      "E01": {
+        "name": "Transaction clock non-decreasing across paths",
+        "passed": true,
+        "n_paths": 5
+      },
+      "E02": {
+        "name": "Absolute continuity: each increment equals |G[i]|*dt exactly",
+        "passed": true,
+        "max_error": 3.97089045672816e-17
+      },
+      "E03": {
+        "name": "Zero quadratic variation: QV_fine < QV_coarse",
+        "passed": true,
+        "qv_coarse": 4.982235579095777e-05,
+        "qv_fine": 7.490253145831078e-06
+      },
+      "E04": {
+        "name": "E[Theta(T)] = T * E[|G|] within 10%",
+        "passed": true,
+        "empirical": 0.23885022584567467,
+        "theoretical": 0.2393653682408596,
+        "relative_error": 0.0021521174887194974
+      },
+      "E05": {
+        "name": "Monotonicity on fine grid across 10 paths",
+        "passed": true,
+        "violations": 0
+      }
+    },
+    "cluster_2_subordination_variance": {
+      "E06": {
+        "name": "Monetary derivative definition: mderiv * |G| recovers f_dot",
+        "passed": true,
+        "max_error": 1.3877787807814457e-17
+      },
+      "E07": {
+        "name": "Var[Y(s)] = sigma^2 * E[theta(s)]",
+        "passed": true,
+        "var_Y": 0.00019518364616914424,
+        "theoretical_var": 0.00020891000000000003,
+        "relative_error": 0.06570462797755056
+      },
+      "E08": {
+        "name": "E[theta(s)] approx s/gbar",
+        "passed": true,
+        "empirical": 41.7794,
+        "theoretical": 41.77713791051668,
+        "relative_error": 5.414658821695887e-05
+      },
+      "E09": {
+        "name": "Variance rescaling valid across 5 scale configurations",
+        "passed": true,
+        "configs_passed": 4
+      },
+      "E10": {
+        "name": "Variance in transaction time monotone decreasing in gbar",
+        "passed": true,
+        "theoretical_variances": [
+          0.012533141373155003,
+          0.006266570686577501,
+          0.004177713791051667,
+          0.0031332853432887507,
+          0.002506628274631
+        ]
+      }
+    },
+    "cluster_3_monetary_derivative": {
+      "E11": {
+        "name": "Bounded activity: |df/dTheta| <= C/g_min",
+        "passed": true,
+        "max_mderiv": 26114.362237340632,
+        "bound": 36308.417632195116
+      },
+      "E12": {
+        "name": "Monetary fundamental theorem: integral recovers increment",
+        "passed": true,
+        "integral": 0.5310684980888974,
+        "increment": 0.5306692376333982,
+        "error": 0.0003992604554992063
+      },
+      "E13": {
+        "name": "Linearity: d(af+bg)/dTheta = a*df/dTheta + b*dg/dTheta",
+        "passed": true,
+        "max_error": 7.275957614183426e-12
+      },
+      "E14": {
+        "name": "Product rule: d(fg)/dTheta = g*df/dTheta + f*dg/dTheta",
+        "passed": true,
+        "max_error": 1.8189894035458565e-12
+      },
+      "E15": {
+        "name": "Chain rule: d(hof)/dTheta = h'(f)*df/dTheta",
+        "passed": true,
+        "max_error": 2.842170943040401e-14
+      }
+    },
+    "cluster_4_sentropy_dimensionless": {
+      "E16": {
+        "name": "S-transform maps into [S_floor, 100]",
+        "passed": true,
+        "min_s": 2.003758997965111,
+        "max_s": 99.99999999969928
+      },
+      "E17": {
+        "name": "Monetary derivatives of price and volume are finite and addable",
+        "passed": true,
+        "price_finite": true,
+        "volume_finite": true,
+        "sum_finite": true
+      },
+      "E18": {
+        "name": "Floor persistence: increments bounded by 100 - S_floor",
+        "passed": true,
+        "max_increment": 97.08745534848406,
+        "bound": 98.0
+      },
+      "E19": {
+        "name": "Weighted sum of 5 heterogeneous monetary derivatives is finite",
+        "passed": true,
+        "n_quantities": 5
+      },
+      "E20": {
+        "name": "S-floor strictly positive for all bounded receivers",
+        "passed": true,
+        "s_floors": [
+          0.1,
+          0.5,
+          1.0,
+          2.0,
+          5.0,
+          10.0
+        ]
+      }
+    },
+    "cluster_5_tangent_space": {
+      "E21": {
+        "name": "Monetary norm positivity: ||v||_Theta >= 0",
+        "passed": true,
+        "min_norm": 0.003768192797838972
+      },
+      "E22": {
+        "name": "Absolute homogeneity: ||av||_Theta = |a|*||v||_Theta",
+        "passed": true,
+        "max_error": 1.734723475976807e-18
+      },
+      "E23": {
+        "name": "Triangle inequality: ||u+v||_Theta <= ||u||_Theta + ||v||_Theta",
+        "passed": true,
+        "violations": 0,
+        "n_tests": 200
+      },
+      "E24": {
+        "name": "Closure: chain rule composition stays in monetary tangent space",
+        "passed": true,
+        "max_relative_error": 2.2196978545188812e-16
+      },
+      "E25": {
+        "name": "Monetary gradient descent reduces objective monotonically",
+        "passed": true,
+        "initial_phi": 34.0,
+        "final_phi": 1.0027164750671772e-16
+      }
+    },
+    "cluster_6_gear_network": {
+      "E26": {
+        "name": "Layer 1 fires more than layer 2 across 5 configurations",
+        "passed": true,
+        "n_configs": 5
+      },
+      "E27": {
+        "name": "Firing ratio N1/N2 approx theta2/theta1 within 30%",
+        "passed": true,
+        "mean_ratio": 5.236111111111111,
+        "expected": 5.0,
+        "relative_error": 0.047222222222222145
+      },
+      "E28": {
+        "name": "Four-layer hierarchy N1 > N2 > N3 > N4",
+        "passed": true,
+        "n_trials": 5
+      },
+      "E29": {
+        "name": "Gear ratio monotone increasing with theta2/theta1",
+        "passed": true,
+        "theoretical_ratios": [
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0
+        ],
+        "empirical_ratios": [
+          2.0,
+          4.222222222222222,
+          6.333333333333333,
+          9.5,
+          12.666666666666666
+        ]
+      },
+      "E30": {
+        "name": "Hierarchy N1 > N2 for 5 distinct threshold pairs",
+        "passed": true,
+        "n_pairs": 5
+      }
+    },
+    "cluster_7_telescoping": {
+      "E31": {
+        "name": "Two-layer telescoping: d/dTheta2 = (d/dTheta1) * rho1",
+        "passed": true,
+        "max_error": 2.2737367544323206e-13
+      },
+      "E32": {
+        "name": "Three-layer telescoping: d/dTheta3 = (d/dTheta1) * rho1 * rho2",
+        "passed": true,
+        "max_error": 4.547473508864641e-13
+      },
+      "E33": {
+        "name": "Gear ratios converge to gbar_k/gbar_{k+1}",
+        "passed": true,
+        "empirical_rho": 0.9999999999165465,
+        "theoretical_rho": 1.0,
+        "relative_error": 8.345346635128334e-11
+      },
+      "E34": {
+        "name": "Attenuation: larger-clock layer has smaller monetary derivative",
+        "passed": true,
+        "mean_clock1": 0.6153172463408585,
+        "mean_clock2": 0.6137589280640654,
+        "mean_md1": 743.8675541610373,
+        "mean_md2": 747.7509255605326
+      },
+      "E35": {
+        "name": "Telescoping formula holds for 5 distinct functions",
+        "passed": true,
+        "n_functions": 5
+      }
+    },
+    "cluster_8_no_privileged_level": {
+      "E36": {
+        "name": "Linearity law identical at all 5 gear layers",
+        "passed": true,
+        "max_error": 1.0658141036401503e-14,
+        "errors_per_layer": [
+          1.0658141036401503e-14,
+          7.105427357601002e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15
+        ]
+      },
+      "E37": {
+        "name": "Product rule identical at all 5 gear layers",
+        "passed": true,
+        "max_error": 7.105427357601002e-15,
+        "errors_per_layer": [
+          7.105427357601002e-15,
+          3.552713678800501e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15
+        ]
+      },
+      "E38": {
+        "name": "Chain rule identical at all 5 gear layers",
+        "passed": true,
+        "max_error": 5.551115123125783e-17,
+        "errors_per_layer": [
+          5.551115123125783e-17,
+          5.551115123125783e-17,
+          5.551115123125783e-17,
+          5.551115123125783e-17,
+          5.551115123125783e-17
+        ]
+      },
+      "E39": {
+        "name": "S-entropy floor bounds hold at all 5 gear layers",
+        "passed": true,
+        "s_floor": 2.0
+      },
+      "E40": {
+        "name": "No-Privileged-Level: all layers have machine-precision linearity errors",
+        "passed": true,
+        "max_linearity_error_all_layers": 1.0658141036401503e-14,
+        "all_errors": [
+          1.0658141036401503e-14,
+          7.105427357601002e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15,
+          7.105427357601002e-15
+        ]
+      }
+    },
+    "cluster_9_ergodic_consistency": {
+      "E41": {
+        "name": "Ergodic consistency: time averages consistent across 20 seeds",
+        "passed": true,
+        "grand_mean": 53.918098921150815,
+        "std_of_means": 5.391676678798133,
+        "coefficient_of_variation": 0.09999752933931993
+      },
+      "E42": {
+        "name": "Convergence rate O(K^{-1/2}): log-log slope in [-2.0, 0.0]",
+        "passed": true,
+        "fitted_slope": -1.3009512440520798,
+        "expected_slope": -0.5
+      },
+      "E43": {
+        "name": "Inter-layer ergodic ratio = gbar_j / gbar_k within 15%",
+        "passed": true,
+        "relative_error": 0.0
+      },
+      "E44": {
+        "name": "Monetary LLN: running average variance decreases in second half",
+        "passed": true,
+        "var_first_half": 141048.01624673646,
+        "var_last_half": 1556.2126634025265
+      },
+      "E45": {
+        "name": "Cesaro errors decrease monotonically (at least 4 of 5 steps)",
+        "passed": true,
+        "n_decreasing_steps": 4,
+        "total_steps": 5,
+        "cesaro_errors": [
+          870.4399212605499,
+          56.521195885462916,
+          58.064653728321105,
+          49.598085206252215,
+          35.13287014325473,
+          0.0
+        ]
+      }
+    }
+  }
+}

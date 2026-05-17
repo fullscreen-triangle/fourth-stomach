@@ -1,0 +1,1218 @@
+\documentclass[twocolumn,11pt,a4paper]{article}
+
+% ============================================================
+%  TRANSACTIONAL MAGNITUDE CALCULUS:
+%  MONETARY DERIVATIVES, S-ENTROPY NORMALISATION,
+%  AND THE MONETARY TANGENT SPACE
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[round]{natbib}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!40!black,
+  citecolor=blue!40!black,
+  urlcolor=blue!40!black
+}
+
+% Theorem environments
+\newtheoremstyle{thmstyle}
+  {\topsep}{\topsep}
+  {\itshape}{}
+  {\bfseries}{.}
+  {.5em}{}
+\theoremstyle{thmstyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+
+% Core operators
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\sgn}{sgn}
+
+% Monetary calculus macros
+\newcommand{\Gain}{G}                        % gain-loss process G(t,\tau)
+\newcommand{\Clock}{\Theta}                  % transaction clock \Theta(t)
+\newcommand{\InvClock}{\theta}               % right-continuous inverse \theta(s)
+\newcommand{\Mdiff}[1]{\frac{d#1}{d\Clock}} % monetary derivative d/d\Theta
+\newcommand{\MdiffK}[2]{\frac{d#1}{d\Clock_{#2}}} % layer-k monetary derivative
+\newcommand{\Sval}{S}                        % S-functional value
+\newcommand{\Sscale}{\mathbb{S}}             % S-scale [0,100]
+\newcommand{\Sfloor}{S_{\flat}}              % floor function
+\newcommand{\Mtan}{\mathcal{T}^{\Clock}}     % monetary tangent space
+\newcommand{\wstar}{w^{*}}                   % fixed-point portfolio
+\newcommand{\Lop}{\mathbf{L}}               % graph Laplacian
+\newcommand{\Lpinv}{\mathbf{L}^{\dagger}}   % pseudoinverse
+\newcommand{\lamtwo}{\lambda_{2}}           % Fiedler value
+\newcommand{\Deltam}{\Delta_{m}}            % simplex
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Expect}{\mathbb{E}}
+\newcommand{\Filtr}{\mathcal{F}}
+\newcommand{\Borel}{\mathcal{B}}
+\newcommand{\Receiver}{\mathcal{R}}
+
+\title{\Large\textbf{Transactional Magnitude Calculus:\\
+Monetary Derivatives, S-Entropy Normalisation,\\
+and the Monetary Tangent Space}}
+
+\author{\textit{Anonymous submission for review}}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Classical analysis measures rates of change relative to
+calendar time.  In systems driven by economic activity,
+however, the natural clock is not the uniform tick of the
+calendar but the accumulated magnitude of transactional
+events.  We develop a rigorous calculus in which the
+fundamental rate operator is the \emph{monetary derivative}
+$d/d\Clock$, where $\Clock(t) = \int_{0}^{t}|\Gain(s)|\,ds$
+is the \emph{transaction clock}---the running integral of
+absolute gain-loss intensity.  Replacing calendar time with
+transaction time subordinates every process to the
+underlying economic activity and eliminates the
+dimensionality barriers that obstruct cross-quantity
+comparison: when the S-entropy functional
+$\Sval:\Receiver\times\mathcal{X}\times\mathcal{X}^{*}
+\to[0,100]$ is used as the scalar field, every monetary
+derivative $d\Sval/d\Clock$ is measured in
+\emph{S-units per S-unit}---a pure number that adds
+across heterogeneous quantities without conversion factors.
+We formalise the \emph{monetary tangent space} $\Mtan$ at
+each transaction-time point, prove that it carries a natural
+norm inherited from the S-functional, and show that it is
+closed under the monetary derivative operator.  For systems
+governed by a hierarchical gear network of nested stopping
+times $\{\sigma_{k}\}_{k\geq 1}$, we derive a
+\emph{telescoping gear-ratio formula}
+$d\Sval/d\Clock_{K} = (d\Sval/d\Clock_{1})
+\prod_{k=1}^{K-1}(\Clock_{k}/\Clock_{k+1})$
+and prove that the No-Privileged-Level principle---the same
+algebraic laws hold at every gear depth---is an exact
+consequence of the S-entropy axioms.  We further prove an
+\emph{ergodic consistency theorem}: under a stationary
+ergodic return process the time-averaged monetary
+derivative converges almost surely to the stationary
+mean, and the convergence rate is $O(K^{-1/2})$ by
+Birkhoff's theorem applied in transaction time.  The
+framework provides a principled foundation for comparing
+rates of change of price, volume, volatility, and any
+other economic observable on a single dimensionless scale,
+and reduces to classical calculus when transaction activity
+is constant.
+\end{abstract}
+
+\noindent\textbf{Keywords:} transaction clock, monetary
+derivative, S-entropy, monetary tangent space, gear network,
+No-Privileged-Level, Clark subordination, ergodic theory,
+dimensional analysis, gain-loss intensity.
+
+\vspace{6pt}
+\tableofcontents
+\vspace{6pt}
+
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+The calculus of variations, Newtonian mechanics, and
+classical stochastic analysis all share a common
+primitive: the calendar-time derivative $d/dt$.  For
+physical systems whose natural clocking is the uniform
+passage of time this is irreproachable.  But financial
+markets, biological signalling cascades, supply networks,
+and social contagion all possess an internal clock whose
+rate is itself driven by the intensity of the phenomenon
+being studied.  A stock that trades ten thousand shares in
+a second has advanced further along its economic trajectory
+than a stock that trades ten shares over a day, even if
+both share the same calendar elapsed time.
+
+This observation has antecedents.  Clark~\citep{Clark1973}
+showed empirically that daily price changes are better
+described by a subordinated process: Brownian motion in
+transaction time, where transaction time is the
+accumulated volume or trade count.  Mandelbrot and Taylor
+\citep{MandelbrotTaylor1967} and
+Monroe~\citep{Monroe1978} formalised the connection between
+continuous local martingales and Brownian motion in a
+subordinated clock.  Ane and Geman~\citep{AneGeman2000}
+confirmed empirically that conditioning on trade count
+renders intraday returns approximately Gaussian.
+In the mathematical finance literature, stochastic time
+changes appear in the context of variance processes and
+activity rates~\citep{BarndorffNielsenShephard2001}.
+
+Yet despite these advances, no systematic calculus has been
+developed that:
+\begin{enumerate}[nosep]
+\item replaces the calendar-time derivative $d/dt$ with a
+      \emph{monetary derivative} $d/d\Clock$ uniformly
+      across all quantities of interest;
+\item resolves the \emph{dimensional incommensurability}
+      problem that arises when one attempts to add rates of
+      change of heterogeneous observables (price velocity
+      cannot simply be added to volume velocity);
+\item provides a \emph{scale-free, addable} scalar for
+      rates of change that respects the algebraic structure
+      of bounded-cognition information theory.
+\end{enumerate}
+
+The present paper addresses all three gaps.  The key
+insight is that when rates of change are measured in the
+S-entropy scale $[0,100]$ of
+\citet{Sachikonye2024S}---a bounded, receiver-relative
+distance-to-truth functional---and normalised by the
+transaction clock, the result is a pure number: S-units of
+distance-to-truth per S-unit of distance-to-truth.
+Two monetary derivatives of entirely different quantities
+are then directly addable, subtractable, and comparable.
+
+The paper is organised as follows.  Section~\ref{sec:prelim}
+sets up notation and reviews the required background on
+graph Laplacians, Kirchhoff portfolios, and S-entropy.
+Section~\ref{sec:clock} defines the transaction clock and
+proves its basic properties.  Section~\ref{sec:mderiv}
+introduces the monetary derivative operator and develops
+its analysis.  Section~\ref{sec:sentropy} shows how
+S-entropy eliminates dimensional barriers.
+Section~\ref{sec:tangent} constructs the monetary tangent
+space and establishes its normed-space structure.
+Section~\ref{sec:gear} derives the telescoping gear-ratio
+formula for hierarchical networks.  Section~\ref{sec:npl}
+proves the No-Privileged-Level theorem in transaction time.
+Section~\ref{sec:ergodic} establishes ergodic consistency
+of monetary derivatives.  Section~\ref{sec:examples}
+works three illustrative examples.  Section~\ref{sec:conclude}
+discusses implications and open questions.
+
+
+% ============================================================
+\section{Preliminaries}
+\label{sec:prelim}
+% ============================================================
+
+\subsection{Probability and filtration}
+
+Let $(\Omega,\Filtr,\Prob)$ be a complete probability space
+and $(\Filtr_{t})_{t\geq 0}$ a right-continuous filtration
+satisfying the usual conditions.  All processes are assumed
+to be $(\Filtr_{t})$-adapted.
+
+\subsection{Graph Laplacian and Kirchhoff portfolio}
+
+Let $G=(V,E,A)$ be a weighted undirected graph with
+$m=|V|$ assets, adjacency matrix $A\in\Real^{m\times m}$
+($A_{ij}=A_{ji}\geq 0$, $A_{ii}=0$), degree matrix
+$D=\mathrm{diag}(A\mathbf{1})$, and Laplacian
+$\Lop=D-A$.  Since $G$ is connected, $\Lop$ has
+eigenvalues $0=\lambda_{1}<\lamtwo\leq\cdots\leq\lambda_{m}$;
+$\lamtwo$ is the Fiedler (algebraic connectivity) value.
+
+For a forecast return vector $\hat\mu\in\Real^{m}$ with
+mean-centred version $\mu_{c}=\hat\mu-\bar{\hat\mu}\mathbf{1}$,
+the \emph{Kirchhoff fixed-point portfolio} is
+\begin{equation}\label{eq:kfp}
+  \wstar = \Lpinv\mu_{c} + \tfrac{1}{m}\mathbf{1},
+\end{equation}
+where $\Lpinv$ is the Moore--Penrose pseudoinverse of
+$\Lop$~\citep{Penrose1955}.  The weight $\wstar$ satisfies
+the discrete Kirchhoff law $\Lop\wstar=\mu_{c}$ and lies
+on the probability simplex $\Deltam$~\citep{Kirchhoff1847}.
+
+\subsection{Gain-loss process}
+
+Let $R(t,\tau)\in\Real^{m}$ be the vector of asset returns
+over the interval $[t,t+\tau]$, and let $\hat\mu(\tau)
+=\Expect[R(t,t+\tau)]$ be the corresponding forecast.
+The \emph{Kirchhoff gain-loss} at calendar time $t$ with
+horizon $\tau$ is
+\begin{equation}\label{eq:gain}
+  \Gain(t,\tau) = (\wstar(\tau))^{\top}
+                  [R(t,t+\tau)-\hat\mu(\tau)].
+\end{equation}
+When the forecast is conditionally unbiased---i.e.\
+$\Expect[R(t,t+\tau)\mid\Filtr_{t}]=\hat\mu(\tau)$---the
+process $(\Gain(t,\tau))_{t}$ is a martingale difference
+sequence with respect to $(\Filtr_{t})$.
+
+\subsection{S-entropy functional}
+
+We recall the S-entropy framework of \citet{Sachikonye2024S}.
+Let $\mathcal{X}$ be a candidate space, $\mathcal{X}^{*}
+\subseteq\mathcal{X}$ the truth space, and $\Receiver$ the
+class of all receivers.  An \emph{S-functional} is a map
+\begin{equation}\label{eq:sfunc}
+  \Sval : \Receiver \times \mathcal{X} \times \mathcal{X}^{*}
+          \to [0,100],
+  \quad (\mathcal{R},x,x^{*}) \mapsto \Sval_{\mathcal{R}}(x,x^{*}),
+\end{equation}
+satisfying non-negativity, boundedness, the positive floor
+$\Sfloor(\mathcal{R})>0$ for every bounded receiver
+$\mathcal{R}$, and receiver-decoded coherence.  The image
+of $\Sval_{\mathcal{R}}$ lies in $[\Sfloor(\mathcal{R}),100]$.
+
+A key consequence---the \emph{Unconstrained Subtask
+Theorem} of \citet{Sachikonye2024S}---states that any
+S-value $\Sval^{*}$ admits an arbitrary type-mixed
+decomposition into sub-expressions, signed or fractional,
+provided their composition under the receiver's evaluation
+map yields $\Sval^{*}$.  This freedom is what permits
+heterogeneous monetary derivatives to be decomposed and
+recombined without constraint.
+
+
+% ============================================================
+\section{The Transaction Clock}
+\label{sec:clock}
+% ============================================================
+
+\begin{definition}[Transaction clock]\label{def:clock}
+Let $\Gain(\cdot,\tau)$ be the gain-loss process of
+\eqref{eq:gain}.  The \emph{transaction clock} is the
+right-continuous, non-decreasing process
+\begin{equation}\label{eq:clock}
+  \Clock(t) \;:=\; \int_{0}^{t} |\Gain(s,\tau)|\,ds,
+  \quad t\geq 0.
+\end{equation}
+\end{definition}
+
+The transaction clock accumulates the absolute magnitude
+of economic activity.  When activity is high, $\Clock$
+advances rapidly; when markets are inactive, $\Clock$
+nearly stalls.
+
+\begin{lemma}[Basic properties of $\Clock$]\label{lem:clock-props}
+Under the standing assumptions:
+\begin{enumerate}[nosep,label=(\roman*)]
+\item $\Clock(0)=0$ and $\Clock$ is $(\Filtr_{t})$-adapted;
+\item $\Clock$ is non-decreasing and absolutely continuous
+      with $\dot\Clock(t)=|\Gain(t,\tau)|$ a.e.;
+\item $\Clock$ is a finite-variation process with quadratic
+      variation $[\Clock]_{t}=0$;
+\item if $\Expect[|\Gain(t,\tau)|]<\infty$ for all $t$,
+      then $\Expect[\Clock(t)]<\infty$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) follows from $\Gain$ being adapted and the integral
+being a progressively measurable operation.  (ii) is
+immediate from the fundamental theorem of calculus for
+absolutely continuous functions.  (iii) follows because
+$\Clock$ has bounded variation, so its quadratic variation
+vanishes.  (iv) follows by Fubini's theorem:
+$\Expect[\Clock(t)]=\int_{0}^{t}\Expect[|\Gain(s,\tau)|]\,ds<\infty$.
+\end{proof}
+
+\begin{definition}[Transaction-time inverse]\label{def:inv-clock}
+The \emph{transaction-time inverse} is the right-continuous
+process
+\begin{equation}\label{eq:inv-clock}
+  \InvClock(s) \;:=\; \inf\{t\geq 0 : \Clock(t) > s\},
+  \quad s\geq 0.
+\end{equation}
+\end{definition}
+
+The pair $(\Clock, \InvClock)$ implements a random time
+change in the sense of Clark~\citep{Clark1973}: a process
+$X$ observed in calendar time is transformed to
+$X_{\InvClock(s)}$ observed in transaction time $s$.
+
+\begin{proposition}[Subordination]\label{prop:subordination}
+Let $X(t)$ be a continuous semimartingale.  Then
+$Y(s):=X(\InvClock(s))$ is a process in transaction time
+whose infinitesimal increments satisfy
+\begin{equation}\label{eq:subord}
+  dY(s) = dX(\InvClock(s)) \cdot
+          \frac{1}{|\Gain(\InvClock(s),\tau)|}\,ds.
+\end{equation}
+In particular, $dY(s)/ds$ is the rate of change of $X$
+per unit of transaction activity.
+\end{proposition}
+
+\begin{proof}
+By the chain rule for absolutely continuous time changes
+\citep{KaratzasShreve1991}, since $\Clock$ is absolutely
+continuous with density $|\Gain|$,
+$d\InvClock(s)/ds = 1/|\Gain(\InvClock(s))|$.  Therefore
+$dY(s) = (dX/dt)|_{t=\InvClock(s)}\cdot
+(d\InvClock/ds)\,ds
+= (dX/dt)/|\Gain|\,ds$ as claimed.
+\end{proof}
+
+\begin{remark}\label{rem:clark-connection}
+Proposition~\ref{prop:subordination} generalises Clark's
+result from trade-count subordination to gain-loss
+subordination.  The economic interpretation is that one
+unit of transaction time represents one unit of cumulative
+gain-loss magnitude, making the clock a direct measure of
+economic intensity rather than a proxy (volume, trade count).
+\end{remark}
+
+\begin{theorem}[Variance rescaling under subordination]\label{thm:var-rescale}
+Let $X(t)$ be a zero-mean martingale with
+$\Var[X(t)]=\sigma^{2}t$ and let $Y(s)=X(\InvClock(s))$.
+Then
+\begin{equation}\label{eq:var-rescale}
+  \Var[Y(s)] = \sigma^{2}\,\Expect[\InvClock(s)].
+\end{equation}
+Under the ergodic assumption
+$\Expect[|\Gain(t)|]\to\bar{g}>0$ as $t\to\infty$,
+$\Expect[\InvClock(s)]\sim s/\bar{g}$ and
+$\Var[Y(s)]\sim \sigma^{2}s/\bar{g}$.
+\end{theorem}
+
+\begin{proof}
+By the optional stopping theorem and the tower property,
+$\Expect[X(\InvClock(s))^{2}]
+= \sigma^{2}\Expect[\InvClock(s)]$, which gives
+\eqref{eq:var-rescale}.  The ergodic estimate follows
+from the law of large numbers:
+$\Clock(t)/t\to\bar{g}$ a.s.\ implies
+$\InvClock(s)/s\to 1/\bar{g}$ a.s.\ by the inverse
+function theorem for monotone processes, so
+$\Expect[\InvClock(s)]\to s/\bar{g}$ by dominated
+convergence under integrability conditions.
+\end{proof}
+
+
+% ============================================================
+\section{The Monetary Derivative Operator}
+\label{sec:mderiv}
+% ============================================================
+
+\begin{definition}[Monetary derivative]\label{def:mderiv}
+Let $f:\Real_{\geq 0}\to\Real$ be a differentiable function
+of calendar time.  Its \emph{monetary derivative} at time
+$t$ (with respect to the transaction clock $\Clock$) is
+\begin{equation}\label{eq:mderiv}
+  \Mdiff{f}(t)
+  \;:=\; \frac{df/dt}{|\Gain(t,\tau)|}
+  \;=\; \frac{\dot{f}(t)}{|\Gain(t,\tau)|}
+\end{equation}
+whenever $\Gain(t,\tau)\neq 0$.
+\end{definition}
+
+\begin{remark}\label{rem:mderiv-units}
+If $f$ is measured in units $[f]$ and calendar time is
+measured in seconds, then $df/dt$ has units $[f]\cdot
+\mathrm{s}^{-1}$.  The gain-loss $|\Gain|$ is a
+dimensionless portfolio return, hence
+$\Mdiff{f}$ has units $[f]$ per unit return---a quantity
+that still depends on the measurement scale of $f$.
+Section~\ref{sec:sentropy} resolves this residual
+dimensionality by passing to S-entropy coordinates.
+\end{remark}
+
+\begin{lemma}[Linearity]\label{lem:linearity}
+For differentiable $f,g$ and constants $\alpha,\beta\in\Real$:
+\begin{equation}
+  \Mdiff{(\alpha f+\beta g)}
+  = \alpha\,\Mdiff{f} + \beta\,\Mdiff{g}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$d(\alpha f+\beta g)/dt = \alpha\dot{f}+\beta\dot{g}$;
+divide by $|\Gain|\neq 0$.
+\end{proof}
+
+\begin{lemma}[Product rule]\label{lem:product}
+For differentiable $f,g$:
+\begin{equation}
+  \Mdiff{(fg)} = g\,\Mdiff{f} + f\,\Mdiff{g}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$(fg)^{\cdot} = \dot{f}g+f\dot{g}$; divide by $|\Gain|$
+and use Definition~\ref{def:mderiv}.
+\end{proof}
+
+\begin{lemma}[Chain rule]\label{lem:chain}
+Let $f = h \circ g$ where $g:\Real_{\geq 0}\to\Real$
+and $h:\Real\to\Real$ are differentiable.  Then
+\begin{equation}
+  \Mdiff{f}(t) = h'(g(t))\,\Mdiff{g}(t).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\dot{f} = h'(g)\dot{g}$; divide by $|\Gain|$.
+\end{proof}
+
+\begin{proposition}[Monetary derivative in transaction time]\label{prop:mderiv-transtime}
+Let $Y(s) = f(\InvClock(s))$ be $f$ observed in
+transaction time.  Then
+\begin{equation}\label{eq:mderiv-transtime}
+  \frac{dY}{ds}(s) = \Mdiff{f}(\InvClock(s)).
+\end{equation}
+That is, the monetary derivative in calendar time
+coincides with the ordinary derivative in transaction time.
+\end{proposition}
+
+\begin{proof}
+$dY/ds = (df/dt)|_{t=\InvClock(s)}\cdot d\InvClock/ds
+= \dot{f}(\InvClock(s))/|\Gain(\InvClock(s))|
+= \Mdiff{f}(\InvClock(s))$.
+\end{proof}
+
+\begin{remark}\label{rem:unification}
+Proposition~\ref{prop:mderiv-transtime} shows that working
+with monetary derivatives in calendar time is \emph{identical}
+to working with ordinary derivatives in transaction time.
+The two representations are related by the random time
+change $(\Clock,\InvClock)$ and are freely interchangeable.
+\end{remark}
+
+\begin{theorem}[Bounded activity bound]\label{thm:bounded-activity}
+Suppose $|\dot{f}(t)|\leq C$ for all $t$ and
+$|\Gain(t)|\geq g_{\min}>0$ a.s.\ for all $t$.  Then
+\begin{equation}
+  \left|\Mdiff{f}(t)\right| \leq \frac{C}{g_{\min}}\quad a.s.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$|\Mdiff{f}| = |\dot{f}|/|\Gain| \leq C/g_{\min}$.
+\end{proof}
+
+\begin{theorem}[Monetary fundamental theorem]\label{thm:mfundamental}
+For any differentiable $f$ with integrable $\Mdiff{f}$:
+\begin{equation}\label{eq:mfundamental}
+  f(t_{2}) - f(t_{1})
+  = \int_{\Clock(t_{1})}^{\Clock(t_{2})}
+    \Mdiff{f}(\InvClock(s))\,ds.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By the change-of-variables formula for monotone increasing
+$\Clock$:
+$\int_{t_{1}}^{t_{2}} \dot{f}(t)\,dt
+= \int_{\Clock(t_{1})}^{\Clock(t_{2})}
+  \dot{f}(\InvClock(s))\,\frac{d\InvClock}{ds}\,ds
+= \int_{\Clock(t_{1})}^{\Clock(t_{2})}
+  \frac{\dot{f}(\InvClock(s))}{|\Gain(\InvClock(s))|}\,ds$.
+The result follows from
+$f(t_{2})-f(t_{1})=\int_{t_{1}}^{t_{2}}\dot{f}(t)\,dt$.
+\end{proof}
+
+
+% ============================================================
+\section{S-Entropy as Dimensionless Currency}
+\label{sec:sentropy}
+% ============================================================
+
+The monetary derivative $\Mdiff{f}$ in Definition~\ref{def:mderiv}
+has residual units $[f]$ inherited from $f$.  Comparing
+monetary derivatives of price (in currency units) with
+those of volume (in share counts) or volatility (dimensionless)
+requires a common unit.  The S-entropy functional
+\eqref{eq:sfunc} provides exactly this.
+
+\begin{definition}[S-transformed quantity]\label{def:s-transform}
+Let $f:\Real_{\geq 0}\to\Real$ be a quantity of interest
+with truth value $f^{*}(t)$ at time $t$, and let
+$\mathcal{R}$ be a fixed receiver.  The
+\emph{S-transformed quantity} is
+\begin{equation}
+  \tilde{f}(t)
+  := \Sval_{\mathcal{R}}(f(t), f^{*}(t)) \in [0,100].
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Dimensionlessness of S-transform]
+\label{prop:dimensionless}
+For any quantities $f$ and $g$ measured in different units,
+the S-transforms $\tilde{f}$ and $\tilde{g}$ are both
+measured in S-units on the scale $[0,100]$, and their
+monetary derivatives $\Mdiff{\tilde{f}}$ and
+$\Mdiff{\tilde{g}}$ are both in S-units per unit
+transaction magnitude---the \emph{same unit}---making
+them directly addable.
+\end{proposition}
+
+\begin{proof}
+$\tilde{f}$ and $\tilde{g}$ are both images of the
+S-functional, which maps into $[0,100]\subset\Real$
+with no physical dimension.  The transaction clock $\Clock$
+accumulates the dimensionless portfolio return $|\Gain|$,
+so $\Clock$ is also dimensionless.  Therefore
+$d\tilde{f}/d\Clock$ and $d\tilde{g}/d\Clock$ are both
+dimensionless ratios in $\Real$.
+\end{proof}
+
+\begin{corollary}[Additivity across heterogeneous quantities]
+\label{cor:additivity}
+For any finite collection of quantities $f_{1},\ldots,f_{n}$
+measured in arbitrary units and any weights
+$\alpha_{i}\in\Real$ with $\sum_{i}|\alpha_{i}|<\infty$:
+\begin{equation}\label{eq:additivity}
+  \sum_{i=1}^{n} \alpha_{i}\,\Mdiff{\tilde{f}_{i}}(t)
+  \in \Real
+\end{equation}
+is well-defined and carries the single interpretation of
+a \emph{net monetary derivative in S-units per transaction unit}.
+\end{corollary}
+
+\begin{proof}
+Each $\Mdiff{\tilde{f}_{i}}$ is a real number by
+Proposition~\ref{prop:dimensionless}, and a finite linear
+combination of real numbers is a real number.
+\end{proof}
+
+\begin{remark}\label{rem:adding-apples-oranges}
+Corollary~\ref{cor:additivity} formalises the informal
+observation that S-entropy allows one to \emph{add apples
+and oranges}: by mapping every quantity into the common
+currency $[0,100]$ before differentiating, the monetary
+derivative strips away all legacy units and returns a
+universal scalar.  The Unconstrained Subtask Theorem of
+\citet{Sachikonye2024S} further guarantees that any such
+sum can be decomposed into sub-tasks in an arbitrary
+type-mixed fashion without violating the total S-value.
+\end{remark}
+
+\begin{theorem}[Floor persistence under monetary differentiation]
+\label{thm:floor-persistence}
+Let $\mathcal{R}$ be a bounded receiver with floor
+$\Sfloor(\mathcal{R})>0$.  Then for every quantity $f$
+with $\tilde{f}(t)\geq\Sfloor(\mathcal{R})$ for all $t$
+and every interval $[t_{1},t_{2}]$:
+\begin{equation}
+  \tilde{f}(t_{2}) - \tilde{f}(t_{1})
+  = \int_{\Clock(t_{1})}^{\Clock(t_{2})}
+    \Mdiff{\tilde{f}}(\InvClock(s))\,ds,
+\end{equation}
+and the integral is bounded:
+$|\tilde{f}(t_{2})-\tilde{f}(t_{1})|\leq 100-\Sfloor(\mathcal{R})$.
+\end{theorem}
+
+\begin{proof}
+The identity follows from Theorem~\ref{thm:mfundamental}
+applied to $\tilde{f}$.  The bound follows from
+$\tilde{f}\in[\Sfloor(\mathcal{R}),100]$, so
+$|\tilde{f}(t_{2})-\tilde{f}(t_{1})|
+\leq 100-\Sfloor(\mathcal{R})$.
+\end{proof}
+
+
+% ============================================================
+\section{The Monetary Tangent Space}
+\label{sec:tangent}
+% ============================================================
+
+\begin{definition}[Monetary tangent space]\label{def:tangent}
+Fix a receiver $\mathcal{R}$ and a transaction-time point
+$s\geq 0$.  The \emph{monetary tangent space at $s$} is
+the vector space
+\begin{equation}
+  \Mtan_{s} := \left\{
+    v = \Mdiff{\tilde{f}}(\InvClock(s))
+    \;\Big|\;
+    f:\Real_{\geq 0}\to\Real\ \text{differentiable},\
+    \tilde{f}\ \text{as in Definition~\ref{def:s-transform}}
+  \right\} \subseteq \Real.
+\end{equation}
+\end{definition}
+
+\begin{remark}\label{rem:tangent-is-real}
+Since all S-transformed quantities take values in $[0,100]$,
+the monetary tangent space $\Mtan_{s}$ is a subspace of
+$\Real$.  In the finite-dimensional case with $n$ economic
+observables, the monetary tangent space is $\Mtan_{s}
+\subseteq \Real^{n}$, one coordinate per observable.
+\end{remark}
+
+\begin{proposition}[Monetary tangent space is a normed space]
+\label{prop:normed-tangent}
+Define the \emph{monetary norm} on $\Real^{n}$ by
+\begin{equation}\label{eq:mnorm}
+  \|v\|_{\Clock}
+  := \|v\|_{2}
+     \cdot \frac{1}{\sqrt{n}}\cdot\frac{1}{100},
+  \quad v\in\Real^{n}.
+\end{equation}
+The pair $(\Real^{n}, \|\cdot\|_{\Clock})$ is a normed
+vector space, and $\Mtan_{s}\subseteq\Real^{n}$ inherits
+this norm.
+\end{proposition}
+
+\begin{proof}
+The monetary norm is a scalar multiple of the Euclidean
+norm, hence satisfies positivity, absolute homogeneity,
+and the triangle inequality.  The prefactor
+$(100\sqrt{n})^{-1}$ normalises the range so that the
+maximum possible monetary tangent vector
+$(100,\ldots,100)/100\sqrt{n}$ has monetary norm one.
+\end{proof}
+
+\begin{theorem}[Closure under composition]\label{thm:closure}
+Let $f_{1},\ldots,f_{n}$ be S-transformed differentiable
+quantities and let $\Phi:\Real^{n}\to\Real$ be a
+differentiable function.  Then
+$\tilde{h} := \Sval_{\mathcal{R}}(\Phi(f_{1},\ldots,f_{n}),
+\Phi(f^{*}_{1},\ldots,f^{*}_{n}))$ satisfies
+\begin{equation}
+  \Mdiff{\tilde{h}}
+  = \sum_{i=1}^{n}
+    \frac{\partial\Phi}{\partial\tilde{f}_{i}}
+    \cdot\Mdiff{\tilde{f}_{i}},
+\end{equation}
+and $\Mdiff{\tilde{h}}\in\Mtan_{s}$.
+\end{theorem}
+
+\begin{proof}
+By the chain rule (Lemma~\ref{lem:chain}) applied to
+$\tilde{h} = \Sval_{\mathcal{R}}(\Phi(\cdot),\cdot)$ and
+the multivariate chain rule for $\Phi$:
+$\dot{\tilde{h}} = \sum_{i}\partial\Phi/\partial\tilde{f}_{i}
+\cdot\dot{\tilde{f}}_{i}$.  Dividing by $|\Gain|$ gives
+the monetary derivative formula.  Since each
+$\Mdiff{\tilde{f}_{i}}\in\Mtan_{s}$ and $\Mtan_{s}$ is
+closed under finite linear combinations, the sum lies in
+$\Mtan_{s}$.
+\end{proof}
+
+\begin{definition}[Monetary gradient]\label{def:mgradient}
+For a scalar function $\Phi:\Real^{n}\to\Real$ of $n$
+economic observables, the \emph{monetary gradient} is
+\begin{equation}
+  \nabla_{\Clock}\Phi
+  := \left(\Mdiff{(\partial\Phi/\partial\tilde{f}_{i})}\right)_{i=1}^{n}
+  \in \Mtan_{s}^{n}.
+\end{equation}
+\end{definition}
+
+\begin{corollary}[Monetary gradient descent]\label{cor:mgd}
+A quantity $\Phi$ evolves toward its truth value $\Phi^{*}$
+in transaction time at rate
+\begin{equation}
+  \frac{d\tilde\Phi}{ds}(s)
+  = -\|\nabla_{\Clock}\Phi\|_{\Clock}^{2}
+    \cdot\frac{1}{\Mdiff{\tilde\Phi}}(\InvClock(s))
+\end{equation}
+along the monetary gradient flow
+$\dot{\tilde{f}}_{i} = -\partial\Phi/\partial\tilde{f}_{i}$.
+\end{corollary}
+
+\begin{proof}
+Along the gradient flow,
+$d\tilde\Phi/dt = \sum_{i}(\partial\Phi/\partial\tilde{f}_{i})
+\cdot\dot{\tilde{f}}_{i} = -\|\nabla\Phi\|^{2}$.  Dividing
+by $|\Gain|$ gives $\Mdiff{\tilde\Phi} = -\|\nabla\Phi\|^{2}/|\Gain|$.
+In transaction time this becomes
+$d\tilde\Phi/ds = \Mdiff{\tilde\Phi}(\InvClock(s))$.
+\end{proof}
+
+
+% ============================================================
+\section{Hierarchical Gear Networks and Telescoping
+         Gear-Ratio Derivatives}
+\label{sec:gear}
+% ============================================================
+
+We now develop the interaction between the monetary
+derivative and the hierarchical gear network of nested
+stopping times introduced in the context of portfolio
+rebalancing.
+
+\begin{definition}[Gear network]\label{def:gear}
+A \emph{$K$-layer gear network} with thresholds
+$\theta_{1}<\theta_{2}<\cdots<\theta_{K}$ is a sequence
+of stopping times defined recursively as follows.  Set
+$I_{0}(t) := \Gain(t,\tau)$ (the base-layer gain-loss).
+For each $k=1,\ldots,K$:
+\begin{enumerate}[nosep,label=(\roman*)]
+\item Layer-$k$ transaction clock:
+$\Clock_{k}(t) := \int_{0}^{t}|I_{k-1}(s)|\,ds$;
+\item Layer-$k$ stopping time:
+$\sigma_{k} := \inf\{t\geq 0 : \Clock_{k}(t) > \theta_{k}\}$;
+\item Layer-$k$ accumulated imbalance:
+$I_{k}(t) := \Clock_{k}(t) - \Clock_{k}(\sigma_{k}^{-})$
+(reset to zero after each trigger).
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{rem:gear-hierarchy}
+Definition~\ref{def:gear} defines a cascade: layer-1 fires
+when cumulative gain-loss exceeds $\theta_{1}$; layer-2
+fires when cumulative layer-1 activity exceeds $\theta_{2}$;
+and so on.  The ratio $\theta_{k+1}/\theta_{k}$ is the
+\emph{gear ratio} between layers $k$ and $k+1$.
+\end{remark}
+
+\begin{theorem}[Gear hierarchy mean crossing times]
+\label{thm:gear-crossing}
+Under the martingale difference structure and the
+independence of increments across reset epochs,
+the expected number of layer-$(k+1)$ firings in $[0,T]$
+satisfies
+\begin{equation}\label{eq:gear-frequency}
+  \Expect[N_{k+1}(T)] = \frac{\theta_{k}}{\theta_{k+1}}
+                         \cdot\Expect[N_{k}(T)]
+                         \cdot(1+o(1))
+\end{equation}
+as $T\to\infty$, so that layer-$k$ fires approximately
+$\theta_{k+1}/\theta_{k}$ times per layer-$(k+1)$ firing.
+\end{theorem}
+
+\begin{proof}
+Between consecutive layer-$(k+1)$ firings, layer-$k$ must
+accumulate activity $\theta_{k+1}$.  Each individual
+layer-$k$ firing contributes exactly $\theta_{k}$ of
+activity (by definition of the stopping time), so the
+expected number of layer-$k$ firings required is
+$\theta_{k+1}/\theta_{k}$.  By the renewal argument
+\citep{Feller1971} applied to the i.i.d.\ inter-arrival
+times of layer-$k$ firings (guaranteed by the reset
+structure and the martingale difference property),
+$\Expect[N_{k+1}(T)]\sim \Expect[N_{k}(T)]\cdot
+(\theta_{k}/\theta_{k+1})$.
+\end{proof}
+
+\begin{definition}[Layer-$k$ monetary derivative]
+\label{def:layered-mderiv}
+For a quantity $f$ and layer $k\in\{1,\ldots,K\}$, the
+\emph{layer-$k$ monetary derivative} is
+\begin{equation}
+  \MdiffK{f}{k}(t)
+  := \frac{df/dt}{|\Clock_{k}(t)|/t}
+  = \frac{t\,\dot{f}(t)}{|\Clock_{k}(t)|}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Telescoping gear-ratio formula]
+\label{thm:telescope}
+For any differentiable quantity $f$ and $K$-layer gear
+network:
+\begin{equation}\label{eq:telescope}
+  \MdiffK{\tilde{f}}{K}(t)
+  = \Mdiff{\tilde{f}}(t)
+    \cdot \prod_{k=1}^{K-1} \rho_{k}(t),
+\end{equation}
+where $\rho_{k}(t) := \Clock_{k}(t)/\Clock_{k+1}(t)$
+is the \emph{instantaneous gear ratio} at layer $k$.
+\end{theorem}
+
+\begin{proof}
+Write $\MdiffK{\tilde{f}}{K} = \dot{\tilde{f}}/|\Clock_{K}/t|
+= (\dot{\tilde{f}}/|\Clock_{1}/t|)\cdot
+(|\Clock_{1}/t|/|\Clock_{K}/t|)$.
+By telescoping,
+$|\Clock_{1}/t|/|\Clock_{K}/t|
+= \prod_{k=1}^{K-1}(|\Clock_{k}/t|/|\Clock_{k+1}/t|)
+= \prod_{k=1}^{K-1}\rho_{k}(t)$.
+Since $\Mdiff{\tilde{f}} = \dot{\tilde{f}}/|\Clock_{1}/t|$
+(identifying the base layer with $k=1$), the result follows.
+\end{proof}
+
+\begin{corollary}[Gear amplification and attenuation]
+\label{cor:gear-amp}
+If thresholds satisfy $\theta_{1}<\theta_{2}<\cdots<\theta_{K}$,
+then $\Clock_{k}(t)<\Clock_{k+1}(t)$ for all $t$ in the
+long-run mean, so $\rho_{k}(t)<1$ for each $k$, and the
+layer-$K$ monetary derivative is \emph{attenuated}
+relative to the base layer:
+$|\MdiffK{\tilde{f}}{K}| \leq |\Mdiff{\tilde{f}}|$.
+Conversely, decreasing thresholds produce amplification.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:gear-crossing}, higher layers fire
+less frequently, hence their transaction clocks advance
+more slowly: $\Clock_{k+1}(t)\geq\Clock_{k}(t)$ in
+expectation.  This gives $\rho_{k}(t)\leq 1$.
+\end{proof}
+
+\begin{theorem}[Gear-ratio stability under ergodic dynamics]
+\label{thm:gear-stability}
+Under a stationary ergodic gain-loss process with
+$\Expect[|\Gain(t)|]=\bar{g}>0$, the instantaneous gear
+ratios converge almost surely:
+\begin{equation}
+  \rho_{k}(t) \xrightarrow[t\to\infty]{a.s.}
+  \bar{\rho}_{k} := \frac{\bar{g}_{k}}{\bar{g}_{k+1}},
+\end{equation}
+where $\bar{g}_{k} := \Expect[|I_{k-1}(t)|]$ is the
+stationary mean activity of layer $k$.  Therefore,
+the telescoping product converges to a deterministic limit
+$\prod_{k=1}^{K-1}\bar{\rho}_{k}$.
+\end{theorem}
+
+\begin{proof}
+By the ergodic theorem \citep{Birkhoff1931},
+$\Clock_{k}(t)/t \to \bar{g}_{k}$ a.s.\ for each $k$.
+Therefore $\rho_{k}(t) = \Clock_{k}(t)/\Clock_{k+1}(t)
+\to \bar{g}_{k}/\bar{g}_{k+1} = \bar{\rho}_{k}$ a.s.
+The product of $K-1$ almost surely convergent sequences
+converges almost surely to their product.
+\end{proof}
+
+
+% ============================================================
+\section{The No-Privileged-Level Theorem in Transaction Time}
+\label{sec:npl}
+% ============================================================
+
+A central result of \citet{Sachikonye2024S} is the
+\emph{Recursive No-Privileged-Level Theorem}: every
+S-value decomposes into a triple of S-values at the next
+finer depth, with the same algebraic laws holding at every
+depth.  We now prove that this principle is preserved
+exactly under the monetary derivative operation.
+
+\begin{theorem}[No-Privileged-Level in transaction time]
+\label{thm:npl}
+Let $k,\ell\in\{1,\ldots,K\}$ be any two gear layers.
+The algebraic laws of the monetary derivative at layer $k$
+are identical to those at layer $\ell$: specifically,
+\begin{enumerate}[nosep,label=(\roman*)]
+\item \emph{Linearity:} $\MdiffK{(\alpha\tilde{f}+\beta\tilde{g})}{k}
+      = \alpha\MdiffK{\tilde{f}}{k}+\beta\MdiffK{\tilde{g}}{k}$;
+\item \emph{Product rule:}
+      $\MdiffK{(\tilde{f}\tilde{g})}{k}
+       = \tilde{g}\MdiffK{\tilde{f}}{k}
+         +\tilde{f}\MdiffK{\tilde{g}}{k}$;
+\item \emph{Chain rule:}
+      $\MdiffK{(h\circ\tilde{f})}{k}
+       = h'(\tilde{f})\MdiffK{\tilde{f}}{k}$;
+\item \emph{Fundamental theorem:}
+      $\tilde{f}(t_{2})-\tilde{f}(t_{1})
+       = \int_{\Clock_{k}(t_{1})}^{\Clock_{k}(t_{2})}
+         \MdiffK{\tilde{f}}{k}(\InvClock_{k}(s))\,ds$.
+\end{enumerate}
+These laws hold identically for every $k\in\{1,\ldots,K\}$.
+\end{theorem}
+
+\begin{proof}
+Each law (i)--(iv) is proved by dividing the corresponding
+calendar-time identity by $|\Clock_{k}(t)|/t$, which
+appears as a common factor and cancels.  The resulting
+identities are identical in form for all $k$, since the
+specific layer enters only through the denominator
+$\Clock_{k}$, and all the algebraic manipulations
+(linearity, Leibniz rule, chain rule, FTC) proceed
+identically regardless of which layer's clock is used.
+\end{proof}
+
+\begin{corollary}[Level-independent calculus]\label{cor:level-indep}
+The set of monetary derivatives $\{\MdiffK{\tilde{f}}{k}\}_{k=1}^{K}$
+forms a family of calculi indexed by gear layer, all
+sharing the same algebraic structure.  No layer carries
+greater algebraic privilege than any other.
+\end{corollary}
+
+\begin{remark}\label{rem:npl-interpretation}
+Theorem~\ref{thm:npl} is the analogue in transaction time
+of the Recursive No-Privileged-Level Theorem of
+\citet{Sachikonye2024S}: just as every S-value is its
+own sub-problem at the next depth (with the same laws),
+every gear layer defines an equivalent calculus of monetary
+derivatives.  The gear ratios $\rho_{k}$ encode the
+\emph{quantitative} differences between layers (the
+amplification or attenuation of rate signals) without
+introducing any \emph{qualitative} algebraic asymmetry.
+\end{remark}
+
+\begin{theorem}[S-entropy floor preservation across layers]
+\label{thm:floor-layers}
+For every bounded receiver $\mathcal{R}$ with floor
+$\Sfloor(\mathcal{R})>0$ and every gear layer $k$:
+\begin{equation}
+  \tilde{f}(t) \;\in\;
+  [\Sfloor(\mathcal{R}), 100] \quad \forall\, t\geq 0,
+\end{equation}
+and this constraint propagates layer by layer:
+$\MdiffK{\tilde{f}}{k}$ is bounded by
+$(100-\Sfloor(\mathcal{R}))/\Clock_{k,\min}$
+whenever $\Clock_{k}(t)\geq\Clock_{k,\min}>0$.
+\end{theorem}
+
+\begin{proof}
+$\tilde{f}(t)\in[\Sfloor(\mathcal{R}),100]$ by
+Axioms (S1)--(S3) of the S-functional.  Therefore
+$|\dot{\tilde{f}}(t)|\leq 100-\Sfloor(\mathcal{R})$
+almost everywhere, since $\tilde{f}$ cannot leave the
+bounded interval.  Dividing by $|\Clock_{k}(t)|/t
+\geq \Clock_{k,\min}/t$ gives
+$|\MdiffK{\tilde{f}}{k}|\leq
+t(100-\Sfloor)/|\Clock_{k}(t)|
+\leq (100-\Sfloor)/\Clock_{k,\min}$.
+\end{proof}
+
+
+% ============================================================
+\section{Ergodic Theory of Monetary Derivatives}
+\label{sec:ergodic}
+% ============================================================
+
+\begin{theorem}[Ergodic consistency of monetary derivatives]
+\label{thm:ergodic}
+Let the return process $(R(t,\tau))_{t\geq 0}$ be
+stationary and ergodic under $\Prob$, with invariant
+measure $\pi$.  Let $f$ be a measurable function of
+the returns with $\Expect_{\pi}[|\dot{\tilde{f}}|/\bar{g}]<\infty$.
+Then
+\begin{equation}\label{eq:ergodic-mderiv}
+  \frac{1}{S}\int_{0}^{S}
+  \Mdiff{\tilde{f}}(\InvClock(s))\,ds
+  \xrightarrow[S\to\infty]{a.s.}
+  \Expect_{\pi}\!\left[\Mdiff{\tilde{f}}\right]
+  = \frac{\Expect_{\pi}[\dot{\tilde{f}}]}{\bar{g}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:mderiv-transtime},
+$\Mdiff{\tilde{f}}(\InvClock(s)) = dY/ds(s)$ where
+$Y(s)=\tilde{f}(\InvClock(s))$.  The time-average on the
+left of \eqref{eq:ergodic-mderiv} is the Birkhoff average
+of $dY/ds$ in transaction time.  Since the return process
+is ergodic and $\Clock$ subordinates the process to the
+transaction time, $Y(s)$ inherits ergodicity from the
+underlying stationary process (see \citealt{Revuz1999},
+Theorem~4.1.2).  Birkhoff's ergodic theorem then gives
+$S^{-1}\int_{0}^{S}(dY/ds)\,ds\to\Expect_{\pi}[dY/ds]$ a.s.
+The expectation equals $\Expect_{\pi}[\dot{\tilde{f}}]/\bar{g}$
+by the ergodic theorem applied to $\dot{\tilde{f}}$ in
+calendar time, combined with $\Clock(t)/t\to\bar{g}$ a.s.
+\end{proof}
+
+\begin{theorem}[Convergence rate of the Birkhoff average]
+\label{thm:clt-mderiv}
+Under the conditions of Theorem~\ref{thm:ergodic} and
+additionally assuming $\Expect_{\pi}[(\dot{\tilde{f}}/\bar{g})^{2}]
+<\infty$ and a finite mixing time:
+\begin{equation}\label{eq:clt-rate}
+  \left\|
+    \frac{1}{S}\int_{0}^{S}\Mdiff{\tilde{f}}(\InvClock(s))\,ds
+    - \Expect_{\pi}\!\left[\Mdiff{\tilde{f}}\right]
+  \right\|_{2}
+  = O(S^{-1/2}).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Under the mixing condition, the central limit theorem for
+ergodic processes \citep{Billingsley1999} applies to the
+partial sums $\sum_{k=1}^{K}(dY/ds)|_{s=k\Delta}$.  In
+the continuous-time limit this gives the $O(S^{-1/2})$
+rate of convergence, consistent with the Birkhoff theorem
+applied to a square-integrable function.
+\end{proof}
+
+\begin{corollary}[Monetary law of large numbers]\label{cor:mlln}
+For a discrete sequence of transaction-time observations
+$s_{1}<s_{2}<\cdots<s_{K}$ with spacing $\Delta s$:
+\begin{equation}
+  \frac{1}{K}\sum_{k=1}^{K}
+  \Mdiff{\tilde{f}}(\InvClock(s_{k}))
+  \xrightarrow[K\to\infty]{a.s.}
+  \Expect_{\pi}\!\left[\Mdiff{\tilde{f}}\right].
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:ergodic} to the discrete-time
+Birkhoff average; ergodicity of the discrete skeleton
+follows from that of the continuous process
+\citep{MeynTweedie1993}.
+\end{proof}
+
+\begin{theorem}[Inter-layer ergodic consistency]
+\label{thm:inter-layer-ergodic}
+Under the same ergodicity conditions, for any two layers
+$j,k\in\{1,\ldots,K\}$:
+\begin{equation}
+  \frac{\Expect_{\pi}[\MdiffK{\tilde{f}}{k}]}
+       {\Expect_{\pi}[\MdiffK{\tilde{f}}{j}]}
+  = \frac{\bar{g}_{j}}{\bar{g}_{k}},
+\end{equation}
+and the ratio is determined solely by the mean activity
+rates $\bar{g}_{j},\bar{g}_{k}$ of the respective layers.
+\end{theorem}
+
+\begin{proof}
+$\Expect_{\pi}[\MdiffK{\tilde{f}}{k}]
+= \Expect_{\pi}[\dot{\tilde{f}}]/\bar{g}_{k}$ by
+Theorem~\ref{thm:ergodic} applied at layer $k$, and
+similarly for layer $j$.  Dividing gives the ratio.
+\end{proof}
+
+
+% ============================================================
+\section{Worked Examples}
+\label{sec:examples}
+% ============================================================
+
+\subsection{Price velocity in transaction time}
+
+Let $P(t)$ be the mid-price of a single asset with truth
+value $P^{*}(t)=$ fundamental value.  The S-transform is
+$\tilde{P}(t) = \Sval_{\mathcal{R}}(P(t),P^{*}(t))$.
+Suppose prices move at rate $\dot{P}(t)$ and the portfolio
+generates gain-loss $\Gain(t)$.  Then the monetary price
+velocity is
+\begin{equation}
+  \Mdiff{\tilde{P}}(t)
+  = \frac{d\Sval(P,P^{*})/dt}{|\Gain(t)|}
+  = \frac{\partial\Sval/\partial P \cdot \dot{P}}{|\Gain|}.
+\end{equation}
+This answers the question: how fast is the price diverging
+from fundamental per unit of economic activity?  A large
+$\Mdiff{\tilde{P}}$ means rapid mispricing per transaction
+unit; a small value means the mispricing is moving slowly
+relative to the economic intensity of the market.
+
+\subsection{Cross-asset comparison: price and volume}
+
+Consider two assets with price $P$ and volume $V$.  Their
+individual monetary derivatives $\Mdiff{\tilde{P}}$ and
+$\Mdiff{\tilde{V}}$ are both in S-units per transaction
+unit.  Their sum
+\begin{equation}
+  \Mdiff{\tilde{P}} + \Mdiff{\tilde{V}}
+\end{equation}
+is a single dimensionless number representing the
+\emph{total rate of informational divergence} of both
+price and volume from their respective truths, per unit
+of transactional activity.  This would be meaningless in
+calendar time (dollars-per-second plus shares-per-second
+is ill-defined); in transaction time with S-entropy
+normalisation, it is well-defined by Corollary~\ref{cor:additivity}.
+
+\subsection{Two-layer gear derivative of volatility}
+
+Let $\sigma(t)^{2}$ be the realised variance of a
+portfolio.  Using a two-layer gear network with thresholds
+$\theta_{1}=0.1$ and $\theta_{2}=0.5$:
+\begin{equation}
+  \MdiffK{\tilde{\sigma}}{2}(t)
+  = \Mdiff{\tilde{\sigma}}(t) \cdot \rho_{1}(t)
+  = \frac{\dot{\tilde\sigma}}{|\Gain|}
+    \cdot \frac{\Clock_{1}(t)}{\Clock_{2}(t)}.
+\end{equation}
+The factor $\rho_{1}(t) = \Clock_{1}(t)/\Clock_{2}(t)<1$
+attenuates the base-layer signal: the layer-2 monetary
+derivative of volatility represents the rate at which
+volatility deviates from truth \emph{only as reckoned by
+the slow macro-rebalancing clock}, filtering out
+high-frequency noise from the base-layer activity.
+
+
+% ============================================================
+\section{Implications and Open Questions}
+\label{sec:conclude}
+% ============================================================
+
+\subsection{Relation to dimensional analysis}
+
+The monetary derivative in S-units is the first
+\emph{automatically dimensionless} rate operator for
+economic systems.  Classical dimensional analysis
+\citep{Bridgman1922} requires explicit unit-tracking;
+the Buckingham $\Pi$ theorem \citep{Buckingham1914}
+constructs dimensionless groups post-hoc.  The monetary
+derivative achieves dimensionlessness directly, by using
+S-entropy as the universal scalar field and accumulated
+absolute gain-loss as the universal clock.
+
+\subsection{Connection to information geometry}
+
+The monetary tangent space $\Mtan_{s}$ with the monetary
+norm $\|\cdot\|_{\Clock}$ is a Riemannian manifold when
+the S-functional varies smoothly with the underlying
+process.  The monetary gradient of
+Definition~\ref{def:mgradient} defines a natural gradient
+flow on this manifold.  The connection to information
+geometry \citep{AmariFTJ1987} and the Fisher information
+metric is an open question.
+
+\subsection{Stochastic monetary calculus}
+
+When $\Gain(t)$ is stochastic, the monetary derivative
+$\Mdiff{f} = \dot{f}/|\Gain|$ is a random variable.  A
+full stochastic calculus in transaction time---including
+It\^o's formula for $d\tilde{f}$ in $d\Clock$---follows
+from the theory of stochastic time changes
+\citep{KaratzasShreve1991}, but the S-entropy nonlinearity
+requires careful treatment.  We leave the development of
+a complete It\^o calculus for S-entropy-valued processes
+as an open question.
+
+\subsection{Gear networks with variable thresholds}
+
+Theorem~\ref{thm:telescope} and the No-Privileged-Level
+result (Theorem~\ref{thm:npl}) assume fixed thresholds
+$\theta_{k}$.  Adaptive threshold sequences
+$\theta_{k}(t)$ that respond to realised volatility would
+make the gear ratios $\rho_{k}(t)$ adaptive as well.
+Whether the No-Privileged-Level structure is preserved
+under such adaptations is an open question with practical
+significance for adaptive rebalancing algorithms.
+
+\subsection{Summary}
+
+We have constructed a self-consistent calculus in which:
+\begin{enumerate}[nosep]
+\item the fundamental rate operator is the monetary
+      derivative $d/d\Clock$, measuring change per unit
+      of accumulated gain-loss intensity;
+\item S-entropy provides a universal, dimensionless scalar
+      field that makes rates of change of heterogeneous
+      quantities addable;
+\item the monetary tangent space is a normed vector space
+      closed under the monetary derivative;
+\item a telescoping gear-ratio formula propagates
+      monetary derivatives through any finite gear network;
+\item the No-Privileged-Level theorem ensures that the
+      same algebraic laws hold at every gear layer; and
+\item under stationary ergodic dynamics, time-averaged
+      monetary derivatives converge almost surely at rate
+      $O(K^{-1/2})$.
+\end{enumerate}
+The calculus reduces to standard calculus when $|\Gain|$
+is constant, and subsumes Clark's subordination framework
+as the special case where S-entropy is replaced by the
+identity function.
+
+\vspace{6pt}
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
