@@ -78,14 +78,26 @@ export default function StockDashboard({
   const navRef   = useRef(null);
   const volRef   = useRef(null);
   const retRef   = useRef(null);
+  const [containerW, setContainerW] = useState(0);
 
   const [info, setInfo] = useState({ shown: 0, total: 0, rows: [] });
   const data = useMemo(() => generateData(seed), [seed]);
 
+  // Track container width via ResizeObserver so D3 always draws at the correct size
   useEffect(() => {
     if (!wrapRef.current) return;
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0].contentRect.width;
+      if (w > 0) setContainerW(w);
+    });
+    ro.observe(wrapRef.current);
+    return () => ro.disconnect();
+  }, []);
 
-    const W  = wrapRef.current.clientWidth || 800;
+  useEffect(() => {
+    if (!containerW || !wrapRef.current) return;
+
+    const W  = containerW;
     const IW = W - M.l - M.r;
 
     // ── Shared x scale for navigator ─────────────────────────────────────────
@@ -148,16 +160,23 @@ export default function StockDashboard({
       .attr('fill', '#444').attr('font-size', '9px').attr('font-family', 'monospace')
       .text('DRAG TO SELECT RANGE');
 
-    // Brush
+    // Brush — separate handlers ensure both drag and release fire correctly
+    function onBrush({ selection }) {
+      const filtered = selection
+        ? data.filter(d => {
+            const [d0, d1] = selection.map(xFull.invert);
+            return d.date >= d0 && d.date <= d1;
+          })
+        : data;
+      if (!filtered.length) return;
+      redraw(filtered);
+      setInfo({ shown: filtered.length, total: data.length, rows: [...filtered].reverse().slice(0, 10) });
+    }
+
     const brush = d3.brushX()
       .extent([[0, 0], [IW, NH]])
-      .on('brush end', ({ selection }) => {
-        const filtered = selection
-          ? data.filter(d => { const [d0, d1] = selection.map(xFull.invert); return d.date >= d0 && d.date <= d1; })
-          : data;
-        redraw(filtered);
-        setInfo({ shown: filtered.length, total: data.length, rows: [...filtered].reverse().slice(0, 10) });
-      });
+      .on('brush', onBrush)
+      .on('end', onBrush);
 
     const brushG = gN.append('g').call(brush);
     brushG.select('.selection')
@@ -292,7 +311,7 @@ export default function StockDashboard({
         if (r.current) d3.select(r.current).selectAll('*').remove();
       });
     };
-  }, [data, seed, primaryColor, negColor]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [data, seed, primaryColor, negColor, containerW]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fmt = n => `${n >= 0 ? '+' : ''}${n.toFixed(2)}%`;
 
