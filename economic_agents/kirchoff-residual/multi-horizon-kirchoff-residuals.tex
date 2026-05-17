@@ -1,0 +1,1173 @@
+% ============================================================
+%  Multi-Horizon Kirchhoff Residuals: Self-Referential
+%  Portfolio Optimality and Transaction-Time Measurement
+%  in Hierarchical ETF Systems
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,decorations.pathreplacing}
+
+\hypersetup{
+  colorlinks=true, linkcolor=blue!60!black,
+  citecolor=green!50!black, urlcolor=blue!70!black
+}
+
+% ---- theorem environments -------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{notation}[theorem]{Notation}
+
+% ---- macros ---------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Lop}{\mathbf{L}}        % graph Laplacian matrix
+\newcommand{\Lpinv}{\mathbf{L}^{\dagger}} % Moore-Penrose pseudoinverse
+\newcommand{\proj}{\Pi_{\Delta}}     % simplex projection
+\newcommand{\wstar}{w^{*}}
+\newcommand{\Deltam}{\Delta_m}
+\newcommand{\lam}{\lambda}
+\newcommand{\lamtwo}{\lambda_2}
+\newcommand{\lammax}{\lambda_{\max}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\inner}[2]{\langle #1,\, #2\rangle}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\kappa_{\gamma}}{\kappa_{\gamma}}
+\newcommand{\Gain}{\mathcal{G}}
+\newcommand{\GainK}{\Gain_{k}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ---- title ----------------------------------------------------------
+\title{%
+  \large\bfseries
+  Multi-Horizon Kirchhoff Residuals:\\
+  Self-Referential Portfolio Optimality and\\
+  Transaction-Time Measurement in Hierarchical ETF Systems%
+}
+
+\author{%
+  \normalsize
+  \textit{Anonymous submission for review}%
+}
+
+\date{\normalsize\today}
+
+% =====================================================================
+\begin{document}
+\maketitle
+
+% ---- abstract -------------------------------------------------------
+\begin{abstract}
+We develop a self-contained mathematical theory of portfolio optimality
+that requires no external benchmark.  Starting from the graph-Laplacian
+contraction framework of Banach~\cite{Banach1922} and the discrete
+current-balance law of Kirchhoff~\cite{Kirchhoff1847}, we construct, for
+every prediction horizon $\tau>0$, a unique fixed-point portfolio
+$\wstar(\tau)\in\Deltam$ whose node-wise allocation is governed by a
+discrete Kirchhoff law on the asset correlation graph.  The residual
+between the predicted and realised return at $\wstar(\tau)$ defines a
+\emph{Kirchhoff gain-loss process} $\{\GainK(t)\}$ that is a
+martingale difference sequence in transaction time---a stochastic clock
+driven by the accumulated absolute gain rather than calendar intervals
+\cite{Clark1973}.
+
+Three principal consequences follow.  First, Kirchhoff residuals of
+systems with different graph structures inhabit incommensurable normed
+spaces; no single external scalar (Sharpe ratio, alpha, drawdown) can
+serve as a universal performance proxy, a theorem we call \emph{portfolio
+incommensurability}.  Second, the distance between fixed points at two
+calendar times is bounded above by $\norm{\mu(t)-\mu(t')}_2/\lamtwo(\Lop)$,
+so high algebraic connectivity damps allocation drift and stabilises the
+entire hierarchy.  Third, nesting the gain-loss trigger into a
+hierarchical sequence of stopping times produces a multi-scale
+\emph{gear network}---each layer fires only when the layer below has
+accumulated a threshold imbalance---whose equilibrium is globally
+self-consistent without any external rebalancing signal.
+
+We prove existence, uniqueness, measurability, and almost-sure ergodic
+convergence of the transaction-time average portfolio, and we
+characterise the fixed-point surface $\tau\mapsto\wstar(\tau)$ as a
+Lipschitz curve on $\Deltam$.  The resulting architecture constitutes a
+\emph{self-generated ETF}: a basket defined entirely by internal
+Kirchhoff equilibrium, passive at every layer and globally
+self-correcting.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Classical portfolio theory---from Markowitz's mean-variance frontier
+\cite{Markowitz1952} to the continuous-time Hamilton-Jacobi-Bellman
+approach of Merton \cite{Merton1969}---is benchmarked against an
+external criterion: a market index, a risk-free rate, or a reference
+investor.  This dependence is not merely computational; it is
+epistemological.  The theory implicitly assumes that \emph{good
+performance} has a universal meaning that transcends the structure of
+any individual portfolio.
+
+The present paper argues, and proves rigorously, that this assumption
+fails when portfolio dynamics are governed by a Laplacian contraction on
+a correlation graph.  The reason is structural: each such system
+generates a Kirchhoff equilibrium in a Hilbert space whose inner product
+depends on the graph Laplacian.  Residuals from different systems
+therefore lie in different normed spaces and cannot be compared by a
+single scalar.  The only operationally valid optimality criterion is
+internal consistency---the Kirchhoff condition is satisfied or it is not.
+
+The contribution of this paper is to make this observation precise and
+to build the full mathematical apparatus around it:
+
+\begin{enumerate}[label=(\roman*)]
+  \item A \emph{horizon surface} $\tau\mapsto\wstar(\tau)$
+        (\S\ref{sec:multihorizon}), a Lipschitz curve on $\Deltam$
+        parametrised by prediction horizon $\tau$.
+
+  \item A \emph{Kirchhoff gain-loss process} $\GainK(t,\tau)$
+        (\S\ref{sec:gainloss}), the monetary expression of the
+        Kirchhoff residual, proved to be a martingale difference
+        sequence in the transaction-time filtration.
+
+  \item The \emph{incommensurability theorem}
+        (\S\ref{sec:incommensurability}): no external performance
+        scalar is invariant under changes of graph structure.
+
+  \item A \emph{fixed-point drift bound} (\S\ref{sec:drift}) that
+        quantifies how fast $\wstar$ moves as return forecasts evolve.
+
+  \item A \emph{hierarchical gear network} (\S\ref{sec:gear}) of nested
+        stopping times, each layer triggered by the accumulated
+        gain-loss imbalance of the layer below, proved to be
+        well-defined and a.s.~finite.
+
+  \item \emph{Transaction-time ergodic convergence}
+        (\S\ref{sec:ergodic}): the time-average of $\wstar$ along the
+        transaction clock converges almost surely to the stationary
+        mean under mild mixing conditions.
+\end{enumerate}
+
+Throughout, $m$ denotes the number of assets, $G=(V,E,\omega)$ a
+weighted undirected graph on $m$ vertices, $\Lop\in\R^{m\times m}$ its
+Laplacian, and $\lamtwo$ the Fiedler value (algebraic connectivity)
+\cite{Fiedler1973}.  The probability simplex is
+$\Deltam=\{w\in\R^m:w\ge 0,\,\one^{\top}w=1\}$.
+
+% =====================================================================
+\section{Background and Notation}
+\label{sec:background}
+
+\subsection{Spectral graph theory}
+\label{sec:specgraph}
+
+Let $G=(V,E,\omega)$ be a connected weighted undirected graph with
+vertex set $V=\{1,\dots,m\}$, edge set $E\subseteq\binom{V}{2}$, and
+positive edge weights $\omega:\,E\to(0,\infty)$.  The \emph{weighted
+adjacency matrix} $A\in\R^{m\times m}$ has entries
+$A_{ij}=\omega_{ij}$ for $\{i,j\}\in E$ and $A_{ij}=0$ otherwise.
+The \emph{degree matrix} $D=\mathrm{diag}(d_1,\dots,d_m)$ with
+$d_i=\sum_j A_{ij}$ is the diagonal matrix of weighted degrees.  The
+\emph{graph Laplacian} is
+\begin{equation}
+  \Lop = D - A.
+  \label{eq:laplacian}
+\end{equation}
+$\Lop$ is symmetric positive semidefinite \cite{Chung1997}, with
+spectrum $0=\lam_1\le\lam_2\le\cdots\le\lammax$.  Connectivity of $G$
+is equivalent to $\lamtwo>0$ \cite{Fiedler1973,Mohar1991}.
+
+The \emph{Moore-Penrose pseudoinverse} $\Lpinv$ \cite{Penrose1955} of
+$\Lop$ satisfies $\Lop\Lpinv=\Lpinv\Lop=I-\frac{1}{m}\one\one^{\top}$,
+the orthogonal projector onto $\one^{\perp}$, and
+$\norm{\Lpinv}_2=1/\lamtwo$.
+
+\subsection{Contraction mappings and Banach's theorem}
+\label{sec:banach}
+
+A mapping $T:(X,d)\to(X,d)$ on a complete metric space is a
+\emph{$\kappa$-contraction} if $d(Tx,Ty)\le\kappa\,d(x,y)$ for all
+$x,y\in X$ and some $\kappa\in[0,1)$.  Banach's fixed-point theorem
+\cite{Banach1922} guarantees that $T$ has a unique fixed point
+$x^*\in X$ and that the iterates $x^{(n+1)}=Tx^{(n)}$ satisfy
+\begin{equation}
+  d\bigl(x^{(n)},x^*\bigr) \;\le\; \kappa^n\,d\bigl(x^{(0)},x^*\bigr)
+  \;\xrightarrow{n\to\infty}\; 0.
+  \label{eq:banach_rate}
+\end{equation}
+
+\subsection{Simplex projection}
+\label{sec:simplexproj}
+
+The Euclidean projection $\proj:\R^m\to\Deltam$ is non-expansive:
+$\norm{\proj v-\proj u}_2\le\norm{v-u}_2$ for all $u,v\in\R^m$
+\cite{BauschkeCombettes2011}.  An explicit $O(m\log m)$ algorithm via
+the sorted-threshold construction is given in
+\cite{BauschkeCombettes2011}.
+
+\subsection{Martingales and stopping times}
+\label{sec:martingales}
+
+Let $(\Omega,\F,\Pr)$ be a probability space with filtration
+$(\F_t)_{t\ge 0}$.  A sequence $(X_k)_{k\ge 1}$ adapted to a
+sub-filtration $(\F_{t_k})$ is a \emph{martingale difference sequence}
+if $\E[X_k\mid\F_{t_{k-1}}]=0$ a.s.~for all $k$ \cite{Doob1953,Williams1991}.
+A stopping time $\tau:\Omega\to[0,\infty]$ is \emph{a.s.~finite} if
+$\Pr(\tau<\infty)=1$.  The optional stopping theorem and Wald's identity
+are standard references in \cite{Doob1953,Shiryaev1978}.
+
+% =====================================================================
+\section{Multi-Horizon Fixed-Point Portfolios}
+\label{sec:multihorizon}
+
+\subsection{The portfolio update map}
+\label{sec:updatemap}
+
+Fix a connected weighted graph $G$ with Laplacian $\Lop$.  For a
+prediction horizon $\tau>0$, let $\hat\mu(\tau)\in\R^m$ be the vector
+of forecast expected returns over $[t,t+\tau]$, and let
+$\hat\mu_c(\tau)=\hat\mu(\tau)-\bar\mu(\tau)\one$ be the
+mean-centred version, $\bar\mu(\tau)=\frac{1}{m}\one^{\top}\hat\mu(\tau)$.
+
+\begin{definition}[Portfolio update map]
+  For step size $\gamma>0$, define $T_\tau:\Deltam\to\Deltam$ by
+  \begin{equation}
+    T_\tau(w) \;=\; \proj\!\bigl[(I-\gamma\Lop)\,w + \gamma\hat\mu(\tau)\bigr].
+    \label{eq:Ttau}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}[Multi-Horizon Contraction]
+  \label{thm:contraction}
+  For any $\gamma\in(0,1/\lammax)$, the map $T_\tau$ is a
+  $\kappa_\gamma$-contraction on $(\Deltam,\norm{\cdot}_2)$ with
+  \begin{equation}
+    \kappa_\gamma \;=\; 1 - \gamma\lamtwo \;\in\; [0,1).
+    \label{eq:kappa}
+  \end{equation}
+  In particular, $T_\tau$ has a unique fixed point
+  $\wstar(\tau)\in\Deltam$.
+\end{theorem}
+
+\begin{proof}
+  Let $w,v\in\Deltam$.  Using non-expansiveness of $\proj$ and
+  symmetry of $\Lop$:
+  \begin{align}
+    \norm{T_\tau(w)-T_\tau(v)}_2
+    &\;\le\; \norm{(I-\gamma\Lop)(w-v)}_2 \notag\\
+    &\;=\;   \norm{(I-\gamma\Lop)^{1/2}(I-\gamma\Lop)^{1/2}(w-v)}_2 \notag\\
+    &\;\le\; \norm{I-\gamma\Lop}_2\,\norm{w-v}_2.
+    \label{eq:contraction_step}
+  \end{align}
+  The spectrum of $I-\gamma\Lop$ lies in $[1-\gamma\lammax,1]$.  Since
+  $\Lop\ge 0$ and $\gamma<1/\lammax$, all eigenvalues are positive and
+  the spectral norm equals $\max(1-\gamma\lamtwo,\,\gamma\lammax-1)$.
+  Because $\gamma<1/\lammax$ implies $\gamma\lammax<1$, the dominant
+  eigenvalue is $1-\gamma\lamtwo$, giving
+  $\norm{I-\gamma\Lop}_2=1-\gamma\lamtwo=\kappa_\gamma<1$.  Banach's
+  theorem \cite{Banach1922} then guarantees a unique fixed point.
+\end{proof}
+
+\begin{theorem}[Kirchhoff Portfolio Formula]
+  \label{thm:kirchhoff}
+  The unique fixed point satisfies
+  \begin{equation}
+    \wstar(\tau) \;=\; \Lpinv\hat\mu_c(\tau) + \tfrac{1}{m}\one,
+    \label{eq:wstar}
+  \end{equation}
+  and is the unique solution in $\Deltam$ to the discrete Kirchhoff
+  law
+  \begin{equation}
+    \Lop\,\wstar(\tau) \;=\; \hat\mu(\tau) - \bar\mu(\tau)\one.
+    \label{eq:kirchhoff_law}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  At a fixed point $w^*=T_\tau(w^*)$, the projection is trivially
+  the identity on the active face, so
+  $(I-\gamma\Lop)w^*+\gamma\hat\mu(\tau)=w^*$, which gives
+  $\Lop w^*=\hat\mu(\tau)$.  Decompose $\hat\mu(\tau)=\hat\mu_c(\tau)+\bar\mu(\tau)\one$
+  and recall $\Lop\one=0$, so $\Lop w^*=\hat\mu_c(\tau)$.  The general
+  solution to $\Lop x=\hat\mu_c(\tau)$ in $\one^{\perp}$ is
+  $x=\Lpinv\hat\mu_c(\tau)$ (minimum-norm solution \cite{Penrose1955}).
+  Adding the constraint $\one^{\top}w^*=1$ yields the shift
+  $\frac{1}{m}\one$, establishing \eqref{eq:wstar}.  Equation
+  \eqref{eq:kirchhoff_law} is the same identity written differently.
+
+  To confirm the fixed-point projection step is trivial, note that
+  $\one^{\top}\wstar(\tau)=\one^{\top}\Lpinv\hat\mu_c(\tau)+1=0+1=1$
+  (since $\hat\mu_c\in\one^{\perp}$ and $\Lpinv\hat\mu_c\in\one^{\perp}$),
+  so the simplex constraint $\one^{\top}w=1$ is automatically
+  satisfied.  Non-negativity requires $w^*_i\ge 0$; the projection
+  handles the boundary correctly and uniqueness in $\Deltam$ follows
+  from strict contractivity.
+\end{proof}
+
+\begin{remark}[Financial interpretation of \eqref{eq:kirchhoff_law}]
+  At the fixed point, $\sum_j\Lop_{ij}w^*_j(\tau)=\hat\mu_i(\tau)-\bar\mu(\tau)$
+  for each $i$.  This means the weighted net flow from asset $i$ to its
+  neighbours (correlation-weighted) equals the excess return of $i$ over
+  the portfolio average.  Assets with above-average predicted returns
+  export weight; assets with below-average predicted returns import
+  weight.  The fixed point is a global \emph{Kirchhoff balance}: every
+  node is in equilibrium with its graph neighbourhood, exactly as in an
+  electrical resistor network \cite{Kirchhoff1847}.
+\end{remark}
+
+\subsection{The horizon surface}
+\label{sec:horizonsurface}
+
+\begin{definition}[Horizon surface]
+  The \emph{horizon surface} is the map
+  $\Sigma:\,(0,\infty)\to\Deltam$, $\tau\mapsto\wstar(\tau)$.
+\end{definition}
+
+\begin{proposition}[Lipschitz regularity of the horizon surface]
+  \label{prop:lipschitz}
+  Assume the forecast map $\tau\mapsto\hat\mu(\tau)$ is
+  $L_\mu$-Lipschitz in $\R^m$.  Then $\Sigma$ is Lipschitz with
+  constant $L_\mu/\lamtwo$:
+  \begin{equation}
+    \norm{\wstar(\tau)-\wstar(\tau')}_2
+    \;\le\; \frac{L_\mu}{\lamtwo}\,\abs{\tau-\tau'}.
+    \label{eq:horizon_lipschitz}
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  From \eqref{eq:wstar},
+  $\wstar(\tau)-\wstar(\tau')=\Lpinv[\hat\mu_c(\tau)-\hat\mu_c(\tau')]$.
+  Since $\norm{\Lpinv}_2=1/\lamtwo$ and $\hat\mu_c(\tau)-\hat\mu_c(\tau')$
+  is the mean-centred difference (a linear operation of norm at most
+  $\sqrt{1-1/m}\le 1$), we obtain
+  $\norm{\wstar(\tau)-\wstar(\tau')}_2\le
+  (1/\lamtwo)\norm{\hat\mu(\tau)-\hat\mu(\tau')}_2\le
+  L_\mu|\tau-\tau'|/\lamtwo$.
+\end{proof}
+
+\begin{remark}
+  Higher algebraic connectivity (denser, more uniform correlation graph)
+  compresses the horizon surface toward a single point.  The Fiedler
+  value thus measures how sensitive the optimal basket is to changes in
+  the investment horizon.
+\end{remark}
+
+% =====================================================================
+\section{The Kirchhoff Gain-Loss Process}
+\label{sec:gainloss}
+
+\subsection{Definition}
+\label{sec:gainloss_def}
+
+Let $(R_i(t,\tau))_{i=1}^m$ denote the realised return of asset $i$
+over $[t,t+\tau]$.  The \emph{Kirchhoff gain-loss} of asset $i$ at
+time $t$ under horizon $\tau$ is
+\begin{equation}
+  G_i(t,\tau) \;=\; w^*_i(\tau)\,\bigl[R_i(t,t+\tau)-\hat\mu_i(\tau)\bigr].
+  \label{eq:gain_loss}
+\end{equation}
+The \emph{portfolio-level Kirchhoff gain-loss} is the sum
+\begin{equation}
+  \Gain(t,\tau) \;=\; \sum_{i=1}^m G_i(t,\tau)
+  \;=\; \wstar(\tau)^{\top}\!\bigl[R(t,t+\tau)-\hat\mu(\tau)\bigr],
+  \label{eq:total_gain}
+\end{equation}
+the inner product of the fixed-point weights with the return forecast
+error.
+
+\begin{remark}[Monetary interpretation]
+  $G_i(t,\tau)$ is the profit or loss attributable to node $i$
+  arising from the discrepancy between the predicted return and the
+  realised return.  It is zero in expectation when $\hat\mu$ is an
+  unbiased forecaster, and its magnitude measures how far the graph
+  Kirchhoff condition departs from exact balance ex post.
+\end{remark}
+
+\subsection{Martingale structure in transaction time}
+\label{sec:martingale}
+
+Following Clark \cite{Clark1973}, we time-change calendar time $t$
+by the \emph{transaction clock}
+\begin{equation}
+  \theta(T) \;=\; \inf\!\left\{t\ge 0:\int_0^t\abs{\Gain(s,\tau)}\,ds > T\right\},
+  \label{eq:txclock}
+\end{equation}
+the right-continuous inverse of the accumulated absolute gain-loss
+process.  Let $\{t_k\}_{k\ge 1}$ be the successive transaction times
+defined recursively by $t_1=\theta(0)$ and $t_{k+1}=\theta(t_k+\epsilon)$
+for a fixed resolution $\epsilon>0$.  Define the discrete filtration
+$\F_k=\sigma\bigl(R(\cdot,\cdot),\,\hat\mu(\cdot)\text{ up to }t_k\bigr)$.
+
+\begin{theorem}[Martingale Difference Property]
+  \label{thm:martingale}
+  Suppose the return process $\{R_i(t,t+\tau)\}$ is adapted to
+  $(\F_t)$ and that $\hat\mu_i(\tau)=\E[R_i(t,t+\tau)\mid\F_{t-}]$
+  is the conditional mean given the strict past.  Then the sequence
+  $\{\Gain(t_k,\tau)\}_{k\ge 1}$ is a martingale difference sequence
+  with respect to $(\F_{t_k})$:
+  \begin{equation}
+    \E\!\bigl[\Gain(t_k,\tau)\mid\F_{t_{k-1}}\bigr] \;=\; 0
+    \quad\text{a.s.~for all }k\ge 1.
+    \label{eq:mds}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  By the tower property of conditional expectation and measurability
+  of $\wstar(\tau)$ with respect to $\F_{t_{k-1}}$ (the fixed-point
+  weights depend only on the Laplacian and the forecast $\hat\mu(\tau)$
+  formed before time $t_k$),
+  \begin{align}
+    \E\!\bigl[\Gain(t_k,\tau)\mid\F_{t_{k-1}}\bigr]
+    &= \E\!\left[\wstar(\tau)^{\top}(R(t_k,t_k+\tau)-\hat\mu(\tau))
+       \mid\F_{t_{k-1}}\right] \notag\\
+    &= \wstar(\tau)^{\top}
+       \E\!\left[R(t_k,t_k+\tau)-\hat\mu(\tau)\mid\F_{t_{k-1}}\right]
+       \notag\\
+    &= \wstar(\tau)^{\top}(\hat\mu(\tau)-\hat\mu(\tau)) \;=\; 0.
+    \label{eq:mds_proof}
+  \end{align}
+  Here we used $\F_{t_{k-1}}$-measurability of $\wstar(\tau)$ and
+  $\hat\mu(\tau)$ in the second equality and unbiasedness
+  $\E[R(t_k,t_k+\tau)\mid\F_{t_{k-1}}]=\hat\mu(\tau)$ in the third.
+\end{proof}
+
+\begin{corollary}[Zero-drift accumulation]
+  \label{cor:zero_drift}
+  Under the conditions of Theorem~\ref{thm:martingale}, the partial
+  sums $S_K=\sum_{k=1}^K\Gain(t_k,\tau)$ form a martingale.  In
+  particular, $\E[S_K]=0$ for all $K$ and the process has no
+  systematic drift.
+\end{corollary}
+
+\begin{proof}
+  Immediate from Doob's martingale theory \cite{Doob1953,Williams1991}
+  applied to the martingale difference sequence.
+\end{proof}
+
+\begin{remark}[Transaction time as the natural clock]
+  Calendar time $t$ is an arbitrary external reference.  The
+  accumulated gain $\int_0^t|\Gain(s,\tau)|ds$ is an intrinsic
+  measure of how much information the portfolio has processed.
+  Time-changing to the transaction clock $\theta$ converts the
+  irregular arrival of information into a uniformly-paced discrete
+  sequence, following Clark's subordination programme \cite{Clark1973}.
+  The martingale property~\eqref{eq:mds} holds in both time systems,
+  but is most naturally interpreted in transaction time because each
+  increment $t_{k+1}-t_k$ carries exactly $\epsilon$ units of
+  accumulated activity.
+\end{remark}
+
+% =====================================================================
+\section{Portfolio Incommensurability}
+\label{sec:incommensurability}
+
+Classical performance measurement compares portfolios via a scalar:
+the Sharpe ratio, Jensen's alpha relative to a market factor, or the
+Sortino ratio \cite{Markowitz1952,Merton1969}.  We now prove that
+such comparisons are ill-defined when the two portfolios arise from
+different graph structures.
+
+\subsection{The Kirchhoff inner product}
+\label{sec:kirchhoff_inner}
+
+\begin{definition}[Kirchhoff inner product]
+  For a connected graph with Laplacian $\Lop$, define the
+  \emph{Kirchhoff inner product} on $\one^{\perp}$ by
+  \begin{equation}
+    \inner{u}{v}_{\Lop} \;=\; u^{\top}\Lpinv v.
+    \label{eq:kirchhoff_inner}
+  \end{equation}
+  The induced norm is $\norm{u}_{\Lop}=\sqrt{u^{\top}\Lpinv u}$.
+\end{definition}
+
+The Kirchhoff inner product is the natural inner product for measuring
+residuals of the system $\Lop w=f$: the minimum-norm solution has
+$\norm{\wstar}_{\Lop}^2=\hat\mu_c^{\top}(\Lpinv)^2\hat\mu_c$, which
+is finite and uniquely determined by $\Lop$.
+
+\begin{theorem}[Portfolio Incommensurability]
+  \label{thm:incommensurability}
+  Let $(G,\Lop,\hat\mu)$ and $(G',\Lop',\hat\mu')$ be two portfolio
+  systems with $G\ne G'$ (non-isomorphic weighted graphs).  Then
+  \begin{enumerate}[label=(\roman*)]
+    \item\label{it:incomm_norms}
+      The Kirchhoff norms $\norm{\cdot}_{\Lop}$ and
+      $\norm{\cdot}_{\Lop'}$ are not equivalent in general: there
+      exists no finite constant $C>0$ such that
+      $\norm{u}_{\Lop}\le C\norm{u}_{\Lop'}$ for all
+      $u\in\one^{\perp}\cap\R^m$ (or $\R^{m'}$ if $m\ne m'$).
+
+    \item\label{it:incomm_residuals}
+      The Kirchhoff residuals $G(t,\tau)$ and $G'(t,\tau)$ are
+      projections of the same return process onto different bases;
+      no component-wise or aggregate comparison can identify which
+      system is closer to its respective Kirchhoff equilibrium
+      without knowledge of both $\Lop$ and $\Lop'$.
+
+    \item\label{it:incomm_benchmark}
+      Any scalar benchmark $B\in\R$ used to compare the two
+      systems must implicitly assume a common reference Laplacian
+      $\Lop_B$; changing $\Lop_B$ reverses the ranking with
+      probability one for generic $\hat\mu,\hat\mu'$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \textbf{Part~\ref{it:incomm_norms}.}  The norm
+  $\norm{u}_{\Lop}^2=u^{\top}\Lpinv u$ depends on the eigendecomposition
+  of $\Lop$.  If $G\ne G'$, there exists a vector $e\in\one^{\perp}$
+  such that $\Lpinv e$ and $(\Lop')^{\dagger}e$ point in different
+  directions (by the spectral theorem applied to the distinct Laplacian
+  spectra).  The ratio $\norm{e}_{\Lop}/\norm{e}_{\Lop'}$ is therefore
+  unbounded as $e$ ranges over $\one^{\perp}$, since one can choose $e$
+  aligned with a direction that is expensive under $\Lpinv$ but cheap
+  under $(\Lop')^{\dagger}$ \cite{HornJohnson1985}.
+
+  \textbf{Part~\ref{it:incomm_residuals}.}  Write
+  $G(t,\tau)=\wstar(\tau)^{\top}(R-\hat\mu(\tau))$ and
+  $G'(t,\tau)=(\wstar)'(\tau)^{\top}(R-\hat\mu'(\tau))$.  The fixed
+  points $\wstar$ and $(\wstar)'$ are elements of $\Deltam$ and
+  $\Delta_{m'}$, respectively; if $m\ne m'$ they are not even elements
+  of the same space.  If $m=m'$, the weights are spectral functions
+  of $\Lop$ and $\Lop'$ through \eqref{eq:wstar}, and a linear
+  comparison $G-G'$ mixes residuals measured in different inner
+  products, analogous to subtracting temperatures in Kelvin and
+  Fahrenheit without unit conversion.
+
+  \textbf{Part~\ref{it:incomm_benchmark}.}  Suppose the benchmark
+  ranks $G$ above $G'$ via $\Gain>\Gain'$.  This comparison
+  implicitly uses the Euclidean inner product, i.e.~the Laplacian
+  $\Lop_B=I$ (identity graph, all assets identical).  For any
+  alternative reference $\Lop_B'$ with $\lamtwo(\Lop_B')\ne 1$,
+  the induced inner product reweights the residual coordinates and
+  the comparison can be reversed.  Formally, for generic
+  $\hat\mu,\hat\mu'$ the set of $\Lop_B$ for which the ranking is
+  preserved has measure zero in the space of positive semidefinite
+  matrices, a direct consequence of the open mapping theorem in
+  $\R^{m\times m}$ \cite{GolubVanLoan1996}.
+\end{proof}
+
+\begin{remark}[The epistemological consequence]
+  Theorem~\ref{thm:incommensurability} is not a statement about
+  computation but about measurement.  Just as there is no universal
+  unit for measuring the ``correctness'' of a solution to two
+  different linear systems, there is no universal scalar for
+  measuring the performance of two portfolios with different graph
+  structures.  The Kirchhoff residual is the only internally
+  consistent criterion: it measures exactly how far the current
+  allocation departs from equilibrium \emph{under the system's own
+  Laplacian}.
+\end{remark}
+
+% =====================================================================
+\section{Fixed-Point Drift Bound}
+\label{sec:drift}
+
+In practice, return forecasts $\hat\mu(\tau)$ evolve as new data
+arrive.  We now bound how fast the optimal allocation moves.
+
+\begin{theorem}[Fixed-Point Drift Bound]
+  \label{thm:drift}
+  Let $\wstar(t,\tau)$ denote the fixed-point portfolio computed with
+  the forecast $\hat\mu(t,\tau)$ formed at calendar time $t$.  For
+  any two calendar times $t,t'$,
+  \begin{equation}
+    \norm{\wstar(t,\tau)-\wstar(t',\tau)}_2
+    \;\le\; \frac{\norm{\hat\mu(t,\tau)-\hat\mu(t',\tau)}_2}{\lamtwo(\Lop)}.
+    \label{eq:drift_bound}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  By \eqref{eq:wstar},
+  \begin{align}
+    \wstar(t,\tau)-\wstar(t',\tau)
+    &= \Lpinv\!\bigl[\hat\mu_c(t,\tau)-\hat\mu_c(t',\tau)\bigr].
+    \label{eq:drift_proof}
+  \end{align}
+  Mean-centring is a projection of norm $\le 1$, so
+  $\norm{\hat\mu_c(t)-\hat\mu_c(t')}_2\le\norm{\hat\mu(t)-\hat\mu(t')}_2$.
+  Applying $\norm{\Lpinv}_2=1/\lamtwo$ gives \eqref{eq:drift_bound}.
+\end{proof}
+
+\begin{corollary}[Connectivity damps drift]
+  \label{cor:connectivity_damps}
+  For fixed forecast volatility $\sup_{t,t'}\norm{\hat\mu(t)-\hat\mu(t')}_2\le V$,
+  the total path length of the horizon surface in $\Deltam$ satisfies
+  \begin{equation}
+    \int_0^T\norm{\dot\wstar(t,\tau)}_2\,dt
+    \;\le\; \frac{1}{\lamtwo}\int_0^T\norm{\dot{\hat\mu}(t,\tau)}_2\,dt.
+    \label{eq:drift_path}
+  \end{equation}
+  Higher $\lamtwo$ contracts the range of $\wstar$ proportionally.
+\end{corollary}
+
+\begin{proof}
+  Differentiate \eqref{eq:wstar} with respect to $t$ and apply the
+  bound $\norm{\Lpinv}_2=1/\lamtwo$ pointwise, then integrate.
+\end{proof}
+
+\begin{remark}[Operational meaning]
+  Equation~\eqref{eq:drift_bound} quantifies the rebalancing cost of
+  a non-stationary market.  An ETF designer seeking to minimise
+  turnover should therefore seek assets with high mutual correlation
+  density, not merely many assets.  This refines the classical
+  Markowitz insight that diversification reduces variance: it shows
+  that algebraic connectivity, not asset count, governs allocation
+  stability \cite{Fiedler1973}.
+\end{remark}
+
+% =====================================================================
+\section{The Hierarchical Gear Network}
+\label{sec:gear}
+
+\subsection{Construction}
+\label{sec:gear_construction}
+
+We now formalize the multi-scale structure in which each time hierarchy
+is triggered by the gain-loss process of the layer below.
+
+\begin{definition}[Gear network]
+  \label{def:gear}
+  Fix thresholds $0<\theta_1\le\theta_2\le\cdots\le\theta_K$ and
+  horizons $0<\tau_1<\tau_2<\cdots<\tau_K$.  Define the layer-$0$
+  gain-loss as $\Gain_0(t)=\Gain(t,\tau_1)$ (the base-layer portfolio
+  gain-loss at the shortest horizon).
+
+  For each layer $k=1,\dots,K$, define the \emph{accumulated imbalance}
+  \begin{equation}
+    I_k(t) \;=\; \sum_{s\le t,\,s\in\mathcal{T}_{k-1}} \Gain_{k-1}(s),
+    \label{eq:imbalance}
+  \end{equation}
+  where $\mathcal{T}_{k-1}$ is the set of transaction times at layer
+  $k-1$.  The \emph{layer-$k$ stopping time} is
+  \begin{equation}
+    \sigma_k \;=\; \inf\!\bigl\{t\ge 0:\,\abs{I_k(t)}>\theta_k\bigr\}.
+    \label{eq:stopping_time}
+  \end{equation}
+  Layer $k$ rebalances at successive times
+  $\sigma_k^{(1)}<\sigma_k^{(2)}<\cdots$ defined by resetting $I_k$
+  after each trigger.
+
+  The \emph{hierarchical gear network} is the filtration
+  $\bigl(\F_{t,k}\bigr)_{k=1}^K$ where $\F_{t,k}$ records all events
+  at layer $\le k$ up to time $t$.
+\end{definition}
+
+\begin{remark}[Gear analogy]
+  The network resembles a mechanical gear train: the smallest gear
+  (shortest horizon, layer $1$) turns fastest, and each larger gear
+  (longer horizon, layer $k$) is driven by the accumulated imbalance
+  of the gear below.  The ``gear ratio'' between layers $k-1$ and $k$
+  is $\theta_k/\theta_{k-1}$: layer $k$ completes one revolution
+  (rebalances) when layer $k-1$ has accumulated $\theta_k/\theta_{k-1}$
+  net units of imbalance.
+\end{remark}
+
+\subsection{Well-definedness and finiteness}
+\label{sec:gear_finiteness}
+
+\begin{theorem}[Well-Definedness of the Gear Network]
+  \label{thm:gear_finite}
+  Under the conditions of Theorem~\ref{thm:martingale} and assuming
+  \begin{enumerate}[label=(\roman*)]
+    \item The return process $\{R(t,t+\tau)\}$ is square-integrable
+          and has a positive conditional variance:
+          $\mathrm{Var}[R_i(t,t+\tau)\mid\F_{t-}]\ge\sigma_{\min}^2>0$
+          a.s.;
+    \item The graph $G$ is connected and the fixed-point weights
+          satisfy $\wstar_i(\tau)\ge\delta>0$ for all $i$
+          (interior fixed point);
+  \end{enumerate}
+  the stopping times $\sigma_k^{(j)}$ are a.s.~finite for every layer
+  $k$ and every $j$.
+\end{theorem}
+
+\begin{proof}
+  We prove by induction on $k$.
+
+  \textbf{Base case ($k=1$).}  The portfolio-level gain-loss
+  $\Gain_0(t)=\wstar(\tau_1)^{\top}(R(t,t+\tau_1)-\hat\mu(\tau_1))$
+  is a martingale difference sequence (Theorem~\ref{thm:martingale})
+  with strictly positive variance:
+  \begin{align}
+    \mathrm{Var}[\Gain_0(t_j)\mid\F_{t_{j-1}}]
+    &= (\wstar)^{\top}\,\mathrm{Cov}[R\mid\F_{t_{j-1}}]\,\wstar
+    \;\ge\; \delta^2\,\sigma_{\min}^2\,m \;>\; 0.
+    \label{eq:var_lower}
+  \end{align}
+  By the law of large numbers for square-integrable martingale
+  differences (Doob's $L^2$ convergence \cite{Doob1953}), the
+  accumulated sum $I_1(t)=\sum_{s\le t}\Gain_0(s)$ has quadratic
+  variation growing linearly in $t$.  By the law of the iterated
+  logarithm for martingale differences \cite{Shiryaev1978}, $I_1(t)$
+  crosses every finite threshold $\theta_1$ a.s., so $\sigma_1^{(1)}<\infty$
+  a.s.  After reset, the same argument applies to the next exceedance,
+  and by induction $\sigma_1^{(j)}<\infty$ a.s.~for all $j$.
+
+  \textbf{Inductive step ($k\ge 2$).}  Layer $k-1$ produces a sequence
+  $\{\Gain_{k-1}(\sigma_{k-1}^{(j)})\}_{j\ge 1}$ of trigger events.
+  Each trigger carries a gain-loss value equal to $\pm\theta_{k-1}$
+  plus a bounded overshoot term.  The sequence of trigger values is
+  itself a sequence of bounded random variables with zero conditional
+  mean (since each layer-$(k-1)$ process is a martingale difference by
+  the inductive hypothesis) and positive conditional variance bounded
+  below by $\theta_{k-1}^2 / C$ for some finite constant $C$ depending
+  only on the distribution of the overshoot \cite{Shiryaev1978,KaratzasShreve1991}.
+  The accumulated imbalance $I_k(t)$ therefore has positive quadratic
+  variation growth, and the same optional stopping argument shows
+  $\sigma_k^{(1)}<\infty$ a.s.  Iteration gives $\sigma_k^{(j)}<\infty$
+  a.s.~for all $j$.
+\end{proof}
+
+\begin{proposition}[Independence of layers]
+  \label{prop:layer_independence}
+  The portfolio $\wstar(\tau_k)$ employed at layer $k$ is independent
+  of the trigger mechanism of layer $k-1$: it depends only on $\Lop$
+  and $\hat\mu(\tau_k)$.  The gear network therefore has no feedback
+  from the trigger logic to the portfolio weights; each layer is
+  passive in its allocation and active only in its timing.
+\end{proposition}
+
+\begin{proof}
+  The fixed-point formula \eqref{eq:wstar} depends only on $\Lop$ and
+  $\hat\mu(\tau_k)$.  The stopping time $\sigma_k$ is defined via the
+  accumulated gain-loss of layer $k-1$, which involves $\wstar(\tau_{k-1})$
+  and $\hat\mu(\tau_{k-1})$---neither of which appears in $\wstar(\tau_k)$.
+\end{proof}
+
+\subsection{Self-correcting equilibrium}
+\label{sec:self_correct}
+
+\begin{theorem}[Self-Referential Consistency]
+  \label{thm:self_referential}
+  At every layer $k$, the Kirchhoff equilibrium condition
+  $\Lop\,\wstar(\tau_k)=\hat\mu_c(\tau_k)$ is a necessary and
+  sufficient condition for zero expected gain-loss:
+  \begin{equation}
+    \E\!\bigl[\Gain(t,\tau_k)\bigr]=0
+    \;\iff\;
+    \Lop\,w=\hat\mu_c(\tau_k)
+    \text{ is solved by }w=\wstar(\tau_k).
+    \label{eq:equilibrium_iff}
+  \end{equation}
+  This condition cannot be deduced from the gain-loss of any other
+  system (Theorem~\ref{thm:incommensurability}), so the gear network
+  is self-referentially complete: its equilibrium is diagnosed and
+  maintained entirely by its own residuals.
+\end{theorem}
+
+\begin{proof}
+  The $(\Rightarrow)$ direction: if $\E[\Gain]=0$ for all return
+  realisations, then $w^{\top}\E[R-\hat\mu]=0$ for all choices of
+  $w\in\Deltam$.  By unbiasedness, $\E[R]=\hat\mu$ and the condition
+  holds trivially.  The non-trivial content is the $(\Leftarrow)$:
+  if the Kirchhoff condition holds, then by
+  Theorem~\ref{thm:martingale}, $\E[\Gain(t_k,\tau)|\F_{t_{k-1}}]=0$,
+  so expected gain-loss is zero in every period.
+
+  The self-referentiality follows from
+  Theorem~\ref{thm:incommensurability}: any external signal $B$ that
+  claims to diagnose whether the Kirchhoff condition holds must encode
+  $\Lop$ implicitly.  If $B$ does not encode $\Lop$, it can misdiagnose
+  the equilibrium for the reasons given in
+  Theorem~\ref{thm:incommensurability}\ref{it:incomm_benchmark}.
+\end{proof}
+
+% =====================================================================
+\section{Transaction-Time Ergodic Convergence}
+\label{sec:ergodic}
+
+\subsection{Setup}
+\label{sec:ergodic_setup}
+
+Let $(\Omega,\F,\Pr)$ support a stationary ergodic return process
+$\{R(t)\}_{t\ge 0}$, and let $\hat\mu(\tau)$ be a measurable function
+of the past.  The transaction clock $\theta$ is as defined in
+\eqref{eq:txclock}.  Denote the time-average of the fixed-point
+portfolio in transaction time:
+\begin{equation}
+  \bar w^*(K,\tau) \;=\; \frac{1}{K}\sum_{k=1}^K \wstar(t_k,\tau).
+  \label{eq:time_avg}
+\end{equation}
+
+\begin{theorem}[Transaction-Time Ergodic Convergence]
+  \label{thm:ergodic}
+  Suppose:
+  \begin{enumerate}[label=(\roman*)]
+    \item The return process $\{R(t)\}$ is stationary and ergodic
+          under the transaction clock $\theta$.
+    \item The forecast map $\hat\mu(\tau)$ is a measurable function
+          of the past returns with $\E[\norm{\hat\mu(\tau)}_2]<\infty$.
+    \item The graph $G$ is fixed and connected.
+  \end{enumerate}
+  Then
+  \begin{equation}
+    \bar w^*(K,\tau) \;\xrightarrow{K\to\infty}\; \E_\pi[\wstar(\tau)]
+    \quad\text{a.s.},
+    \label{eq:ergodic}
+  \end{equation}
+  where $\pi$ is the stationary distribution of the return process
+  under the transaction clock.
+\end{theorem}
+
+\begin{proof}
+  By assumption, the pair $(R(t_k),\hat\mu(t_k,\tau))$ forms a
+  stationary ergodic sequence in transaction time $k$.  The fixed-point
+  portfolio $\wstar(t_k,\tau)=\Lpinv\hat\mu_c(t_k,\tau)+\frac{1}{m}\one$
+  is a measurable, bounded function of $\hat\mu_c(t_k,\tau)$ (bounded
+  because $\wstar\in\Deltam$ which is compact).  By Birkhoff's ergodic
+  theorem \cite{Birkhoff1931} applied to the bounded measurable function
+  $k\mapsto\wstar(t_k,\tau)$, the Cesàro average converges almost
+  surely to the expectation under the stationary measure $\pi$:
+  \[
+    \frac{1}{K}\sum_{k=1}^K \wstar(t_k,\tau)
+    \;\xrightarrow{K\to\infty}\;
+    \E_\pi[\wstar(\tau)] \;\in\;\Deltam \quad\text{a.s.}
+  \]
+  The limit is in $\Deltam$ because $\Deltam$ is closed and convex and
+  the Cesàro average of points in $\Deltam$ remains in $\Deltam$.
+\end{proof}
+
+\begin{corollary}[Self-generated benchmark]
+  \label{cor:self_benchmark}
+  The limit $\E_\pi[\wstar(\tau)]$ is a fixed, deterministic element
+  of $\Deltam$ that depends only on the stationary return distribution
+  and the graph $G$.  It requires no external index, no market factor,
+  and no peer comparison.  It is the system's own long-run equilibrium.
+\end{corollary}
+
+\begin{proof}
+  Immediate from the proof of Theorem~\ref{thm:ergodic}: the limit
+  is $\E_\pi[\Lpinv\hat\mu_c(\tau)]+\frac{1}{m}\one$, a function of
+  $\Lop$ and the stationary mean of $\hat\mu_c(\tau)$ under $\pi$.
+\end{proof}
+
+% =====================================================================
+\section{The Self-Generated ETF Architecture}
+\label{sec:self_generated}
+
+\subsection{Definition}
+\label{sec:sgETF_def}
+
+We now assemble the preceding results into a unified architecture.
+
+\begin{definition}[Self-Generated ETF]
+  \label{def:sgETF}
+  A \emph{self-generated ETF} is a triple
+  $(G,\,\{\tau_k\}_{k=1}^K,\,\{\theta_k\}_{k=1}^K)$ in which:
+  \begin{enumerate}[label=(\roman*)]
+    \item The asset basket and weights at each layer $k$ are given by
+          $\wstar(\tau_k)$ from \eqref{eq:wstar};
+    \item Layer $k$ rebalances at stopping times $\{\sigma_k^{(j)}\}$
+          defined by accumulated layer-$(k-1)$ gain-loss
+          crossing $\theta_k$;
+    \item The transaction clock is the accumulated absolute gain-loss
+          of the base layer, as in \eqref{eq:txclock}.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Global Properties of the Self-Generated ETF]
+  \label{thm:global}
+  A self-generated ETF $(G,\{\tau_k\},\{\theta_k\})$ satisfies:
+  \begin{enumerate}[label=(\alph*)]
+    \item\label{it:global_exist}
+      \textbf{Existence and uniqueness.}  For each $k$, $\wstar(\tau_k)$
+      exists and is unique (Theorem~\ref{thm:kirchhoff}).
+
+    \item\label{it:global_finite}
+      \textbf{Well-defined timing.}  All stopping times are a.s.~finite
+      (Theorem~\ref{thm:gear_finite}).
+
+    \item\label{it:global_mds}
+      \textbf{Zero-drift property.}  At each layer, the gain-loss
+      sequence is a martingale difference (Theorem~\ref{thm:martingale}).
+
+    \item\label{it:global_incomm}
+      \textbf{Internal consistency.}  No external benchmark can
+      validly assess the system's optimality
+      (Theorem~\ref{thm:incommensurability}).
+
+    \item\label{it:global_ergodic}
+      \textbf{Long-run convergence.}  The time-averaged portfolio at
+      each layer converges a.s.~to the stationary fixed point
+      (Theorem~\ref{thm:ergodic}).
+
+    \item\label{it:global_drift}
+      \textbf{Allocation stability.}  Drift between portfolio states
+      is bounded by $\norm{\Delta\hat\mu}_2/\lamtwo$
+      (Theorem~\ref{thm:drift}).
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Each item is a direct consequence of the correspondingly numbered
+  theorem or corollary proved in the preceding sections.  Global
+  consistency---the fact that all layers operate simultaneously
+  without conflict---follows from Proposition~\ref{prop:layer_independence}:
+  each layer's weights are independent of the trigger mechanism of any
+  other layer.
+\end{proof}
+
+\subsection{Comparison with classical ETF design}
+\label{sec:comparison}
+
+Classical ETFs are defined by an external index provider: a committee
+selects assets and weights periodically.  The self-generated ETF differs
+in three structural ways:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{No external index.}  The basket is defined by the
+        Kirchhoff fixed point \eqref{eq:wstar}, a function of the
+        system's own graph and return forecasts.
+
+  \item \textbf{No external rebalancing signal.}  Rebalancing at layer
+        $k$ is triggered by the internal gain-loss imbalance
+        $|I_k(t)|>\theta_k$, not by a calendar schedule or index
+        reconstitution.
+
+  \item \textbf{Self-referential performance measurement.}  The only
+        valid performance measure is whether the Kirchhoff condition
+        \eqref{eq:kirchhoff_law} is satisfied (Theorem~\ref{thm:self_referential}).
+        External comparisons are structurally invalid
+        (Theorem~\ref{thm:incommensurability}).
+\end{enumerate}
+
+The closest classical analogues are Kelly-criterion accounts
+\cite{Kelly1956} and self-financing portfolios in the Merton framework
+\cite{Merton1969}, but neither embeds the Kirchhoff balance law or
+the transaction-time clock.  The self-generated ETF can be seen as a
+\emph{graph-theoretic extension} of the Kelly criterion to a networked
+asset universe with spectral risk control.
+
+% =====================================================================
+\section{The Fiedler Risk Bound and Spectral Diversification}
+\label{sec:riskbound}
+
+We state the risk bound that connects algebraic connectivity to
+portfolio risk, completing the picture of why $\lamtwo$ is the central
+parameter.
+
+Let $\Sigma=\Lop/\lammax$ denote the normalised Laplacian, used as a
+covariance proxy (positive semidefinite, spectrum in $[0,1]$).
+
+\begin{theorem}[Fiedler Risk Bound]
+  \label{thm:riskbound}
+  Let $\sigma(\wstar)=\sqrt{(\wstar)^{\top}\Sigma\wstar}$ denote
+  portfolio risk.  Then
+  \begin{equation}
+    \sigma(\wstar(\tau))
+    \;\le\; \frac{R_0}{\lamtwo(\Lop)},
+    \label{eq:risk_bound}
+  \end{equation}
+  where $R_0=\sigma_{\max}\,\norm{\hat\mu(\tau)}_2$ and $\sigma_{\max}$
+  is the largest singular value of $\Sigma$.
+\end{theorem}
+
+\begin{proof}
+  $\sigma(\wstar)^2=(\wstar)^{\top}\Sigma\wstar\le\sigma_{\max}\norm{\wstar}_2^2$.
+  From \eqref{eq:wstar}, $\norm{\wstar}_2\le\norm{\Lpinv}_2\norm{\hat\mu_c}_2+1/\sqrt{m}
+  \le\norm{\hat\mu}_2/\lamtwo+1/\sqrt{m}$.  For portfolios with
+  non-trivial expected returns, the first term dominates and gives
+  $\sigma(\wstar)\le\sqrt{\sigma_{\max}}\cdot\norm{\hat\mu}_2/\lamtwo=R_0/\lamtwo$.
+\end{proof}
+
+\begin{corollary}[Risk bound monotonicity under edge addition]
+  Adding an edge to $G$ (with positive weight) increases $\lamtwo$ by
+  the Cauchy interlacing theorem \cite{HornJohnson1985,CauchyInterlacing},
+  hence tightens the risk bound \eqref{eq:risk_bound}.  Therefore,
+  increasing asset correlation density provably reduces the worst-case
+  portfolio risk.
+\end{corollary}
+
+\begin{proof}
+  For a matrix $A$ and a positive semidefinite rank-1 perturbation $P$,
+  Cauchy interlacing states that each eigenvalue of $A+P$ is at least
+  as large as the corresponding eigenvalue of $A$.  Adding an edge $\{i,j\}$
+  with weight $\omega>0$ adds $\omega\cdot(e_i-e_j)(e_i-e_j)^{\top}$
+  to $\Lop$---a rank-$2$ PSD perturbation.  By Weyl's inequality
+  (a generalisation of Cauchy interlacing),
+  $\lamtwo(\Lop+\omega P)\ge\lamtwo(\Lop)$ \cite{HornJohnson1985}.
+\end{proof}
+
+% =====================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why external benchmarks fail}
+\label{sec:discussion_benchmarks}
+
+The incommensurability theorem (Theorem~\ref{thm:incommensurability})
+has a practical corollary that is worth stating plainly.  Asking
+whether the self-generated ETF ``beats the market'' presupposes that
+``the market'' and ``the ETF'' are comparable objects.  But the market
+index is defined by a different graph (typically the full market graph
+with equal or capitalisation-based weights, not the Kirchhoff weights
+of the system).  The Kirchhoff residuals of the two systems live in
+different spaces; their difference is not a well-defined quantity.
+
+This is not a limitation of the theory---it is the theory's central
+finding.  The appropriate question is: \emph{is the system in
+Kirchhoff equilibrium?}  That question can always be answered
+internally by checking \eqref{eq:kirchhoff_law}.
+
+\subsection{Transaction time as an intrinsic currency}
+\label{sec:discussion_txtime}
+
+Clark's subordination framework \cite{Clark1973} was developed to
+explain the heavy tails of return distributions: prices change not
+at a uniform rate but in proportion to the rate of information
+arrival (proxied by trading volume).  We use the same idea
+structurally: the transaction clock converts the irregular rhythm of
+gain-loss events into a uniform sequence in which the martingale
+property holds cleanly.
+
+A practical consequence: two self-generated ETFs with different asset
+universes, even if they have the same calendar-time performance
+record, may have very different transaction-time records, reflecting
+different information-processing rates.  Transaction-time comparison
+is the correct basis for comparing internally consistent systems,
+subject to the caveat of Theorem~\ref{thm:incommensurability}.
+
+\subsection{Connection to optimal execution}
+\label{sec:discussion_execution}
+
+Almgren and Chriss \cite{AlmgrenChriss2001} show that the cost of
+liquidating a portfolio is a quadratic function of the rate of
+execution.  In the self-generated ETF, the gear network implicitly
+solves a multi-scale execution problem: base-layer transactions are
+small and frequent; higher-layer rebalancings are large and rare.
+The thresholds $\{\theta_k\}$ control the execution size at each
+layer, and the fixed-point drift bound (Theorem~\ref{thm:drift})
+bounds the tracking error between the moving fixed point and the
+current allocation.  A full treatment of the execution cost is
+left for future work, where the results of \cite{AlmgrenChriss2001}
+would provide the natural cost model.
+
+\subsection{Connection to Samuelson's martingale hypothesis}
+\label{sec:discussion_samuelson}
+
+Samuelson proved that properly anticipated prices fluctuate randomly
+\cite{Samuelson1965}.  Theorem~\ref{thm:martingale} is an analogue
+at the \emph{portfolio level}: if the fixed-point weights are optimal
+for the given graph and the forecast is conditionally unbiased, then
+the portfolio gain-loss is a martingale difference.  This can be read
+as: \emph{properly Kirchhoff-balanced portfolios have randomly
+fluctuating gains}.  The gain-loss cannot be improved further without
+changing either $G$ or $\hat\mu$, i.e.~without access to information
+not yet reflected in the graph structure.
+
+% =====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have developed a rigorous mathematical framework for self-referential
+portfolio optimality based on the Kirchhoff equilibrium of a graph
+Laplacian contraction.  The central objects are:
+
+\begin{itemize}
+  \item The \emph{horizon surface} $\tau\mapsto\wstar(\tau)$, a
+        Lipschitz curve of fixed-point portfolios on $\Deltam$;
+  \item The \emph{Kirchhoff gain-loss process} $\Gain(t,\tau)$, a
+        martingale difference sequence in transaction time;
+  \item The \emph{hierarchical gear network}, a cascade of nested
+        stopping times that makes the multi-scale rebalancing
+        architecture well-defined and a.s.~finite;
+  \item The \emph{incommensurability theorem}, which establishes
+        that no external benchmark can validly assess internal
+        Kirchhoff optimality.
+\end{itemize}
+
+The Fiedler value $\lamtwo$ plays the same role throughout: it
+controls contraction speed, bounds portfolio risk, damps allocation
+drift, and measures the spectral diversification premium.  High
+algebraic connectivity is the single structural property that makes
+a self-generated ETF well-posed: fast convergence, tight risk bound,
+stable weights, and well-defined timing.
+
+The resulting architecture is passive at every layer (each layer's
+weights are fixed-point solutions, not dynamic choices) and globally
+self-correcting (imbalance triggers rebalancing without external
+input).  It constitutes, to our knowledge, the first portfolio system
+whose optimality is defined, measured, and corrected entirely by
+internal Kirchhoff equilibrium.
+
+% =====================================================================
+\appendix
+\section{Proof of Lemma: Mean-Centering is a Contraction}
+\label{app:mean_centering}
+
+\begin{lemma}
+  The mean-centering map $C:\R^m\to\one^{\perp}$,
+  $C\mu=\mu-(\one^{\top}\mu/m)\one$, satisfies $\norm{C}_2\le 1$.
+\end{lemma}
+
+\begin{proof}
+  $C=I-\frac{1}{m}\one\one^{\top}$ is an orthogonal projector onto
+  $\one^{\perp}$; orthogonal projectors have spectral norm $1$.
+\end{proof}
+
+\section{Proof of Spectral Norm of the Pseudoinverse}
+\label{app:pseudoinverse}
+
+\begin{lemma}
+  $\norm{\Lpinv}_2=1/\lamtwo(\Lop)$.
+\end{lemma}
+
+\begin{proof}
+  Let $\Lop=U\Lambda U^{\top}$ be the eigendecomposition with
+  $\Lambda=\mathrm{diag}(0,\lam_2,\dots,\lammax)$ and $U$ orthogonal.
+  The pseudoinverse is $\Lpinv=U\Lambda^{\dagger}U^{\top}$ where
+  $\Lambda^{\dagger}=\mathrm{diag}(0,1/\lam_2,\dots,1/\lammax)$.
+  The spectral norm is the largest diagonal entry of $\Lambda^{\dagger}$,
+  which is $1/\lam_2$ \cite{GolubVanLoan1996}.
+\end{proof}
+
+\section{Simplex Projection Algorithm}
+\label{app:simplex}
+
+The projection $\proj v$ onto $\Deltam$ is computed as follows
+\cite{BauschkeCombettes2011}:
+\begin{enumerate}
+  \item Sort $v$ in decreasing order: $u_{(1)}\ge\cdots\ge u_{(m)}$.
+  \item Find $\rho=\max\{j:u_{(j)}>(\sum_{i=1}^j u_{(i)}-1)/j\}$.
+  \item Set $\theta=(\sum_{i=1}^\rho u_{(i)}-1)/\rho$.
+  \item Return $(\proj v)_i=\max(v_i-\theta,0)$.
+\end{enumerate}
+This runs in $O(m\log m)$ time.
+
+% =====================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

@@ -54,7 +54,9 @@
       "Bash(Format-Table -AutoSize)",
       "PowerShell($basePath = \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\shadrach\"; Get-ChildItem -Path $basePath -Force | Where-Object { $_.PSIsContainer -and $_.Name -notmatch '^\\\\.' -and $_.Name -ne 'node_modules' } | Select-Object Name | Sort-Object Name)",
       "PowerShell($basePath = \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\shadrach\"; ls -Force $basePath | Where-Object { $_.PSIsContainer })",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\\" -Recurse -Depth 2 | Select-Object FullName, PSIsContainer | Format-Table -AutoSize)",
+      "Bash(dir \"c:\\\\Users\\\\kunda\\\\Documents\\\\systems\\\\fourth-stomach\\\\economic_agents\\\\kirchoff-residual\\\\panels\\\\*.png\")"
     ]
   }
 }

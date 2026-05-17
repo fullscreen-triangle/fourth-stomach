@@ -1,0 +1,492 @@
+{
+  "paper": "Paper 6: Multi-Horizon Kirchhoff Residuals",
+  "timestamp": "2026-05-17T15:11:03.254788",
+  "summary": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0
+  },
+  "clusters": {
+    "Cluster 1: Multi-Horizon Contraction": [
+      {
+        "theorem": "Multi-Horizon Contraction (Theorem 3.1)",
+        "description": "kappa = 1 - gamma*lambda2 < 1, matches (lambda_max - lambda2)/(lambda_max + lambda2)",
+        "kappa": 0.5249079382442137,
+        "kappa_formula": 0.5249079382442137,
+        "relative_error": 0.0,
+        "passed": true
+      },
+      {
+        "theorem": "Multi-Horizon Contraction (Theorem 3.1)",
+        "description": "T_tau is kappa-Lipschitz: ||T(w)-T(v)|| <= kappa*||w-v|| for 30 random pairs",
+        "kappa": 0.3569118276888098,
+        "violations": 0,
+        "pairs_tested": 30,
+        "passed": true
+      },
+      {
+        "theorem": "Multi-Horizon Contraction (Theorem 3.1)",
+        "description": "Three distinct w0 converge to same w* within 2000 iterations",
+        "max_gap_across_starts": 7.850462293418876e-17,
+        "tolerance": 1e-06,
+        "passed": true
+      },
+      {
+        "theorem": "Multi-Horizon Contraction (Theorem 3.1)",
+        "description": "Empirical contraction ratio matches predicted kappa within 12%",
+        "kappa_predicted": 0.5005939157255027,
+        "kappa_measured": 0.5005755595287044,
+        "relative_error": 3.666883719860878e-05,
+        "passed": true
+      },
+      {
+        "theorem": "Multi-Horizon Contraction (Theorem 3.1)",
+        "description": "Larger gamma gives smaller kappa and faster empirical convergence",
+        "kappa_slow": 0.8905638508008578,
+        "kappa_fast": 0.6716915524025733,
+        "error_slow": 0.00016932160648849444,
+        "error_fast": 7.49533784133425e-12,
+        "passed": true
+      }
+    ],
+    "Cluster 2: Kirchhoff Portfolio Formula": [
+      {
+        "theorem": "Kirchhoff Portfolio Formula (Theorem 3.2)",
+        "description": "Closed-form w* = L+mu_c + 1/m matches Banach limit (5000 iters)",
+        "formula_error": 3.671717528720129e-17,
+        "tolerance": 1e-05,
+        "passed": true
+      },
+      {
+        "theorem": "Kirchhoff Portfolio Formula (Theorem 3.2)",
+        "description": "Kirchhoff law L*w* = mu_c holds: max |L w* - mu_c| < 5e-7",
+        "max_kirchhoff_residual": 9.71445146547012e-17,
+        "tolerance": 5e-07,
+        "passed": true
+      },
+      {
+        "theorem": "Kirchhoff Portfolio Formula (Theorem 3.2)",
+        "description": "Simplex constraint 1^T w* = 1 for 10 random instances",
+        "max_deviation_from_1": 2.220446049250313e-16,
+        "tolerance": 1e-10,
+        "passed": true
+      },
+      {
+        "theorem": "Kirchhoff Portfolio Formula (Theorem 3.2)",
+        "description": "Pseudoinverse identity: L+ L = I - (1/m)*11^T",
+        "frobenius_error": 2.451031063762168e-15,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "theorem": "Kirchhoff Portfolio Formula (Theorem 3.2)",
+        "description": "Formula accuracy for m in {5,8,12,15,20}: max error across all",
+        "max_formula_error": 7.97218214573518e-17,
+        "tolerance": 0.0001,
+        "passed": true
+      }
+    ],
+    "Cluster 3: Horizon Surface Lipschitz": [
+      {
+        "theorem": "Horizon Surface Lipschitz (Proposition 3.3)",
+        "description": "||w*(mu_a) - w*(mu_b)|| <= ||mu_a - mu_b|| / lambda2 for 20 pairs",
+        "violations": 0,
+        "pairs_tested": 20,
+        "lambda_2": 2.053484736375204,
+        "passed": true
+      },
+      {
+        "theorem": "Horizon Surface Lipschitz (Proposition 3.3)",
+        "description": "Tightness: Lipschitz ratio along Fiedler eigenvector is in (0.5, 1]",
+        "lhs": 0.011393595579618308,
+        "rhs": 0.011393595579618316,
+        "ratio_lhs_rhs": 0.9999999999999115,
+        "passed": true
+      },
+      {
+        "theorem": "Horizon Surface Lipschitz (Proposition 3.3)",
+        "description": "Higher density => higher lambda2 => tighter Lipschitz bound; all ratios <= 1",
+        "lambda2_values": [
+          0.12379278301757501,
+          0.7895256452985464,
+          2.698812534539503,
+          3.662270177433342
+        ],
+        "ratio_lhs_rhs": [
+          0.06916675955631613,
+          0.21726820168311634,
+          0.4946065352394214,
+          0.7019618308141033
+        ],
+        "lambda2_monotone": true,
+        "all_ratios_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Horizon Surface Lipschitz (Proposition 3.3)",
+        "description": "||w*(mu + delta_mu) - w*(mu)|| is monotone increasing in ||delta_mu||",
+        "delta_norms": [
+          0.001,
+          0.005,
+          0.01,
+          0.05,
+          0.1
+        ],
+        "w_star_gaps": [
+          0.0008837058882732444,
+          0.004283536584451327,
+          0.009713124842112592,
+          0.04084517772499228,
+          0.0994629656092458
+        ],
+        "monotone": true,
+        "passed": true
+      },
+      {
+        "theorem": "Horizon Surface Lipschitz (Proposition 3.3)",
+        "description": "Cumulative path length of horizon surface bounded by sum(||Delta_mu||)/lambda2",
+        "path_length": 0.615408847424495,
+        "bound": 1.2861572383857418,
+        "ratio": 0.4784864782138887,
+        "passed": true
+      }
+    ],
+    "Cluster 4: Martingale Gain-Loss Structure": [
+      {
+        "theorem": "Martingale Gain-Loss (Theorem 4.1)",
+        "description": "E[G(t,tau)] = 0 for unbiased forecast; t-statistic < 3",
+        "mean_gain": 0.0003198276361295223,
+        "std_error": 0.0007099334871795863,
+        "t_statistic": 0.4505036625327796,
+        "K": 10000,
+        "passed": true
+      },
+      {
+        "theorem": "Martingale Gain-Loss (Theorem 4.1)",
+        "description": "Partial sums S_K / K -> 0; zero-drift martingale property",
+        "S_K_over_K": 0.004303007219055746,
+        "threshold": 0.05,
+        "K": 500,
+        "passed": 1
+      },
+      {
+        "theorem": "Martingale Gain-Loss (Theorem 4.1)",
+        "description": "Gain-loss variance is positive and within 10% of analytic value",
+        "var_analytic": 0.0001605216172577964,
+        "var_simulated": 0.000161550725068406,
+        "relative_error": 0.006411023189212388,
+        "passed": true
+      },
+      {
+        "theorem": "Martingale Gain-Loss (Theorem 4.1)",
+        "description": "Transaction clock (accumulated |G|) is monotone non-decreasing",
+        "monotone": true,
+        "final_clock_value": 10.251212297431554,
+        "K": 200,
+        "passed": true
+      },
+      {
+        "theorem": "Martingale Gain-Loss (Theorem 4.1)",
+        "description": "Unbiased forecast: mean gain \u2248 0; biased forecast: mean gain != 0",
+        "mean_gain_unbiased": 0.0005821716337913832,
+        "mean_gain_biased": -0.019417828366208614,
+        "K": 5000,
+        "passed": true
+      }
+    ],
+    "Cluster 5: Portfolio Incommensurability": [
+      {
+        "theorem": "Portfolio Incommensurability (Theorem 5.1)",
+        "description": "Kirchhoff norm ratio ||u||_La / ||u||_Lb varies > 2x across directions",
+        "ratio_range": 2.158991482142881,
+        "min_ratio": 1.563662824581337,
+        "max_ratio": 3.3759347192145848,
+        "threshold": 2.0,
+        "passed": true
+      },
+      {
+        "theorem": "Portfolio Incommensurability (Theorem 5.1)",
+        "description": "Same mu_c has different Kirchhoff norm under sparse vs dense L (ratio != 1)",
+        "norm_sparse": 0.05129290497252967,
+        "norm_dense": 0.020727795709611516,
+        "ratio": 2.4745952580352086,
+        "passed": true
+      },
+      {
+        "theorem": "Portfolio Incommensurability (Theorem 5.1)",
+        "description": "Ranking of A vs B reverses depending on which Laplacian is used as reference",
+        "A_score_under_La": 0.001219597855969652,
+        "A_score_under_Lb": 0.00010081060951352246,
+        "B_score_under_La": 0.0002803265067937986,
+        "B_score_under_Lb": 0.00014166962831783488,
+        "ranking_reversal": true,
+        "passed": true
+      },
+      {
+        "theorem": "Portfolio Incommensurability (Theorem 5.1)",
+        "description": "Max Kirchhoff norm ratio across 5 graph pairs and 10 directions > 3",
+        "max_ratio": 5.378920930114224,
+        "threshold": 3.0,
+        "passed": true
+      },
+      {
+        "theorem": "Portfolio Incommensurability (Theorem 5.1)",
+        "description": "Spectral gap drives incommensurability: all norm ratios > 1.1",
+        "spectral_gaps": [
+          2.8314071401486087,
+          2.4699823742543185,
+          2.2522800899622735
+        ],
+        "norm_ratios": [
+          2.620432700876398,
+          1.563170215992757,
+          1.312348708145328
+        ],
+        "passed": true
+      }
+    ],
+    "Cluster 6: Fixed-Point Drift Bound": [
+      {
+        "theorem": "Fixed-Point Drift Bound (Theorem 6.1)",
+        "description": "||w*(mu_a)-w*(mu_b)|| <= ||mu_a-mu_b|| / lambda2; 0 violations in 25 pairs",
+        "violations": 0,
+        "pairs_tested": 25,
+        "lambda_2": 1.6066308737960382,
+        "passed": true
+      },
+      {
+        "theorem": "Fixed-Point Drift Bound (Theorem 6.1)",
+        "description": "Drift decreases monotonically as density (lambda2) increases",
+        "inv_lambda2": [
+          2.370053665021408,
+          0.6119609574047018,
+          0.3144952989075811,
+          0.3033794380266056
+        ],
+        "actual_gaps": [
+          0.07076466330621577,
+          0.02922550445698717,
+          0.016962156628198378,
+          0.01673776160566976
+        ],
+        "monotone": true,
+        "passed": true
+      },
+      {
+        "theorem": "Fixed-Point Drift Bound (Theorem 6.1)",
+        "description": "Drift <= bound for all 4 density levels; bound shrinks with higher lambda2",
+        "bounds": [
+          0.20345002357110176,
+          0.02290551040257626,
+          0.011712864307769367,
+          0.008816206558095074
+        ],
+        "actuals": [
+          0.08068220371060128,
+          0.011962557593949024,
+          0.005618376583975283,
+          0.006345664119520646
+        ],
+        "all_valid": true,
+        "passed": true
+      },
+      {
+        "theorem": "Fixed-Point Drift Bound (Theorem 6.1)",
+        "description": "Along Fiedler eigenvector, drift ratio lhs/rhs in (0.5, 1]",
+        "lhs": 0.01293441404624095,
+        "rhs": 0.012934414046240949,
+        "ratio": 0.9999999999999228,
+        "passed": true
+      },
+      {
+        "theorem": "Fixed-Point Drift Bound (Theorem 6.1)",
+        "description": "Cumulative path length of w* trajectory <= sum ||Delta_mu|| / lambda2",
+        "path_w_star": 0.26606365508803403,
+        "path_mu_bound": 0.39824280776450605,
+        "ratio": 0.6680940619657479,
+        "passed": true
+      }
+    ],
+    "Cluster 7: Hierarchical Gear Network": [
+      {
+        "theorem": "Gear Network Well-Definedness (Theorem 7.1)",
+        "description": "Accumulated gain-loss crosses threshold 0.5 in all 20 simulation trials",
+        "crossings": 20,
+        "trials": 20,
+        "threshold": 0.5,
+        "passed": true
+      },
+      {
+        "theorem": "Gear Network Well-Definedness (Theorem 7.1)",
+        "description": "Layer-2 fixed point w*(tau2) is independent of layer-1 trigger history",
+        "gap_before_after_triggers": 0.0,
+        "tolerance": 1e-14,
+        "passed": true
+      },
+      {
+        "theorem": "Gear Network Well-Definedness (Theorem 7.1)",
+        "description": "Empirical quadratic variation of gains is positive and within 15% of K*Var[G]",
+        "quadratic_variation": 0.21959117874230155,
+        "expected_qv": 0.20280615809202945,
+        "relative_error": 0.08276386086193391,
+        "passed": true
+      },
+      {
+        "theorem": "Gear Network Well-Definedness (Theorem 7.1)",
+        "description": "Layer-2 triggers are strictly slower than layer-1 (hierarchical ordering)",
+        "layer1_crossings": 110,
+        "layer2_crossings": 5,
+        "layer2_occurs": true,
+        "l1_faster_than_l2": true,
+        "passed": true
+      },
+      {
+        "theorem": "Gear Network Well-Definedness (Theorem 7.1)",
+        "description": "Layer-1 fires strictly more than layer-2 (gear hierarchy: cnt1 > cnt2 > 0)",
+        "expected_ratio_approx": 4.0,
+        "actual_ratio": 17.076921763313713,
+        "layer1_count": 222,
+        "layer2_count": 13,
+        "passed": true
+      }
+    ],
+    "Cluster 8: Ergodic Convergence": [
+      {
+        "theorem": "Ergodic Convergence (Theorem 8.1)",
+        "description": "Cesaro average of w*(mu_k) converges to fixed_point(L, E[mu]) within 0.05",
+        "error_from_stationary": 0.00028264763450308545,
+        "tolerance": 0.05,
+        "K": 500,
+        "passed": true
+      },
+      {
+        "theorem": "Ergodic Convergence (Theorem 8.1)",
+        "description": "Cesaro error decreases monotonically with K",
+        "K_values": [
+          50,
+          100,
+          200,
+          500
+        ],
+        "errors": [
+          0.00048153622585232997,
+          0.0003871773711100696,
+          0.00021921968778464623,
+          0.000127264984960314
+        ],
+        "monotone": true,
+        "passed": true
+      },
+      {
+        "theorem": "Ergodic Convergence (Theorem 8.1)",
+        "description": "Cesaro limit w_bar lies in Delta_m: sum = 1, all entries >= 0",
+        "sum_deviation": 1.1102230246251565e-16,
+        "all_nonneg": true,
+        "K": 300,
+        "passed": true
+      },
+      {
+        "theorem": "Ergodic Convergence (Theorem 8.1)",
+        "description": "Time-average of Kirchhoff residuals L*w_k - mu_k_c converges to zero",
+        "max_avg_kirchhoff_residual": 6.284035791725984e-17,
+        "tolerance": 1e-10,
+        "K": 400,
+        "passed": true
+      },
+      {
+        "theorem": "Ergodic Convergence (Theorem 8.1)",
+        "description": "Cesaro average satisfies 1^T w_bar = 1 for K in {10,50,200,1000}",
+        "max_sum_deviation": 8.881784197001252e-16,
+        "tolerance": 1e-09,
+        "passed": true
+      }
+    ],
+    "Cluster 9: Fiedler Risk Bound": [
+      {
+        "theorem": "Fiedler Risk Bound (Theorem 10.1)",
+        "description": "sigma(w*) <= R0/lambda2 for 50 random ETF instances; 0 violations",
+        "violations": 0,
+        "instances": 50,
+        "passed": true
+      },
+      {
+        "theorem": "Fiedler Risk Bound (Theorem 10.1)",
+        "description": "Portfolio risk decreases monotonically as lambda2 increases",
+        "lambda2_values": [
+          0.19390250850579616,
+          2.0007363313019146,
+          2.462441306377886,
+          3.299335171644595
+        ],
+        "risk_values": [
+          0.01324956310635471,
+          0.01266263076511286,
+          0.012659576393394417,
+          0.012655358577621272
+        ],
+        "lam2_monotone": true,
+        "risk_monotone": true,
+        "passed": true
+      },
+      {
+        "theorem": "Fiedler Risk Bound (Theorem 10.1)",
+        "description": "Edge addition: lambda2 monotone non-decreasing (Cauchy interlacing); 0 violations",
+        "lam2_sequence": [
+          0.4665663629775759,
+          0.4665751840840103,
+          0.46662555137758555,
+          0.7917428762651011,
+          0.807780165965833,
+          0.8093207981597301,
+          0.8196305217480879
+        ],
+        "risk_sequence": [
+          0.015211030505596778,
+          0.014419210401842415,
+          0.014028765049276812,
+          0.01355029430208901,
+          0.013531729676246915,
+          0.01350813445543813,
+          0.013355921799560024
+        ],
+        "lam2_violations": 0,
+        "passed": true
+      },
+      {
+        "theorem": "Fiedler Risk Bound (Theorem 10.1)",
+        "description": "Cauchy interlacing: all eigenvalues non-decreasing after adding edge",
+        "eigenvalues_before": [
+          1.358091970046077e-15,
+          0.7849435913379705,
+          1.5731115465774894,
+          1.7521320415102253,
+          2.143715598715193,
+          2.711925648366663,
+          3.603785117200456,
+          4.018104841123274
+        ],
+        "eigenvalues_after": [
+          2.7511291313640773e-16,
+          1.0923201392713517,
+          1.5781106428270286,
+          1.8327950565791293,
+          2.143730978318195,
+          2.886743602569075,
+          3.621759161223729,
+          4.0322588040427565
+        ],
+        "violations": 0,
+        "passed": true
+      },
+      {
+        "theorem": "Fiedler Risk Bound (Theorem 10.1)",
+        "description": "Tightness ratio sigma(w*)/bound in (0, 1] for all 30 instances",
+        "min_ratio": 0.0802461996050918,
+        "max_ratio": 0.19581798370080708,
+        "mean_ratio": 0.14450997089701484,
+        "all_valid": true,
+        "passed": true
+      }
+    ]
+  }
+}
