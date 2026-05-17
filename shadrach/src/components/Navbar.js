@@ -78,6 +78,7 @@ const Navbar = () => {
           <CustomLink href="/oscillator" title="Gas Field" />
           <CustomLink href="/spectra" title="Spectra" />
           <CustomLink href="/trajectory" title="Trajectory" />
+          <CustomLink href="/dashboard" title="Dashboard" />
           <span className="text-primary/20 select-none text-xs">·</span>
           <CustomLink href="/api-docs" title="API" />
           <CustomLink href="/licensing" title="License" />
@@ -114,6 +115,7 @@ const Navbar = () => {
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/oscillator" title="Gas Field" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/spectra" title="Spectra" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/trajectory" title="Trajectory" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/dashboard" title="Dashboard" />
             <span className="my-1 text-primary/20 text-xs tracking-widest">—</span>
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/api-docs" title="API" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/licensing" title="Licensing" />
