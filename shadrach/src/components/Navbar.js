@@ -70,6 +70,7 @@ const Navbar = () => {
         <nav className="flex items-center justify-center text-xs gap-x-3 xl:gap-x-2">
           <CustomLink href="/" title="Home" />
           <CustomLink href="/portfolio" title="Portfolio" />
+          <CustomLink href="/etf" title="ETF" />
           <CustomLink href="/thermodynamics" title="DTI" />
           <CustomLink href="/representation" title="Repr." />
           <CustomLink href="/ruminant" title="Ruminant" />
@@ -105,6 +106,7 @@ const Navbar = () => {
           <nav className="flex items-center justify-center flex-col">
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/" title="Home" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/portfolio" title="Portfolio" />
+            <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/etf" title="ETF" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/thermodynamics" title="DTI" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/representation" title="Representation" />
             <CustomMobileLink toggle={handleClick} className="lg:m-0 lg:my-2" href="/ruminant" title="Ruminant" />

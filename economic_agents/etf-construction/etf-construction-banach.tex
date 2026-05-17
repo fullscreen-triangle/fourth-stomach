@@ -229,6 +229,17 @@ $(L\Ld)^\top = L\Ld$~\cite{penrose1955}.
 A key identity is $\norm{\Ld} = 1/\lam{2}$, which links the pseudoinverse norm
 to the algebraic connectivity.
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper5_panel_1.png}
+    \caption{\textbf{Asset Graph Construction, Laplacian Spectrum, and Algebraic Connectivity across Graph Families.}
+    (\textbf{A})~Three-dimensional surface of the Fiedler value $\lambda_2(L)$ as a joint function of asset count $m \in \{5, 10, 15, 20, 25, 30\}$ and graph density $\rho \in [0.25, 0.85]$, where each surface point is obtained by constructing a random weighted Laplacian with the prescribed density and reading off $\lambda_2$ via eigendecomposition.  The surface rises steeply with $\rho$.
+    (\textbf{B})~Eigenvalue spectrum of the 20-asset Laplacian used throughout the paper, displayed as a bar chart.  The unique zero eigenvalue $\lambda_1 = 0$ (orange bar, leftmost) certifies graph connectivity; its eigenvector is proportional to $\mathbf{1}$.
+    (\textbf{C})~Algebraic connectivity $\lambda_2$ versus asset count $m$ for three canonical graph families.  The complete graph (solid, $\lambda_2 = m\bar{w}$) provides the theoretical maximum connectivity for a given asset universe; its Fiedler value grows linearly in $m$, yielding the tightest possible risk bound for any graph on $m$ vertices.  
+    (\textbf{D})~Adjacency weight matrix $A$ of the 20-asset correlation graph as a colour heatmap, where entry $A_{ij} = A_{ji}$ is the symmetric edge weight $w_{ij} \in [0.15, 0.85]$ (zero on the diagonal).  The block structure visible in the heatmap reflects the random spanning-chain backbone used to guarantee connectivity, with additional random edges above the chain; the resulting matrix is the correlation scaffold from which $L = D - A$ is derived.}
+    \label{fig:etf_panel_1}
+\end{figure*}
+
 \subsection{Portfolio Simplex and Projection}
 
 \begin{definition}[Portfolio simplex]
@@ -354,6 +365,17 @@ result for the chebyshev step~\cite{golub1996}.
 By Theorem~\ref{thm:banach}, iterating $T$ from any $\bw^{(0)}\in\Dm$ converges
 to the unique fixed point $\bw^*\in\Dm$ at linear rate $\kap$.
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper5_panel_3.png}
+    \caption{\textbf{Fixed-Point Portfolio $w^* = L^\dagger\mu_c + \mathbf{1}/m$, Simplex Convergence Geometry, Kirchhoff Equilibrium Verification, and Weight Sensitivity to Return Profiles.}
+    (\textbf{A})~Three-dimensional surface of the first optimal weight $w_1^*$ as a function of the first two expected returns $(\mu_1, \mu_2) \in [0.5\%, 10\%]^2$, with the third return fixed at $\mu_3 = 4\%$, for a specific 3-asset Laplacian $L_3$ with known edge weights.  
+    (\textbf{B})~Banach iteration trajectories visualised inside the 3-asset probability simplex $\Delta_3$, drawn as an equilateral triangle with vertices $e_1$, $e_2$, $e_3$ corresponding to full allocation to a single asset.  
+    (\textbf{C})~Kirchhoff equilibrium verification: scatter plot of $(Lw^*)_i$ against $(\mu_i - \bar\mu)$ for all asset-node pairs across 50 random ETF instances with $m \in \{5, \ldots, 14\}$.  Theorem 3.2 predicts that the fixed point $w^*$ satisfies the discrete Kirchhoff law $Lw^* = \mu - \xi\mathbf{1}$ exactly.
+    (\textbf{D})~Optimal portfolio weight profiles $w^*$ for five distinct return configurations on a fixed 8-asset correlation graph: uniform returns (all $\mu_i = 4\%$), monotone rising ($\mu_i \in [1\%, 9\%]$), monotone falling, two-spike (two assets with $\mu = 9\%$, remainder at $1\%$), and a random return vector.}
+    \label{fig:etf_panel_3}
+\end{figure*}
+
 \subsection{The Fixed Point: Kirchhoff Equilibrium}
 
 \begin{theorem}[Fixed-point characterisation]
@@ -421,6 +443,17 @@ For the optimal step $\gamma = 2/(\lam{2}+\lam{m})$:
 \end{equation}
 \end{corollary}
 
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper5_panel_2.png}
+    \caption{\textbf{Contraction Factor $\kappa = 1 - \gamma\lambda_2$ and Banach Iteration Convergence: Parameter Landscape, Error Trajectories, Log-Linear Decay, and Optimal Step-Size.}
+    (\textbf{A})~Three-dimensional surface of the contraction factor $\kappa(\gamma, \lambda_2/\lambda_{\max})$ over the normalised step-size $\gamma\lambda_{\max} \in (0, 1)$ and the connectivity ratio $\lambda_2/\lambda_{\max} \in (0, 1)$.  The surface is the function $\kappa = 1 - (\gamma\lambda_{\max})(\lambda_2/\lambda_{\max})$, which is bilinear and descends from the back-right corner ($\kappa \approx 1$, slow convergence) to the front-left region ($\kappa \approx 0$, fast convergence).  
+    (\textbf{B})~Distance $\|w^{(n)} - w^*\|_2$ to the fixed-point portfolio as a function of Banach iteration count $n$ for five independent random starting points $w^{(0)} \in \Delta_8$ (distinct colours).  The 8-asset graph uses the Chebyshev-optimal step $\gamma^*$, and $w^*$ is computed by the closed-form formula $w^* = L^\dagger\mu_c + \mathbf{1}/m$. 
+    (\textbf{C})~The same five convergence trajectories plotted on a $\log_{10}$ scale to reveal the asymptotic linear decay.  In the exact-arithmetic regime, $\log_{10}\|w^{(n)} - w^*\|_2 = n\log_{10}\kappa^* + \log_{10}C$ is a straight line with slope $\log_{10}\kappa^*$ (dashed black reference, computed from the theoretical $\kappa^*$).  
+    (\textbf{D})~Optimal contraction factor $\kappa^* = (\lambda_{\max} - \lambda_2)/(\lambda_{\max} + \lambda_2)$ as a function of the condition ratio $\lambda_{\max}/\lambda_2 \in [1.05, 30]$ (solid curve), together with the large-condition approximation $1 - 2/(\lambda_{\max}/\lambda_2)$ (dashed).}
+    \label{fig:etf_panel_2}
+\end{figure*}
+
 
 %% -----------------------------------------------------------------------
 \section{Risk Bounds via Algebraic Connectivity}
@@ -478,6 +511,17 @@ The eigenvalues of $L(P_m)$ are $\lam{k} = 2(1-\cos(k\pi/m))$ for $k=0,\ldots,m-
 Setting $k=1$ gives $\lam{2}(P_m) = 2(1-\cos(\pi/m))$. Taylor expansion:
 $\cos(\pi/m) = 1 - \pi^2/(2m^2) + O(m^{-4})$, so $\lam{2}(P_m) = \pi^2/m^2 + O(m^{-4})$.
 \end{proof}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper5_panel_4.png}
+    \caption{\textbf{Risk Bound $\sigma(w^*) \leq R_0/\lambda_2$ and the Diversification Premium: Parameter Surface, Empirical Verification over 180 ETFs, Risk Evolution as Connectivity Grows, and Bound Tightness.}
+    (\textbf{A})~Three-dimensional surface of the risk bound $R_0/\lambda_2$ over $R_0 = \sigma_{\max}\|\mu\|_2 \in [0.05, 2.0]$ and $\lambda_2 \in [0.1, 4.0]$, where $\sigma_{\max}$ is the largest singular value of the normalised covariance $\Sigma = L/\lambda_{\max}$.  The surface is a sheet of rectangular hyperbolae in $\lambda_2$: for any fixed $R_0$, the bound decays as $1/\lambda_2$ and approaches zero as algebraic connectivity increases, while for fixed $\lambda_2$ the bound grows linearly with return magnitude $\|\mu\|_2$.  
+    (\textbf{B})~Scatter of actual portfolio risk $\sigma(w^*)$ against the theoretical bound $R_0/\lambda_2$ for 180 random ETF instances with $m \in \{6, \ldots, 17\}$ assets and random graph densities $\rho \in [0.4, 0.8]$; points are coloured by $\lambda_2$.  All 180 points lie strictly below the dashed diagonal $\sigma(w^*) = R_0/\lambda_2$ .
+    (\textbf{C})~Evolution of portfolio risk $\sigma(w^*)$ (solid, circles) and its analytical bound $R_0/\lambda_2$ (dashed) as a function of algebraic connectivity $\lambda_2$, obtained by adding edges one at a time to a 12-asset graph initialised as a minimal spanning tree.  As additional correlation edges are inserted the graph becomes denser, $\lambda_2$ increases monotonically (Cauchy interlacing), and both the actual risk and the bound decrease.
+    (\textbf{D})~Bound tightness ratio $\sigma(w^*)/(R_0/\lambda_2) \leq 1$ plotted against $\lambda_2$ for the 180 random ETF instances from panel~(B).  All ratios are strictly at or below the dashed ceiling at 1.0, confirming Theorem 4.1 without any violation.  The tightness is highest (ratio near 1) for graphs with small $\lambda_2$.}
+    \label{fig:etf_panel_4}
+\end{figure*}
 
 
 %% -----------------------------------------------------------------------
@@ -699,6 +743,17 @@ storage $\approx 98$~MB, fitting in a large L3 cache.
 Cache-resident lookups run at $\sim 4$~ns per access,
 yielding sub-10~ns total execution time~\cite{drepper2007}.
 \end{remark}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{panels/paper5_panel_5.png}
+    \caption{\textbf{Composition-Inflation $\mathcal{T}(n,d) = d(d+1)^{n-1}$, Memory Footprint, Execution Speedup, and the $O(1)$ Online Lookup Architecture.}
+    (\textbf{A})~Three-dimensional surface of $\log_{10}\mathcal{T}(n,d) = \log_{10}[d(d+1)^{n-1}]$ over pre-computation depth $n \in \{1, \ldots, 13\}$ and state-space dimension $d \in \{1, \ldots, 5\}$.  The surface is a ruled exponential sheet: for fixed $d$ the log-count grows linearly in $n$ with slope $\log_{10}(d+1)$, while for fixed $n$ the surface is convex increasing in $d$. 
+    (\textbf{B})~State count $\mathcal{T}(n,3) = 3 \cdot 4^{n-1}$ (left axis, logarithmic, circles) and corresponding memory footprint for $m = 500$ assets at four bytes per weight (right axis, gigabytes, squares) as functions of pre-computation depth $n_0 \in \{1, \ldots, 17\}$.  
+    (\textbf{C})~Execution speedup $S = m^2 \cdot \mathrm{cond}(L) \cdot \log(1/\varepsilon) / n_0$ versus portfolio size $m$ on a log-log scale for four parameter combinations: low condition ratio with moderate precision ($\mathrm{cond} = 10$, $\varepsilon = 10^{-6}$), moderate condition ($\mathrm{cond} = 50$), high condition ($\mathrm{cond} = 100$), and high condition with high precision ($\mathrm{cond} = 100$, $\varepsilon = 10^{-8}$).
+    (\textbf{D})~Memory footprint $\mathcal{T}(n_0,3) \cdot m \cdot 4\,\mathrm{bytes}$ in megabytes versus pre-computation depth $n_0 \in \{1, \ldots, 17\}$ on a logarithmic scale, for three representative portfolio sizes $m \in \{50, 100, 500\}$. }
+    \label{fig:etf_panel_5}
+\end{figure*}
 
 
 %% -----------------------------------------------------------------------
