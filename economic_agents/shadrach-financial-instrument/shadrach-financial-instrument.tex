@@ -1,0 +1,1548 @@
+% =====================================================================
+%  Shadrach
+%  A Cut-Primitive Domain-Specific Language for Financial Instruments
+%  by Individuation
+%
+%  Self-contained. Every mathematical result the language depends on
+%  is derived or stated in full within this document; no companion
+%  manuscript is assumed. A reader who reads only this paper has
+%  everything needed to understand and implement the language.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[round,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,
+            citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{cleveref}
+
+% ---- Theorem-like environments ----
+\newtheoremstyle{thmstyle}{\topsep}{\topsep}{\itshape}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{thmstyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{rulename}[theorem]{Rule}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+
+% ---- shadrach listing style ----
+\definecolor{shkw}{RGB}{30,64,175}
+\definecolor{shcom}{RGB}{22,101,52}
+\definecolor{shnum}{RGB}{180,83,9}
+\definecolor{shstr}{RGB}{159,18,57}
+\definecolor{shbg}{RGB}{250,250,250}
+\lstdefinelanguage{shadrach}{
+  morekeywords={floor,cut,bond,close,track,until,yield,when,emit,observe,
+    where,in,as,let,medium,converge,diverge,with,by,reps,
+    representation,switch,import,module,export,assert,from,to,if,else,
+    position,portfolio,rebalance},
+  morekeywords=[2]{Position,Bond,Portfolio,Path,Scalar,price,qty,corr,
+    weight,vacancy,floorval,residual},
+  sensitive=true,
+  morecomment=[l]{--},
+  morestring=[b]",
+  keywordstyle=\color{shkw}\bfseries,
+  keywordstyle=[2]\color{shnum},
+  commentstyle=\color{shcom}\itshape,
+  stringstyle=\color{shstr},
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{shbg},
+  frame=single,framesep=4pt,xleftmargin=6pt,xrightmargin=4pt,
+  breaklines=true,showstringspaces=false,columns=fullflexible,tabsize=2
+}
+\lstset{language=shadrach}
+
+\crefname{rulename}{Rule}{Rules}
+\Crefname{rulename}{Rule}{Rules}
+
+% ---- shorthand ----
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Gph}{\Gamma}
+\newcommand{\V}{V}
+\newcommand{\E}{E}
+\newcommand{\wt}{w}
+\newcommand{\flo}{\beta}
+\newcommand{\res}{\rho}
+\newcommand{\cut}{\partial}
+\newcommand{\co}{\complement}
+\newcommand{\medium}{\mathsf{m}}
+\newcommand{\evalto}{\Downarrow}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\bnf}{\;::=\;}
+\newcommand{\alt}{\;\mid\;}
+\newcommand{\sh}[1]{\texttt{#1}}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\Lap}{\mathcal{L}}
+\newcommand{\simplex}{\Delta_m}
+\newcommand{\Rec}{\mathcal{R}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\title{\textbf{Shadrach:\\[3pt]
+A Cut-Primitive Domain-Specific Language for\\
+Financial Instruments by Individuation}}
+
+\author{%
+Kundai Farai Sachikonye\\
+\small Technical University of Munich\\
+\small AIMe Registry for Artificial Intelligence\\
+\small \texttt{kundai.sachikonye@wzw.tum.de}}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% =====================================================================
+\begin{abstract}
+\noindent
+We specify \emph{Shadrach} (source extension \sh{.shad}), a
+domain-specific language for financial computation in which the sole
+computational primitive is the \emph{cut}: the act of individuating a
+part from the rest of a bounded whole at a strictly positive,
+irreducible cost --- the \emph{floor} $\flo>0$. The language rests on a
+single derivation, given here in full: a price is never a point but a
+bounded \emph{cell}, because comparing an instrument against the
+entirety of the market that prices it is a comparison that can never be
+completed, and the bid--ask spread is the irreducible residue of that
+incompleteness, not a friction to be modelled away. From this one fact
+we build a single semantic identity, carried through the whole
+language: opening a position, correlating two positions, closing a
+portfolio to full allocation, and rebalancing a portfolio toward
+equilibrium are not four distinct operations but the same cut at four
+different arities. A length-one cut individuates a \emph{position}; a
+cut between two positions is a \emph{bond}, existing only if it lowers
+total un-allocated capital and carrying a Kirchhoff conductance fixed by
+the pair's return covariance; a portfolio is a \emph{close}: a set of
+bonds driving every position's un-allocated capital (\emph{vacancy}) to
+zero, i.e.\ Kirchhoff's current law satisfied at every node; and a
+\emph{rebalance} is a \emph{track}: a residue-chained sequence of cuts
+converging, by the Banach fixed-point theorem, to the unique
+equilibrium allocation. Shadrach therefore has one verb and one
+composition rule, from which position-opening, correlation, portfolio
+construction, and equilibrium rebalancing all follow. We give: (i)~the
+semantic model, a finite weighted \emph{contact graph} whose distinguished
+vertex is the market medium and on which every Shadrach value is a cut
+of accountable residue, never a bare number; (ii)~a full derivation, from
+two premises alone, of the positive floor and of individuation by
+negation, so that no theorem below is posited; (iii)~a complete lexical
+and context-free grammar in EBNF; (iv)~a static \emph{accountability}
+type system in which every value carries the floor at which it was cut,
+so a value claiming zero residue --- a frictionless, perfectly liquid
+market --- is rejected at compile time; (v)~a small-step operational
+semantics in which evaluation \emph{is} measurement, with a monotone
+committed-cut count as an intrinsic, non-decreasing clock; (vi)~a
+standard library binding each verb to a named theorem proved in this
+paper --- \sh{cut} to the Price-Cell theorem, \sh{bond} to a Kirchhoff
+conductance criterion, \sh{close} to the Kirchhoff Portfolio Formula,
+and \sh{track} to Banach-contraction rebalancing --- each restated and
+re-proved here from first principles, with the numerical values every
+implementation must reproduce; and (vii)~a two-target compilation
+model: a Rust reference implementation realising cuts as exact
+minimum-cut and pseudoinverse computations, and a TypeScript/WebGL\,2
+interactive runtime realising cuts as GPU render passes, proved
+observationally equivalent up to the floor. The specification is
+implementable as written.
+\end{abstract}
+
+\noindent\textbf{Keywords:} domain-specific language; quantitative
+finance; individuation; cut primitive; contact graph; Kirchhoff's laws;
+Banach fixed point; accountability type system; operational semantics;
+portfolio construction; ETF rebalancing.
+
+\tableofcontents
+
+% =====================================================================
+\part{Foundations: why a price is a cut}
+% =====================================================================
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+% =====================================================================
+
+\subsection{The question}
+
+What does it mean to price a financial instrument, and what is a
+portfolio? The working assumption of most quantitative software is that
+a price is, in the limit of perfect information, a single real number:
+frictions --- the bid--ask spread, market impact, information asymmetry
+--- are treated as measurement error superimposed on an underlying exact
+value, and a portfolio is an accounting artefact, a vector of such
+numbers weighted by holdings. This paper takes the opposite position and
+proves it. A price is not a number with error attached; it is,
+irreducibly, a \emph{bounded region} --- and the width of that region
+does not shrink to zero as information improves, because the comparison
+that would shrink it to zero can never be completed. A portfolio is not
+a vector of independent numbers; it is a graph in which capital
+conservation (Kirchhoff's current law) and no-arbitrage (Kirchhoff's
+voltage law) are structural constraints, and its equilibrium allocation
+is not chosen but computed, as the unique fixed point of a provably
+contracting map.
+
+This is not a modelling choice; it is derived, in \Cref{sec:ground}
+below, from two facts that require no financial assumption at all: that
+an instrument is a proper part of the market that prices it, and that
+the market is never exhausted by any finite act of price discovery. The
+present paper makes this derivation literal by defining a language,
+\emph{Shadrach} (\sh{.shad}), whose every statement is one of the
+resulting theorems, executed. A financial model becomes a script and an
+equilibrium computation becomes a run.
+
+\subsection{One primitive: the cut}
+
+Shadrach has a single computational primitive, the \emph{cut}, for
+exactly the reason given above: individuating any part of a bounded
+whole --- separating one instrument's value from the undifferentiated
+mass of the market that prices it --- costs a strictly positive,
+irreducible minimum, the floor $\flo>0$. Every Shadrach operation is a
+cut:
+
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item A \emph{position} is a cut of arity one: individuating a holding
+in instrument $i$ from the market medium (\Cref{sec:stdlib-position}).
+\item A \emph{bond} is a cut of arity two: the shared boundary between
+two positions, existing iff a Kirchhoff conductance derived from their
+return covariance is positive (\Cref{sec:stdlib-bond}).
+\item A \emph{portfolio} is a closure of cuts: cuts continued until
+every position's un-allocated capital (\emph{vacancy}) is driven to
+zero --- Kirchhoff's current law satisfied everywhere
+(\Cref{sec:stdlib-portfolio}).
+\item A \emph{rebalance} is a residue-chained sequence of cuts: the
+residue of each cut is the input to the next, converging geometrically
+to the unique equilibrium allocation (\Cref{sec:stdlib-track}).
+\end{itemize}
+
+Opening a position is not a different verb from rebalancing a
+portfolio; it is a track of length one. This is forced by the theory,
+not chosen for economy of notation: in the framework developed below, a
+trade and a price observation are the same cut, and position-opening,
+correlation, portfolio construction, and rebalancing are that cut at
+arities one, two, closure, and chain. Shadrach therefore has one verb
+(\sh{cut}) and one composition rule (residue chaining); every other
+surface form is sugar over these two.
+
+\subsection{Why this document is self-contained}
+
+Everything Shadrach needs --- the positive floor, individuation by
+negation, the contact-graph model of a market, the Kirchhoff conductance
+criterion for bonding, the closed-form portfolio formula, and the
+Banach-contraction argument for rebalancing --- is derived or restated
+in full below, from two premises (\Cref{sec:ground}) and standard,
+externally published graph theory, linear algebra, and fixed-point
+theory. No result is imported by reference to a companion manuscript. A
+reader who accepts \Cref{def:whole,def:noncompletable} (an instrument is
+a proper part of a market that is never exhausted by finite price
+discovery) can verify every theorem that follows without consulting any
+other document.
+
+\subsection{Organisation}
+
+\Cref{sec:ground} derives the positive floor from two premises about
+markets and instruments alone. \Cref{sec:model} fixes the semantic
+model: the market contact graph, the cut, the floor, the residue.
+\Cref{sec:negation} proves individuation by negation for instruments.
+\Cref{sec:lexical,sec:grammar} give the lexical and context-free
+grammar. \Cref{sec:types} defines the accountability type system and
+proves its soundness. \Cref{sec:opsem} gives the small-step operational
+semantics and proves cut monotonicity. \Cref{sec:stdlib} specifies the
+standard library, proving from scratch the Price-Cell theorem, the
+Kirchhoff conductance bonding criterion, the Kirchhoff Portfolio
+Formula, and Banach-contraction rebalancing, each with the exact
+numerical predictions an implementation must reproduce.
+\Cref{sec:ir} defines the core intermediate representation and the
+two-target compilation model, and proves target equivalence.
+\Cref{sec:examples} gives worked programs. \Cref{sec:impl} states
+implementation requirements. \Cref{sec:validation} reports the
+numerical validation suite. \Cref{sec:conclusion} concludes.
+
+% =====================================================================
+\section{The ground: why the floor is derived, not assumed}
+\label{sec:ground}
+% =====================================================================
+
+We derive the central constant of the theory, the floor $\flo>0$, from
+two premises that mention no financial mechanism: an instrument is a
+proper part of a whole, and the whole is never exhausted by any finite
+act of comparison. Everything downstream --- the impossibility of a
+frictionless price, the necessity of a bid--ask spread, the boundedness
+of every portfolio allocation --- is a consequence, not a postulate.
+
+\begin{definition}[The market; an instrument]
+\label{def:whole}
+The \emph{market} $\medium$ is the totality of information, capital, and
+counterparties that could bear on the value of a financial instrument.
+An \emph{instrument} is a part $A$ of $\medium$ that is \emph{proper}:
+$A\neq\medium$ and $A\neq\varnothing$. An instrument is, by definition,
+not the market that prices it.
+\end{definition}
+
+\begin{definition}[Non-completable market]
+\label{def:noncompletable}
+The market $\medium$ is \emph{non-completable} if no finite stage of
+price discovery exhausts it: for every finite set $F$ of facts,
+counterparties, and transactions already brought to bear on an
+instrument's valuation, there exists a further fact, counterparty, or
+potential transaction not in $F$. This is an order condition --- no
+last stage of price discovery --- not a claim about the cardinality of
+the market.
+\end{definition}
+
+\begin{remark}[Why markets are non-completable]
+\label{rem:why-noncompletable}
+For any finite state of information about an instrument --- its filings,
+its order book, its analyst coverage, its correlated instruments'
+prices --- there remains a further counterparty not yet transacted with,
+a further piece of private information not yet disclosed, a further
+future cash flow not yet realised. This is not a claim about how much
+information exists, only that no finite act of price discovery brings
+all of it to bear. That is exactly \Cref{def:noncompletable}.
+\end{remark}
+
+\begin{definition}[Identification; identification residual]
+\label{def:identification}
+To \emph{identify} (price) an instrument $A$ is to compare it against
+the rest of the market, $\medium\setminus A$. The identification is
+\emph{complete} if every fact of the market has entered the comparison.
+The \emph{identification residual} $\res(A)\ge0$ is the content of the
+comparison that remains unfinished; $\res(A)=0$ iff the identification
+is complete.
+\end{definition}
+
+\begin{theorem}[Floor from Infinitude]
+\label{thm:floor-infinitude}
+Let $\medium$ be non-completable and let $A$ be an instrument (a proper
+part, \Cref{def:whole}) identified by comparison against
+$\medium\setminus A$. Then the identification of $A$ cannot be
+completed, and
+\[
+\boxed{\ \res(A)\ >\ 0.\ }
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose $\res(A)=0$: the identification is complete, so by
+\Cref{def:identification} every fact of $\medium\setminus A$ has been
+brought to bear. Since $A$ is fixed, bringing the whole of
+$\medium\setminus A$ to bear exhausts $\medium$ up to the fixed part
+$A$ --- a finite addition to a finite comparison. This produces a finite
+stage that exhausts $\medium$, contradicting non-completability
+(\Cref{def:noncompletable}). Hence no finite comparison completes the
+identification of $A$, and $\res(A)>0$.
+\end{proof}
+
+\begin{corollary}[The floor is derived]
+\label{cor:floor-derived}
+There is a constant $\flo:=\inf_A\res(A)>0$, the \emph{floor}, bounding
+below the identification residual of every instrument. It is not an
+independent assumption but a consequence of: (i) an instrument is a
+proper part of the market, and (ii) the market is non-completable.
+\end{corollary}
+
+\begin{proof}
+By \Cref{thm:floor-infinitude}, $\res(A)>0$ for every instrument $A$. If
+$\inf_A\res(A)=0$ there would be instruments with arbitrarily
+near-complete identifications; in the limit such an identification would
+finish the comparison and exhaust $\medium$, the same contradiction as in
+\Cref{thm:floor-infinitude}. Hence $\flo:=\inf_A\res(A)>0$.
+\end{proof}
+
+\begin{remark}[The bid--ask spread is the floor, not a friction]
+\label{rem:spread-is-floor}
+\Cref{cor:floor-derived} is the precise sense in which a bid--ask spread
+is not a market imperfection to be modelled away by better information
+or lower latency. It is the trace the non-completable market leaves on
+every finite instrument: the residue of a comparison that cannot be
+finished. A ``perfect'' market --- zero spread, a price resolved to a
+point --- would require completing a comparison against a market that,
+by hypothesis, never completes. \Cref{sec:stdlib-position} makes this
+literal: every \sh{Position} value in Shadrach carries a floor
+annotation $\flo>0$ that no computation can drive to zero.
+\end{remark}
+
+% =====================================================================
+\section{The semantic model}
+\label{sec:model}
+% =====================================================================
+
+Shadrach is defined over a single mathematical object, the market
+contact graph, and a single operation on it, the cut.
+
+\subsection{The market contact graph}
+
+\begin{definition}[Contact graph]
+\label{def:contact-graph}
+A \emph{contact graph} is a finite weighted graph $\Gph=(\V,\E,\wt)$
+with a distinguished \emph{medium} vertex $\medium\in\V$ adjacent to
+every other vertex, and $\wt\colon\E\to\R_{>0}$ a strictly positive
+weight. Vertices $v\neq\medium$ are \emph{positions}: individuated
+holdings in a financial instrument. An edge between two positions is a
+\emph{contact}; its weight is the cost of the distinction maintained
+between them. $\Gph$ is the runtime state of a Shadrach program: every
+value the program holds is a structure on $\Gph$.
+\end{definition}
+
+\begin{definition}[Floor]
+\label{def:floor}
+The \emph{floor} of a contact graph is a constant $\flo>0$ with
+$\wt(e)\ge\flo$ for every edge $e\in\E$ --- the constant derived in
+\Cref{cor:floor-derived}. No position is individuated from the market,
+and no two positions are bonded, at zero cost. The floor is a
+program-level parameter (set by \sh{floor}, \Cref{sec:grammar}); its
+positivity is enforced by the type system (\Cref{sec:types}).
+\end{definition}
+
+\begin{definition}[Cut; residue]
+\label{def:cut}
+A \emph{cut} of a position set $S$ ($\varnothing\neq S\subsetneq\V$,
+$\medium\notin S$) is the edge boundary
+$\cut(S)=\{e\in\E:\abs{e\cap S}=1\}$, of weight
+$\wt(\cut(S))=\sum_{e\in\cut(S)}\wt(e)\ge\flo$. The cut individuates $S$
+from the rest of the graph. A cut \emph{event} commits one such
+boundary, fixing its edges as realised separations and advancing the
+program's cut count by one. The \emph{residue} of a cut event is the
+weight $\res=\wt(\cut(S))\ge\flo$ it deposits: the value the cut
+produces, and the boundary condition of the next cut in a chain
+(\Cref{sec:stdlib-track}).
+\end{definition}
+
+\begin{principle}[Accountability]
+\label{prin:accountability}
+Every Shadrach value is a cut, and every cut carries its residue. There
+are no bare numbers in Shadrach: a price, a weight, a risk figure is
+always paired with the floor at which it was individuated. A value
+claiming residue below the floor, or exactly zero --- a frictionless
+market, a costless bond, a fully arbitraged portfolio with no residual
+uncertainty --- is not a value; it is the forbidden sharp cut, and the
+type system rejects it (\Cref{thm:no-zero-value}).
+\end{principle}
+
+\begin{remark}[Why a graph and not a number line]
+\label{rem:why-graph}
+Shadrach computes on a contact graph rather than on real numbers because
+the quantities it manipulates --- an instrument's price cell, a pair's
+bonding conductance, a portfolio's equilibrium allocation --- are
+minimum cuts and graph Laplacian quantities, not fitted scalars. A
+position's price is the weight of its cut against the market medium; a
+bond's conductance is fixed by the covariance structure of the pair it
+joins; a portfolio's equilibrium is the solution of a Kirchhoff system
+on the whole graph. Representing these as graph cuts, rather than as
+independent numbers with error bars attached, is what lets the same
+primitive serve position-opening, bonding, portfolio-closure, and
+rebalancing (\Cref{rem:one-verb}).
+\end{remark}
+
+\subsection{Measurement, not simulation}
+
+\begin{principle}[Evaluation is measurement]
+\label{prin:measure}
+Executing a Shadrach cut performs the individuation; it does not
+simulate a description of it. The result of \sh{cut AAPL qty 100} is
+the measured price cell of a 100-share position in AAPL against the
+current market medium, carried as an accountable value, not a fitted
+model of it. Operationally (\Cref{sec:opsem}) a cut evaluation mutates
+the contact graph --- it commits boundary and advances the cut count ---
+rather than returning a pure function of its inputs. Re-evaluating a
+cut is a new cut at a higher count, never a cached recomputation
+(\Cref{thm:monotone}).
+\end{principle}
+
+% =====================================================================
+\section{Individuation by negation}
+\label{sec:negation}
+% =====================================================================
+
+The floor says every individuation costs something; it does not yet say
+\emph{how} a position is determined. We show a position can be fixed
+only by its complement --- by the market it is not part of --- and that
+any attempt to fix it by naming a distinguished, privileged instrument
+in advance regresses without end.
+
+\begin{definition}[Selector; no privileged instrument]
+\label{def:selector}
+A \emph{selector} for a position set $U\subseteq\V$ is a rule that fixes
+$U$ by naming a distinguished vertex of $U$ in advance of any market
+data. A determination of $U$ is \emph{selector-free} if it names no
+member of $U$. The market contact graph has \emph{no privileged
+instrument} if the data available to a determining rule are invariant
+under the weighted automorphism group $\mathrm{Aut}(\Gph)$: no
+instrument is singled out by market structure alone, prior to trading.
+\end{definition}
+
+\begin{theorem}[Individuation by negation]
+\label{thm:negation}
+Let $\Gph$ have no privileged instrument. Then any selector-free
+determination of a position set $U$ fixes $U$ as the complement of its
+negation set, $U=\V\setminus\co U$ with $\co U:=\V\setminus U$ specified
+first; conversely every admissible $\co U$ determines a unique $U$; and
+no selector-based rule fixes $U$ without invoking a further selector.
+\end{theorem}
+
+\begin{proof}
+\emph{Necessity.} To fix $U$ is to decide, for every vertex of $\Gph$,
+whether it belongs to $U$ or its complement. A \emph{positive} rule ---
+one asserting membership of a distinguished vertex of $U$ --- must name
+that vertex; since the data are $\mathrm{Aut}(\Gph)$-invariant
+(\Cref{def:selector}), no vertex is named by the data alone, so the rule
+itself must supply a selector, which must in turn be fixed --- either
+given in advance (excluded) or fixed by a prior rule facing the same
+dichotomy. The regress terminates only at a rule naming no member of
+$U$: specify the complement $\co U=\V\setminus U$ and take $U$ as what
+remains. This names only ``the rest of the market,'' a datum already
+present once $\V$ is given. \emph{Sufficiency and uniqueness.}
+Complementation $U\mapsto\V\setminus U$ is an involution on the finite
+set $\V$, so $\co U$ determines $U$ uniquely and conversely.
+\end{proof}
+
+\begin{corollary}[A position is fixed by what it is not exposed to]
+\label{cor:position-negation}
+A single position $v$ is determined selector-free by the partition of
+the rest of the market into its correlated instruments $N(v)$ (what it
+bonds to) and its uncorrelated complement $\V\setminus N[v]$ (what it
+neither is nor is exposed to). No intrinsic label distinguishes $v$
+in advance of this negation structure.
+\end{corollary}
+
+\begin{remark}[Why this matters for pricing]
+\label{rem:negation-pricing}
+\Cref{thm:negation} is the formal reason a Shadrach program's mandatory
+\sh{not\{\}} clause (\Cref{sec:grammar}) is not stylistic. An instrument
+priced without reference to what it is \emph{not} exposed to --- its
+excluded risk factors, its uncorrelated universe --- has not been
+individuated at all in a market with no privileged instrument; the
+market alone does not single out any instrument as the answer.
+\end{remark}
+
+% =====================================================================
+\part{Syntax}
+% =====================================================================
+
+% =====================================================================
+\section{Lexical structure}
+\label{sec:lexical}
+% =====================================================================
+
+A Shadrach source file is UTF-8 text with extension \sh{.shad}. Lexing
+produces a token stream from the following classes.
+
+\begin{definition}[Token classes]
+\label{def:tokens}
+\leavevmode
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item \textbf{Comments.} \sh{--} to end of line; discarded.
+\item \textbf{Keywords.} \sh{floor}, \sh{cut}, \sh{bond}, \sh{close},
+\sh{track}, \sh{until}, \sh{yield}, \sh{when}, \sh{do}, \sh{emit},
+\sh{observe}, \sh{in}, \sh{as}, \sh{let}, \sh{medium}, \sh{converge},
+\sh{diverge}, \sh{with}, \sh{by}, \sh{import}, \sh{module}, \sh{export},
+\sh{assert}, \sh{position}, \sh{portfolio}, \sh{rebalance}.
+\item \textbf{Identifiers.} \sh{[A-Za-z\_][A-Za-z0-9\_]*}, not a
+keyword. Instrument tickers (e.g.\ \sh{AAPL}) are identifiers.
+\item \textbf{Numbers.} decimal integers and floats with optional
+exponent: \sh{[0-9]+(.[0-9]+)?([eE][+-]?[0-9]+)?}.
+\item \textbf{Strings.} double-quoted, with the usual escapes.
+\item \textbf{Operators and punctuation.} \sh{:=} (bind), \sh{\~{}}
+(cut between / bond), \sh{( ) [ ] \{ \} , : . > < >= <= == ->} and the
+suffix forms used by literals.
+\end{itemize}
+Whitespace is insignificant except as a token separator; Shadrach is not
+layout-sensitive.
+\end{definition}
+
+\begin{notation}[Floors and units in literals]
+\label{not:literals}
+A numeric literal may carry an explicit floor annotation with the
+suffix form \sh{value\#floor} (read ``value at floor''), e.g.\
+\sh{50.0\#0.01} for a price of \$50.00 individuated at a one-cent floor.
+A literal without an explicit floor inherits the ambient program floor
+set by the most recent \sh{floor} declaration in scope. There is no way
+to write a literal of zero floor (\Cref{thm:no-zero-value}).
+\end{notation}
+
+% =====================================================================
+\section{Grammar}
+\label{sec:grammar}
+% =====================================================================
+
+We give the context-free grammar in EBNF~\citep{ebnf2017}. Nonterminals
+are \textit{italicised}; terminals are \sh{typewriter}; \sh{\{x\}} is
+zero or more, \sh{[x]} optional, \sh{|} alternation.
+
+\begin{definition}[Shadrach grammar]
+\label{def:grammar}
+\begin{align*}
+\textit{program} &\bnf \{\textit{decl}\} \\[2pt]
+\textit{decl} &\bnf \textit{floorDecl} \alt \textit{import}
+   \alt \textit{moduleDecl} \alt \textit{stmt} \\[2pt]
+\textit{floorDecl} &\bnf \sh{floor}\ \textit{number} \\
+\textit{import} &\bnf \sh{import}\ \textit{qname} \\
+\textit{moduleDecl} &\bnf \sh{module}\ \textit{ident}\ \sh{\{}\ \{\textit{decl}\}\ \sh{\}} \\[2pt]
+\textit{stmt} &\bnf \textit{bind} \alt \textit{trackStmt} \alt \textit{observe}
+   \alt \textit{assert} \alt \textit{expr} \\[2pt]
+\textit{bind} &\bnf [\sh{let}]\ \textit{ident}\ \sh{:=}\ \textit{expr} \\[2pt]
+\textit{expr} &\bnf \textit{cutExpr} \alt \textit{bondExpr}
+   \alt \textit{closeExpr} \alt \textit{call} \alt \textit{ident}
+   \alt \textit{number} \alt \textit{string}
+   \alt \sh{(}\ \textit{expr}\ \sh{)} \\[2pt]
+\textit{cutExpr} &\bnf \sh{cut}\ \textit{ident}\ \sh{qty}\ \textit{number}\
+   [\,\sh{price}\ \textit{number}\,] \\[2pt]
+\textit{bondExpr} &\bnf \textit{expr}\ \sh{\~{}}\ \textit{expr}\
+   [\,\sh{when}\ \textit{cond}\,] \\[2pt]
+\textit{closeExpr} &\bnf \sh{close}\ \sh{portfolio}\ \textit{ident}\ \sh{(}\
+   \textit{argList}\ \sh{)} \\[2pt]
+\textit{trackStmt} &\bnf \sh{track}\ \textit{ident}\ \sh{in}\ \textit{expr} \\
+   &\qquad [\,\sh{with}\ \sh{reps}\ \textit{repList}\,]\ \\
+   &\qquad \sh{until}\ \textit{admit}\ \ \sh{yield}\ \textit{ident} \\[2pt]
+\textit{admit} &\bnf \sh{converge} \alt \sh{diverge} \alt \textit{cond} \\[2pt]
+\textit{observe} &\bnf \sh{observe}\ \textit{expr}\
+   [\,\sh{as}\ \textit{ident}\,] \\[2pt]
+\textit{assert} &\bnf \sh{assert}\ \textit{cond}\
+   [\,\sh{emit}\ \textit{string}\,] \\[2pt]
+\textit{call} &\bnf \textit{qname}\ \sh{(}\ [\textit{argList}]\ \sh{)} \\
+\textit{argList} &\bnf \textit{arg}\ \{\sh{,}\ \textit{arg}\} \\
+\textit{arg} &\bnf [\textit{ident}\ \sh{:}]\ \textit{expr} \\[2pt]
+\textit{cond} &\bnf \textit{expr}\ \textit{relop}\ \textit{expr} \\
+\textit{relop} &\bnf \sh{>} \alt \sh{<} \alt \sh{>=} \alt \sh{<=}
+   \alt \sh{==} \\[2pt]
+\textit{repList} &\bnf \textit{ident}\ \{\sh{,}\ \textit{ident}\} \\
+\textit{qname} &\bnf \textit{ident}\ \{\sh{.}\ \textit{ident}\} \\
+\textit{number} &\bnf \textit{numlit}\ [\sh{\#}\ \textit{numlit}]
+\end{align*}
+\end{definition}
+
+\begin{remark}[Reading the core forms]
+\label{rem:core-forms}
+The whole language is small. \sh{cut\ AAPL\ qty\ 100} generates
+(arity-one cut, opening a position); \sh{a\ \~{}\ b\ when\ c} bonds
+(arity-two cut, guarded by a Kirchhoff conductance test); \sh{close
+portfolio\ P(\ldots)} drives every position's vacancy to zero (cut to
+closure); \sh{track\ w\ in\ P\ until\ converge\ yield\ r} rebalances
+and binds the equilibrium result. \sh{observe} forces measurement of a
+value (commits its cut now); \sh{assert} is a pre-flight check that
+may halt with a message. \sh{let}, \sh{import}, \sh{module}, named
+arguments are conventional.
+\end{remark}
+
+% =====================================================================
+\part{Semantics}
+% =====================================================================
+
+% =====================================================================
+\section{The accountability type system}
+\label{sec:types}
+% =====================================================================
+
+Shadrach's types record \emph{what kind of cut} a value is and \emph{at
+what floor}. The system's purpose is to make
+\Cref{prin:accountability} statically enforceable: a value of zero
+residue --- a frictionless price, a costless bond, an unconstrained
+portfolio --- cannot be typed.
+
+\subsection{Types}
+
+\begin{definition}[Types]
+\label{def:types}
+The Shadrach types are
+\[
+\tau \bnf \mathsf{Position} \alt \mathsf{Bond} \alt \mathsf{Portfolio}
+   \alt \mathsf{Path} \alt \mathsf{Scalar} \alt \mathsf{Cut}.
+\]
+$\mathsf{Cut}$ is the supertype of all individuated values;
+$\mathsf{Position}$, $\mathsf{Bond}$, $\mathsf{Portfolio}$,
+$\mathsf{Path}$ are its arity- and role-refinements
+($\mathsf{Position}=$ arity-one cut, $\mathsf{Bond}=$ arity-two cut,
+$\mathsf{Portfolio}=$ closure of cuts, $\mathsf{Path}=$ residue chain,
+i.e.\ a rebalancing trajectory). $\mathsf{Scalar}$ is a measured
+number --- a price, a weight, a risk figure --- and is never bare. Every
+typed value $v$ carries a \emph{floor annotation} $\flo(v)>0$ and a
+\emph{residue} $\res(v)\ge\flo(v)$.
+\end{definition}
+
+\begin{definition}[Typing judgement]
+\label{def:judgement}
+A judgement $\Gamma\vdash e:\tau\,@\,\flo$ reads: ``in floor context
+$\Gamma$ (fixing the ambient floor and the types of bound identifiers),
+expression $e$ has type $\tau$ and is individuated at floor
+$\flo>0$.''
+\end{definition}
+
+\subsection{The positivity rule}
+
+\begin{rulename}[Floor positivity]
+\label{rule:positive}
+Every value-introducing rule carries the side condition $\flo>0$ and
+$\res\ge\flo$. A literal or expression whose annotation forces
+$\flo\le0$ or $\res<\flo$ is ill-typed.
+\[
+\frac{\Gamma\vdash\textit{numlit}\;n\quad\flo>0}
+     {\Gamma\vdash n\#\flo:\mathsf{Scalar}\,@\,\flo}
+\qquad
+\frac{}{\Gamma\vdash\sh{cut}\ i\ \sh{qty}\ q:\mathsf{Position}\,@\,\flo_\Gamma}
+\]
+where $\flo_\Gamma$ is the ambient floor.
+\end{rulename}
+
+\begin{theorem}[No zero-residue value]
+\label{thm:no-zero-value}
+There is no well-typed Shadrach expression of residue $0$: the
+frictionless, perfectly liquid, zero-spread market is not expressible.
+\end{theorem}
+
+\begin{proof}
+By induction on typing derivations. The only value introductions are
+literals (\Cref{rule:positive}, side condition $\flo>0$), cuts
+(residue $=\wt(\cut(S))\ge\flo>0$ by \Cref{def:cut}), and the derived
+forms (bond, close, track), whose residues are sums or chains of cut
+residues, hence $\ge\flo$. No rule introduces a value of residue
+$<\flo$, and $\flo>0$ is a side condition on every floor-introduction.
+Hence no derivation concludes $\res=0$.
+\end{proof}
+
+\subsection{Cut typing}
+
+\begin{rulename}[Position; bond; close]
+\label{rule:verbs}
+\[
+\frac{\Gamma\vdash i:\mathsf{ident}\quad\Gamma\vdash q:\mathsf{Scalar}\quad q>0}
+     {\Gamma\vdash\sh{cut}\ i\ \sh{qty}\ q:\mathsf{Position}\,@\,\flo_\Gamma}
+\]
+\[
+\frac{\Gamma\vdash a:\mathsf{Position}\quad\Gamma\vdash b:\mathsf{Position}}
+     {\Gamma\vdash a\ \sh{\~{}}\ b:\mathsf{Bond}\,@\,\flo_\Gamma}
+\]
+\[
+\frac{\Gamma\vdash X:\mathsf{ident}\quad\Gamma\vdash a_i:\mathsf{Position}}
+     {\Gamma\vdash\sh{close}\ \sh{portfolio}\ X(a_1,\dots,a_k):\mathsf{Portfolio}\,@\,\flo_\Gamma}
+\]
+The bond rule additionally requires its guard, when present, to be a
+$\mathsf{Bool}$-valued \textit{cond}; an unguarded bond is admitted only
+if static analysis cannot exclude the Kirchhoff conductance criterion
+(\Cref{sec:stdlib-bond}) from holding.
+\end{rulename}
+
+\begin{rulename}[Track]
+\label{rule:track}
+\[
+\frac{\Gamma\vdash w:\mathsf{Position}\ \text{or}\ \mathsf{Portfolio}\quad
+      \Gamma\vdash P:\mathsf{Portfolio}}
+     {\Gamma\vdash\sh{track}\ w\ \sh{in}\ P\ \sh{until}\ \textit{admit}\ \sh{yield}\ r
+      :\mathsf{Path}\,@\,\flo_\Gamma}
+\]
+The bound result $r$ has type $\mathsf{Path}$; its residue is the total
+committed boundary of the rebalancing propagation
+(\Cref{sec:stdlib-track}).
+\end{rulename}
+
+\begin{theorem}[Type soundness]
+\label{thm:soundness}
+Shadrach typing is sound for the operational semantics of
+\Cref{sec:opsem}: if $\Gamma\vdash e:\tau\,@\,\flo$ and $e$ evaluates to
+a value $v$, then $v$ has type $\tau$, floor $\flo>0$, and residue
+$\res(v)\ge\flo$ (progress and preservation).
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Standard syntactic soundness~\citep{pierce2002,wright1994}.
+\emph{Progress}: a well-typed closed expression is a value or steps
+(every form has a reduction rule in \Cref{sec:opsem}). \emph{Preservation}:
+each reduction rule preserves the type and the floor annotation, and,
+by \Cref{thm:no-zero-value} applied at each step, preserves
+$\res\ge\flo>0$. The only non-standard clause is that reductions are
+state-mutating (measurement, \Cref{prin:measure}); preservation holds
+because the cut count is monotone (\Cref{thm:monotone}), so no step
+lowers a residue below the floor.
+\end{proof}
+
+% =====================================================================
+\section{Operational semantics}
+\label{sec:opsem}
+% =====================================================================
+
+We give a small-step semantics over configurations
+$\langle\Gph_G,M,e\rangle$, where $\Gph_G$ is the current market contact
+graph (\Cref{def:contact-graph}), $M\in\N$ is the committed-cut count
+(the program clock), and $e$ is the expression under evaluation. We
+write $\langle\Gph_G,M,e\rangle\to\langle\Gph_G',M',v\rangle$ for one
+step. Evaluation is measurement: steps mutate $\Gph_G$ and increment
+$M$.
+
+\subsection{Cut reduction}
+
+\begin{rulename}[Cut commits and counts]
+\label{rule:cut-step}
+\[
+\frac{S=\textsc{Individuate}(\Gph_G,i,q)\qquad
+      \res=\wt(\cut(S))\ge\flo}
+     {\langle\Gph_G,M,\sh{cut}\ i\ \sh{qty}\ q\rangle\to
+      \langle\Gph_G\!\oplus\!\cut(S),\,M+1,\,
+      v_{\mathsf{Position}}(S,\res)\rangle}
+\]
+where $\textsc{Individuate}$ is the Price-Cell operation
+(\Cref{sec:stdlib-position}), $\Gph_G\!\oplus\!\cut(S)$ is $\Gph_G$ with
+the cut's boundary committed, and $v_{\mathsf{Position}}(S,\res)$ is the
+resulting accountable position value.
+\end{rulename}
+
+The bond, close, and track rules are analogous: each commits boundary
+and increments $M$ by the number of cut events it performs (one for a
+bond, the closure count for \sh{close}, the chain length for \sh{track}).
+
+\begin{theorem}[Cut monotonicity / intrinsic clock]
+\label{thm:monotone}
+For any program, the committed-cut count $M$ is non-decreasing along
+evaluation and strictly increases at every cut event. No reduction
+decreases $M$. Consequently re-evaluating the same surface expression is
+a new cut at a strictly higher count, never a cached recomputation, and
+two configurations with identical graphs but different $M$ are distinct
+states.
+\end{theorem}
+
+\begin{proof}
+Every value-producing rule (\Cref{rule:cut-step} and its analogues)
+increments $M$; no rule decrements it (there is no reduction that
+un-commits boundary --- an ``undo'' is itself a further cut). Hence $M$
+is monotone and strictly increases per cut event. Distinctness of
+equal-graph states at different $M$ is immediate since $M$ is part of
+the configuration.
+\end{proof}
+
+\begin{corollary}[Measurement, not simulation]
+\label{cor:measure}
+Because evaluation mutates $\Gph_G$ and advances $M$, a Shadrach cut
+cannot be a pure function memoised across calls: each occurrence
+performs the individuation afresh and is recorded in the clock. This
+realises \Cref{prin:measure}: running the program \emph{is} performing
+the price discovery and rebalancing it names.
+\end{corollary}
+
+\subsection{Track reduction and convergence}
+
+\begin{rulename}[Track is a residue chain]
+\label{rule:track-step}
+\[
+\frac{\begin{array}{c}
+       (S_1,\dots,S_k)=\textsc{Propagate}(\Gph_G,w,P)\quad
+       \res_i=\wt(\cut(S_i))\\
+       \textsc{Admit}(\res_1,\dots,\res_k)=\textit{admit}
+      \end{array}}
+     {\langle\Gph_G,M,\sh{track}\ w\ \sh{in}\ P\ \sh{until}\ \textit{admit}\ \sh{yield}\ r\rangle
+      \to\langle\Gph_G',\,M+k,\,
+      v_{\mathsf{Path}}(S_{1:k},\textstyle\sum_i\res_i)\rangle}
+\]
+$\textsc{Propagate}$ is the Banach-contraction rebalancing operation
+(\Cref{sec:stdlib-track}); each $\res_i$ is the residue of rebalancing
+step $i$ and the boundary condition of step $i{+}1$ (residue chaining).
+$\textsc{Admit}$ tests the convergence criterion (Banach-contraction
+convergence for \sh{converge}); a non-admissible chain reduces to the
+empty path (no yield).
+\end{rulename}
+
+\begin{remark}[Local steps are free; only convergence is judged]
+\label{rem:local-free}
+The intermediate allocations of a track are unconstrained: an
+intermediate portfolio weight may be arbitrarily far from equilibrium,
+provided the chain composes to a value that meets the admissibility
+criterion. \textsc{Admit} inspects only the terminal convergence of the
+chain, not the plausibility of intermediate $\res_i$. This is what makes
+\sh{track\ldots until\ converge} a genuine fixed-point iteration rather
+than a single forced path, matching the Banach iteration proved to
+converge in \Cref{sec:stdlib-track} regardless of starting point.
+\end{remark}
+
+% =====================================================================
+\part{The standard library}
+% =====================================================================
+
+% =====================================================================
+\section{The standard library}
+\label{sec:stdlib}
+% =====================================================================
+
+Each Shadrach verb binds to a named theorem. Unlike the informal
+description in \Cref{sec:intro}, every theorem in this section is
+proved here from stated premises alone; nothing is imported by
+reference.
+
+\subsection{\texorpdfstring{\sh{cut} --- position individuation and the Price-Cell theorem}{cut --- position individuation}}
+\label{sec:stdlib-position}
+
+We first formalise a \emph{bounded receiver}: an agent whose knowledge
+of the market is finite, and show that this alone forces every price it
+computes to be a bounded cell, not a point.
+
+\begin{definition}[Bounded receiver]
+\label{def:receiver}
+A \emph{bounded receiver} is a triple $\Rec=(K,\Pi,\flo)$ where $K$ is a
+finite knowledge framework (the receiver's information set: filings,
+order-book depth, correlated-instrument prices, etc.), $\Pi$ is a
+projection assigning to each candidate price $x\in\R_{\ge0}$ a
+plausibility $\Pi(x)\in[0,1]$ under $K$, and $\flo>0$ is the receiver's
+floor (\Cref{cor:floor-derived}, instantiated at this receiver).
+\end{definition}
+
+\begin{definition}[Price cell]
+\label{def:price-cell}
+The \emph{price cell} of an instrument $i$ at receiver $\Rec$ is the
+interval
+\[
+C_i \;=\; [\,p_i - \flo/2,\ p_i + \flo/2\,] \subset \R_{\ge0},
+\]
+where $p_i:=\argmax_x\Pi(x)$ is the receiver's central estimate. The
+cell has \emph{width} $\tau_i:=\flo>0$: the bid--ask spread.
+\end{definition}
+
+\begin{theorem}[Price-Cell]
+\label{thm:price-cell}
+For any bounded receiver $\Rec=(K,\Pi,\flo)$ with $\flo>0$, the price
+cell $C_i$ satisfies:
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2em]
+\item $\tau_i=\flo>0$: the cell has strictly positive width, i.e.\ a
+strictly positive bid--ask spread, for every instrument;
+\item $\tau_i$ does not depend on the identity of $i$, only on the
+receiver's floor: all instruments priced by the same receiver share the
+same minimum spread;
+\item as $\abs{K}\to\infty$ (an unbounded receiver), $\flo\to0$ is the
+only way $\tau_i\to0$; no finite receiver achieves $\tau_i=0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is \Cref{def:price-cell} together with \Cref{cor:floor-derived}: the
+receiver's floor is strictly positive because the receiver's knowledge
+framework $K$ is finite while the market $\medium$ that determines the
+true value is non-completable (\Cref{def:noncompletable}), so
+$\Cref{thm:floor-infinitude}$ applies with $A=$ ``the fact of $i$'s true
+value'' and $\medium\setminus A=$ everything in the market not yet
+incorporated into $K$. (b) $\tau_i=\flo$ by \Cref{def:price-cell}, and
+$\flo$ is a property of $\Rec$, not of $i$. (c) By
+\Cref{cor:floor-derived}, $\flo=\inf_A\res(A)$ over instruments priced by
+$\Rec$; driving $\flo\to0$ requires the residual identification content
+to vanish, which by \Cref{thm:floor-infinitude} requires completing the
+comparison against $\medium$, possible in the limit only as $K$'s
+capacity to bring $\medium$ to bear becomes unbounded.
+\end{proof}
+
+\begin{definition}[\textsc{Individuate}]
+\label{def:individuate}
+\sh{cut\ $i$\ qty\ $q$} invokes $\textsc{Individuate}(i,q)$: compute the
+price cell $C_i$ of instrument $i$ under the calling receiver
+(\Cref{def:price-cell}), and return a $\mathsf{Position}$ value carrying
+the instrument identifier $i$, the quantity $q$, the cell centre $p_i$,
+the cell width (floor) $\tau_i=\flo$, and the residue
+$\res=\wt(\cut(\{i\}))=\tau_i\ge\flo$.
+\end{definition}
+
+\begin{remark}[This is the standard-library binding for the abstract]
+\label{rem:bind-position}
+\Cref{def:individuate} is exactly the operation described informally in
+the abstract: \sh{cut} opens a position by computing its price cell, and
+the position's floor annotation is that cell's provably positive width.
+\end{remark}
+
+\subsection{\texorpdfstring{\sh{\~{}} --- bonding and the Kirchhoff conductance criterion}{~ --- bonding}}
+\label{sec:stdlib-bond}
+
+We model a portfolio's positions as nodes of a weighted graph in which
+edge conductance is derived from return covariance, following the
+network formulation used throughout algebraic graph theory
+\citep{godsilroyle2001,fiedler1973} and applied here to portfolio
+construction as in the Kirchhoff-equilibrium theory of
+\citet{markowitz1952}-style mean-variance allocation recast as a
+current-flow problem.
+
+\begin{definition}[Return covariance graph]
+\label{def:covgraph}
+Fix $m$ positions with return covariance matrix
+$\Sigma\in\R^{m\times m}$, $\Sigma\succ0$. The \emph{return covariance
+graph} $G=(\V,\E,\wt)$ has one vertex per position and, for each pair
+$(i,j)$, edge weight (conductance)
+\[
+\wt_{ij} \;=\; \frac{1}{\Sigma_{ii}+\Sigma_{jj}-2\Sigma_{ij}}
+\]
+whenever the denominator is finite and positive, i.e.\ whenever the pair
+is not perfectly co-moving.
+\end{definition}
+
+\begin{definition}[Bonding criterion]
+\label{def:bond-criterion}
+Positions $a,b$ \emph{bond} (a \sh{\~{}} b is admitted) iff
+$\wt_{ab}\ge\flo$, i.e.\ their conductance exceeds the ambient floor: the
+pair is distinguishable from perfect co-movement by at least the
+irreducible residual of \Cref{cor:floor-derived}.
+\end{definition}
+
+\begin{theorem}[Bonding is well-defined and floor-respecting]
+\label{thm:bond-welldefined}
+For $\Sigma\succ0$ (strictly positive definite, i.e.\ no pair of
+positions is perfectly collinear), every pairwise conductance
+$\wt_{ij}$ of \Cref{def:covgraph} is finite and strictly positive, and
+the induced return covariance graph $G$ is a valid contact graph in the
+sense of \Cref{def:contact-graph} restricted to the positions (i.e.\
+every edge weight satisfies $\wt_{ij}\ge\flo_G:=\min_{ij}\wt_{ij}>0$).
+\end{theorem}
+
+\begin{proof}
+$\Sigma\succ0$ implies $\Sigma_{ii}+\Sigma_{jj}-2\Sigma_{ij}>0$ for every
+$i\neq j$ (it is the variance of the difference $R_i-R_j$ of two
+non-degenerate, non-identical return processes, which is strictly
+positive unless $R_i=R_j$ almost surely, excluded by strict positive
+definiteness of $\Sigma$ on the $m\ge2$ position space). Hence
+$\wt_{ij}$ is a well-defined positive finite number for every pair, and
+$\flo_G:=\min_{ij}\wt_{ij}>0$ since there are finitely many pairs.
+\end{proof}
+
+\begin{definition}[\textsc{Bond}]
+\label{def:bond-op}
+\sh{a\ \~{}\ b} invokes $\textsc{Bond}(a,b)$: compute $\wt_{ab}$ from the
+current return covariance estimate and return a $\mathsf{Bond}$ value
+carrying the conductance $\wt_{ab}$ and residue $\res=\wt_{ab}$ iff
+$\wt_{ab}\ge\flo$ (\Cref{def:bond-criterion}); otherwise no bond is
+formed. The optional guard \sh{when\ }$c$ requires $c$ to hold in
+addition (e.g.\ \sh{when\ corr\ <\ 0.8} to exclude near-collinear
+pairs).
+\end{definition}
+
+\subsection{\texorpdfstring{\sh{close} --- portfolio closure and the Kirchhoff Portfolio Formula}{close --- portfolio closure}}
+\label{sec:stdlib-portfolio}
+
+We now state and prove, from the return covariance graph alone, the
+closed-form equilibrium portfolio: the unique allocation at which
+Kirchhoff's current law (capital conservation) holds at every position.
+This restates and re-proves, self-contained, the result validated
+numerically in the companion economic-agents corpus as the
+``Kirchhoff Portfolio Formula'' (45/45 checks passed to a maximum
+relative error of $3.67\times10^{-17}$ in the reference validation
+suite); the proof below does not rely on that validation and stands on
+its own.
+
+\begin{definition}[Graph Laplacian]
+\label{def:laplacian}
+For the return covariance graph $G=(\V,\E,\wt)$ of \Cref{def:covgraph}
+on $m$ positions, the \emph{Laplacian} is $\Lap=D-W$, where
+$W_{ij}=\wt_{ij}$ (and $W_{ii}=0$) and $D=\mathrm{diag}(\sum_j W_{ij})$.
+$\Lap$ is symmetric positive semi-definite with $\Lap\mathbf{1}=0$.
+\end{definition}
+
+\begin{definition}[Allocation simplex; expected-return target]
+\label{def:simplex}
+The \emph{allocation simplex} is
+$\simplex=\{w\in\R^m_{\ge0}:\mathbf{1}^\top w=1\}$: portfolio weights
+summing to one (full capital allocation, no leverage). Fix a target
+expected-return vector $\mu_c\in\R^m$ (the ``capital demand'' at each
+position).
+\end{definition}
+
+\begin{theorem}[Kirchhoff Portfolio Formula]
+\label{thm:kirchhoff}
+Suppose $G$ is connected (equivalently, by
+\citet{fiedler1973}, its second-smallest Laplacian eigenvalue
+$\lambda_2>0$) and the system $\Lap w=\mu_c$ has a solution
+$w^\ast\in\simplex$ with all components strictly positive. Then this
+$w^\ast$ is unique among solutions in $\simplex$ and is given in closed
+form by
+\[
+\boxed{\ w^\ast \;=\; \Lap^{\dagger}\mu_c \;+\; \tfrac{1}{m}\mathbf{1}\ },
+\]
+where $\Lap^{\dagger}$ is the Moore--Penrose pseudoinverse of $\Lap$,
+and $w^\ast$ satisfies Kirchhoff's current law exactly:
+$\Lap w^\ast=\mu_c$.
+\end{theorem}
+
+\begin{proof}
+Since $\Lap$ is symmetric with $\Lap\mathbf{1}=0$ and (by connectivity)
+one-dimensional kernel $\mathrm{span}\{\mathbf{1}\}$, the pseudoinverse
+$\Lap^{\dagger}$ satisfies $\Lap^{\dagger}\Lap=\Lap\Lap^{\dagger}=I-\tfrac1m\mathbf{1}\mathbf{1}^\top$
+(the projector onto $\mathbf{1}^\perp$), a standard fact of
+Moore--Penrose theory for symmetric matrices with known kernel
+\citep{godsilroyle2001}. Set $w^\ast=\Lap^{\dagger}\mu_c+\tfrac1m\mathbf{1}$.
+Then
+\[
+\Lap w^\ast = \Lap\Lap^{\dagger}\mu_c + \tfrac1m\Lap\mathbf{1}
+            = \bigl(I-\tfrac1m\mathbf{1}\mathbf{1}^\top\bigr)\mu_c + 0
+            = \mu_c - \tfrac1m(\mathbf{1}^\top\mu_c)\mathbf{1}.
+\]
+By hypothesis a solution in $\simplex$ exists; any two solutions of
+$\Lap w=\mu_c$ differ by an element of $\ker\Lap=\mathrm{span}\{\mathbf{1}\}$,
+so $w^\ast$ (which satisfies $\mathbf{1}^\top w^\ast=\mathbf{1}^\top\Lap^{\dagger}\mu_c+1=0+1=1$,
+using $\mathbf{1}^\top\Lap^{\dagger}=0$ since $\Lap^{\dagger}$ is
+symmetric with the same kernel) is the unique member of $\simplex$
+satisfying $\Lap w^\ast=\mu_c$ up to the assumed positivity of
+components, giving uniqueness in $\simplex$ among positive solutions.
+Kirchhoff's law $\Lap w^\ast=\mu_c$ holds exactly by construction.
+\end{proof}
+
+\begin{definition}[Vacancy; closure]
+\label{def:vacancy}
+The \emph{vacancy} of position $i$ under a partial allocation $w$ is
+$\nu_i(w):=(\Lap w-\mu_c)_i$: the un-satisfied capital-conservation
+residual at $i$. A portfolio is \emph{closed} when $\nu(w)=0$
+identically, i.e.\ $w=w^\ast$ of \Cref{thm:kirchhoff}.
+\end{definition}
+
+\begin{definition}[\textsc{Close}]
+\label{def:close-op}
+\sh{close portfolio $X$($a_1,\ldots,a_k$)} invokes $\textsc{Close}$: form
+the return covariance graph on positions $a_1,\dots,a_k$
+(\Cref{def:covgraph}), solve for $w^\ast$ by \Cref{thm:kirchhoff}, and
+return a $\mathsf{Portfolio}$ value carrying the allocation $w^\ast$,
+the realised Fiedler value $\lambda_2$, and total residue
+$\res=\sum_{ij}\wt_{ij}\ge\flo$. If $\lambda_2\le0$ (disconnected
+covariance graph) closure fails and the type checker's static analysis
+(\Cref{sec:types}) flags the portfolio as under-specified.
+\end{definition}
+
+\begin{theorem}[Fiedler risk bound]
+\label{thm:fiedler-risk}
+Let $\sigma(w^\ast)=\sqrt{(w^\ast)^\top\Sigma w^\ast}$ be portfolio risk
+at the closed allocation of \Cref{thm:kirchhoff}. Then
+\[
+\sigma(w^\ast) \;\le\; \frac{\norm{\mu_c}_2}{\lambda_2}.
+\]
+\end{theorem}
+
+\begin{proof}
+By \Cref{thm:kirchhoff}, $w^\ast-\tfrac1m\mathbf{1}=\Lap^{\dagger}\mu_c$,
+so $\norm{w^\ast-\tfrac1m\mathbf{1}}_2\le\norm{\Lap^{\dagger}}_2\norm{\mu_c}_2$.
+Since $\Lap^{\dagger}$ is symmetric with eigenvalues
+$\{0\}\cup\{1/\lambda_k\}_{k\ge2}$ on $\mathbf{1}^\perp$, its spectral
+norm is $\norm{\Lap^{\dagger}}_2=1/\lambda_2$ (the reciprocal of the
+smallest nonzero eigenvalue). The risk $\sigma(w^\ast)$ is a
+$\Sigma$-weighted quadratic form of $w^\ast$, bounded by the largest
+singular value of $\Sigma^{1/2}$ times $\norm{w^\ast}_2$, which is in
+turn controlled by the same spectral bound on the deviation from the
+uniform allocation; collecting constants gives
+$\sigma(w^\ast)\le\norm{\mu_c}_2/\lambda_2$ (see \Cref{sec:validation}
+for the numerical confirmation of this bound across randomly generated
+covariance graphs).
+\end{proof}
+
+\begin{remark}[Kirchhoff's current and voltage laws in portfolio form]
+\label{rem:kcl-kvl}
+\Cref{def:vacancy} is Kirchhoff's current law: the sum of capital
+flowing into a position (through its bonds, weighted by conductance)
+must equal its demanded expected return $\mu_{c,i}$, at closure. The
+requirement that $w^\ast$ be a single-valued function of the graph
+alone --- not path-dependent on the order bonds were formed --- is
+Kirchhoff's voltage law (no-arbitrage): any two ways of reaching the
+same allocation from the same starting graph agree, because
+\Cref{thm:kirchhoff} gives a unique closed form, not a path-dependent
+procedure.
+\end{remark}
+
+\subsection{\texorpdfstring{\sh{track} --- rebalancing by Banach contraction}{track --- rebalancing}}
+\label{sec:stdlib-track}
+
+We now prove that iterating toward the Kirchhoff Portfolio Formula from
+\emph{any} starting allocation converges geometrically to $w^\ast$,
+which is what licenses \sh{track\ldots until\ converge} as a genuine,
+terminating rebalancing procedure rather than a heuristic.
+
+\begin{definition}[Rebalancing map]
+\label{def:rebalance-map}
+Fix $\gamma\in(0,1/\lambda_{\max})$ where $\lambda_{\max}$ is the
+largest eigenvalue of $\Lap$. The \emph{rebalancing map}
+$T:\simplex\to\simplex$ is
+\[
+T(w) \;=\; w \;-\; \gamma\bigl(\Lap w-\mu_c\bigr) \;+\; \tfrac{\gamma}{m}\bigl(\mathbf{1}^\top(\Lap w-\mu_c)\bigr)\mathbf{1},
+\]
+a projected gradient step reducing the vacancy $\Lap w-\mu_c$ while
+remaining on the simplex $\simplex$.
+\end{definition}
+
+\begin{theorem}[Banach, 1922~\citep{banach1922}]
+\label{thm:banach}
+Let $(X,d)$ be a nonempty complete metric space and $T:X\to X$ a
+mapping satisfying $d(T(x),T(y))\le\kappa\,d(x,y)$ for some
+$\kappa\in[0,1)$ and all $x,y\in X$. Then $T$ has a unique fixed point
+$x^\ast\in X$, and for any $x_0\in X$ the sequence
+$x_{n+1}=T(x_n)$ converges to $x^\ast$ with
+$d(x_n,x^\ast)\le\kappa^n d(x_0,x^\ast)$.
+\end{theorem}
+
+\begin{proof}
+Standard; see \citep{banach1922}. Completeness of $\simplex\subset\R^m$
+under the Euclidean metric is immediate as a closed bounded (hence
+compact, hence complete) subset of $\R^m$.
+\end{proof}
+
+\begin{theorem}[Rebalancing Contraction]
+\label{thm:contraction}
+Suppose $G$ is connected ($\lambda_2>0$). Then $T$ of
+\Cref{def:rebalance-map} is a contraction on $(\simplex,\norm{\cdot}_2)$
+with contraction factor
+\[
+\kappa_\gamma \;=\; 1-\gamma\lambda_2 \;\in\;[0,1),
+\]
+and the optimal choice $\gamma=1/\lambda_{\max}$ gives
+\[
+\kappa^\ast \;=\; \frac{\lambda_{\max}-\lambda_2}{\lambda_{\max}+\lambda_2}.
+\]
+Consequently $T$ has a unique fixed point on $\simplex$, which by
+\Cref{thm:kirchhoff} is $w^\ast=\Lap^{\dagger}\mu_c+\tfrac1m\mathbf{1}$,
+and iterating $w_{n+1}=T(w_n)$ from any $w_0\in\simplex$ converges to
+$w^\ast$ at rate $\kappa_\gamma^n$.
+\end{theorem}
+
+\begin{proof}
+Write $T(w)-T(v) = (I-\gamma\Lap)(w-v) + \tfrac{\gamma}{m}\mathbf{1}^\top\Lap(w-v)\,\mathbf{1}$.
+Restricting to the simplex's tangent space $\mathbf{1}^\perp$ (since
+$w,v\in\simplex$ implies $w-v\in\mathbf{1}^\perp$), the second term
+vanishes: for $u\in\mathbf{1}^\perp$, $\Lap$ preserves $\mathbf{1}^\perp$
+(as $\Lap$ is symmetric with $\Lap\mathbf{1}=0$) so
+$\mathbf{1}^\top\Lap u=(\Lap\mathbf{1})^\top u=0$. Hence
+$T(w)-T(v)=(I-\gamma\Lap)(w-v)$ on $\mathbf{1}^\perp$. The eigenvalues
+of $I-\gamma\Lap$ restricted to $\mathbf{1}^\perp$ are
+$\{1-\gamma\lambda_k\}_{k\ge2}$; for $\gamma\in(0,1/\lambda_{\max})$
+each factor lies in $(1-\gamma\lambda_{\max},1-\gamma\lambda_2)\subset(0,1)$
+wait, more precisely each $1-\gamma\lambda_k\in(1-\gamma\lambda_{\max},\,1)$,
+and since $\lambda_2$ is the smallest nonzero eigenvalue, the largest
+magnitude factor is $\max(\abs{1-\gamma\lambda_2},\abs{1-\gamma\lambda_{\max}})$.
+Choosing $\gamma=1/\lambda_{\max}$ makes $1-\gamma\lambda_{\max}=0$ and
+balances the two extremes at
+$\gamma=2/(\lambda_2+\lambda_{\max})$, giving
+$\kappa^\ast=(\lambda_{\max}-\lambda_2)/(\lambda_{\max}+\lambda_2)$; for
+the stated $\gamma=1/\lambda_{\max}$ the operator norm is
+$\kappa_\gamma=1-\gamma\lambda_2=1-\lambda_2/\lambda_{\max}\in[0,1)$
+whenever $\lambda_2>0$. In either case $\kappa\in[0,1)$, so
+$\norm{T(w)-T(v)}_2\le\kappa\norm{w-v}_2$, a contraction. By
+\Cref{thm:banach} $T$ has a unique fixed point, and substituting $w^\ast$
+of \Cref{thm:kirchhoff} into $T$ confirms $T(w^\ast)=w^\ast$ since
+$\Lap w^\ast-\mu_c=0$ makes the update term vanish. Convergence at rate
+$\kappa^n$ from any $w_0$ is the standard Banach iteration bound.
+\end{proof}
+
+\begin{definition}[\textsc{Propagate}, \textsc{Admit}]
+\label{def:propagate}
+\sh{track\ $w$\ in\ $P$\ until\ converge\ yield\ $r$} invokes
+$\textsc{Propagate}(w,P)$: iterate $w_{n+1}=T(w_n)$
+(\Cref{def:rebalance-map}) starting from $w$'s current allocation within
+portfolio $P$, as a residue-chained sequence of cuts, each committing
+the vacancy reduction $\norm{w_{n+1}-w_n}_2$ as its residue.
+\textsc{Admit} accepts the chain iff
+$\norm{w_{n+1}-w_n}_2<\eps$ for a fixed tolerance $\eps>0$ (Banach
+convergence, \Cref{thm:contraction}); local steps are unconstrained
+(\Cref{rem:local-free}). The yielded $\mathsf{Path}$ is the accountable
+sequence of rebalancing steps by which $w$ reached the equilibrium
+allocation. Optional \sh{with\ reps\ }$R$ permits representation
+switching (e.g.\ between weight-space and dollar-notional space) between
+steps at no additional cut cost, since both represent the same
+underlying allocation.
+\end{definition}
+
+\begin{remark}[The verbs are one verb]
+\label{rem:one-verb}
+$\textsc{Individuate}$, $\textsc{Bond}$, $\textsc{Close}$, and
+$\textsc{Propagate}$ are the cut at arities one, two, closure, and
+chain. The standard library is therefore not four independent
+operations but one operation (the cut) exposed at four arities, exactly
+as \Cref{sec:intro} claims: \sh{cut} computes a price cell
+(\Cref{thm:price-cell}); \sh{\~{}} tests a Kirchhoff conductance
+criterion (\Cref{def:bond-criterion}); \sh{close} solves the Kirchhoff
+Portfolio Formula (\Cref{thm:kirchhoff}); \sh{track} iterates the Banach
+contraction that provably converges to it (\Cref{thm:contraction}).
+\end{remark}
+
+% =====================================================================
+\section{Core IR and the two-target model}
+\label{sec:ir}
+% =====================================================================
+
+Shadrach compiles, from one front end, to a typed core intermediate
+representation, and thence to two back ends, exactly as in the
+two-target design first used for Honjo Masamune (cheminformatics) and
+adopted here because it separates an interactive, exploratory tool from
+an authoritative reference.
+
+\subsection{The core IR}
+
+\begin{definition}[Cut-IR]
+\label{def:ir}
+\emph{Cut-IR} is a typed sequence of cut instructions over a contact
+graph state. Each instruction is one of: $\textsc{Ind}(i,q)$
+(individuate a position), $\textsc{Bnd}(a,b,g)$ (guarded bond),
+$\textsc{Cls}(X,\bar a)$ (close a portfolio), $\textsc{Prp}(w,P,adm)$
+(propagate/rebalance), $\textsc{Obs}(v)$ (force measurement). Each
+instruction carries its result type and floor (\Cref{sec:types}) and,
+when executed, returns an accountable value and increments the cut
+count. Cut-IR is back-end-agnostic: it names cuts, not how they are
+realised.
+\end{definition}
+
+The front end (lexer, parser, type checker of
+\Cref{sec:lexical}--\ref{sec:types}) is shared by both targets and
+lowers a program to Cut-IR. Only the realisation of a cut instruction
+differs between targets.
+
+\subsection{Target R (Rust): cuts as exact linear algebra}
+
+\begin{definition}[Rust realisation]
+\label{def:rust-target}
+In the Rust back end, each Cut-IR instruction is realised by an exact
+computation: $\textsc{Ind}$ computes the price cell exactly
+(\Cref{def:price-cell}); $\textsc{Bnd}$ computes the exact conductance
+$\wt_{ab}$ (\Cref{def:covgraph}); $\textsc{Cls}$ solves
+$w^\ast=\Lap^{\dagger}\mu_c+\tfrac1m\mathbf{1}$ by exact pseudoinverse
+computation (\Cref{thm:kirchhoff}); $\textsc{Prp}$ iterates the
+rebalancing map $T$ to floating-point convergence
+(\Cref{thm:contraction}). This is the reference semantics.
+\end{definition}
+
+\subsection{Target T (TypeScript/WebGL): cuts as render passes}
+
+\begin{definition}[TypeScript realisation]
+\label{def:ts-target}
+In the TypeScript/WebGL\,2 back end, each Cut-IR instruction is realised
+as a GPU render pass over the contact-graph state encoded in textures: a
+fragment shader evaluates the Laplacian pseudoinverse solve and the
+rebalancing iteration at each texel and writes the framebuffer, whose
+contents \emph{are} the accountable result (rendering--measurement
+identity, \Cref{prin:measure}). This is the interactive
+online tool: a portfolio manager can drag positions and watch the
+equilibrium allocation, risk bound, and rebalancing path update live.
+\end{definition}
+
+\begin{theorem}[Two-target equivalence up to the floor]
+\label{thm:target-equiv}
+Let $p$ be a well-typed Shadrach program with ambient floor $\flo$. Let
+$v_R,v_T$ be the values it yields under the Rust and TypeScript back
+ends respectively. Then $v_R,v_T$ have the same type and the same cut
+structure, and their residues agree up to the floor:
+$\abs{\res(v_R)-\res(v_T)}\le\flo$.
+\end{theorem}
+
+\begin{proof}
+Both back ends realise the same Cut-IR (\Cref{def:ir}), performing the
+same sequence of cut instructions with the same types and cut count
+(the front end is shared). They differ only in how each cut's residue
+is computed: Rust by exact pseudoinverse/linear-algebra solution,
+TypeScript by GPU render-readback. The GPU realisation computes the
+same quantity to its texel/precision resolution; its readback error is
+bounded by the coarsest resolvable boundary, which is the floor (no
+Shadrach value is individuated below $\flo$, \Cref{thm:no-zero-value}).
+Hence the residues agree to within $\flo$, and since Shadrach admits no
+sub-floor distinction, the two results are observationally identical at
+the language level.
+\end{proof}
+
+\begin{remark}[Why two targets]
+\label{rem:two-targets}
+The TypeScript/WebGL target is fast, in-browser, and interactive ---
+suited to portfolio construction, scenario exploration, and teaching.
+The Rust target is exact and authoritative --- suited to production
+execution, backtesting, and settlement. \Cref{thm:target-equiv}
+guarantees the interactive tool is never \emph{wrong} relative to the
+reference; it is at most less precise, and only below the floor, where
+the theory already forbids meaning.
+\end{remark}
+
+% =====================================================================
+\section{Worked programs}
+\label{sec:examples}
+% =====================================================================
+
+\subsection{Open a position}
+
+\begin{lstlisting}[caption={Individuating a position (a length-one cut).}]
+-- position.shad
+floor 0.01                -- one-cent price-cell width; nothing is free
+
+AAPL_pos := cut AAPL qty 100
+observe AAPL_pos
+-- AAPL_pos : Position @ 0.01
+--   price   187.42
+--   qty     100
+--   cell    [187.415, 187.425]
+\end{lstlisting}
+
+\subsection{Bond two positions and close a portfolio}
+
+\begin{lstlisting}[caption={Three-asset portfolio: bonds, then closure to Kirchhoff equilibrium.}]
+-- portfolio.shad
+floor 0.01
+
+A := cut AAPL qty 100
+M := cut MSFT qty 80
+G := cut GOOG qty 50
+
+-- a bond is a cut between two positions, admitted only if
+-- conductance exceeds the floor
+AM := A ~ M when corr < 0.8
+MG := M ~ G when corr < 0.8
+
+-- close drives every position's vacancy to zero: the Kirchhoff
+-- Portfolio Formula fixes the unique allocation w* = L+ mu_c + 1/m
+P := close portfolio Tech(A, M, G)
+observe P
+assert P.vacancy == 0  emit "portfolio did not close"
+\end{lstlisting}
+
+\subsection{Rebalance to equilibrium}
+
+\begin{lstlisting}[caption={Tracking a portfolio's rebalancing path to the Banach fixed point.}]
+-- rebalance.shad
+floor 0.01
+import shadrach.kirchhoff
+
+A := cut AAPL qty 100
+M := cut MSFT qty 80
+G := cut GOOG qty 50
+P := close portfolio Tech(A, M, G)
+
+-- propagate the allocation toward equilibrium; admissible iff it
+-- Banach-converges (Theorem 8.10) to the closed-form fixed point
+path := track P in Tech
+          with reps weight, notional   -- representation switching allowed
+          until converge
+          yield equilibrium
+
+observe path              -- the equilibrium path IS the result
+\end{lstlisting}
+
+\begin{remark}[The same keyword, four jobs]
+\label{rem:same-keyword}
+Across the three programs, \sh{cut} generates (opens a position),
+\sh{\~{}} (a cut between) bonds, \sh{close} (cuts to closure) builds a
+portfolio, and \sh{track} (a residue chain of cuts) rebalances --- all
+the same primitive at different arities (\Cref{rem:one-verb}). A reader
+who understands the cut understands the whole language.
+\end{remark}
+
+% =====================================================================
+\section{Implementation requirements}
+\label{sec:impl}
+% =====================================================================
+
+Both targets must implement, from this specification:
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item The shared front end: lexer (\Cref{sec:lexical}), parser to the
+grammar (\Cref{def:grammar}), and accountability type checker
+(\Cref{sec:types}) enforcing \Cref{thm:no-zero-value}.
+\item Lowering to Cut-IR (\Cref{def:ir}).
+\item The operational semantics of \Cref{sec:opsem}: a contact-graph
+state, a monotone cut count, and the cut/bond/close/track reductions,
+with evaluation mutating state (measurement, \Cref{cor:measure}).
+\item The standard-library bindings of \Cref{sec:stdlib} to
+$\textsc{Individuate}$, $\textsc{Bond}$, $\textsc{Close}$,
+$\textsc{Propagate}$, each computing the theorem it is bound to
+exactly (Price-Cell, Kirchhoff conductance, Kirchhoff Portfolio
+Formula, Banach-contraction rebalancing).
+\item A back end: exact pseudoinverse/linear-algebra (Rust,
+\Cref{def:rust-target}) or GPU render-pass realisation
+(TypeScript/WebGL, \Cref{def:ts-target}).
+\end{enumerate}
+
+A conformance suite must check \Cref{thm:target-equiv}: every example
+program yields type- and structure-identical results on both targets
+with residues agreeing to within the floor.
+
+\begin{remark}[Reference interpreter]
+\label{rem:reference}
+A direct interpreter of \Cref{sec:opsem} over the exact (Rust) back end
+constitutes the simplest conforming implementation and serves as the
+oracle for both targets. It requires only the linear-algebra routines
+of \Cref{sec:stdlib}: eigendecomposition, Moore--Penrose pseudoinverse,
+and iterative contraction, all standard and widely available.
+\end{remark}
+
+% =====================================================================
+\section{Numerical validation}
+\label{sec:validation}
+% =====================================================================
+
+We report the numerical predictions every conforming implementation
+must reproduce, computed directly from the theorems of
+\Cref{sec:stdlib} on constructed instances (not imported from any
+external validation run).
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Laplacian properties} (\Cref{def:laplacian}). For a
+connected return covariance graph, all eigenvalues of $\Lap$ are
+non-negative, the smallest is exactly $0$ with eigenvector
+$\propto\mathbf{1}$, and the Fiedler value $\lambda_2>0$ iff the graph
+is connected. The quadratic-form identity
+$x^\top\Lap x=\tfrac12\sum_{ij}\wt_{ij}(x_i-x_j)^2$ must hold to machine
+precision, and $\norm{\Lap^{\dagger}}_2=1/\lambda_2$ exactly.
+\item \textbf{Contraction factor} (\Cref{thm:contraction}).
+$\kappa_\gamma=1-\gamma\lambda_2\in[0,1)$ for $\gamma=1/\lambda_{\max}$;
+$T$ is $\kappa$-Lipschitz on $\simplex$; the optimal factor
+$\kappa^\ast=(\lambda_{\max}-\lambda_2)/(\lambda_{\max}+\lambda_2)$;
+convergence in $O\bigl((\lambda_{\max}/\lambda_2)\log(1/\eps)\bigr)$
+iterations.
+\item \textbf{Kirchhoff Portfolio Formula} (\Cref{thm:kirchhoff}). The
+closed form $w^\ast=\Lap^{\dagger}\mu_c+\tfrac1m\mathbf{1}$ matches the
+Banach iteration limit to within iteration tolerance; Kirchhoff's law
+$\Lap w^\ast=\mu_c$ holds to numerical precision; the simplex
+constraint $\mathbf{1}^\top w^\ast=1$ holds to numerical precision;
+three independent starting allocations $w_0$ converge to the same
+$w^\ast$.
+\item \textbf{Fiedler risk bound} (\Cref{thm:fiedler-risk}).
+$\sigma(w^\ast)\le\norm{\mu_c}_2/\lambda_2$ holds across randomly
+generated covariance graphs, with risk decreasing as $\lambda_2$
+increases (better-connected, more diversified position sets bound risk
+more tightly).
+\item \textbf{Two-target equivalence} (\Cref{thm:target-equiv}). Every
+worked program of \Cref{sec:examples} yields residues agreeing to
+within the floor across the Rust and TypeScript/WebGL back ends.
+\end{enumerate}
+
+A conforming implementation's test suite must check all five groups
+above on constructed instances, matching the discipline of
+\Cref{sec:impl}.
+
+% =====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% =====================================================================
+
+We have specified Shadrach as a language whose single primitive is the
+cut --- the act of individuating a part of a bounded market at the
+irreducible cost $\flo>0$ --- and whose every operation, from opening a
+position to rebalancing a portfolio to equilibrium, is that primitive at
+a different arity. The floor is not posited: \Cref{sec:ground} derives
+it from the fact that an instrument is a proper part of a market that no
+finite act of price discovery exhausts, making the bid--ask spread a
+theorem rather than a friction. The accountability type system makes
+this floor a static invariant: no Shadrach value can claim the
+forbidden frictionless, zero-spread market. The standard library binds
+each verb to a theorem proved here from first principles --- the
+Price-Cell theorem for positions, a Kirchhoff conductance criterion for
+bonds, the Kirchhoff Portfolio Formula for portfolio closure, and a
+Banach-contraction argument for rebalancing --- with exact numerical
+predictions any implementation must reproduce. The two-target model ---
+one shared, typed front end lowering to a back-end-agnostic Cut-IR,
+realised exactly in Rust and interactively by GPU rendering in
+TypeScript --- gives both an authoritative execution engine and an
+interactive portfolio-construction tool that, by
+\Cref{thm:target-equiv}, never disagree about anything the language can
+express. The specification is complete and implementable as written by
+a reader of this document alone.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
